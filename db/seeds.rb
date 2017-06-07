@@ -9,9 +9,9 @@ stud_icons = ["bug", "car", "puzzle-piece", "flash", "futbol-o",
 #to lt blue which is not linked here
 colors = ["red", "orange", "yellow", "green", "mint", "navy", "lavender", "plum", "pink"];
 
-#case Rails.env
+case Rails.env
 
-#when "development"
+when "development"
 # Seed the database with a School
 # School.find(1)
 School.create!(full_name: "North Central",
@@ -518,27 +518,27 @@ Teacher.create!(user_name: "TEST_teacherSus",
                 
 
 
-#when "production"
+when "production"
 
 # creates school Noctrl and teacher (+Super) profbill
-# School.create!(full_name: "North Central",
-#               screen_name: "noctrl",
-#               icon: "apple",
-#               color: "red",
-#               email: "noctrl@noctrl.edu",
-#               website: "noctrl.edu",
-#               description: "It's North Central!")
-               
-# Teacher.create!(user_name: "profbill",
-#                 password: "password",
-#                 password_confirmation: "password",
-#                 last_login: Time.now,
-#                 full_name: "Professor Bill",
-#                 screen_name: "profbill",
-#                 icon: "apple",
-#                 color: "red",
-#                 email: "wtktriger@noctrl.edu",
-#                 description: "Super user",
-#                 powers: "Admin",
-#                 school_id: 1)
-#end
+School.create!(full_name: "North Central",
+              screen_name: "noctrl",
+              icon: "apple",
+              color: "red",
+              email: "noctrl@noctrl.edu",
+              website: "noctrl.edu",
+              description: "It's North Central!")
+ 
+Teacher.create!(user_name: "profbill",
+                password: "password",
+                password_confirmation: "password",
+                last_login: Time.now,
+                full_name: "Professor Bill",
+                screen_name: "profbill",
+                icon: "apple",
+                color: "red",
+                email: "wtktriger@noctrl.edu",
+                description: "Super user",
+                powers: "Admin",
+                school_id: 1)
+end
