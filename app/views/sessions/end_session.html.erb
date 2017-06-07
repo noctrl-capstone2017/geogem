@@ -1,0 +1,75 @@
+<!-- @author: Matthew O & Alex P -->
+<div class="container-fluid">
+   <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
+      <div class="page-header vertical-align">
+         <div class="col-xs-11">
+            <h2>End of Behavior Session with <%= @student.screen_name%> </h2>
+            <!-- Dynamically fills in with user's name -->
+         </div>
+         <div class="col-xs-1">
+            <div class ="header-sq i-<%= @student.color %>">
+               <span class="fa fa-<%= @student.icon %>  fa-2x student-icon "></span>
+            </div>
+         </div>
+      </div>
+      <!--End page header-->
+      <div class="row">
+         <div class="col-xs-10 col-xs-offset-1">
+            <!-- Display the session duration -->
+           <h4>Session Duration: <%= calculateDuration =%></h4>
+            <br>
+            <!-- Show end session summary report -->
+            <h4>Quick Summary:</h4>
+            <table class="table table-striped table-hover table-responsive">
+               <thead>
+                  <tr>
+                     <th>Behavior</th>
+                     <th>Type</th>
+                     <th>Data</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <!--Print students squares names in the table -->
+                  <% @squares.each do |square| %>
+                  <tr>
+                     <td>
+                        <p class="listText"><%=square.screen_name %></p>
+                     </td>
+                     <td>
+                        <% if square.tracking_type == 2 %> <!-- Frequency -->
+                        <label>Frequency</label>
+                        <td><%=getFrequency(square)%></td><!--Get frequency and add data to table -->
+                        <% end %>
+                        <% if square.tracking_type == 3 %> <!--Interval -->
+                        <label>Interval</label>
+                        <td><%=getInterval(square)%></td><!--Get interval and add data to table -->
+                        <% end %>
+                        <% if square.tracking_type == 1 %> <!-- Duration-->
+                        <label>Duration</label>
+                        <td><%=formatTime(getDuration(square))%></td><!--Get duration and add data to table -->
+                        <%end%>
+                     </td>
+                  </tr>
+                  <%end%>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-xs-12">
+            <a href="/home" class="btn btn-lg btn-primary">Home</a>
+            <%= link_to 'Print Report', {:controller => "reports", :action => "report1", 
+             :id=> @session.id} , {:method=>:post, class: "btn btn-lg btn-success", target: '_blank'} %>
+         </div>
+      </div>
+   </div>
+   <!--End Col -->
+</div>
+<!-- End container -->
+<!-- 5. Jquery: jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- 5. Bootstrap Javascript: Include all compiled plugins (below), or include individual files as needed -->
+<!-- Got this from CDN: https://www.bootstrapcdn.com/ -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

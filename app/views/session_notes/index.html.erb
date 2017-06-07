@@ -1,0 +1,74 @@
+<script>
+	$(function() {
+  
+  // contact form animations
+  $('#newNote').click(function() {
+    $('#newNoteForm').fadeToggle();
+  })
+  $(document).mouseup(function (e) {
+    var container = $("#newNoteForm");
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        container.fadeOut();
+    }
+  });
+  
+});
+</script>
+
+<!-- page header -->
+<div class="page-header vertical-align">
+	<div class="col-xs-11">
+		<h2>Notes<small> - view all notes</small></h2>
+	</div>
+	<div class="col-xs-1 center-block">
+		<div class="header-sq i-plum" title="Bianca17">
+			<span class="fa fa-apple fa-3x teacher-icon"></span>
+		</div>
+	</div>
+</div><!--End page header-->
+
+
+
+<!--New Note-->
+<div class="row first-content-row">
+	<div class="col-xs-3">
+		<p><%= notice %></p>
+    	<div class ="col-sm-offset-1 btn btn-lg btn-success">
+    	<div id = "newNote">New Note</div>
+    	</div>
+	</div><!--End col-->
+</div><!--End row -->
+
+<!-- This is the note that will be appearing -->
+<div id="newNoteForm">
+  <h1>Add a new Note</h1>  
+	<%= form_for @session_note, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+	  <%= f.text_area :note, size: "60x12" %>
+	  <%= number_field(:session_note, :session_id) %>
+	  <%= f.submit "Save" %>
+	<% end %>
+</div>
+
+<table class="table table-striped table-hover table-responsive teachers-table">
+	<thead>
+		<tr>
+			<th>Student</th>
+			<th>Note</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+	  <%= will_paginate%>
+			<% @session_notes.each do |session_note| %>
+				<tr data-link=<%= edit_session_note_path(session_note.note) %>>
+					<td><p class="listText"><%= session_note.session_id %></p></td>
+					<td><p class="listText"><%= truncate(session_note.note, :length => 80)%></p></td>
+					<td><p class="listText"><%= session_note.created_at %></p></td>
+					<td><p class="listText"><span></span></p></td>
+				</tr>
+			<% end %>
+		<%= will_paginate %>
+	</tbody>
+</table>

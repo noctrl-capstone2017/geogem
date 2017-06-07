@@ -1,0 +1,115 @@
+<!--This is the teacher version of the profile view. They can't change too much,
+  but just enough.-->
+<%= form_for(@teacher) do |f| %>
+  <% if @teacher.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+      <%= pluralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved:
+      </div>
+      <ul>
+      <% @teacher.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<!-- Teacher ID -->
+<div class="row form-row">
+	<div class="col-sm-2 col-sm-offset-1"><h4>Username: </h4></div>
+	<div class="col-sm-2">
+		<%= f.text_field :user_name, class: 'form-control', id: 'teacherID', :readonly => true %>
+	</div>
+</div>
+
+<!-- Teacher name field -->
+<div class="row form-row">
+	<div class="col-xs-1 col-xs-offset-1"><h4>Name: </h4></div>
+	<div class="col-xs-4 col-xs-offset-1">
+		<%= f.text_field :full_name, class: 'form-control', id: 'teacherName', :readonly => true %>
+	</div>
+</div>   
+
+<!-- Teacher screen_name field -->
+<div class="row form-row">
+	<div class="col-xs-1 col-xs-offset-1"><h4>Teacher ID: </h4></div>
+	<div class="col-xs-4 col-xs-offset-1">
+		<%= f.text_field :screen_name, class: 'form-control', :readonly => true %>
+	</div>
+</div>  
+
+<!-- Teacher Email -->
+<div class="row form-row">
+	<div class="col-sm-offset-1 col-sm-2"><h4>Email: </h4></div>
+	<div class="col-sm-4 col-sm-offset-0">
+		<%= f.email_field :email, class: 'form-control', id: 'email' %>
+	</div>
+</div>
+
+<!-- Teacher Admin -->
+<div class="row form-row vertical-align">
+	<div class="col-sm-offset-1 col-sm-2"><h4>Access: </h4></div>
+    <div class="col-sm-4 col-sm-offset-0">
+			<h4> <%= @teacher.powers %> </h4>
+		</div>
+</div>
+
+<!--Unfortunately, there's no 'readonly' form of select, so we're doing it 
+    this way--with a hidden field!
+    This is totally unsafe, by the way. We're only doing it this way because
+    we trust our users... right?-->
+<%= f.hidden_field :powers, :value => @teacher.powers %>
+
+<!-- a little extra space after name/email -->
+<div class="form-spacer">	&nbsp;</div>
+
+<div class="row form-row vertical-align">
+	<div class="col-sm-offset-1 col-sm-2"><h4>Color: </h4></div>
+	<div class="col-sm-4 col-sm-offset-0">
+		
+		<!--A roundabout way of making ltblue display as light blue.-->
+		<% if @teacher.color == 'ltblue' %>
+			<%= f.select :color, options_for_select(colorNames.map {|color| [color.titleize, color]}, :selected => 'light blue'), 
+			class: 'form-control' %>
+		<% end %>
+		
+		<!--Otherwise, the value is drawn naturally from the model entry. -->
+		<% if @teacher.color != 'ltblue' %>
+			<%= f.select :color, colorNames.map {|color| [color.titleize, color]}, class: 'form-control' %>
+		<% end %>
+		
+	</div>
+</div>
+
+<!-- teacher icon field -->
+<div class="row form-row">
+	<div class="col-xs-1 col-xs-offset-1"><h4>Icon: </h4></div>
+	<div class="col-xs-4 col-xs-offset-1">
+		<%= f.select :icon, teacherIcons.map {|icon| [icon.titleize, icon]}, class: 'form-control' %>
+	</div>
+</div>
+
+<!-- Teacher description area -->
+<div class="row form-row">
+	<div class="col-sm-offset-1 col-sm-2"><h4>Description: </h4></div>
+	<div class="col-sm-6 col-sm-offset-0">
+		<%= f.text_field :description, class: 'form-control', id: 'Description' %>
+	</div>
+</div>  
+
+<div class="row form-row">
+	<div class="col-sm-1 col-sm-offset-1"><br></div>
+</div>
+
+<!-- Button area -->
+<div class="row action-buttons-row">
+	<div class="col-sm-1 col-sm-offset-1"> 
+	  <%= button_tag(type: 'submit', class: "btn btn-success") do %>  
+	  	Save Changes 
+	  <% end %>
+	</div>
+	<div class="col-sm-1 col-sm-offset-1"> 
+		<%= link_to "Cancel", home_path, :class => "btn btn-danger" %>
+	</div>
+</div>
+<% end %>

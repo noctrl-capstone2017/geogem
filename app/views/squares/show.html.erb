@@ -1,0 +1,36 @@
+<!-- NOT SUPPORTED -->
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Full name:</strong>
+  <%= @square.full_name %>
+</p>
+
+<p>
+  <strong>Screen name:</strong>
+  <%= @square.screen_name %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @square.color %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @square.tracking_type %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @square.description %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @square.school_id %>
+</p>
+
+<%= link_to 'Edit', edit_square_path(@square) %> |
+<%= link_to 'Back', squares_path %>

@@ -1,0 +1,74 @@
+<!-- UX team  Edited by Robert Herrera and Dakota B -->
+
+<!-- page header -->
+	<div class="page-header vertical-align">
+			<div class="col-xs-11">
+				<h2>Admin Dashboard<small> -  manage <%= @current_school.full_name %> teachers, students, squares, etc</small></h2><!-- Dynamically fills in with school id -->
+			</div>
+			<div class="col-xs-1 pull-right">
+				<div class="header-sq i-<%= @current_school.color %>" title=<%= @teacher.screen_name %>>
+					<span class="fa fa-home fa-3x school-icon"></span>
+				</div>
+			</div>
+		</div>
+<!--End page header-->
+
+<!-- action icons, first row -->		
+<div class="row">
+	
+	<!-- View/edit school attributes -->
+	<%= link_to edit_school_path(@current_teacher) do %>
+	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit school attributes">
+	<div class ="action-sq i-navy center-block" >
+		<span class="fa fa-home fa-4x action-icon" ></span>
+	</div>
+		<p><span class="student-icon-text">School Profile</span></p>
+	</div> <!-- col -->
+	<% end %>
+	
+	<!-- School stats and more -->
+	<%= link_to admin_report_path do %>
+	<div class="col-xs-2 text-center" title="School stats and more">
+	<div class ="action-sq i-pink center-block" >
+		<span class="fa fa-file-text-o fa-4x action-icon" ></span>
+	</div>
+		<p><span class="student-icon-text">Admin Report</span></p>
+	</div> <!-- col -->
+	<% end %>
+	
+</div>   <!-- row -->
+
+<!-- action icons, second row -->
+<div class="row action-icon-row">
+	
+	<!-- View/edit all students -->
+	<%= link_to students_path do %>
+	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit all students">
+	<div class ="action-sq i-red center-block" >
+		<span class="fa fa-child fa-4x action-icon" ></span>
+	</div>
+		<p><span class="student-icon-text">All Students</span></p>
+	</div> <!-- col -->
+	<% end %>
+	
+	<!-- View/edit all teachers -->
+	<%= link_to teachers_path do %>
+	<div class="col-xs-2 text-center" title="View/edit all teachers">
+	<div class ="action-sq i-yellow center-block" >
+		<span class="fa fa-apple fa-4x action-icon" ></span>
+	</div>
+	<p><span class="student-icon-text">All Teachers	</span></p>
+	</div> <!-- col -->
+	<% end %>
+	
+	<!-- View/edit all behavior squares-->
+	<%= link_to squares_path do %>
+	<div class="col-xs-2 text-center" title="View/edit all behavior squares">
+	<div class ="action-sq i-ltblue center-block" >
+		<span class="fa fa-square-o fa-4x action-icon" ></span>
+	</div>
+	<p><span class="student-icon-text">All Squares</span></p>
+	</div> <!-- col -->
+  <% end %>
+  
+</div>

@@ -1,0 +1,130 @@
+<!-- @author: Matthew O & Alex P & Debra J-->
+<%= csrf_meta_tag %>
+<!-- Control the selection and unselection of the student roster -->
+<script>
+	$(document).ready(function() {
+        $(".d-sq").click(function(){
+        
+            if(!$(this).hasClass("sq-active")) {
+                $(this).addClass("sq-active");
+            } else {
+                $(this).removeClass("sq-active");
+            }
+        });
+	});
+</script>
+
+<!-- Note Functionality -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+
+<!--Side bar -->
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="col-md-12 text-center">
+        <div class ="sq-studSesh i-<%= @student.color %> center-block">
+             <span class="fa fa-<%= @student.icon %> fa-5x student-icon center-block" style="padding-top:20%;"></span>
+        </div>
+        <h3><%= @student.full_name %></h3>
+        <p id="start_time"></p>
+        <%= form_tag end_session_path, :method => :POST do%>
+            <div class="actions">
+                <%= hidden_field_tag :start %>
+                <%= hidden_field_tag :end %>
+                <%= submit_tag "End Session", :name => 'end_sess1',  :onclick => "return getEndTime()", :class => "btn btn-lg btn-primary btnFix"%>
+            </div>
+        <% end %>
+        <br>
+        <p>Frequency - <i class="fa fa-bullseye icon-white"></i></p>
+        <p>Interval - <i class="fa fa-flash icon-white"></i></p>
+        <p>Duration - <i class="fa fa-clock-o icon-white"></i></p>
+    </div>
+</div><!--End Sidebar -->
+<!--Top Buttons-->
+<div class="row">
+    <div class="col-xs-1">
+        <span onclick="openNav()"><i class="fa fa-chevron-circle-left fa-2x"></i></span>
+    </div>
+    <div class="col-xs-6  col-md-4 pull-right">
+        <div class="vertical-align" style="display:block">
+            <button class="btn btn-lg btn-secondary noteBtn"><i class="fa fa-pencil-square-o icon-white fa-lg"></i> Notes</button>
+        </div>
+        <%= form_tag end_session_path, :method => :POST do%>
+            <div class="actions btnFix vertical-align" style="float:left; width:auto; display:block">
+                <%= hidden_field_tag :start2 %>
+                <%= hidden_field_tag :end2 %>
+                <%= submit_tag "End Session", :name => 'end_sess2', :onclick => "return getEndTime()", :class => "btn btn-lg btn-primary btnFix"%>
+            </div>
+        <% end %>
+    </div>
+</div>
+<!-- Main Content -->
+<div id="session-main">
+    <div class="container-fluid">
+        <!-- Behavior Square Area -->
+        <% @student.squares.each_with_index do |square, index| %>
+            <% if index == 0 || index.even? %>
+                <div class="row behavior-row">
+            <% end %>
+                <div class="col-xs-3 col-sm-offset-1 col-md-3 col-md-offset-0">
+                    <% if square.tracking_type == 2 %>
+                        <div class="wrapper frequency" name="<%= square.id %>">
+                            <button class="counter square i-<%= square.color %>">
+                                <div class="square i-<%= square.color %> text-center">
+                                    <div class="col-xs-12">
+                                        <h4><%= square.screen_name %> <label class="count">0</label></h4>
+                                          <br><!--Used for spacing-->
+                                    </div>
+                                    <div class="col-xs-1 col-xs-offset-7">
+                                        <span><i class="fa fa-bullseye icon-white"></i></span>
+                                    </div>
+                                </div><!--End Square-->
+                            </button>
+                        </div><!-- End Wrapper -->
+                        <% end %>
+                        <% if square.tracking_type == 3 %>
+                        <div class="wrapper interval" name="<%= square.id %>">
+                            <button class="counter square i-<%= square.color %>">
+                                <div class="square i-<%= square.color %> text-center">
+                                    <div class="col-xs-12">
+                                            <h4><%= square.screen_name %> <label class="count">0</label></h4>
+                                            <br><!--Used for spacing-->
+                                    </div>
+                                     <div class="col-xs-1 col-xs-offset-7">
+                                        <span> <i class="fa fa-flash icon-white"></i></span>
+                                    </div>
+                                </div><!--End Square-->
+                            </button>
+                            </div><!-- End Wrapper -->
+                        <% end %>
+                        <% if square.tracking_type == 1 %>
+                        <div class="wrapper duration" name="<%= square.id %>">
+                            <button class="button-start square i-<%= square.color %>" id="button-start1">
+                                <div class="d-sq square i-<%= square.color %> text-center">
+                                    <div class="col-xs-12">
+                                            <h4><%= square.screen_name %> </h4>
+                                            <p id = "timer"><span id="minutes">00</span>:<span id="seconds">00</span></p>
+                                    </div>
+                                    <div class="col-xs-1 col-xs-offset-7">
+                                        <span> <i class="fa fa-clock-o icon-white"></i></span>
+                                    </div>
+                                </div><!--End Square-->
+                            </button>
+                            </div><!-- End Wrapper -->
+                        <% end %>
+                </div><!--End Col -->
+            <% if (index.odd?) || index == (@student.squares.size-1) %>
+                </div>   <!-- row -->
+            <% end %>
+          <% end %>
+    </div><!--End Fluid Container-->
+</div><!--End Main -->
+<!-- Additional Button Area -->
+<div class="row">
+    <div class="col-sm-2 pull-right">
+        <div class="btn btn-danger btn-lg", onclick="undo();">Undo</div>
+    </div>
+</div>
+
+
+<textarea class="eventLog" id = "eventLog" style="display:none;" disabled></textarea>

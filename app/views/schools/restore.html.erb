@@ -1,0 +1,34 @@
+<!-- UX Team. Edited by Robert Herrera and Dakota B -->
+<div class="container">
+	<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
+
+		<!-- page header -->
+		<div class="page-header vertical-align">
+			<div class="col-xs-11">
+				<h2>Restore School<small> - restore all teacher logins for a school</small></h2><!-- Dynamically fills in with school id -->
+			</div>
+			<div class="col-xs-1 center-block">
+				<div class="header-sq i-red" title="Prof Bill is Super User">
+					<span class="fa fa-flash fa-3x teacher-icon"></span>
+				</div>
+			</div>
+		</div><!--End page header-->
+
+		
+		<div class="row first-content-row content-text">
+			<p>
+				Restore logins at Super User's focus school: <span style="color: blue; font-size: 1.4em; font-weight: bold;"><%= @school_name %></span>
+			</p>
+			<p>
+				This school has: <span style="color: blue; font-size: 1.4em; font-weight: bold;"><%= @teacher_count %> teachers</span> to be restored.
+			</p>
+
+			<form class="form-horizontal" action="super">
+				<!-- Action buttons -->
+				<div class="row action-buttons-row">
+					<div class="col-xs-4 col-xs-offset-1 text-center"> 
+						<button type="submit" class="btn btn-success">Restore school</button>
+						&nbsp; &nbsp; &nbsp;
+						<button type="submit" class="btn btn-danger">Cancel</button></div>
+				</div>
+			</form>

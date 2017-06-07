@@ -1,0 +1,7 @@
+<!--<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js", "chartkick"%> put in /app/views/layouts/application.html.erb to avoid including manually on each page-->
+<h1>Graph#main</h1>
+<p>Find me in app/views/graph/main.html.erb</p>
+
+<%= line_chart @graphData.where(behavior_square_id:5).group_by_day(:square_press_time).count %>
+<p><a href="graph/example">Chart Examples</a></p>
+<p><a href="graph/todo">todo list</a></p>

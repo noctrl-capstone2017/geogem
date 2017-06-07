@@ -1,0 +1,96 @@
+<!-- changed by Robert Herrera -->
+<%= form_for(@school) do |f| %>
+  <% if @school.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@school.errors.count, "error") %> prohibited this school from being saved:</h2>
+
+      <ul>
+      <% @school.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+
+<!-- page header -->
+	<div class="page-header vertical-align">
+		<div class="col-xs-11">
+			<h2>New School<small> - add a new school to GeoGem</small></h2><!-- Dynamically fills in with school id -->
+		</div>
+	<div class="col-xs-1 center-block">
+		<div class="header-sq i-gray" title="Add a new school">
+				<span class="fa fa-home fa-3x teacher-icon"></span>
+		</div>
+	</div>
+</div><!--End page header-->
+
+<!--  School Icon Name -->  
+  <div class="row form-row">
+    <div class="col-xs-2 col-xs-offset-1"><h4> School ID: </h4></div>
+    <div class="col-xs-2">
+      <%= f.text_field :screen_name, class: "form-control" %>	
+    </div>
+  </div>
+	
+<!--  School Name -->  
+  <div class="row form-row">
+    <div class="col-xs-1 col-xs-offset-1"><h4>Name: </h4></div>
+    <div class="col-xs-4 col-xs-offset-1">
+      <%= f.text_field :full_name, class: "form-control"  %>    				
+    </div>
+  </div>
+
+  <div class="" form-spacer="">	&nbsp;</div>
+
+<!--  School Email -->  
+  <div class="row form-row">
+    <div class="col-xs-1 col-xs-offset-1"><h4>Email: </h4></div>
+    <div class="col-xs-4 col-xs-offset-1">
+      <%= f.text_field :email, class: "form-control"  %>    				
+    </div>
+  </div>
+
+<!--  School Website -->  
+  <div class="row form-row">
+    <div class="col-xs-1 col-xs-offset-1"><h4>Website: </h4></div>
+    <div class="col-xs-4 col-xs-offset-1">
+      <%= f.text_field :website, class: "form-control"  %>    				
+    </div>
+  </div>
+
+<!-- Show School Color Field -->
+  <div class="row form-row">
+		<div class="col-xs-1 col-xs-offset-1">
+		  <h4>Color: </h4></div>
+		<div class="col-xs-4 col-xs-offset-1">
+      <%= f.select :color, ['navy','red','yellow',
+      ['light blue', 'ltblue'],['light orange','ltorange'],'green','lavender','plum','mint','pink',
+      ['dark orange','dkorange']]%>
+		</div>
+	</div>
+	
+<!-- Show School Description Field -->
+	<div class="row form-row">
+		<div class="col-xs-1 col-xs-offset-1"><h4>Description: </h4></div>
+		<div class="col-xs-6 col-xs-offset-1">
+		  <%= f.text_area :description, class: "form-control"  %>
+		</div>
+	</div>
+
+<!-- using Kevin M's code from New Teacher form -->
+
+<div class="row action-buttons-row">
+	<div class="col-sm-1 col-sm-offset-1"> 
+	  <%= button_tag(type: 'submit', class: "btn btn-success") do %>  
+	  	Add New School
+	  <% end %>
+	</div>
+	<div class="col-sm-1 col-sm-offset-1"> 
+		<%= link_to "Cancel", schools_path, :class => "btn btn-danger" %>
+	</div>
+</div>
+
+<!-- END OF FORM -->
+<% end %>
+

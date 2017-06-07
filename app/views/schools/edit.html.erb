@@ -1,0 +1,16 @@
+<!-- page header -->
+<div class="page-header vertical-align">
+	<div class="col-xs-11">
+		<h2>School Profile<small> - Edit information for school <%= @school.screen_name %></small></h2><!-- Dynamically fills in with school id -->
+	</div>
+	<div class="col-xs-1 pull-right">
+		<div class="header-sq i-plum" >
+			<span class="fa fa-apple fa-3x teacher-icon"></span>
+		</div>
+	</div>
+</div>
+<!--End page header-->
+
+<%= render 'form', school: @school %>
+
+

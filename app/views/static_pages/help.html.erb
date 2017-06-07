@@ -1,0 +1,294 @@
+<!-- Help page by Steven Young -->
+		<!-- page header -->
+		<div class="page-header vertical-align">
+			<div class="col-xs-11">
+				<h2>Help<small> - frequently asked questions about GeoGem</small></h2><!-- Dynamically fills in with school id -->
+			</div>
+			<div class="col-xs-1 center-block">
+				<div class="header-sq i-gray" title="Help page">
+					<span class="fa fa-question-circle-o fa-3x teacher-icon"></span>
+				</div>
+			</div>
+		</div><!--End page header-->
+
+		<!-- intro text -->
+		<div class="row content-text">
+			<p>
+				<br>
+				Here are the answers to 20 questions (frequently asked) about GeoGem. 
+			</p>
+			<p>
+				Select a section icon or just scroll down for help.
+			</p>
+		</div>
+
+		<!-- action icons, row 2 -->
+		<div class="row action-icon-row" >
+            <!-- Getting started icon-->
+			<div class="col-xs-2 col-xs-offset-1 text-center" >
+				<div class ="action-sq i-navy center-block" >
+					<a href="#getting-started"><span class="fa fa-paper-plane-o fa-4x action-icon" ></span></a>
+				</div>
+				<p><a href="#getting-started"><span class="student-icon-text">Getting started</span></a></p>
+			</div> <!--End Getting started icon-->
+            
+			<div class="col-xs-2 text-center" >
+                <!-- Sessions icon-->
+				<div class ="action-sq i-red center-block">
+					<a href="#sessions"><span class="fa fa-key fa-4x action-icon"></span></a>
+				</div>
+				<p><a href="#sessions"><span class="student-icon-text">Sessions</span></a></p>
+			</div><!--End Sessions icon-->
+            
+            <!-- Admin poweres icon-->
+			<div class="col-xs-2 text-center" >
+				<div class ="action-sq i-yellow center-block">
+					<a href="#admin-powers"><span class="fa fa-trophy fa-4x action-icon"></span></a>
+				</div>
+				<p><a href="#admin-powers"><span class="student-icon-text">Admin powers</span></a></p>
+			</div><!-- End Admin poweres icon-->
+            
+            <!-- Ect icon-->
+			<div class="col-xs-2 text-center">
+				<div class ="action-sq i-ltblue center-block">
+					<a href="#etc"><span class="fa fa-shower fa-4x action-icon"></span></a>
+				</div>
+				<p><a href="#etc"><span class="student-icon-text">Etc</span></a></p>
+			</div><!--End Ect icon-->
+		</div><!-- row -->
+
+		<!-- page content, just text -->
+        <!-- Getting started questions -->
+		<div class="row content-text">
+			<a id="getting-started"></a>
+			<h3 class="help-header">Getting Started &nbsp; <span class="fa fa-paper-plane-o fa-fw fa-1x i-navy help-small-sq" ></span> </h3>
+			<p>
+				<span class="help-qa-letter">Q1.</span> What is GeoGem?
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> GeoGem is a web application that collects and analyzes behavioral data for students with autism.<br>
+				The program was created by computer science students at <a href="http://www.noctrl.edu">North Central College</a>. 
+				You can read more at the <%= link_to "About", about_path %>.
+			</p>
+			
+			<hr class="help-line">
+			
+			<p>
+				<span class="help-qa-letter">Q2. My Home page doesn’t have any students? What do I do?
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span>Students are assigned by your school’s Admin users. You should ask them to assign
+				students to your roster so that you can begin your work.
+			</p>
+			
+			<hr class="help-line">
+			
+            <p>
+				<span class="help-qa-letter">Q3.</span> I’m lost! How do I get back to the Home page?
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> Select GeoGem in the upper right of the screen to return Home.
+			</p>
+			
+			<hr class="help-line">
+			<p>
+				<span class="help-qa-letter">Q4.</span> Uh-oh. I forgot my password. What now?
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> Contact your school’s Admin user. He or she can reset your password.
+			</p>
+            <hr class="help-line">
+            <p>
+				<span class="help-qa-letter">Q5.</span> Can I change my password?
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> Yes. Select Profile at the top of the screen.
+				The Change Password icon is at the bottom of your profile. 
+			</p>
+            <hr class="help-line">
+            <p>
+				<span class="help-qa-letter">Q6.</span> How do I change my username? I’d prefer to login with my email.
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> Sorry. Once you have a username, it can’t be changed. Not even by your Admin.
+			</p>
+			<!-- end getting started questions -->
+            <hr class="help-line">
+            <!-- Sessions questions -->
+			<a id="sessions"></a>
+			<h3 class="help-header">Sessions &nbsp;  <span class="fa fa-key fa-fw fa-1x i-red help-small-sq" ></span></h1>
+			<p>
+				<span class="help-qa-letter">Q7.</span> Why does my Home page only show 8 student icons? I have more than 8 students.
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A. The student icons are the last 8 students you worked with.You can always see all your student in the
+				“Student:” dropdown below the icons.
+			</p>
+			
+			<hr class="help-line">
+			<p>
+				<span class="help-qa-letter">Q8.</span> What do the different behavior squares mean?
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A. There are three types of behavior squares:
+									<ol type="1">
+  <li>Frequency squares have a lightning bolt. They simply increment each time they are pressed.</li>
+  <li>Duration squares have a timer. These squares track the length of an event. Select the square to start the timer. And select again to stop it.</li>
+  <li>Interval squares have a bullseye or concentric circles. These squares are like frequency squares, they increment. But during analysis, the counts are only shown per interval: showing whether the square pressed during an interval or not.</li>
+</ol> 
+			</p>
+            <hr class="help-line">
+            <p>
+				<span class="help-qa-letter">Q9.</span> During a session, if I mistakenly press a button, can I undo it?
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> Yes. Select the red Undo button in the lower right to undo. 
+				You can only undo the last square pressed, not more than that. 
+			</p>
+			<!-- end sessions questions -->
+            <hr class="help-line">
+            <!-- Admin powers questions-->
+            <a id="admin-powers"></a>
+			<h3 class="help-header">Admin Powers &nbsp;  <span class="fa fa-trophy fa-fw fa-1x i-yellow help-small-sq" ></span></h1>
+			<p>
+				<span class="help-qa-letter">Q10.</span> I’m overwhelmed. Where do I start?
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> Select Admin at the top of the page. This will take you to the Admin Dashboard.
+				You’ll usually start from here. There are three “things” in GeoGem: Students, Teachers, and Squares.
+				From the Admin Dashboard, you’ll define your school by creating and editing your Students, Teachers, and Squares.
+			</p>
+            <hr class="help-line">
+            <p>
+				<span class="help-qa-letter">Q11.</span> How can I remove a remove a teacher or student from the system? 
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> There is no way to completely remove a Teacher (or Student or Square) from GeoGem.
+			</p>
+			<hr class="help-line">
+			<p>
+				<span class="help-qa-letter">Q12.</span> Wait. I can’t remove a teacher? Well, what if someone leaves the school?
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A. Good point! While you can’t remove the teacher (and the session data associated with that teacher),
+				you CAN suspend the login for any teacher. Here are the steps: 
+									<ol type="1">
+			  <li>Goto the Admin Dashboard,</li>
+			  <li>Select All Teachers,</li>
+			  <li>Select the teacher,</li>
+			  <li>Select the Login Setting action icon at the bottom,</li>
+			  <li>Set Login Status to “Suspended” and then “Change Settings”. </li>
+			</ol> 
+			<span class="help-qa-letter">After this, your suspended teacher will not be able to login to GeoGem.
+			
+			</p>
+            <hr class="help-line">
+             <p>
+				<span class="help-qa-letter">Q13.</span>I created a teacher and some students. But now, that teacher can’t
+				access any of the students. What can I do? 
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> From the Admin Dashboard, select All Teachers. From there, select 
+				the teacher you want to change. At the bottom of that teacher’s profile page, select the Student Roster icon.
+				That page will allow you to add or remove students from a teacher’s roster.
+			</p>
+			<hr class="help-line">
+			 <p>
+				<span class="help-qa-letter">Q14.</span> So, teachers can only access students in their roster.
+				Ok. As an Admin, which students can I access?
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span>Correct. Teachers can only access students in their roster.
+				These students are assigned by you, the Admin. Second, an Admin can always access any student in the school.
+			</p>
+			<hr class="help-line">
+			 <p>
+				<span class="help-qa-letter">Q15.</span> One of my teachers forgot his GeoGem password. How can I fix this problem?
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span>Here’s the sequence: Goto the Admin Dashboard; Select All Teachers;
+				Select the teacher you want; Select the Login Settings action icon at the bottom of the page. From there,
+				you can reset a teacher’s password. Also in Login Settings, you can change a teacher’s powers
+				(Admin, Teacher, or SessionOnly), or even suspend a teacher’s login.
+			</p>
+			<hr class="help-line">
+			 <p>
+				<span class="help-qa-letter">Q16.</span> What are the differences between the three Teacher “powers” settings?
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> There are three power levels for teachers (from strongest to weakest):
+				Admin, Teacher, and SessionOnly. An Admin can create and edit nearly everything for their school in GeoGem.
+				This is the person in charge. Teacher powers include running behavioral sessions and also analyzing the results.
+				SessionOnly users can only run behavioral sessions and not analysis reports. The intent is that aides or volunteers
+				would be candidates for SessionOnly status.
+			</p>
+			<hr class="help-line">
+			 <p>
+				<span class="help-qa-letter">Q17.</span> I see how I can change the password of other teachers, but as an Admin,
+				how do I change my own password? And my gosh… what if I forget MY password? What then?
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> Select Profile in the navbar at the top of the page. That will take you to
+				your Profile Page. At the bottom, you’ll see the Change Password action icon. Go there to change your own password. 
+				If you forget your password and there isn’t another Admin in your school, then you need to contact GeoGem’s Super User for help.
+				The best course is to email Prof Bill at
+				<a href="mailto:wtkrieger@noctrl.edu">wtkrieger@noctrl.edu</a>.
+			<!--End Admin powers questions-->
+			</p>
+			<hr class="help-line">
+			
+            <!-- Ect questions-->
+            <a id="etc"></a>
+            	<h3 class="help-header">Etc &nbsp;  <span class="fa fa-shower fa-fw fa-1x i-ltblue help-small-sq" ></span></h1>
+            <p>
+				<span class="help-qa-letter">Q18.</span>  Are you planning improvements and new GeoGem features in the future?  
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> Absolutely! We are working to 1) improve the current GeoGem experience, and
+				2) looking for new ideas to incorporate into GeoGem.
+			</p>
+			<hr class="help-line">
+            <p>
+				<span class="help-qa-letter">Q19.</span> What does the name GeoGem mean? I don’t get it.
+			</p>
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> We chose GeoGem as our product name because it’s easy to spell and remember, 
+				it’s alliterative, and mostly, because it’s fun! It’s technical meaning is less important… some stuff to do with the
+				geo-shapes in our system and background wallpaper, and there are gems in the Rails framework we used to program the 
+				system.
+			</p>
+            <hr class="help-line">
+            <p>
+				<span class="help-qa-letter">Q20.</span> That wasn’t helpful enough. Is there anyone I can contact for more help?
+			</p>
+		
+			<p class="help-answer-para">
+				<span class="help-qa-letter">A:</span> Sure. You can contact the GeoGem Help Staff (um, Prof Bill) at
+				 <a href="mailto:wtkrieger@noctrl.edu">wtkrieger@noctrl.edu</a>.
+			</p>
+           
+			<!--End Ect questions-->
+			<hr class="help-line">
+
+			<!-- bottom padding for demo only -->
+			<p style="padding-bottom: 100px;"></p>
+				
+		</div>   <!-- row -->
+
+	</div><!--End content col-->
+</div><!--End container-->
+
+
+<!-- 5. Jquery: jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- 6. Bootstrap Javascript: Include all compiled plugins (below), or include individual files as needed -->
+<!-- Got this from CDN: https://www.bootstrapcdn.com/ -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+
+
+   

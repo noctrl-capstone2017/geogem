@@ -1,0 +1,86 @@
+<!-- authors: Ricky Perez & Michael Loptien -->
+<!-- renders the forms for edit and new squares -->
+
+<!-- Error Catching -->
+<%= form_for(square) do |f| %>
+  <% if square.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        The Form Contains <%= pluralize(square.errors.count, "error") %>
+      </div>
+      <ul>
+      <% square.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<!-- Show ID field -->
+  <div class="row form-row">
+  	<div class="col-sm-1 col-sm-offset-1">
+  		<h4> ID:</h4>
+  	</div> 
+  	<div class="col-sm-1">
+      <%= f.text_field :screen_name, class: "form-control" %>
+  	</div>
+  </div>
+
+<!-- Show Type Field -->
+  <div class="row form-row">
+  	<div class="col-sm-1 col-sm-offset-1">
+  		<h4>Type: </h4>
+  	</div>
+  	
+  	<!-- Renders a select box with the int value of Type masked with the name -->
+  	<div class="col-md-offset-0 col-sm-offset-0 col-sm-2">
+      <%= f.select :tracking_type,[['Duration',1],['Frequency',2],['Interval',3]] %>
+  	</div>
+  </div>
+
+<!-- Show Square Color Field -->
+  <div class="row form-row">
+		<div class="col-xs-1 col-xs-offset-1">
+		  <h4>Color: </h4>
+		</div>
+		<div class="col-xs-4 col-xs-offset-1">
+		  <% if @square.color == 'ltblue' %>
+        <%= f.select :color, colorNames.map {|color| [color.titleize, color]},  :selected => 'light blue', class: 'form-control' %>
+      <% else %>
+        <%= f.select :color, colorNames.map {|color| [color.titleize, color]}, class: 'form-control' %>
+      <% end %>
+		</div>
+	</div>
+
+  <div class="" form-spacer="">	&nbsp;</div>
+	
+<!-- Square Description field -->
+	<div class="row form-row">
+		<div class="col-sm-2 col-sm-offset-1">
+			<h4>Description:</h4>
+		</div>
+		<div class="col-sm-4">
+		  <%= f.text_area :description, class:"form-control" %>	
+		</div>
+	</div>   <!-- form-row -->
+
+<!-- Hidden field for school id, set via logged in teachers school id -->
+  <% if local_assigns[:isNew] %>
+    <%= f.hidden_field :school_id, :value => current_teacher.school_id%>
+  <% end %>
+
+<!-- This area displays the save and cancel buttons
+ It uses an If statment to test a passed in value "isNew"
+ to determine which button text will show -->
+  <div class="row action-buttons-row">
+	  <div class="col-xs-6 col-xs-offset-1 text-center"> 
+      <% if local_assigns[:isNew] %>
+        <%= button_tag(type: 'submit', class: "btn btn-success") do %>Add New Square<%end%>
+      <% else %>
+        <%= button_tag(type: 'submit', class: "btn btn-success") do %>Save Changes<%end%>
+      <% end %>
+        		&nbsp; &nbsp; &nbsp;
+	      <%= link_to 'Cancel', squares_path, class: "btn btn-danger" %>
+    </div>
+  </div>
+<% end %>

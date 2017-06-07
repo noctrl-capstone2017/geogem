@@ -1,0 +1,46 @@
+<!-- NOT SUPPORTED -->
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Full name:</strong>
+  <%= @student.full_name %>
+</p>
+
+<p>
+  <strong>Screen name:</strong>
+  <%= @student.screen_name %>
+</p>
+
+<p>
+  <strong>Icon:</strong>
+  <%= @student.icon %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @student.color %>
+</p>
+
+<p>
+  <strong>Contact info:</strong>
+  <%= @student.contact_info %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @student.description %>
+</p>
+
+<p>
+  <strong>Session interval:</strong>
+  <%= @student.session_interval %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @student.school_id %>
+</p>
+
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>

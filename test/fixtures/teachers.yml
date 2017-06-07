@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  user_name: profbill2
+  password_digest: <%= Teacher.digest('password') %>
+  last_login: 2017-05-10 22:01:20
+  full_name: Professor Bill
+  screen_name: profbill
+  icon: apple
+  color: red
+  email: wtktriger@noctrl.edu
+  description: Super user
+  powers: Admin
+  school_id: 1 #Changed By: Michael Lotien, we no longer support a school 0
+  id: 1 #DJ added, is necessary to include id fields to fix tests
+
+two:
+  user_name: Joe8
+  password_digest: <%= Teacher.digest('password') %>
+  last_login: 2017-05-10 22:01:20
+  full_name: Joseph Smtih
+  screen_name: Joe8
+  icon: apple
+  color: red
+  email: MyString2@mystring.com
+  description: MyText
+  powers: Admin
+  school_id: 1
+  id: 2 #DJ added, is necessary to include id fields to fix tests
+

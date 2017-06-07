@@ -1,0 +1,80 @@
+<!--Adapted for use by Kevin M. -->
+
+<!-- page header -->
+<div class="page-header vertical-align">
+	<div class="col-xs-11">
+		<!-- Dynamically fills in with school id -->
+		<h2>All Teachers<small> - manage teachers at <%= @current_school.screen_name %></small></h2>
+	</div>
+	<%= render 'layouts/current_teacher_icon' %>
+</div><!-- End page header -->
+
+<!-- New Teacher Button -->
+<div class="row first-content-row">
+	<div class="col-xs-3">
+		<p><%= notice %></p>
+		<%= button_to new_teacher_path, method: :get, class: 'col-sm-offset-1 btn btn-lg btn-success' do %>
+  		<i class="fa fa-plus-square-o"></i> New Teacher
+		<% end %>
+	</div><!-- End col-->
+</div><!-- End row -->
+
+ <!--T eacher display area -->
+<table class="table table-striped table-hover table-responsive teachers-table">
+	<thead>
+		<tr>
+			<th class="col-xs-1">Icon</th>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Powers</th>
+			<th>Last Login</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<%= will_paginate %>
+			<% @teachers.each do |teacher| %>
+			
+				<!-- Teacher icon section-->
+				<tr data-link=<%= edit_teacher_path(teacher.id) %>>
+					<td>
+						<div class="table-sq i-plum" title="<%= teacher.user_name %>">
+							<div class="table-sq i-<%= teacher.color%>">
+									<i class="fa fa-<%= teacher.icon%> fa-2x table-icon"></i>
+							</div>
+						</div>
+					</td>
+					<!-- Teacher info section -->
+					<td><p class="listText"><%= teacher.user_name %></p></td>
+					<td><p class="listText"><span><%= teacher.screen_name %></span></p></td>
+					<td><p class="listText"><span><%= teacher.powers %></span></p></td>
+
+          <!-- Teacher last-login area -->
+					<!-- The reason (suspended) isn't just added afterwards is so that it
+					     stays in the same line. -->
+					<td><p class="listText"><span> 
+					<!--Last Login. If the user has never logged in, list Never.-->
+						<% if teacher.last_login.nil? %>
+							Never
+							<% if teacher.suspended? %>
+								<small>(Suspended)</small>
+							<% end %>
+						<!--If the teacher has logged in but is suspended, indicate that.-->
+						<% else %>
+							<% if teacher.suspended? %>
+								<%= time_ago_in_words(teacher.last_login) %> 
+								<small>(Suspended)</small>
+							<% else %>
+								<%= time_ago_in_words(teacher.last_login) %>
+							<% end %>
+						<% end %>
+					</span></p></td>
+					<td><p class="listText"><span></span></p>
+					</td>
+				</tr>
+				
+			<% end %>
+		<%= will_paginate %>
+		
+	</tbody>
+</table>

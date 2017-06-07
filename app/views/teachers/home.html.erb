@@ -1,0 +1,88 @@
+<!-- @author: Matthew O & Alex P  & Debra J-->
+
+<!-- Control the selection and unselection of the student roster -->
+<script>
+	$(document).ready(function() {
+		$(".image-radio").click("click",function(){
+		     $(this).attr('checked',true);
+		     $("select[name='student_id']").val($(this).attr('id'));
+		 });
+		 $('#student_id').change(function(){ 
+		    $('input[name="student_roster"]').prop('checked', false);
+		    var button = document.getElementById("student" + $(this).val());
+		     $(button).trigger('click');
+		});
+	});
+</script>
+
+<!--     flash    -->
+<!-- Meagan Moore -->
+<div class="form-group">		
+	<%= render 'layouts/flash' %>
+</div>
+			
+<!-- page header -->
+<div class="page-header vertical-align">
+	<div class="col-xs-11">
+		<h2>Home<small> - student roster for teacher <%= @teacher.screen_name %></small></h2><!-- Dynamically fills in with school id -->
+	</div>
+	<div class="col-xs-1 pull-right">
+		<div class="header-sq i-<%= @teacher.color %>" >
+			<span class="fa fa-<%= @teacher.icon %> fa-3x teacher-icon"></span>
+		</div>
+	</div>
+</div><!--End page header-->
+
+<!--Student Roster Area -->
+<div id="student-roster"> <!--Student display area: shows the last 8 students teacher worked with -->
+	<% @top_students.each_with_index do |student, index| %>
+		<% if index == 0 || index == 4 %>
+			<div class="row students-row">
+		<% end %>
+
+		<div class="col-xs-3 text-center">
+			<input name="student_roster" id="student<%= student.id %>" value="student<%= student.id %>" style="display:none;" type="radio"/>
+			<label for="student<%= student.id %>">
+				<div class="image-radio" id="<%= student.id %>">
+		      <div class ="square i-<%= student.color %> center-block">
+		          <span class="fa fa-<%= student.icon %> fa-5x student-icon center-block"></span>
+		      </div>
+	      </div>
+      </label>
+      <p><span class="student-icon-text" id="<%= student.id %>"><%= student.full_name%></span></p>
+    </div>    <!-- col -->
+
+    <% if index == 3 || index == 7 || index == (@top_students.size-1) %>
+    	</div>   <!-- row -->
+    <% end %>
+  <% end %>
+</div> <!--End Student Roster -->
+
+<!-- Search Form should populate with student name on selection -->
+<!-- All students who are assigned to teacher will populate here -->
+<!-- horizontal form help from:	www.w3schools.com/bootstrap/bootstrap_forms.asp -->
+<div class="row">
+	<form class="form-horizontal text-center action-buttons-row">
+		<div class="col-sm-offset-3">
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="email">Student:</label>
+				<div class="col-sm-4">
+
+						<%= select_tag 'student_id', options_from_collection_for_select(@teacher.students, 'id', 'full_name'), {:required => true} %>
+				</div>
+			</div>
+		</div>
+		<div class="form-group"> 
+			<div class="col-xs-3 text-center col-xs-offset-3">
+				<%= button_tag(type: 'submit', class: "btn btn-lg btn-primary", name: 'start_session') do %>
+					<i class="fa fa-clock-o"></i>  Start Session
+				<% end %>
+			</div>
+			<div class="col-xs-3 text-center">
+				<%= button_tag(type: 'submit', class: "btn btn-lg btn-success", name: 'analyze') do %>
+					<i class="fa fa-line-chart"></i> Analyze Sessions
+				<% end %>
+			</div>
+		</div>
+	</form>
+</div>   <!-- row -->

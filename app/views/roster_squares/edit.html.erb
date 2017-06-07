@@ -1,0 +1,63 @@
+<!--Author: Michael Loptien and Ricky Perez -->
+<!--This page is used to display each students set of squares -->
+	<div class="container">
+		
+<!--     flash    -->
+<!-- Meagan Moore -->
+<div class="form-group">		
+	<%= render 'layouts/flash' %>
+</div>
+
+		<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
+			<!-- page header -->
+			<div class="page-header vertical-align">
+				<div class="col-xs-11">
+					<h2>Student Squares<small> - behavior squares for student <%= @students.screen_name %></small></h2><!-- Dynamically fills in with school id -->
+				</div>
+				<div class="col-xs-1 center-block">
+					<div class="header-sq i-<%= @students.color %>" title="<%=@students.screen_name%>">
+						<a href="<%= edit_student_path(@students)%>"><span class="fa fa-<%= @students.icon %> fa-3x teacher-icon"></span></a>
+					</div>
+				</div>
+			</div><!--End page header-->
+				<!-- student behavior Squares -->
+				<div class="row squares-row first-content-row">
+					<!--Link to possible solution: https://stackoverflow.com/questions/14528919/new-row-every-3-items -->
+					<!-- set the squares for the specific student-->
+				    <%@roster_squares.each do |roster_square, index|%>
+					    <% if roster_square.student_id == @students.id %>
+					      <% square_name = set_square_name(roster_square) %>
+					    	<% square_color = set_square_color(roster_square) %>
+					    	<% square_id = set_square_id(roster_square) %>
+						   	<div class="squares-row col-xs-3">
+								<a href="/squares/<%=square_id%>/edit"><div class="square i-<%= square_color %> text-center">
+									<div class="col-xs-12">
+										<p><span><h4><%=square_name%></h4></span></p>		   		
+									</div>
+								</div><!--End Square--></a>
+							</div><!--End Col -->
+						<%end%>
+					<%end%>
+				</div><!--End Row -->
+	
+			<!-- Calls the edit from which is the add squares select and the submit button-->
+			<%= render 'form', roster_square: @roster_square %>
+			<!--Form for delete roster square-->
+			<form>			<!-- remove square row-->
+				<div class="row vertical-align add-rm-squares-row">
+					<div class="col-xs-1 col-xs-offset-1 text-right">
+						<span class="fa fa-minus" style="color: red;"></span>
+					</div>
+					<div class="col-xs-2 text-left">
+						<label for="removeSquare"><h4>Remove Square: </h4></label>
+					</div>
+					<div class="form-group col-xs-2">
+						<!--Populates the drop down box-->
+						<%= select_tag 'remove_square_id', options_for_select(@student_squares.map {|student_square| ["#{set_square_name(student_square)} - #{set_square_desc(student_square) }", student_square.id] }), class: "form-control", id: "removeSquare"%>
+					</div>
+					<div class="col-xs-2 text-center">
+						<!--Creates the button for the delete drop down box-->
+						<%= button_tag(type: 'submit', class: "btn btn-danger", id: "addStudBtn", name: "remove_square") do %> <i class="fa fa-minus icon-white"></i> <% end %>
+					</div>
+				</div><!--End row -->
+			</form>

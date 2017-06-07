@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Session Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Behavior square</th>
+      <th>Square press time</th>
+      <th>Duration end time</th>
+      <th>Session</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @session_events.each do |session_event| %>
+      <tr>
+        <td><%= session_event.behavior_square_id %></td>
+        <td><%= session_event.square_press_time %></td>
+        <td><%= session_event.duration_end_time %></td>
+        <td><%= session_event.session_id %></td>
+        <td><%= link_to 'Show', session_event %></td>
+        <td><%= link_to 'Edit', edit_session_event_path(session_event) %></td>
+        <td><%= link_to 'Destroy', session_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Session Event', new_session_event_path %>

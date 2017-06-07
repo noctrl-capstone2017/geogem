@@ -1,0 +1,32 @@
+<%= form_for(session_note) do |f| %>
+  <% if session_note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(session_note.errors.count, "error") %> prohibited this session_note from being saved:</h2>
+
+      <ul>
+      <% session_note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :note %>
+    <%= f.text_area :note %>
+  </div>
+
+  <div class="field">
+    <%= f.label :session_id %>
+    <%= f.number_field :session_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :created_at %>
+    <%= f.datetime_select :created_at %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,79 @@
+<!-- UX team. Revised by Robert Herrera and Dakota B -->
+<div class="container">
+	<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
+
+		<!-- page header -->
+		<div class="page-header vertical-align">
+			<div class="col-xs-11">
+				<h2>Super Dashboard<small> - create and manage  <%= @current_school.full_name %> using super powers</small></h2><!-- Dynamically fills in with school id -->
+			</div>
+			<div class="col-xs-1 center-block">
+				<div class="header-sq i-red" title="Prof Bill is Super User">
+					<span class="fa fa-flash fa-3x teacher-icon"></span>
+				</div>
+			</div>
+		</div><!--End page header-->
+
+		<!-- school focus spinner -->
+		<div class="row first-content-row">
+		 <%= render 'schoolSelect', school: @school %>
+		</div>
+
+		<!-- action icons -->
+		<div class="row" style="margin-top: 40px;">
+			<%= link_to schools_path do %>	
+			<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit schools">
+			<div class ="action-sq i-navy center-block">
+			<span class="fa fa-home fa-4x action-icon" ></span>
+			</div>
+			<p><span class="student-icon-text">All schools</span></p>
+			
+			</div> <!-- col -->
+			<% end %>
+			
+			<%= link_to super_report_path do %>
+			<div class="col-xs-2 text-center" title="Stats++ for the Super User">
+			<div class ="action-sq i-pink center-block">
+				<span class="fa fa-file-text fa-4x action-icon"></span>
+			</div>
+			<p><span class="student-icon-text">Super Report</span></p>
+			</div><!-- col -->
+			<% end %>
+		</div><!-- row -->
+
+		<!-- action icons, row 2 -->
+		<div class="row action-icon-row" style="margin-top: 40px;">
+			
+			<%= link_to school_backup_path do %>
+			<div class="col-xs-2 col-xs-offset-1 text-center" title="Backup all data of Super's focus school">
+			<div class ="action-sq i-green center-block" >
+				<span class="fa fa-floppy-o fa-4x action-icon" ></span>
+			</div>
+			<p><span class="student-icon-text">Backup school</span></p>
+			</div> <!-- col -->
+			<% end %>
+		
+			<%= link_to school_suspend_path do %>
+			<div class="col-xs-2 text-center" title="Suspend all teacher logins of Super's focus school">
+			<div class ="action-sq i-red center-block">
+				<span class="fa fa-bomb fa-4x action-icon"></span>
+			</div>
+			<p><span class="student-icon-text">Suspend school</span></p>
+			</div><!-- col -->
+			<% end %>
+			
+			<%= link_to school_restore_path do %>
+			<div class="col-xs-2 text-center" title="Restore all teacher logins of Super's focus school">
+			<div class ="action-sq i-yellow center-block">
+				<span class="fa fa-undo fa-4x action-icon"></span>
+			</div>
+			<p><span class="student-icon-text">Restore school</span></p>
+			</div><!-- col -->
+			<% end %>
+			
+		</div><!-- row -->
+
+	</div><!--End content col-->
+</div><!--End container-->
+
+

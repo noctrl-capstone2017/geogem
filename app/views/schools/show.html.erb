@@ -1,0 +1,49 @@
+<!-- Modified by Robert Herrera -->
+<!-- Displays each schools profile schools/1 -->
+<p id="notice"><%= notice %></p>
+
+<!-- page header -->
+<div class="page-header vertical-align">
+	<div class="col-xs-11">
+		<h2>School Profile<small> - view information for school <%= @school.screen_name %></small></h2><!-- Dynamically fills in with school id -->
+	</div>
+	<div class="col-xs-1 pull-right">
+		<div class="header-sq i-plum" >
+			<span class="fa fa-apple fa-3x teacher-icon"></span>
+		</div>
+	</div>
+</div>
+<!--End page header-->
+
+
+
+<p>
+  <strong>School ID:</strong>
+  <%= @school.screen_name %>
+
+  <strong>Name:</strong>
+  <%= @school.full_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @school.email %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @school.website %>
+</p>
+<p>
+  <strong>Color:</strong>
+  <%= @school.color %>
+</p>
+<p>
+  <strong>School description:</strong>
+  <%= @school.description %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_school_path(@school) %> |
+<%= link_to 'Back', schools_path %>

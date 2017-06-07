@@ -1,0 +1,26 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  note: This is the first note
+  session_id: 1
+  created_at: 2017-05-10 22:02:44
+  updated_at: 2017-05-10 22:02:44
+  
+
+two:
+  note: This is the second note
+  session_id: 1
+  created_at: 2017-05-10 22:02:45
+  updated_at: 2017-05-10 22:02:45
+  
+orange:
+  note: This is the third note
+  session_id: 2
+  created_at: 2017-05-10 22:02:46
+  updated_at: 2017-05-10 22:02:46  
+
+tau_manifesto:
+  note: This is the fourth note
+  session_id: 2
+  created_at: 2017-05-10 22:02:47
+  updated_at: 2017-05-10 22:02:47  

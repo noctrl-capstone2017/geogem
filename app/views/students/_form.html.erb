@@ -1,0 +1,99 @@
+<!-- authors: Ricky Perez & Michael Loptien -->
+<!-- renders the forms for edit and new students -->
+
+<!-- Error Catching -->
+<%= form_for(student) do |f| %>
+  <% if student.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+       The Form Contains <%= pluralize(student.errors.count, "error") %>
+      </div>
+      <ul>
+      <% student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<!-- Show Student ID field -->
+  <div class="row form-row">
+    <div class="col-xs-2 col-xs-offset-1"><h4> Student ID: </h4></div>
+    <div class="col-xs-2">
+      <%= f.text_field :screen_name, class: "form-control" %>	
+    </div>
+  </div>
+  
+<!-- Show Student Name field -->
+  <div class="row form-row">
+    <div class="col-xs-1 col-xs-offset-1"><h4>Name: </h4></div>
+    <div class="col-xs-4 col-xs-offset-1">
+      <%= f.text_field :full_name, class: "form-control"  %>    				
+    </div>
+  </div>
+
+<!-- Show Student Interval field -->
+  <div class="row form-row">
+    <div class="col-xs-1 col-xs-offset-1"><h4>Session Interval (min): </h4></div>
+    <div class="col-xs-4 col-xs-offset-1">
+      <%= f.select :session_interval, [5,15,30,60], class: "form-control"  %>    				
+    </div>
+  </div
+
+<!-- Show Student Color Field -->
+  <div class="row form-row">
+		<div class="col-xs-1 col-xs-offset-1">
+		  <h4>Color: </h4></div>
+		<div class="col-xs-4 col-xs-offset-1">
+		  <% if @student.color == 'ltblue' %>
+        <%= f.select :color, colorNames.map {|color| [color.titleize, color]},  :selected => 'light blue', class: 'form-control' %>
+      <% else %>
+        <%= f.select :color, colorNames.map {|color| [color.titleize, color]}, class: 'form-control' %>
+      <% end %>
+		</div>
+	</div>
+
+<!-- Show Student Icon Field -->
+  <div class="row form-row">
+    <div class="col-xs-1 col-xs-offset-1"><h4>Icon: </h4></div>
+    	<div class="col-xs-4 col-xs-offset-1">
+			  <%= f.select :icon, studentIcons.map {|icon| [icon.titleize, icon]}, class: 'form-control' %>
+		  </div>
+  </div>
+
+<!-- Show Student Contact Info -->  
+	<div class="row form-row">
+		<div class="col-xs-1 col-xs-offset-1"><h4>Contact Info: </h4></div>
+		<div class="col-xs-6 col-xs-offset-1">
+      <%= f.text_area :contact_info, class: "form-control"  %>
+		</div>
+	</div>
+
+<!-- Show Student Description Field -->
+	<div class="row form-row">
+		<div class="col-xs-1 col-xs-offset-1"><h4>Description: </h4></div>
+		<div class="col-xs-6 col-xs-offset-1">
+		  <%= f.text_area :description, class: "form-control"  %>
+		</div>
+	</div>
+
+<!-- Hidden field for school id, set via logged in teachers school id -->
+  <% if local_assigns[:isNew] %>
+    <%= f.hidden_field :school_id, :value => current_teacher.school_id%>
+  <% end %>
+
+<!-- This area displays the save and cancel buttons
+ It uses an If statment to test a passed in value "isNew"
+ to determine which button text will show -->
+  <div class="row action-buttons-row">
+	  <div class="col-xs-6 col-xs-offset-1 text-center"> 
+      <% if local_assigns[:isNew] %>
+         <%= button_tag(type: 'submit', class: "btn btn-success") do %>Add New Student<%end%>
+      <% else %>
+        <%= button_tag(type: 'submit', class: "btn btn-success") do %>Save Changes<%end%>
+      <% end %>
+	      		&nbsp; &nbsp; &nbsp;
+	      <%= link_to 'Cancel', students_path, class: "btn btn-danger" %> 
+    </div>
+  </div>
+<% end %>

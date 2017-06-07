@@ -1,0 +1,22 @@
+<!-- authors: Ricky Perez & Michael Loptien -->
+<!-- new view for squares, renderd _form -->
+
+<!-- Page Header -->
+<div class="page-header vertical-align">
+	
+  <!-- Fills in with school screen name -->
+	<div class="col-xs-11">
+	  <h2>New Square<small> - add a new behavior square to school <%= @screen_name %></small></h2>
+	</div>
+	
+	<!-- Fills in with school color, icon, and full name of school -->
+	<div class="col-xs-1 center-block">
+		<div class="header-sq i-<%= @color %>" title="<%= @full_name%>">
+					<span class="fa fa-<%= @icon %> fa-3x teacher-icon"></span>
+		</div>
+	</div>
+	
+</div>
+<!--End page header-->
+
+<%= render 'form', square: @square, isNew: true %>

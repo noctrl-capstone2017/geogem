@@ -1,0 +1,72 @@
+<!--(will be) Adapted for use by Kevin M. -->
+<div class="page-header cap17-header vertical-align">
+	<div class="col-xs-11">
+		<h2>Student Roster<small> - students accessible to teacher <%= @teacher.full_name %></small></h2>
+	</div>
+	<%= render 'layouts/current_teacher_icon' %>
+</div>
+
+<!-- Roster Form -->
+<div class="row">
+	<div class="col-sm-10 col-sm-offset-1">
+		
+		<!-- Can only edit roster if the user is not an admin. -->
+		<% if !(@teacher.powers == "Admin") %>
+			<form>
+			<!--Add/Remove Ctrls -->
+			<div class="row form-row vertical-align">
+				<div class="form-group col-sm-7">
+					<label for="addStud">Add Student to Roster</label>
+					<%= select_tag 'add_student_id', options_from_collection_for_select(@students_not_in_roster, "id", "full_name"), class: 'form-control', id:"addStud" %>
+				</div>
+				<div class="col-sm-1">
+					<%= button_tag(type: 'submit', class: "btn btn-success", id: "addStudBtn", name: "add_student") do %> <i class="fa fa-plus icon-white"></i> <% end %>
+				</div>
+			</div><!-- End Row -->
+			<div class="row form-row vertical-align">
+				<div class="form-group col-sm-7">
+					<label for="removeStud">Remove Student from Roster</label>
+					<%= select_tag 'remove_student_id', options_from_collection_for_select(@students, "id", "full_name"), class: 'form-control', id:"removeStud" %>
+				</div>
+				<div class="col-sm-1">
+					<%= button_tag(type: 'submit', class: "btn btn-danger", id: "addStudBtn", name: "remove_student") do %> <i class="fa fa-minus icon-white"></i> <% end %>
+				</div>
+			</div> <!--End row-->
+			<div class="row form-row vertical-align">
+				<div class="form-group col-sm-7">
+					<%= link_to "Cancel", edit_teacher_path, :class => "btn btn-danger" %>
+				</div>
+			</div>
+			</form>
+		<% end %>
+		
+		<!-- If they are an admin, they will always have all students. -->
+		<% if @teacher.powers == "Admin" %>
+			<h4>Attention: The rosters of admins are not editable. Admins always have all students in their roster.</h4>
+		<% end %>
+		
+	</div>
+</div><!--End row-->
+
+<div class="row">
+	<div class="col-sm-10">
+		<h3>Current Roster:</h3>
+	</div>
+</div>
+
+<div id="student-roster"> <!--Student display area -->
+	<% @students.each_with_index do |student, index| %>
+	<% if index % 6 == 0 %>
+		<div class="row students-row">
+	<% end %>
+		<div class="col-xs-2 text-center">
+			<div class ="header-sq i-<%= student.color %> center-block">
+				<span class="fa fa-<%= student.icon %> fa-3x student-icon "></span>
+			</div>
+				<p><span class="student-icon-text"> <%= student.full_name %> </span></p>
+		</div> <!-- col -->
+	<% if index % 6 == 5 %>
+		</div>   <!-- row -->
+	<% end %> <!-- end of if index -->
+  	<% end %> <!-- end of @students.each_with_index -->
+</div> <!--End Student Roster -->

@@ -1,0 +1,86 @@
+<!-- authors: Ricky Perez & Michael Loptien -->
+<!-- Index view for squares, list of all applicable students -->
+
+<p id="notice"><%= notice %></p>
+
+<!-- page header -->
+<%= render 'layouts/flash' %>
+<div class="page-header vertical-align">
+
+  <!-- Fills in with school screen name -->
+  <div class="col-xs-11">
+	  <h2>All Squares<small> - manage behavior squares at  <%= @screen_name %></small></h2>
+	</div>
+	
+	<!-- Fills in with school color, icon, and title of school name -->
+	<div class="col-xs-1 center-block">
+		<div class="header-sq i-<%= @color %>" title="<%= @full_name%>">
+					<span class="fa fa-<%= @icon %> fa-3x teacher-icon"></span>
+		</div>
+	</div>
+	
+</div>
+<!--End page header-->
+
+<br>
+
+<!-- New Square Button -->
+	<div class="row first-content-row">
+		<div class="col-xs-3 col-xs-offset-1">
+			<form  action="/squares/new.html">
+				<button type="submit" class="col-sm-offset-1 btn btn-lg btn-success">
+					<span class="fa fa-plus-square-o"></span> New Square
+				</button>
+			</form>
+		</div>
+	</div>
+
+<!-- Squares Table Header-->
+<table class= "table table-striped table-hover table-responsive schools-table">
+  <thead>
+	  <tr>
+			<th>Icon</th>
+		  <th>ID</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+
+<!-- Squares Table Body -->
+  <tbody>
+  	<%= will_paginate %>
+    <% @squares.each do |square| %>
+    
+			<!--Make the entire line link--> 
+      <tr data-link="<%= edit_square_path(square) %>">
+        
+        <!-- Square Color -->
+        <td>
+          <div class="table-sq i-<%= square.color %>">
+				    <i class="fa fa-square-o fa-2x table-icon"></i>
+				  </div>
+				</td>
+				
+				<!-- Square Name -->
+        <td><%= square.screen_name %></td>
+        
+        <!-- If statement for translating  square type int into string -->
+        <td><% if square.tracking_type == 1 %>
+              <p class="listText">Duration</p>
+            <% elsif square.tracking_type == 2 %>
+              <p class="listText">Frequency</p>
+            <% else %>
+              <p class="listText">Interval</p>
+            <% end %>
+        </td>
+        
+        <!-- Square Description -->
+        <td><%= square.description %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+  <!--End Table Body-->
+</table>
+<!--End Table-->
+<%= will_paginate %>

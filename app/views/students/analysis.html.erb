@@ -1,0 +1,71 @@
+<body>
+    <div class="container">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+            <!--page header -->
+            <div class="page-header vertical-align">
+                <div class="col-xs-11">
+                    <h2>Analysis <small> Reports for <%= @student.full_name %> </small></h2><!--Dynamically fills in with school id -->
+                </div>
+                <div class="col-xs-1 center-block">
+                    <div class="header-sq i-<%= @student.color %>" title="Analysis">
+                        <span class="fa fa-line-chart fa-3x teacher-icon"></span>
+                    </div>
+                </div>
+            </div><!--End page header-->
+            <!--content, buttons and text -->
+            <div class="content-text">
+                <div class="form-group"> 
+                        <div class="row">
+                            <div class = "col-xs-2">
+                				<a href="analysis2">
+        	                        <div class="col-xs-2 col-xs-offset-1 text-center" title="Reports">
+        	                            <div class ="action-sq i-navy center-block" >
+        		                            <span class="fa fa-file-text-o fa-4x action-icon" ></span>
+        	                            </div>
+        	                        </div> <!-- end col -->
+                                </a>
+            			    </div><!--end col-->
+            			    <div class = "col-xs-8">
+    	                       <h3>Reports</h3>
+			                   <p>Reports will include Behavior Session Summary, Weekly Report, and more.<br><br></p>
+            			    </div><!--end col-->
+            			</div><!--end row-->
+            			<br>
+                        <br>
+                        <div class="row">
+                            <div class = "col-xs-2">
+                				<a href="analysis3">
+        	                        <div class="col-xs-2 col-xs-offset-1 text-center" title="Charts">
+        	                            <div class ="action-sq i-red center-block" >
+        		                            <span class="fa fa-bar-chart fa-4x action-icon" ></span>
+        	                            </div>
+        	                        </div> <!-- col -->
+                                </a>
+            			    </div><!--end col-->
+            			    <div class = "col-xs-8">
+    	                       <h3>Charts</h3>
+			                    <p>The monthly line chart for behavior squares, and more.<br><br></p>
+            			    </div><!--end col-->
+            			</div><!--end row-->
+            			<br>
+            			<br>
+            			<div class="row">
+                            <div class = "col-xs-2">
+                				<a href="analysis4">
+        	                        <div class="col-xs-2 col-xs-offset-1 text-center" title="Export">
+        	                            <div class ="action-sq i-yellow center-block" >
+        		                            <span class="fa fa-file-excel-o fa-4x action-icon" ></span>
+        	                            </div>
+        	                        </div> <!-- col -->
+                                </a>
+            			    </div><!--end col-->
+            			    <div class = "col-xs-8">
+    	                       <h3>Export</h3>
+			                    <p>Export behavior session data in CSV format.</p>
+            			    </div><!--end col-->
+            			</div><!--end row-->
+        	        </form>
+        <!--content-text -->
+        </div>
+    </div>  
+</body>

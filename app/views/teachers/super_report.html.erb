@@ -1,0 +1,32 @@
+<!-- Adapted for use by Dakota B -->
+<div class="container">
+	<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
+
+		<!-- page header -->
+		<div class="page-header vertical-align">
+			<div class="col-xs-11">
+				<h2>Super Report<small> - stats and more for the Super User</small></h2><!-- Dynamically fills in with school id -->
+			</div>
+			<div class="col-xs-1 center-block">
+				<div class="header-sq i-red" title="Prof Bill is Super User">
+					<span class="fa fa-flash fa-3x teacher-icon"></span>
+				</div>
+			</div>
+		</div><!--End page header-->
+
+		<!-- content, just some basic statistics -->
+		<div class="row content-text">
+			<br>
+			<h4>
+				Welcome to GeoGem <%= DeployHelper.geogem_version =%>
+				<br><br><br>
+				<!-- Shows the total number of records present in Schools, teachers, students, squares and sessions. -->
+				There are currently <%=Teacher.count%> Teachers, helping to promote the education <%=Student.count%> students, across <%=School.count%> schools.
+				<br><br><br>
+				These <%=Teacher.count%> teachers have observed <%=Square.count%> behavior Squares, and maintained <%=Session.count%> Sessions since <%= DeployHelper.geogem_deploy_date =%>
+				<br><br><br><br>
+			</h4>
+		</div>
+		
+	</div><!--End content col-->
+</div><!--End container-->

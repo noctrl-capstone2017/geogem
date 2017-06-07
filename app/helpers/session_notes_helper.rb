@@ -1,0 +1,2 @@
+module SessionNotesHelper
+end

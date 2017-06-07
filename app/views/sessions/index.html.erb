@@ -1,0 +1,34 @@
+<!--  Authors Matthew O, Alex P, Debra J -->
+<p id="notice"><%= notice %></p>
+
+<h1>Sessions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Session teacher</th>
+      <th>Session student</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sessions.each do |session| %>
+      <tr>
+        <td><%= session.start_time %></td>
+        <td><%= session.end_time %></td>
+        <td><%= session.session_teacher %></td>
+        <td><%= session.session_student %></td>
+        <td><%= link_to 'Show', session %></td>
+        <td><%= link_to 'Edit', edit_session_path(session) %></td>
+        <td><%= link_to 'Destroy', session, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Session', new_session_path %>

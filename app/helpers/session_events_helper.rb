@@ -1,0 +1,2 @@
+module SessionEventsHelper
+end

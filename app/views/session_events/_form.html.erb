@@ -1,0 +1,38 @@
+<!--  Authors Matthew O, Alex P, Debra J -->
+<%= form_for(session_event) do |f| %>
+  <% if session_event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(session_event.errors.count, "error") %> prohibited this session_event from being saved:</h2>
+
+      <ul>
+      <% session_event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :behavior_square_id %>
+    <%= f.number_field :behavior_square_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :square_press_time %>
+    <%= f.datetime_select :square_press_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :duration_end_time %>
+    <%= f.datetime_select :duration_end_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :session_id %>
+    <%= f.number_field :session_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

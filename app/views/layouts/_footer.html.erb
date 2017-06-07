@@ -1,0 +1,12 @@
+<footer>
+	<script>
+		/*
+		This Javascript function enables hyperlink selection of an entire row
+		My source for this is my class last term, CSC 495:
+		https://github.com/noctrl-csc495-spring2016/Odyssey495/blob/master/app/views/layouts/_footer.html.erb
+		*/
+		$("tr[data-link]").click(function() {
+		  window.location = this.dataset.link
+		})
+	</script>
+</footer>

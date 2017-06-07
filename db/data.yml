@@ -1,0 +1,1705 @@
+
+---
+ar_internal_metadata:
+  columns:
+  - key
+  - value
+  - created_at
+  - updated_at
+  records: 
+  - - environment
+    - development
+    - '2017-05-25 00:13:08.128903'
+    - '2017-05-25 00:13:08.128903'
+
+---
+roster_squares:
+  columns:
+  - id
+  - square_id
+  - student_id
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - 1
+    - 1
+    - '2017-05-25 00:13:10.477962'
+    - '2017-05-25 00:13:10.477962'
+  - - 2
+    - 2
+    - 1
+    - '2017-05-25 00:13:10.489756'
+    - '2017-05-25 00:13:10.489756'
+  - - 3
+    - 3
+    - 1
+    - '2017-05-25 00:13:10.504478'
+    - '2017-05-25 00:13:10.504478'
+  - - 4
+    - 4
+    - 1
+    - '2017-05-25 00:13:10.516751'
+    - '2017-05-25 00:13:10.516751'
+  - - 5
+    - 5
+    - 1
+    - '2017-05-25 00:13:10.529967'
+    - '2017-05-25 00:13:10.529967'
+  - - 6
+    - 5
+    - 1
+    - '2017-05-28 21:43:21.491225'
+    - '2017-05-28 21:43:21.491225'
+
+---
+roster_students:
+  columns:
+  - id
+  - student_id
+  - teacher_id
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - 1
+    - 1
+    - '2017-05-25 00:13:10.165698'
+    - '2017-05-25 00:13:10.165698'
+  - - 2
+    - 2
+    - 1
+    - '2017-05-25 00:13:10.181883'
+    - '2017-05-25 00:13:10.181883'
+  - - 3
+    - 3
+    - 1
+    - '2017-05-25 00:13:10.193404'
+    - '2017-05-25 00:13:10.193404'
+  - - 4
+    - 4
+    - 1
+    - '2017-05-25 00:13:10.208509'
+    - '2017-05-25 00:13:10.208509'
+  - - 5
+    - 5
+    - 1
+    - '2017-05-25 00:13:10.221073'
+    - '2017-05-25 00:13:10.221073'
+  - - 6
+    - 6
+    - 1
+    - '2017-05-25 00:13:10.232531'
+    - '2017-05-25 00:13:10.232531'
+  - - 7
+    - 7
+    - 1
+    - '2017-05-25 00:13:10.243110'
+    - '2017-05-25 00:13:10.243110'
+  - - 8
+    - 8
+    - 1
+    - '2017-05-25 00:13:10.251537'
+    - '2017-05-25 00:13:10.251537'
+  - - 9
+    - 9
+    - 1
+    - '2017-05-25 00:13:10.264264'
+    - '2017-05-25 00:13:10.264264'
+  - - 10
+    - 10
+    - 1
+    - '2017-05-25 00:13:10.277634'
+    - '2017-05-25 00:13:10.277634'
+  - - 11
+    - 11
+    - 1
+    - '2017-05-25 00:13:10.291595'
+    - '2017-05-25 00:13:10.291595'
+  - - 12
+    - 12
+    - 1
+    - '2017-05-25 00:13:10.303536'
+    - '2017-05-25 00:13:10.303536'
+  - - 13
+    - 13
+    - 1
+    - '2017-05-25 00:13:10.315426'
+    - '2017-05-25 00:13:10.315426'
+  - - 14
+    - 14
+    - 1
+    - '2017-05-25 00:13:10.331464'
+    - '2017-05-25 00:13:10.331464'
+  - - 15
+    - 15
+    - 1
+    - '2017-05-25 00:13:10.345043'
+    - '2017-05-25 00:13:10.345043'
+  - - 16
+    - 16
+    - 1
+    - '2017-05-25 00:13:10.357153'
+    - '2017-05-25 00:13:10.357153'
+  - - 17
+    - 17
+    - 1
+    - '2017-05-25 00:13:10.369734'
+    - '2017-05-25 00:13:10.369734'
+  - - 18
+    - 18
+    - 1
+    - '2017-05-25 00:13:10.389941'
+    - '2017-05-25 00:13:10.389941'
+  - - 19
+    - 19
+    - 1
+    - '2017-05-25 00:13:10.404103'
+    - '2017-05-25 00:13:10.404103'
+  - - 20
+    - 20
+    - 1
+    - '2017-05-25 00:13:10.416490'
+    - '2017-05-25 00:13:10.416490'
+  - - 21
+    - 21
+    - 1
+    - '2017-05-25 00:13:10.427956'
+    - '2017-05-25 00:13:10.427956'
+  - - 22
+    - 22
+    - 1
+    - '2017-05-25 00:13:10.439854'
+    - '2017-05-25 00:13:10.439854'
+  - - 23
+    - 23
+    - 1
+    - '2017-05-25 00:13:10.457732'
+    - '2017-05-25 00:13:10.457732'
+  - - 24
+    - 31
+    - 1
+    - '2017-05-26 19:00:44.290986'
+    - '2017-05-26 19:00:44.290986'
+  - - 25
+    - 32
+    - 1
+    - '2017-05-26 19:00:44.386044'
+    - '2017-05-26 19:00:44.386044'
+  - - 26
+    - 27
+    - 1
+    - '2017-05-26 19:18:30.198700'
+    - '2017-05-26 19:18:30.198700'
+  - - 27
+    - 30
+    - 1
+    - '2017-05-26 19:18:30.371847'
+    - '2017-05-26 19:18:30.371847'
+  - - 28
+    - 24
+    - 1
+    - '2017-05-26 19:18:30.388821'
+    - '2017-05-26 19:18:30.388821'
+  - - 29
+    - 28
+    - 1
+    - '2017-05-26 19:18:30.404394'
+    - '2017-05-26 19:18:30.404394'
+  - - 30
+    - 29
+    - 1
+    - '2017-05-26 19:18:30.420105'
+    - '2017-05-26 19:18:30.420105'
+  - - 31
+    - 26
+    - 1
+    - '2017-05-26 19:18:30.435079'
+    - '2017-05-26 19:18:30.435079'
+  - - 32
+    - 25
+    - 1
+    - '2017-05-26 19:18:30.450735'
+    - '2017-05-26 19:18:30.450735'
+  - - 33
+    - 10
+    - 3
+    - '2017-05-28 23:26:30.733974'
+    - '2017-05-28 23:26:30.733974'
+  - - 34
+    - 27
+    - 3
+    - '2017-05-28 23:26:30.770697'
+    - '2017-05-28 23:26:30.770697'
+  - - 35
+    - 16
+    - 3
+    - '2017-05-28 23:26:30.782606'
+    - '2017-05-28 23:26:30.782606'
+  - - 36
+    - 18
+    - 3
+    - '2017-05-28 23:26:30.798634'
+    - '2017-05-28 23:26:30.798634'
+  - - 37
+    - 30
+    - 3
+    - '2017-05-28 23:26:30.811981'
+    - '2017-05-28 23:26:30.811981'
+  - - 38
+    - 15
+    - 3
+    - '2017-05-28 23:26:30.827493'
+    - '2017-05-28 23:26:30.827493'
+  - - 39
+    - 19
+    - 3
+    - '2017-05-28 23:26:30.842401'
+    - '2017-05-28 23:26:30.842401'
+  - - 40
+    - 13
+    - 3
+    - '2017-05-28 23:26:30.854929'
+    - '2017-05-28 23:26:30.854929'
+  - - 41
+    - 3
+    - 3
+    - '2017-05-28 23:26:30.868147'
+    - '2017-05-28 23:26:30.868147'
+  - - 42
+    - 24
+    - 3
+    - '2017-05-28 23:26:30.882801'
+    - '2017-05-28 23:26:30.882801'
+  - - 43
+    - 23
+    - 3
+    - '2017-05-28 23:26:30.896751'
+    - '2017-05-28 23:26:30.896751'
+  - - 44
+    - 4
+    - 3
+    - '2017-05-28 23:26:30.910530'
+    - '2017-05-28 23:26:30.910530'
+  - - 45
+    - 9
+    - 3
+    - '2017-05-28 23:26:30.922789'
+    - '2017-05-28 23:26:30.922789'
+  - - 46
+    - 22
+    - 3
+    - '2017-05-28 23:26:30.935820'
+    - '2017-05-28 23:26:30.935820'
+  - - 47
+    - 21
+    - 3
+    - '2017-05-28 23:26:30.951437'
+    - '2017-05-28 23:26:30.951437'
+  - - 48
+    - 28
+    - 3
+    - '2017-05-28 23:26:30.968088'
+    - '2017-05-28 23:26:30.968088'
+  - - 49
+    - 1
+    - 3
+    - '2017-05-28 23:26:30.983221'
+    - '2017-05-28 23:26:30.983221'
+  - - 50
+    - 14
+    - 3
+    - '2017-05-28 23:26:30.996724'
+    - '2017-05-28 23:26:30.996724'
+  - - 51
+    - 7
+    - 3
+    - '2017-05-28 23:26:31.011817'
+    - '2017-05-28 23:26:31.011817'
+  - - 52
+    - 8
+    - 3
+    - '2017-05-28 23:26:31.026876'
+    - '2017-05-28 23:26:31.026876'
+  - - 53
+    - 6
+    - 3
+    - '2017-05-28 23:26:31.042889'
+    - '2017-05-28 23:26:31.042889'
+  - - 54
+    - 17
+    - 3
+    - '2017-05-28 23:26:31.074109'
+    - '2017-05-28 23:26:31.074109'
+  - - 55
+    - 20
+    - 3
+    - '2017-05-28 23:26:31.086616'
+    - '2017-05-28 23:26:31.086616'
+  - - 56
+    - 5
+    - 3
+    - '2017-05-28 23:26:31.099195'
+    - '2017-05-28 23:26:31.099195'
+  - - 57
+    - 2
+    - 3
+    - '2017-05-28 23:26:31.115374'
+    - '2017-05-28 23:26:31.115374'
+  - - 58
+    - 12
+    - 3
+    - '2017-05-28 23:26:31.128051'
+    - '2017-05-28 23:26:31.128051'
+  - - 59
+    - 29
+    - 3
+    - '2017-05-28 23:26:31.142163'
+    - '2017-05-28 23:26:31.142163'
+  - - 60
+    - 11
+    - 3
+    - '2017-05-28 23:26:31.153907'
+    - '2017-05-28 23:26:31.153907'
+  - - 61
+    - 26
+    - 3
+    - '2017-05-28 23:26:31.169790'
+    - '2017-05-28 23:26:31.169790'
+  - - 62
+    - 25
+    - 3
+    - '2017-05-28 23:26:31.184108'
+    - '2017-05-28 23:26:31.184108'
+
+---
+schools:
+  columns:
+  - id
+  - full_name
+  - screen_name
+  - icon
+  - color
+  - email
+  - website
+  - description
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - North Central
+    - noctrl
+    - apple
+    - red
+    - noctrl@noctrl.edu
+    - noctrl.edu
+    - It's North Central!
+    - '2017-05-25 00:13:08.339399'
+    - '2017-05-29 02:00:58.824943'
+  - - 2
+    - Towne University
+    - test
+    - apple
+    - lavendar
+    - example-1@railstutorial.org
+    - www.example.edu
+    - Perferendis ratione numquam accusantium qui est.
+    - '2017-05-25 00:13:08.685447'
+    - '2017-05-25 00:13:08.685447'
+  - - 3
+    - Northern Boyer College
+    - test
+    - apple
+    - pink
+    - example-2@railstutorial.org
+    - www.example.edu
+    - Recusandae quia et sequi ratione odio id quod tenetur.
+    - '2017-05-25 00:13:08.773061'
+    - '2017-05-25 00:13:08.773061'
+  - - 4
+    - The Minnesota University
+    - test
+    - apple
+    - pink
+    - example-3@railstutorial.org
+    - www.example.edu
+    - Ut dolore sunt omnis officiis optio temporibus molestiae.
+    - '2017-05-25 00:13:08.785228'
+    - '2017-05-25 00:13:08.785228'
+  - - 5
+    - The Rodriguez Institute
+    - test
+    - apple
+    - yellow
+    - example-4@railstutorial.org
+    - www.example.edu
+    - Molestiae delectus dicta sapiente tempora facere rerum.
+    - '2017-05-25 00:13:08.797659'
+    - '2017-05-25 00:13:08.797659'
+  - - 6
+    - West Luettgen
+    - test
+    - apple
+    - mint
+    - example-5@railstutorial.org
+    - www.example.edu
+    - Quod voluptatem dolorum laudantium cumque a.
+    - '2017-05-25 00:13:08.812825'
+    - '2017-05-25 00:13:08.812825'
+  - - 7
+    - Christiansen Academy
+    - test
+    - apple
+    - pink
+    - example-6@railstutorial.org
+    - www.example.edu
+    - Qui nesciunt eius totam qui commodi.
+    - '2017-05-25 00:13:08.829660'
+    - '2017-05-25 00:13:08.829660'
+  - - 8
+    - Davis Institute
+    - test
+    - apple
+    - lavendar
+    - example-7@railstutorial.org
+    - www.example.edu
+    - Veritatis dolore reiciendis quos.
+    - '2017-05-25 00:13:08.844236'
+    - '2017-05-25 00:13:08.844236'
+  - - 9
+    - North Delaware University
+    - test
+    - apple
+    - mint
+    - example-8@railstutorial.org
+    - www.example.edu
+    - Eveniet assumenda voluptatem earum sit necessitatibus totam et.
+    - '2017-05-25 00:13:08.857991'
+    - '2017-05-25 00:13:08.857991'
+  - - 10
+    - Bogan Institute
+    - test
+    - apple
+    - orange
+    - example-9@railstutorial.org
+    - www.example.edu
+    - Reprehenderit explicabo consequatur corrupti quibusdam non.
+    - '2017-05-25 00:13:08.872201'
+    - '2017-05-25 00:13:08.872201'
+  - - 11
+    - The Eichmann Academy
+    - test
+    - apple
+    - mint
+    - example-10@railstutorial.org
+    - www.example.edu
+    - Commodi consequuntur omnis nulla animi quasi.
+    - '2017-05-25 00:13:08.885142'
+    - '2017-05-25 00:13:08.885142'
+  - - 12
+    - East Virginia University
+    - test
+    - apple
+    - green
+    - example-11@railstutorial.org
+    - www.example.edu
+    - Pariatur maiores ullam officiis temporibus soluta nostrum odit.
+    - '2017-05-25 00:13:08.897212'
+    - '2017-05-25 00:13:08.897212'
+  - - 13
+    - Eastern Rippin
+    - test
+    - apple
+    - green
+    - example-12@railstutorial.org
+    - www.example.edu
+    - Illo sunt ea incidunt.
+    - '2017-05-25 00:13:08.908019'
+    - '2017-05-25 00:13:08.908019'
+  - - 14
+    - Southern Reichert
+    - test
+    - apple
+    - yellow
+    - example-13@railstutorial.org
+    - www.example.edu
+    - Commodi magnam et a ducimus.
+    - '2017-05-25 00:13:08.920796'
+    - '2017-05-25 00:13:08.920796'
+  - - 15
+    - Northern Nebraska College
+    - test
+    - apple
+    - lavendar
+    - example-14@railstutorial.org
+    - www.example.edu
+    - Omnis ratione ut qui facere magnam et et.
+    - '2017-05-25 00:13:08.931921'
+    - '2017-05-25 00:13:08.931921'
+  - - 16
+    - Huel College
+    - test
+    - apple
+    - green
+    - example-15@railstutorial.org
+    - www.example.edu
+    - Accusantium illum iusto quidem et nobis commodi quos aut.
+    - '2017-05-25 00:13:08.944636'
+    - '2017-05-25 00:13:08.944636'
+  - - 17
+    - Steuber University
+    - test
+    - apple
+    - plum
+    - example-16@railstutorial.org
+    - www.example.edu
+    - Illo nemo dolorem voluptate et aliquid ullam reiciendis ut.
+    - '2017-05-25 00:13:08.956503'
+    - '2017-05-25 00:13:08.956503'
+  - - 18
+    - VonRueden College
+    - test
+    - apple
+    - navy
+    - example-17@railstutorial.org
+    - www.example.edu
+    - Odio ut sed nesciunt esse rerum omnis quas.
+    - '2017-05-25 00:13:08.967519'
+    - '2017-05-25 00:13:08.967519'
+  - - 19
+    - Western Arizona Academy
+    - test
+    - apple
+    - red
+    - example-18@railstutorial.org
+    - www.example.edu
+    - Doloremque commodi blanditiis sit rerum.
+    - '2017-05-25 00:13:08.980664'
+    - '2017-05-25 00:13:08.980664'
+  - - 20
+    - East Abshire Institute
+    - test
+    - apple
+    - green
+    - example-19@railstutorial.org
+    - www.example.edu
+    - Quas recusandae sequi quo voluptas adipisci.
+    - '2017-05-25 00:13:08.994949'
+    - '2017-05-25 00:13:08.994949'
+  - - 21
+    - Northern Schoen Institute
+    - test
+    - apple
+    - red
+    - example-20@railstutorial.org
+    - www.example.edu
+    - Libero veritatis non ut.
+    - '2017-05-25 00:13:09.008994'
+    - '2017-05-25 00:13:09.008994'
+  - - 22
+    - East Gusikowski Institute
+    - test
+    - apple
+    - plum
+    - example-21@railstutorial.org
+    - www.example.edu
+    - Rerum ratione doloribus expedita.
+    - '2017-05-25 00:13:09.021149'
+    - '2017-05-25 00:13:09.021149'
+  - - 23
+    - Hayes College
+    - test
+    - apple
+    - green
+    - example-22@railstutorial.org
+    - www.example.edu
+    - Iusto aperiam illo est iure soluta consequatur fugit.
+    - '2017-05-25 00:13:09.038762'
+    - '2017-05-25 00:13:09.038762'
+  - - 24
+    - Northern Toy
+    - test
+    - apple
+    - orange
+    - example-23@railstutorial.org
+    - www.example.edu
+    - Repellat id facilis qui eligendi culpa eveniet minus.
+    - '2017-05-25 00:13:09.050551'
+    - '2017-05-25 00:13:09.050551'
+  - - 25
+    - Yundt College
+    - test
+    - apple
+    - navy
+    - example-24@railstutorial.org
+    - www.example.edu
+    - Eos doloremque qui aperiam dolore.
+    - '2017-05-25 00:13:09.062393'
+    - '2017-05-25 00:13:09.062393'
+  - - 26
+    - West Hammes
+    - test
+    - apple
+    - orange
+    - example-25@railstutorial.org
+    - www.example.edu
+    - Qui hic a vero laudantium nihil consequuntur deserunt mollitia.
+    - '2017-05-25 00:13:09.075960'
+    - '2017-05-25 00:13:09.075960'
+  - - 27
+    - Western Labadie College
+    - test
+    - apple
+    - plum
+    - example-26@railstutorial.org
+    - www.example.edu
+    - Repellat voluptatem libero quod ipsa odit suscipit odio eaque.
+    - '2017-05-25 00:13:09.089673'
+    - '2017-05-25 00:13:09.089673'
+  - - 28
+    - North Ohio Academy
+    - test
+    - apple
+    - navy
+    - example-27@railstutorial.org
+    - www.example.edu
+    - Qui dolore nisi tempore culpa.
+    - '2017-05-25 00:13:09.101021'
+    - '2017-05-25 00:13:09.101021'
+  - - 29
+    - Lesch Academy
+    - test
+    - apple
+    - orange
+    - example-28@railstutorial.org
+    - www.example.edu
+    - Qui omnis deserunt ducimus maxime cupiditate numquam animi exercitationem.
+    - '2017-05-25 00:13:09.113393'
+    - '2017-05-25 00:13:09.113393'
+  - - 30
+    - Southern New Mexico College
+    - test
+    - apple
+    - green
+    - example-29@railstutorial.org
+    - www.example.edu
+    - Nemo sunt culpa omnis debitis.
+    - '2017-05-25 00:13:09.128553'
+    - '2017-05-25 00:13:09.128553'
+  - - 31
+    - Western Heaney Institute
+    - test
+    - apple
+    - yellow
+    - example-30@railstutorial.org
+    - www.example.edu
+    - Consequatur nam vitae id ut rem odit.
+    - '2017-05-25 00:13:09.144229'
+    - '2017-05-25 00:13:09.144229'
+  - - 32
+    - South Central
+    - soctrl
+    - apple
+    - red
+    - soctrl@noctrl.edu
+    - soctrl.edu
+    - It's South Central!
+    - '2017-05-25 00:13:10.895290'
+    - '2017-06-02 22:20:47.145480'
+  - - 33
+    - test
+    - test
+    - 
+    - pink
+    - est
+    - tes
+    - tes
+    - '2017-05-26 21:38:19.176116'
+    - '2017-05-26 21:38:19.176116'
+  - - 34
+    - test
+    - test
+    - 
+    - pink
+    - est
+    - tes
+    - tes
+    - '2017-05-26 21:42:02.574444'
+    - '2017-05-26 21:42:02.574444'
+  - - 35
+    - test
+    - tes13
+    - 
+    - yellow
+    - set
+    - est
+    - tess
+    - '2017-05-26 22:24:54.199223'
+    - '2017-05-26 22:24:54.199223'
+  - - 36
+    - test
+    - tes13
+    - 
+    - yellow
+    - set
+    - est
+    - tess
+    - '2017-05-26 22:25:28.748959'
+    - '2017-05-26 22:25:28.748959'
+  - - 37
+    - test
+    - 1test
+    - 
+    - ltorange
+    - sets
+    - set
+    - set
+    - '2017-05-26 22:25:44.306268'
+    - '2017-05-26 22:25:44.306268'
+  - - 38
+    - test
+    - 2test
+    - 
+    - yellow
+    - est
+    - test
+    - est
+    - '2017-05-26 22:26:17.449916'
+    - '2017-05-26 22:26:17.449916'
+  - - 39
+    - ds
+    - dsa
+    - 
+    - red
+    - ds
+    - dd
+    - s
+    - '2017-05-26 22:26:54.490952'
+    - '2017-05-26 22:26:54.490952'
+  - - 40
+    - test
+    - 5test
+    - 
+    - red
+    - set
+    - test
+    - tes
+    - '2017-05-26 22:36:47.320538'
+    - '2017-05-26 22:36:47.320538'
+  - - 41
+    - ftest
+    - ftest
+    - 
+    - pink
+    - ftest
+    - ftest
+    - ftest
+    - '2017-05-26 22:37:08.410324'
+    - '2017-05-26 22:37:08.410324'
+  - - 42
+    - saf
+    - rob
+    - 
+    - red
+    - af@aol.com
+    - saf.com
+    - sdf
+    - '2017-05-26 23:06:44.733551'
+    - '2017-05-26 23:06:44.733551'
+  - - 43
+    - finalSchool
+    - final
+    - 
+    - ltblue
+    - test@test.com
+    - test.com
+    - sdf
+    - '2017-05-26 23:08:44.949062'
+    - '2017-05-26 23:08:44.949062'
+  - - 44
+    - test
+    - asd
+    - 
+    - navy
+    - df
+    - tes.com
+    - sd
+    - '2017-05-28 23:04:47.408652'
+    - '2017-05-28 23:04:47.408652'
+  - - 45
+    - test
+    - '23'
+    - 
+    - ltblue
+    - test@test.com
+    - tes.com
+    - test
+    - '2017-05-29 00:45:27.536593'
+    - '2017-05-29 00:45:27.536593'
+  - - 46
+    - '55'
+    - '55'
+    - 
+    - red
+    - teest@test.com
+    - tees.com
+    - e
+    - '2017-05-29 00:47:07.271742'
+    - '2017-05-29 00:47:07.271742'
+  - - 47
+    - SANTO LOCASTOd
+    - zxc
+    - 
+    - yellow
+    - test@test.com
+    - sdf
+    - sdf
+    - '2017-05-29 00:48:01.303242'
+    - '2017-05-29 00:48:01.303242'
+
+---
+session_events:
+  columns:
+  - id
+  - behavior_square_id
+  - square_press_time
+  - duration_end_time
+  - session_id
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - 1
+    - '2017-05-15 08:30:00'
+    - '2017-05-15 08:35:00'
+    - 1
+    - '2017-05-25 00:13:10.613459'
+    - '2017-05-25 00:13:10.613459'
+  - - 2
+    - 2
+    - '2017-05-15 08:46:00'
+    - '2017-05-15 08:51:00'
+    - 1
+    - '2017-05-25 00:13:10.627256'
+    - '2017-05-25 00:13:10.627256'
+  - - 3
+    - 3
+    - '2017-05-15 09:02:00'
+    - '2017-05-15 09:07:00'
+    - 1
+    - '2017-05-25 00:13:10.640726'
+    - '2017-05-25 00:13:10.640726'
+  - - 4
+    - 4
+    - '2017-05-15 09:18:00'
+    - '2017-05-15 09:23:00'
+    - 1
+    - '2017-05-25 00:13:10.653679'
+    - '2017-05-25 00:13:10.653679'
+  - - 5
+    - 5
+    - '2017-05-15 09:34:00'
+    - '2017-05-15 09:39:00'
+    - 1
+    - '2017-05-25 00:13:10.668975'
+    - '2017-05-25 00:13:10.668975'
+  - - 6
+    - 1
+    - '2017-05-15 09:50:00'
+    - '2017-05-15 09:55:00'
+    - 1
+    - '2017-05-25 00:13:10.687782'
+    - '2017-05-25 00:13:10.687782'
+  - - 7
+    - 2
+    - '2017-05-15 10:06:00'
+    - '2017-05-15 10:11:00'
+    - 1
+    - '2017-05-25 00:13:10.702142'
+    - '2017-05-25 00:13:10.702142'
+  - - 8
+    - 3
+    - '2017-05-15 10:22:00'
+    - '2017-05-15 10:27:00'
+    - 1
+    - '2017-05-25 00:13:10.769391'
+    - '2017-05-25 00:13:10.769391'
+  - - 9
+    - 4
+    - '2017-05-15 10:38:00'
+    - '2017-05-15 10:43:00'
+    - 1
+    - '2017-05-25 00:13:10.781941'
+    - '2017-05-25 00:13:10.781941'
+  - - 10
+    - 5
+    - '2017-05-15 10:54:00'
+    - '2017-05-15 10:59:00'
+    - 1
+    - '2017-05-25 00:13:10.793645'
+    - '2017-05-25 00:13:10.793645'
+  - - 11
+    - 2
+    - '2017-05-15 08:45:00'
+    - '2017-05-15 08:48:00'
+    - 1
+    - '2017-05-25 00:13:10.804870'
+    - '2017-05-25 00:13:10.804870'
+
+---
+session_notes:
+  columns:
+  - id
+  - note
+  - session_id
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - Quia aut assumenda similique.
+    - 1
+    - '2017-05-15 08:37:00'
+    - '2017-05-25 00:13:10.825799'
+  - - 2
+    - Beatae tempore quo nam exercitationem minus voluptatum velit.
+    - 1
+    - '2017-05-15 08:48:00'
+    - '2017-05-25 00:13:10.841211'
+  - - 3
+    - Placeat delectus quia omnis.
+    - 1
+    - '2017-05-15 08:59:00'
+    - '2017-05-25 00:13:10.856428'
+  - - 4
+    - Eum sed debitis qui mollitia.
+    - 1
+    - '2017-05-15 09:10:00'
+    - '2017-05-25 00:13:10.868485'
+  - - 5
+    - Enim non sed sit.
+    - 1
+    - '2017-05-15 09:21:00'
+    - '2017-05-25 00:13:10.882692'
+  - - 6
+    - rwsgaga
+    - 5
+    - '2017-06-02 13:22:06'
+    - '2017-06-02 18:22:06.608537'
+  - - 7
+    - asfs
+    - 6
+    - '2017-06-02 14:48:02'
+    - '2017-06-02 19:48:02.265282'
+
+---
+sessions:
+  columns:
+  - id
+  - start_time
+  - end_time
+  - session_teacher
+  - session_student
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - '2017-05-15 08:30:00'
+    - '2017-05-15 11:30:00'
+    - 1
+    - 1
+    - '2017-05-25 00:13:10.549670'
+    - '2017-05-25 00:13:10.549670'
+  - - 2
+    - '2017-03-22 07:50:00'
+    - '2017-03-22 08:05:00'
+    - 1
+    - 1
+    - '2017-05-25 00:13:10.565420'
+    - '2017-05-25 00:13:10.565420'
+  - - 3
+    - '2017-03-22 07:50:00'
+    - '2017-03-22 08:05:00'
+    - 1
+    - 3
+    - '2017-05-25 00:13:10.578054'
+    - '2017-05-25 00:13:10.578054'
+  - - 4
+    - '2017-03-22 09:30:00'
+    - '2017-03-22 10:05:00'
+    - 1
+    - 3
+    - '2017-05-25 00:13:10.590012'
+    - '2017-05-25 00:13:10.590012'
+  - - 5
+    - '2017-06-02 13:21:54'
+    - '2017-06-02 13:22:12'
+    - 1
+    - 3
+    - '2017-06-02 18:21:53.966546'
+    - '2017-06-02 18:22:12.309411'
+  - - 6
+    - '2017-06-02 14:47:55'
+    - '2017-06-02 14:48:03'
+    - 1
+    - 1
+    - '2017-06-02 19:47:54.571957'
+    - '2017-06-02 19:48:03.863102'
+
+---
+squares:
+  columns:
+  - id
+  - full_name
+  - screen_name
+  - color
+  - tracking_type
+  - description
+  - school_id
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - iure laudantium
+    - S1
+    - pink
+    - 1
+    - iure laudantium
+    - 1
+    - '2017-05-25 00:13:10.014449'
+    - '2017-05-25 00:13:10.014449'
+  - - 2
+    - et et
+    - S2
+    - plum
+    - 2
+    - et et
+    - 1
+    - '2017-05-25 00:13:10.028014'
+    - '2017-05-25 00:13:10.028014'
+  - - 3
+    - error nobis
+    - S3
+    - yellow
+    - 3
+    - error nobis
+    - 1
+    - '2017-05-25 00:13:10.041907'
+    - '2017-05-25 00:13:10.041907'
+  - - 4
+    - deserunt praesentium
+    - S4
+    - lavendar
+    - 1
+    - deserunt praesentium
+    - 1
+    - '2017-05-25 00:13:10.055539'
+    - '2017-05-25 00:13:10.055539'
+  - - 5
+    - eligendi blanditiis
+    - S5
+    - pink
+    - 2
+    - eligendi blanditiis
+    - 1
+    - '2017-05-25 00:13:10.069257'
+    - '2017-05-25 00:13:10.069257'
+  - - 6
+    - quas odit
+    - S6
+    - mint
+    - 3
+    - quas odit
+    - 1
+    - '2017-05-25 00:13:10.081470'
+    - '2017-05-25 00:13:10.081470'
+  - - 7
+    - sit accusamus
+    - S7
+    - plum
+    - 1
+    - sit accusamus
+    - 1
+    - '2017-05-25 00:13:10.093171'
+    - '2017-05-25 00:13:10.093171'
+  - - 8
+    - eos voluptatibus
+    - S8
+    - red
+    - 2
+    - eos voluptatibus
+    - 1
+    - '2017-05-25 00:13:10.110817'
+    - '2017-05-25 00:13:10.110817'
+  - - 9
+    - voluptatem illum
+    - S9
+    - pink
+    - 3
+    - voluptatem illum
+    - 1
+    - '2017-05-25 00:13:10.124562'
+    - '2017-05-25 00:13:10.124562'
+  - - 10
+    - voluptatum molestiae
+    - S10
+    - orange
+    - 1
+    - voluptatum molestiae
+    - 1
+    - '2017-05-25 00:13:10.137282'
+    - '2017-05-25 00:13:10.137282'
+  - - 11
+    - 
+    - '11'
+    - red
+    - 2
+    - test sq
+    - 1
+    - '2017-05-28 21:51:27.891099'
+    - '2017-05-28 21:51:27.891099'
+  - - 12
+    - 
+    - '4'
+    - yellow
+    - 2
+    - test
+    - 2
+    - '2017-05-29 00:41:51.907518'
+    - '2017-05-29 00:41:51.907518'
+  - - 13
+    - 
+    - '3'
+    - navy
+    - 2
+    - test
+    - 2
+    - '2017-05-29 00:42:07.420728'
+    - '2017-05-29 00:42:07.420728'
+  - - 14
+    - 
+    - s
+    - navy
+    - 3
+    - as
+    - 3
+    - '2017-05-29 01:12:18.168850'
+    - '2017-05-29 01:23:43.570414'
+
+---
+students:
+  columns:
+  - id
+  - full_name
+  - screen_name
+  - icon
+  - color
+  - contact_info
+  - description
+  - session_interval
+  - school_id
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - Idell Price
+    - temp
+    - car
+    - plum
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.491103'
+    - '2017-05-25 00:13:09.491103'
+  - - 2
+    - Stephon Bayer
+    - temp
+    - futbol-o
+    - orange
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.505505'
+    - '2017-05-25 00:13:09.505505'
+  - - 3
+    - Domingo Corkery
+    - temp
+    - futbol-o
+    - green
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.517493'
+    - '2017-05-25 00:13:09.517493'
+  - - 4
+    - Elias Kutch
+    - temp
+    - star
+    - yellow
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.529571'
+    - '2017-05-25 00:13:09.529571'
+  - - 5
+    - Sasha Parker
+    - temp
+    - star
+    - yellow
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.544969'
+    - '2017-05-25 00:13:09.544969'
+  - - 6
+    - Kobe Jones
+    - temp
+    - heart
+    - lavendar
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.557581'
+    - '2017-05-25 00:13:09.557581'
+  - - 7
+    - Jonathon McClure
+    - temp
+    - star
+    - green
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.569779'
+    - '2017-05-25 00:13:09.569779'
+  - - 8
+    - Kitty Zboncak
+    - temp
+    - futbol-o
+    - pink
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.583556'
+    - '2017-05-25 00:13:09.583556'
+  - - 9
+    - Enola Harris
+    - temp
+    - graduation-cap
+    - green
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.599000'
+    - '2017-05-25 00:13:09.599000'
+  - - 10
+    - Allene Quigley
+    - temp
+    - graduation-cap
+    - lavendar
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.625137'
+    - '2017-05-25 00:13:09.625137'
+  - - 11
+    - Victor Bergstrom
+    - temp
+    - paw
+    - plum
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.644479'
+    - '2017-05-25 00:13:09.644479'
+  - - 12
+    - Telly Moore
+    - temp
+    - heart
+    - green
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.659133'
+    - '2017-05-25 00:13:09.659133'
+  - - 13
+    - Daphne Kshlerin
+    - temp
+    - futbol-o
+    - yellow
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.677263'
+    - '2017-05-25 00:13:09.677263'
+  - - 14
+    - Ilene Keebler
+    - temp
+    - paw
+    - red
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.694000'
+    - '2017-05-25 00:13:09.694000'
+  - - 15
+    - Claire Schumm
+    - temp
+    - paw
+    - orange
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.709443'
+    - '2017-05-25 00:13:09.709443'
+  - - 16
+    - Aron Carroll
+    - temp
+    - paw
+    - yellow
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.734645'
+    - '2017-05-25 00:13:09.734645'
+  - - 17
+    - Opal Gibson
+    - temp
+    - car
+    - orange
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.752082'
+    - '2017-05-25 00:13:09.752082'
+  - - 18
+    - Aryanna Medhurst
+    - temp
+    - car
+    - red
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.769792'
+    - '2017-05-25 00:13:09.769792'
+  - - 19
+    - Clement Kiehn
+    - temp
+    - leaf
+    - yellow
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.784374'
+    - '2017-05-25 00:13:09.784374'
+  - - 20
+    - Orland Murphy
+    - temp
+    - flash
+    - lavendar
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.797918'
+    - '2017-05-25 00:13:09.797918'
+  - - 21
+    - Gordon McKenzie
+    - temp
+    - paw
+    - lavendar
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.812331'
+    - '2017-05-25 00:13:09.812331'
+  - - 22
+    - Gene Nienow
+    - temp
+    - gamepad
+    - lavendar
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.826003'
+    - '2017-05-25 00:13:09.826003'
+  - - 23
+    - Eleanora Rogahn
+    - temp
+    - graduation-cap
+    - yellow
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.855829'
+    - '2017-05-25 00:13:09.855829'
+  - - 24
+    - Eda Murphy
+    - temp
+    - puzzle-piece
+    - pink
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.870435'
+    - '2017-05-25 00:13:09.870435'
+  - - 25
+    - Viviane Hermann
+    - temp
+    - leaf
+    - green
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.885383'
+    - '2017-05-25 00:13:09.885383'
+  - - 26
+    - Vincenza Block
+    - temp
+    - paper-plane
+    - yellow
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.901841'
+    - '2017-05-25 00:13:09.901841'
+  - - 27
+    - Antonette Christiansen
+    - temp
+    - heart
+    - orange
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.912227'
+    - '2017-05-25 00:13:09.912227'
+  - - 28
+    - Gregg Bogan
+    - temp
+    - leaf
+    - yellow
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.923384'
+    - '2017-05-25 00:13:09.923384'
+  - - 29
+    - Turner Halvorson
+    - temp
+    - paw
+    - plum
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.944259'
+    - '2017-05-25 00:13:09.944259'
+  - - 30
+    - Broderick Jacobs
+    - temp
+    - leaf
+    - navy
+    - student contact info
+    - student description
+    - 20
+    - 1
+    - '2017-05-25 00:13:09.957833'
+    - '2017-05-25 00:13:09.957833'
+  - - 31
+    - Adam Sauer
+    - temp
+    - bicycle
+    - green
+    - student contact info
+    - student description
+    - 20
+    - 2
+    - '2017-05-25 00:13:09.968995'
+    - '2017-05-25 00:13:09.968995'
+  - - 32
+    - Cristian Boyle
+    - temp
+    - bicycle
+    - green
+    - student contact info
+    - student description
+    - 20
+    - 2
+    - '2017-05-25 00:13:09.986335'
+    - '2017-05-25 00:13:09.986335'
+  - - 33
+    - dryt
+    - tr
+    - car
+    - yellow
+    - rt
+    - yr
+    - 60
+    - 3
+    - '2017-06-02 18:21:31.266696'
+    - '2017-06-02 18:21:31.266696'
+
+---
+teachers:
+  columns:
+  - id
+  - user_name
+  - password_digest
+  - last_login
+  - full_name
+  - screen_name
+  - icon
+  - color
+  - email
+  - description
+  - powers
+  - school_id
+  - created_at
+  - updated_at
+  - suspended
+  records: 
+  - - 1
+    - profbill
+    - "$2a$10$pgMxLwABwfFhBFA0/KA6BOt9i23R9j/.CBVLfAGIV4FukKIxXlscW"
+    - '2017-06-02 22:16:29.905286'
+    - Professor Bill
+    - profbill
+    - calculator
+    - green
+    - wtktriger@noctrl.edu
+    - saf11111
+    - Admin
+    - 10
+    - '2017-05-25 00:13:09.271834'
+    - '2017-06-02 23:10:03.661861'
+    - false
+  - - 2
+    - teacher
+    - "$2a$10$vAdQZMY5g6JFdyCpl8RNWuASxVUt31BEr.1QPVs8MBPlPIDZkXV.a"
+    - '2017-06-02 22:08:20.030374'
+    - teacher
+    - teacher
+    - apple
+    - mint
+    - teacher@noctrl.edu
+    - hfdz
+    - Teacher
+    - 1
+    - '2017-05-25 00:13:09.366133'
+    - '2017-06-02 22:16:20.800613'
+    - true
+  - - 3
+    - admin
+    - "$2a$10$Snl7/acOyEtGazE0QLnzCOHFqigTH.40W034dVQrs5aiz97RvGA46"
+    - '2017-05-25 00:13:09.380037'
+    - admin
+    - admin
+    - apple
+    - green
+    - admin@noctrl.edu
+    - General admin login
+    - Admin
+    - 1
+    - '2017-05-25 00:13:09.455995'
+    - '2017-05-25 00:13:09.455995'
+    - true
+  - - 4
+    - TEST_teacher1
+    - "$2a$10$aQbPx.QnyVozDviDARw61utjFXZTOX7IhHpnE690PuiGh99UuruQW"
+    - '2017-05-25 00:13:10.907957'
+    - TEST1
+    - TEST1
+    - apple
+    - green
+    - teacher@soctrl.edu
+    - General teacher login
+    - Teacher
+    - 32
+    - '2017-05-25 00:13:10.985423'
+    - '2017-05-25 00:13:10.985423'
+    - false
+  - - 5
+    - TEST_teacher2
+    - "$2a$10$YAoBS/RGtGNSgrASVHDpIOUMi2cJeZmtTyfFw38aS.cc7eEZrvZ4u"
+    - '2017-05-25 00:13:10.996065'
+    - TEST2
+    - TEST2
+    - apple
+    - green
+    - teacher@soctrl.edu
+    - General teacher login
+    - Teacher
+    - 32
+    - '2017-05-25 00:13:11.073142'
+    - '2017-05-25 00:13:11.073142'
+    - false
+  - - 6
+    - '12'
+    - "$2a$10$zLwCF1aoNh/gYueqoUvGGOXpiIES1yQKV546b4qzjSs7wejv6b7US"
+    - 
+    - '321'
+    - '321'
+    - apple
+    - red
+    - 321@yahoo.com
+    - asf
+    - SessionOnly
+    - 3
+    - '2017-05-25 00:54:22.078983'
+    - '2017-05-25 00:54:22.078983'
+    - false
+  - - 7
+    - test
+    - "$2a$10$XArmRJJFNTZaztZFfrReuOQImpNXnLbCQdd1UNOT6LhLjDRhJXNAe"
+    - 
+    - test
+    - set
+    - apple
+    - red
+    - set@as.com
+    - dzf
+    - SessionOnly
+    - 1
+    - '2017-05-29 01:56:41.424761'
+    - '2017-05-29 01:56:41.424761'
+    - true
+  - - 8
+    - fds
+    - "$2a$10$HFtVbf/IPiEta6xjHh3UleTbidGwQqIT8dT298pAKm8C1F30AzGHO"
+    - 
+    - fds
+    - fd
+    - apple
+    - red
+    - fd@asd.com
+    - test
+    - SessionOnly
+    - 4
+    - '2017-06-02 19:24:07.200642'
+    - '2017-06-02 19:24:12.390351'
+    - false
