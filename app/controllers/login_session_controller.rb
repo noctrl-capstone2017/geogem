@@ -33,7 +33,7 @@ class LoginSessionController < ApplicationController
       redirect_to home_path
       
     else
-      if teacher.suspended == true
+      if teacher && teacher.suspended == true
         flash.now[:danger] = 'Your account has been suspended'
         render 'new'
       else
