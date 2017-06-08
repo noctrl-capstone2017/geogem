@@ -1,24 +1,13 @@
-# README
+# GeoGem!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repo holds the production version of GeoGem. 
+GeoGem is a web application that tracks and analyzes behavior patterns of students with autism.
+The system was created by the Capstone 2017 students of CSC 495, Spring 2017 term at [North Central College](http://noctrl.edu/).
 
-Things you may want to cover:
+This version of GeoGem is available at: [geogem17.herokuapp.com](https://geogem17.herokuapp.com/).
 
-* Ruby version
+For more information - goto GeoGem and select the About page. It's fun!
 
-* System dependencies
+thanks... yow, bill
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![GeoGem logo](https://github.com/noctrl-capstone2017/geogem/blob/master/app/assets/images/logos/medgem.png)
