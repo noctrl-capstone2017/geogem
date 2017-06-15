@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html>
-	<%= render 'layouts/header' %>
-	<body>
+	<head>
+		<title><%= full_title(yield(:title)) %></title>
+		<%= csrf_meta_tags %>
+		<%= favicon_link_tag %>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> 
+		<script src="https://use.fontawesome.com/6ac119a099.js"></script>	
 		<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js", "chartkick" %>
-		<!--Note from Carolyn C - logged in pages all have this container col structure-->
-		<% if logged_in? %>
-			<%= render 'layouts/navbar1' unless @disable_nav %>
-			<div class="container">
-				<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
+		<%= render 'layouts/shim' %> 
+	</head>
+
+	<body>
+		<%= render 'layouts/navbar' unless @special_navbar_and_layout %>
+
+		<!-- begin contain and render flashes, if any -->
+		<% if not @special_navbar_and_layout %>
+<div class="container">
+	<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
+<% flash.each do |message_type, message| %>
+	<br>
+	<div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
 		<% end %>
 
 		<%= yield %>
 
-		<!-- Note from Carolyn C- end the divs -->
-		<% if logged_in? %>
-			</div>
-		</div>
-		<% end %>
 		<%= render 'layouts/footer' %>
-		<!-- Another note from Carolyn C: again, if you are working on a page that you see while NOT logged in, you need to manually add the container and the div associated.-->
-
 		<%= debug(params) if Rails.env.development? %>
+
+		<!-- end container -->
+		<% if not @special_navbar_and_layout %>
+</div>   <!-- content-col -->
+	</div>   <!-- container -->
+		<% end %>
+
 	</body>
 </html>

@@ -1,117 +1,118 @@
 <!-- Edited for use by Dakota B and Robert H-->
-		<!-- page header -->
-		<div class="page-header vertical-align">
-			<div class="col-xs-11">
-				<h2>Admin Report<small> - stats and more about your school</small></h2><!-- Dynamically fills in with school id -->
-			</div>
-			<div class="col-xs-1 pull-right">
-				<div class="header-sq i-<%= @current_teacher.color %>" title=<%= @current_teacher.screen_name %>>
-					<span class="fa fa-<%= @current_teacher.icon %> fa-3x teacher-icon"></span>
-				</div>
-			</div>
-		</div><!--End page header-->
+<% provide(:title, "Admin report") %>
 
-		<!-- content, Several tables full of information about the students teachers and squares at the admin's school -->
-		<div class="row content-text">
-		<br>
-				
-		<!-- This section is responsible for listing all of the Students in the database into the report -->
-		<h1>All Students at your School</h1>
-	    <table class="table table-striped table-hover table-responsive students-table">
-   			<thead>
-   				<tr>
-   					<th>Student Icon</th>
-					<th>Student ID</th>
-					<th>Full Name</th>
-				</tr>
-			</thead>
-			<tbody>
-	            <% @students.each do |students| %>
-	            
-  					<tr data-link="<%= edit_student_path(students.id) %>">
-						<td>
-							<div class="table-sq i-<%= students.color %>">                 <!--Generate Student Color-->
-							 	<i class="fa fa-<%= students.icon %> fa-2x table-icon"></i>  <!--Generate Student Icon-->
-							</div>
-						</td>	
-						<td><p class="listText"><span> <%= students.screen_name %></span> </p></td>
-					    <td><p class="listText"><span> <%= students.full_name %></span> </p></td>
-  		      		</tr>
-  		        <% end %>
+<!-- page header -->
+<div class="page-header vertical-align">
+	<div class="col-xs-11">
+		<h2>Admin Report<small> - stats and more about your school</small></h2><!-- Dynamically fills in with school id -->
+	</div>
+	<div class="col-xs-1 pull-right">
+		<div class="header-sq i-<%= @current_teacher.color %>" title=<%= @current_teacher.screen_name %>>
+			<span class="fa fa-<%= @current_teacher.icon %> fa-3x teacher-icon"></span>
+		</div>
+	</div>
+</div><!--End page header-->
+
+<!-- content, Several tables full of information about the students teachers and squares at the admin's school -->
+<div class="row content-text">
+<br>
+		
+<!-- This section is responsible for listing all of the Students in the database into the report -->
+<h3>All Students at your School</h3>
+  <table class="table table-striped table-hover table-responsive students-table">
+ 		<thead>
+ 			<tr>
+ 				<th>Student Icon</th>
+			<th>Student ID</th>
+			<th>Full Name</th>
+		</tr>
+	</thead>
+	<tbody>
+          <% @students.each do |students| %>
+          
+				<tr data-link="<%= edit_student_path(students.id) %>">
+				<td>
+					<div class="table-sq i-<%= students.color %>">                 <!--Generate Student Color-->
+					 	<i class="fa fa-<%= students.icon %> fa-2x table-icon"></i>  <!--Generate Student Icon-->
+					</div>
+				</td>	
+				<td><p class="listText"><span> <%= students.screen_name %></span> </p></td>
+			    <td><p class="listText"><span> <%= students.full_name %></span> </p></td>
+	      		</tr>
+	        <% end %>
+	</tbody>
+</table>
+
+<!-- Student table ends here -->	
+
+<!-- This section is responsible for listing all of the Teachers at your school in the database into the report -->
+<br><br>
+<h3>All Teachers at your School</h3>
+  <table class="table table-striped table-hover table-responsive teachers-table">
+ 		<thead>
+ 			<tr>
+ 				<th>Teacher Icon</th>
+			<th>Teacher ID</th>
+			<th>Full Name</th>
+			<th>Contact Information</th>
+			<th>Last Login</th>
+		</tr>
+	</thead>
+		<tbody>
+            <% @teachers.each do |teacher| %>
+					<tr data-link="<%= edit_teacher_path(teacher.id) %>">
+					<td>
+					  <div class="table-sq i-<%= teacher.color %>">                 <!--Generate Teacher Color-->
+						  <i class="fa fa-<%= teacher.icon %> fa-2x table-icon"></i>  <!--Generate Teacher Icon-->
+					  </div>
+					</td>	
+					<td><p class="listText"><span> <%= teacher.screen_name %></span> </p></td>
+				    <td><p class="listText"><span> <%= teacher.full_name %></span> </p></td>
+				    <td><p class="listText"><span> <%= teacher.email %></span> </p></td>
+				    <td><p class="listText"><span> <%= teacher.last_login %></span> </p></td>
+		      		</tr>
+  		    <% end %>
 			</tbody>
-		</table>
-		
-		<!-- Student table ends here -->	
-		
-		<!-- This section is responsible for listing all of the Teachers at your school in the database into the report -->
-		<br><br>
-		<h1>All Teachers at your School</h1>
-	    <table class="table table-striped table-hover table-responsive teachers-table">
-	   		<thead>
-	   			<tr>
-	   				<th>Teacher Icon</th>
-					<th>Teacher ID</th>
-					<th>Full Name</th>
-					<th>Contact Information</th>
-					<th>Last Login</th>
-				</tr>
-			</thead>
-				<tbody>
-		            <% @teachers.each do |teacher| %>
-	  					<tr data-link="<%= edit_teacher_path(teacher.id) %>">
-							<td>
-							  <div class="table-sq i-<%= teacher.color %>">                 <!--Generate Teacher Color-->
-								  <i class="fa fa-<%= teacher.icon %> fa-2x table-icon"></i>  <!--Generate Teacher Icon-->
-							  </div>
-							</td>	
-							<td><p class="listText"><span> <%= teacher.screen_name %></span> </p></td>
-						    <td><p class="listText"><span> <%= teacher.full_name %></span> </p></td>
-						    <td><p class="listText"><span> <%= teacher.email %></span> </p></td>
-						    <td><p class="listText"><span> <%= teacher.last_login %></span> </p></td>
-	  		      		</tr>
-		  		    <% end %>
-					</tbody>
-		</table>
-		<!-- Teacher table ends here -->	
-			
-			<!-- This section is responsible for listing all of the Squares at your school in the database into the report -->
-			<br><br>
-			<h1>All Squares at your School</h1>
-		    <table class="table table-striped table-hover table-responsive teachers-table">
-		   		<thead>
-		   			<tr>
-		   				<th>Square Icon</th>
-						<th>Square ID</th>
-						<th>Square Name</th>
-						<th>Type</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-					<tbody>
-			            <% @squares.each do |square| %>
-		  					<tr data-link="<%= edit_square_path(square.id) %>">
-								<td>
-									<div class="table-sq i-<%= square.color %>">              <!--Generate Square Color-->
-									 <span class="fa fa-square-o fa-3x teacher-icon"></span>  <!--Generate square Icon-->
-								    </div>
-								</td>	
-								<td><p class="listText"><span> <%= square.screen_name %></span> </p></td>
-							    <td><p class="listText"><span> <%= square.full_name %></span> </p></td>
-							    <!-- If statement for translating  square type int into string KM-->
-							    <td><% if square.tracking_type == 1 %>
-							        <p class="listText">Duration</p>
-							        <% elsif square.tracking_type == 2 %>
-							        <p class="listText">Frequency</p>
-							        <% else %>
-							        <p class="listText">Interval</p>
-							        <% end %>
-							    </td>
-							    <td><p class="listText"><span> <%= square.description %></span> </p></td>
-		  		      		</tr>
-			  		    <% end %>
-					</tbody>
-			</table>
-			<!-- Square table ends here -->
-			<br><br>
-		</div>   <!-- content-text -->
-		
+</table>
+<!-- Teacher table ends here -->	
+	
+	<!-- This section is responsible for listing all of the Squares at your school in the database into the report -->
+	<br><br>
+	<h3>All Squares at your School</h3>
+    <table class="table table-striped table-hover table-responsive teachers-table">
+   		<thead>
+   			<tr>
+   				<th>Square Icon</th>
+				<th>Square ID</th>
+				<th>Square Name</th>
+				<th>Type</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+			<tbody>
+	            <% @squares.each do |square| %>
+  					<tr data-link="<%= edit_square_path(square.id) %>">
+						<td>
+							<div class="table-sq i-<%= square.color %>">              <!--Generate Square Color-->
+							 <span class="fa fa-square-o fa-3x teacher-icon"></span>  <!--Generate square Icon-->
+						    </div>
+						</td>	
+						<td><p class="listText"><span> <%= square.screen_name %></span> </p></td>
+					    <td><p class="listText"><span> <%= square.full_name %></span> </p></td>
+					    <!-- If statement for translating  square type int into string KM-->
+					    <td><% if square.tracking_type == 1 %>
+					        <p class="listText">Duration</p>
+					        <% elsif square.tracking_type == 2 %>
+					        <p class="listText">Frequency</p>
+					        <% else %>
+					        <p class="listText">Interval</p>
+					        <% end %>
+					    </td>
+					    <td><p class="listText"><span> <%= square.description %></span> </p></td>
+  		      		</tr>
+	  		    <% end %>
+			</tbody>
+	</table>
+	<!-- Square table ends here -->
+	<br><br>
+</div>   <!-- content-text -->

@@ -5,15 +5,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   include LoginSessionHelper
-  # Checks to make sure user is logged in before 
-  # accessing most of the web application's pages
+
+  # All pages require login; special pages use skip_before_action to avoid this
   before_action :require_login
 
-  #Author: Matthew O & Alex P
-  #allow disabling of showing the navbar on certain screens
-  #https://stackoverflow.com/questions/13395153/how-to-render-partial-on-everything-except-a-certain-action
-  def disable_nav
-    @disable_nav = true
+  # special pages (like login, about) handle their own navbar and layout. Source:
+  # https://stackoverflow.com/questions/13395153/how-to-render-partial-on-everything-except-a-certain-action
+  def special_navbar_and_layout
+    @special_navbar_and_layout = true
   end
 
   private
@@ -25,8 +24,7 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
       end
     end
-    
-  private
+
     # Guard each page, checks for logged in
     def require_login  
       unless current_teacher

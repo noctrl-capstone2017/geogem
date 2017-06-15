@@ -1,4 +1,5 @@
 <!-- @author: Matthew O & Alex P  & Debra J-->
+<% provide(:title, "Home") %>
 
 <!-- Control the selection and unselection of the student roster -->
 <script>
@@ -15,12 +16,7 @@
 	});
 </script>
 
-<!--     flash    -->
-<!-- Meagan Moore -->
-<div class="form-group">		
-	<%= render 'layouts/flash' %>
-</div>
-			
+
 <!-- page header -->
 <div class="page-header vertical-align">
 	<div class="col-xs-11">
@@ -31,7 +27,7 @@
 			<span class="fa fa-<%= @teacher.icon %> fa-3x teacher-icon"></span>
 		</div>
 	</div>
-</div><!--End page header-->
+</div>   <!--page-header-->
 
 <!--Student Roster Area -->
 <div id="student-roster"> <!--Student display area: shows the last 8 students teacher worked with -->

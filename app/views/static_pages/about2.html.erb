@@ -1,13 +1,14 @@
-<!-- note from Carolyn C: This should make it nav3 if not logged in, nav1 if you are. Should solve double screen issue.-->
+<!-- Author: Carolyn C -->
+<% provide(:title, "About Student Art") %>
 <% if logged_in? %>
-
+	<%= render 'layouts/navbar' %>
 <% else %>
-<%= render 'layouts/navbar3' %>
+	<%= render 'layouts/navbar_logout' %>
 <% end %>
-<!-- Another note from Carolyn C: again, if you are working on a page that you see while NOT logged in, you need to manually add the container and the div associated.-->
+
 <div class="container">
-<!--- Note from Carolyn C: all pages that are not logged (excluding the login screen) need this content col!-->
 	<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
+
 		<div class="page-header vertical-align">
 			<div class="col-xs-11">
 				<h2>About student art<small> - artwork contributed to GeoGem</small></h2><!-- Dynamically fills in with school id -->
@@ -18,6 +19,7 @@
 				</div>
 			</div>
 		</div><!--End page header-->
+
 		<!-- Start Text -->
 		<div class="row content-text">
 			<br>

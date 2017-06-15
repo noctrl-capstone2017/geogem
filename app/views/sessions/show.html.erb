@@ -1,5 +1,8 @@
 <!-- @author: Matthew O & Alex P & Debra J-->
-<%= csrf_meta_tag %>
+<% provide(:title, "Behavioral Session") %>
+<%= render 'layouts/navbar_empty' %>
+
+<!-- <%= csrf_meta_tag %>  -->
 <!-- Control the selection and unselection of the student roster -->
 <script>
 	$(document).ready(function() {

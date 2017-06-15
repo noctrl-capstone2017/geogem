@@ -1,21 +1,21 @@
-<!-- UX team  Edited by Robert Herrera and Dakota B -->
+<!-- Authors: UX team, Robert Herrera and Dakota B -->
+<% provide(:title, "Admin dashboard") %>
 
 <!-- page header -->
-	<div class="page-header vertical-align">
-			<div class="col-xs-11">
-				<h2>Admin Dashboard<small> -  manage <%= @current_school.full_name %> teachers, students, squares, etc</small></h2><!-- Dynamically fills in with school id -->
-			</div>
-			<div class="col-xs-1 pull-right">
-				<div class="header-sq i-<%= @current_school.color %>" title=<%= @teacher.screen_name %>>
-					<span class="fa fa-home fa-3x school-icon"></span>
-				</div>
+<div class="page-header vertical-align">
+		<div class="col-xs-11">
+			<h2>Admin Dashboard<small> -  manage <%= @current_school.full_name %> teachers, students, squares, etc</small></h2><!-- Dynamically fills in with school id -->
+		</div>
+		<div class="col-xs-1 pull-right">
+			<div class="header-sq i-<%= @current_school.color %>" title=<%= @teacher.screen_name %>>
+				<span class="fa fa-home fa-3x school-icon"></span>
 			</div>
 		</div>
-<!--End page header-->
+	</div>   <!-- page-header -->
 
 <!-- action icons, first row -->		
-<div class="row">
-	
+<div class="row action-icon-row">
+
 	<!-- View/edit school attributes -->
 	<%= link_to edit_school_path(@current_teacher) do %>
 	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit school attributes">
@@ -71,4 +71,4 @@
 	</div> <!-- col -->
   <% end %>
   
-</div>
+</div>   <!-- row -->
