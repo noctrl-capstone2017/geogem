@@ -1,45 +1,44 @@
-# Static Pages Controller Test
-# Test for all static pages
-# Author: Meagan Moore & Steven Royster & someone else?? Please fill out 
-# comments I started for you mystery test writer! Thank you!
-
+# Author: Meagan Moore & Steven Royster & someone else??
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 
-  # What this does
-  # Author: ??
+  setup do
+    @teacher = teachers(:one)
+  end
+
+  # test the root path, should be login
+  test 'should get root path' do
+    get root_path
+    assert_response :success
+    assert_select "title", "Login ◆ GeoGem"
+  end
+
+  # test About page 
+  test "should get about1" do
+    get about_url
+    assert_response :success
+    assert_select "title", "About ◆ GeoGem"
+  end
+
+  # test About Student Art page
   test "should get about student art" do
     get about2_url
     assert_response :success
     assert_select "h2", "About student art - artwork contributed to GeoGem"
-    #uncomment when pushed
-    #assert_select "a[href=mailto:?]",'wtkrieger@noctrl.edu', count: 1
+    # prof bill email should be in the About Student Art page
+    # so thay can send me more/new student art
+    assert_select "a[href=?]", "mailto:wtkrieger@noctrl.edu"
   end
 
-  # What this does
-  # Author: ??
-  # Fixed by: Meagan Moore & Steven Royster
+  # test Help page
   test "should get help" do
-    get static_pages_help_url
+    get help_url
     assert_response :success
+    assert_select "title", "Help ◆ GeoGem"
     assert_select "h2", "Help - frequently asked questions about GeoGem"
+    # prof bill email should be in the help page, so I can help people (ha!)
+    assert_select "a[href=?]", "mailto:wtkrieger@noctrl.edu"
   end
 
-  # Tests root path, should be login
-  # Author: Meagan Moore & Steven Royster  
-  test 'should get root path' do
-    get root_path
-    assert_response :success
-    assert_select "title", "GeoGem"
-  end
-  
-  # Tests the about1 page 
-  # Author: Meagan Moore & Steven Royster 
-  test "should get about1" do
-    get about_url
-    assert_response :success
-    assert_select "title", "GeoGem"
-  end
-  
 end

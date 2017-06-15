@@ -147,6 +147,7 @@ body
 {
 	color:#FFFFFF;
 }
+
 /**********************************************************
 * MEDIA QUERIES FOR SMALLER SCREENS
 * Resizes square divs on the sessions, home, and about
@@ -270,6 +271,7 @@ body
 }
 .logout-art-text {
 	font-size: 1.4em;
+	padding-top: 20px;
 }
 .first-content-row {
 	padding-top: 20px;
@@ -528,7 +530,6 @@ input[type="radio"]:checked + label {
 	color: #FFFFFF; /*This should be white, don't change to black*/
 }
 
-/*Note from Carolyn C- took this from login*/
 /*********************************************************
 *  LOGIN STYLING
 *********************************************************/
@@ -547,6 +548,7 @@ input[type="radio"]:checked + label {
 	font-family: "Rubik", sans-serif;
 	font-size: 3.0em;
 	text-align: center;
+	padding-right: 20px;
 	color: #444444;
 }
 
@@ -573,6 +575,7 @@ input[type="radio"]:checked + label {
 
 #mySidenav
 {
+	margin-top: 50px;   /* adjust to empty navbar */
 	width:250px;
 }
 /* The navigation menu links */
@@ -642,3 +645,12 @@ when submitted with errors */
     color: $state-danger-text;
   }
 }
+
+/*********************************************************
+ *  HELP STYLING -used in help page
+ *********************************************************/
+.help-header { padding-top: 60px; padding-bottom: 20px; }
+.help-qa-letter { font-size: 1.2em; font-weight: bold; color: gray; }
+.help-line { width: 90%; border-top: 1px dotted lightgray; padding-bottom: 20px; margin-right: 100px;}
+.help-small-sq { border-radius: 6px; color: white; }
+.help-answer-para { margin-left: 5%; margin-right: 5%; }

@@ -1,16 +1,15 @@
+<% provide(:title, "School profile") %>
+
 <!-- page header -->
 <div class="page-header vertical-align">
 	<div class="col-xs-11">
-		<h2>School Profile<small> - Edit information for school <%= @school.screen_name %></small></h2><!-- Dynamically fills in with school id -->
+		<h2>School Profile<small> - edit information for school <%= @school.full_name %></small></h2>
 	</div>
 	<div class="col-xs-1 pull-right">
 		<div class="header-sq i-plum" >
 			<span class="fa fa-apple fa-3x teacher-icon"></span>
 		</div>
 	</div>
-</div>
-<!--End page header-->
+</div>   <!-- page-header -->
 
 <%= render 'form', school: @school %>
-
-

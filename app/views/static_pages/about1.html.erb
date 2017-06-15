@@ -1,251 +1,256 @@
 <!--Authors: Debra J & Carolyn C -->
-<!-- note from Carolyn C: This should make it nav3 if not logged in, nav1 if you are. Should solve double screen issue.-->
+<% provide(:title, "About") %>
 <% if logged_in? %>
-
+	<%= render 'layouts/navbar' %>
 <% else %>
-<%= render 'layouts/navbar3' %>
+	<%= render 'layouts/navbar_logout' %>
 <% end %>
-	<!-- page header -->
-	<!-- Another note from Carolyn C: again, if you are working on a page that you see while NOT logged in, you need to manually add the container and the div associated.-->
-	<div class="container">
-		<div class="form-group">		
-			<%= render 'layouts/flash' %>
-		</div>
-	<!--- Note from Carolyn C: all pages that are not logged (excluding the login screen) need this content col!-->
-	<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
-		<div class="page-header vertical-align">
-			<div class="col-xs-11">
-				<h2>About<small> - GeoGem <%= DeployHelper.geogem_version =%>, deployed <%= DeployHelper.geogem_deploy_date =%></small></h2>
-			</div>
-			<div class="col-xs-1 center-block">
-				<div class="header-sq i-ltblue" title="All about GeoGem">
-					<span class="fa fa-info-circle fa-3x teacher-icon"></span>
-				</div>
-			</div>
-		</div><!--End page header-->
 
-		<div class="row content-text">
-			<div class="col-xs-12">
-				<p>
-					<!--Part 1: Describe GeoGem. What it does. And how it was created.-->
-					GeoGem is a web application designed to make tracking student behaviors easier for teachers and aides. 
-					Simply define the behavior squares you'd like to track for each student and you'll be able to track 
-					behaviors in real time at the touch of a button. Then, analyze the data to generate reports quickly.
-					We make tracking and analytics easier so you can focus on what's important, your students. 
-				</p>
+<div class="container">
+	<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
+
+	<div class="form-group">		
+		<%= render 'layouts/flash' %>
+	</div>
+
+	<!-- page header -->
+	<div class="page-header vertical-align">
+		<div class="col-xs-11">
+			<h2>About<small> - GeoGem <%= DeployHelper.geogem_version =%>, deployed <%= DeployHelper.geogem_deploy_date =%></small></h2>
+		</div>
+		<div class="col-xs-1 center-block">
+			<div class="header-sq i-ltblue" title="All about GeoGem">
+				<span class="fa fa-info-circle fa-3x teacher-icon"></span>
 			</div>
 		</div>
-		<div class="row content-text">
-			<div class="col-xs-12">
-				<h3>Acknowledgements</h3>
-				<p>
-					<!--Part 2: Thank you Turning Pointe and others. -->
-					We would like to extend our thanks to <a href="http://www.turningpointeautismfoundation.org/" target="_blank">Turning Pointe Autism Foundation</a> for providing their expertise and willingness to help
-					with this project. In particular we would like to thank Carrie P, Bianca E, and Stefan K for their help with this project.
-				</p>
-			</div>
+	</div>   <!-- page-header -->
+
+	<div class="row content-text">
+		<div class="col-xs-12">
+			<p>
+				<!--Part 1: Describe GeoGem. What it does. And how it was created.-->
+				GeoGem is a web application designed to make tracking student behaviors easier for teachers and aides. 
+				Simply define the behavior squares you'd like to track for each student and you'll be able to track 
+				behaviors in real time at the touch of a button. Then, analyze the data to generate reports quickly.
+				We make tracking and analytics easier so you can focus on what's important, your students. 
+			</p>
 		</div>
-		<div class="row content-text">
-			<div class="col-xs-12">
-				<h3>Meet the Team</h3>
-				<p>
-					<!--Part 3: Authors. GeoGem is the creation of... Capstone2017 student profiles. (smile)-->
-					GeoGem is the creation of the 2017 Computer Science Capstone class at <a href="https://www.northcentralcollege.edu/" target="_blank">
-						North Central College</a>. 
-					The Capstone course was led by Professor Bill and was comprised of 17 students. 
-				</p>
-			</div>
+	</div>
+
+	<div class="row content-text">
+		<div class="col-xs-12">
+			<h3>Acknowledgements</h3>
+			<p>
+				<!--Part 2: Thank you Turning Pointe and others. -->
+				We would like to extend our thanks to <a href="http://www.turningpointeautismfoundation.org/" target="_blank">Turning Pointe Autism Foundation</a> for providing their expertise and willingness to help
+				with this project. In particular we would like to thank Carrie P, Bianca E, and Stefan K for their help with this project.
+			</p>
 		</div>
-		<!------------------------------------ Team Images ------------------------------------>
-		<div class="row">
-			<!---- Alex P. ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
-						data-name="Alex P." data-text="I really enjoyed working on GeoGem. I was a part of the team that created the session pages.
-						This project allowed me to gain a unique set of skills that helped me further my skills as a programmer." 
-						data-img="<%=asset_path("alexp.jpg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("alexp.jpg") %>);"></div>
-					<h5>Alex P.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Prof Bill ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Prof Bill" 
-						data-text="A fun project with a great group of owners and teammates. Huzzah! thanks... yow, bill" 
-						data-img="<%=asset_path("profbill.jpg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("profbill.jpg") %>);"></div>
-					<h5>Prof Bill</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Carolyn C ---->
-			<div class="col-xs-4 col-sm-3">
-			<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Carolyn C." 
-						data-text="I worked on the UX team creating specific and maintaining html views while merging them with rails code. 
-						This was my first major programming application I worked on, and was also my favorite thus far." 
-						data-img="<%=asset_path("carolync.png") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("carolync.png") %>);"></div>
-					<h5>Carolyn C.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Dakota B. ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
-						data-name="Dakota B." data-text="My role in capstone was spent developing the administrator pages. 
-						I had fun working with old friends and new, and developing from the shadows to 
-						make the secret pages which many users will never see. Perhaps in exchange for snacks, I could share these secrets..." 
-						data-img="<%=asset_path("dakotab.jpg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("dakotab.jpg") %>);"></div>
-					<h5>Dakota B.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Debra J ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Debra J." 
-						data-text="I headed up the demo team and worked on the UX team in order to establish the look and feel of GeoGem. 
-						I also aided the creation of the home and session screens. I enjoyed working on a project that will have a real
-						community impact and I hope that our users will enjoy using this system!" 
-						data-img="<%=asset_path("debraj.jpg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("debraj.jpg") %>);"></div>
-					<h5>Debra J.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Kevin M ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Kevin M." 
-						data-text=" I worked on teacher-focused pages with Tommy B! This was the first major thing I've worked on, and it was pretty fun. 
-						I'm a vampire, so I don't have a real picture." 
-						data-img="<%=asset_path("kevinm.png") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("kevinm.png") %>);"></div>
-					<h5>Kevin M.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Kevin P. ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
-						data-name="Kevin P." data-text="Writer of code and eater of baked goods. Now knows far too much about charting libraries." 
-						data-img="<%=asset_path("kevinp.jpg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("kevinp.jpg") %>);"></div>
-					<h5>Kevin P.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Matthew O. ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
-						data-name="Matthew O." data-text="I had a great experience in capstone. 
-						Working on the sessions gave me a unique opportunity to further strengthen 
-						both my front-end and back-end development skills. I'm excited to see the potential impact GeoGem will have." 
-						data-img="<%=asset_path("matthewo.jpg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("matthewo.jpg") %>);"></div>
-					<h5>Matthew O.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Megan M ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Meagan M." 
-						data-text="As a member of the login team, I helped develop login and guarding the application. 
-						I had a great experience working with such an amazing development team. I'm looking forward to all the help GeoGem will provide!" 
-						data-img="<%=asset_path("meaganm.jpg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("meaganm.jpg") %>);"></div>
-					<h5>Meagan M.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Michael L---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Michael L." 
-						data-text="I survived capstone and had a great time learning all the tools necessary to complete this project. 
-						It was a great opportunity to create something those in education can use to make their lives just a bit easier." 
-						data-img="<%=asset_path("michaell.jpg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("michaell.jpg") %>);"></div>
-					<h5>Michael L.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Nate V. ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
-						data-name="Nate V." data-text="I am a 4th year student who enjoys 
-						spending my time with computers, music, and traveling, and possesses a borderline 
-						unhealthy obsession with sneaker collecting. I worked on the report capability for the project, 
-						where Taylor S. and I provided the pdf and csv output functionality." 
-						data-img="<%=asset_path("natev.jpg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("natev.jpg") %>);"></div>
-					<h5>Nate V.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Ricky P ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Ricky P." 
-						data-text="Capstone was a great experience for me as a programmer. It showed me both the fun 
-						and the struggles that come along with working with a team for a project. 
-						I'm sure I'll look back on this project with fond memories of the people I worked with." 
-						data-img="<%=asset_path("rickyp.jpeg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("rickyp.jpeg") %>);"></div>
-					<h5>Ricky P.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Robert H ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
-						data-name="Robert H." data-text="I worked on the administrator and super-user portions of GeoGem. 
-						The process of creating a usable app as part of a large group proved challenging, but very rewarding. 
-						I hope GeoGem allows people to be more productive while helping others!" 
-						data-img="<%=asset_path("roberth.png") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("roberth.png") %>);"></div>
-					<h5>Robert H.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Rolando M. ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
-						data-name="Rolando M." data-text="I'm extremely grateful that I had the opportunity to 
-						work with an amazing team. The team worked extremely hard over the last few weeks to build 
-						something we hope you guys love." 
-						data-img="<%=asset_path("rolandom.jpg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("rolandom.jpg") %>);"></div>
-					<h5>Rolando M.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Steven R ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Steven R." s
-						data-text="It was quite an exciting adventure creating GeoGem! I had a good time 
-						working with some awesome people. Don't let the suit fool you...I'm not that important." 
-						data-img="<%=asset_path("stevenr.jpg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("stevenr.jpg") %>);"></div>
-					<h5>Steven R.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Steven Y---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Steven Y." 
-						data-text="I had a great time in capstone. I look forward to putting my capstone experience towards a career." 
-						data-img="<%=asset_path("steveny.JPG") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("steveny.JPG") %>);"></div>
-					<h5>Steven Y.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Taylor S ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
-						data-name="Taylor S." data-text="I had a great time in Capstone working with everyone on GeoGem. 
-						I handled coding the session summary reports, and it was a very fun and rewarding experience!" 
-						data-img="<%=asset_path("taylors.jpg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("taylors.jpg") %>);"></div>
-					<h5>Taylor S.</h5>
-				</div>
-			</div><!-- End Col-->
-			<!---- Tommy B ---->
-			<div class="col-xs-4 col-sm-3">
-				<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
-						data-name="Tommy B." data-text="I had a great time working with Kevin M. on the teacher-focused pages and trying to keep up with him! 
-						It was a great experience working with everyone from 0 to a full, deployed application in only a few weeks!" 
-						data-img="<%=asset_path("tommyb.jpg") %>">		
-					<div class="sq-about center-block" style="background-image: url(<%=asset_path("tommyb.jpg") %>);"></div>
-					<h5>Tommy B.</h5>
-				</div>
-			</div><!-- End Col-->
-		</div><!--End Row-->
-	</div> <!--content col-->
-</div> <!-- end container -->	
+	</div>
+
+	<div class="row content-text">
+		<div class="col-xs-12">
+			<h3>Meet the Team</h3>
+			<p>
+				<!--Part 3: Authors. GeoGem is the creation of... Capstone2017 student profiles. (smile)-->
+				GeoGem is the creation of the 2017 Computer Science Capstone class at <a href="https://www.northcentralcollege.edu/" target="_blank">
+					North Central College</a>. 
+				The Capstone course was led by Professor Bill and was comprised of 17 students. 
+			</p>
+		</div>
+	</div>
+
+	<!------------------------------------ Team Images ------------------------------------>
+	<div class="row">
+		<!---- Alex P. ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
+					data-name="Alex P." data-text="I really enjoyed working on GeoGem. I was a part of the team that created the session pages.
+					This project allowed me to gain a unique set of skills that helped me further my skills as a programmer." 
+					data-img="<%=asset_path("alexp.jpg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("alexp.jpg") %>);"></div>
+				<h5>Alex P.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Prof Bill ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Prof Bill" 
+					data-text="A fun project with a great group of owners and teammates. Huzzah! thanks... yow, bill" 
+					data-img="<%=asset_path("profbill.jpg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("profbill.jpg") %>);"></div>
+				<h5>Prof Bill</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Carolyn C ---->
+		<div class="col-xs-4 col-sm-3">
+		<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Carolyn C." 
+					data-text="I worked on the UX team creating specific and maintaining html views while merging them with rails code. 
+					This was my first major programming application I worked on, and was also my favorite thus far." 
+					data-img="<%=asset_path("carolync.png") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("carolync.png") %>);"></div>
+				<h5>Carolyn C.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Dakota B. ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
+					data-name="Dakota B." data-text="My role in capstone was spent developing the administrator pages. 
+					I had fun working with old friends and new, and developing from the shadows to 
+					make the secret pages which many users will never see. Perhaps in exchange for snacks, I could share these secrets..." 
+					data-img="<%=asset_path("dakotab.jpg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("dakotab.jpg") %>);"></div>
+				<h5>Dakota B.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Debra J ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Debra J." 
+					data-text="I headed up the demo team and worked on the UX team in order to establish the look and feel of GeoGem. 
+					I also aided the creation of the home and session screens. I enjoyed working on a project that will have a real
+					community impact and I hope that our users will enjoy using this system!" 
+					data-img="<%=asset_path("debraj.jpg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("debraj.jpg") %>);"></div>
+				<h5>Debra J.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Kevin M ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Kevin M." 
+					data-text=" I worked on teacher-focused pages with Tommy B! This was the first major thing I've worked on, and it was pretty fun. 
+					I'm a vampire, so I don't have a real picture." 
+					data-img="<%=asset_path("kevinm.png") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("kevinm.png") %>);"></div>
+				<h5>Kevin M.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Kevin P. ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
+					data-name="Kevin P." data-text="Writer of code and eater of baked goods. Now knows far too much about charting libraries." 
+					data-img="<%=asset_path("kevinp.jpg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("kevinp.jpg") %>);"></div>
+				<h5>Kevin P.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Matthew O. ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
+					data-name="Matthew O." data-text="I had a great experience in capstone. 
+					Working on the sessions gave me a unique opportunity to further strengthen 
+					both my front-end and back-end development skills. I'm excited to see the potential impact GeoGem will have." 
+					data-img="<%=asset_path("matthewo.jpg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("matthewo.jpg") %>);"></div>
+				<h5>Matthew O.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Megan M ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Meagan M." 
+					data-text="As a member of the login team, I helped develop login and guarding the application. 
+					I had a great experience working with such an amazing development team. I'm looking forward to all the help GeoGem will provide!" 
+					data-img="<%=asset_path("meaganm.jpg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("meaganm.jpg") %>);"></div>
+				<h5>Meagan M.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Michael L---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Michael L." 
+					data-text="I survived capstone and had a great time learning all the tools necessary to complete this project. 
+					It was a great opportunity to create something those in education can use to make their lives just a bit easier." 
+					data-img="<%=asset_path("michaell.jpg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("michaell.jpg") %>);"></div>
+				<h5>Michael L.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Nate V. ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
+					data-name="Nate V." data-text="I am a 4th year student who enjoys 
+					spending my time with computers, music, and traveling, and possesses a borderline 
+					unhealthy obsession with sneaker collecting. I worked on the report capability for the project, 
+					where Taylor S. and I provided the pdf and csv output functionality." 
+					data-img="<%=asset_path("natev.jpg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("natev.jpg") %>);"></div>
+				<h5>Nate V.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Ricky P ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Ricky P." 
+					data-text="Capstone was a great experience for me as a programmer. It showed me both the fun 
+					and the struggles that come along with working with a team for a project. 
+					I'm sure I'll look back on this project with fond memories of the people I worked with." 
+					data-img="<%=asset_path("rickyp.jpeg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("rickyp.jpeg") %>);"></div>
+				<h5>Ricky P.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Robert H ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
+					data-name="Robert H." data-text="I worked on the administrator and super-user portions of GeoGem. 
+					The process of creating a usable app as part of a large group proved challenging, but very rewarding. 
+					I hope GeoGem allows people to be more productive while helping others!" 
+					data-img="<%=asset_path("roberth.png") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("roberth.png") %>);"></div>
+				<h5>Robert H.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Rolando M. ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
+					data-name="Rolando M." data-text="I'm extremely grateful that I had the opportunity to 
+					work with an amazing team. The team worked extremely hard over the last few weeks to build 
+					something we hope you guys love." 
+					data-img="<%=asset_path("rolandom.jpg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("rolandom.jpg") %>);"></div>
+				<h5>Rolando M.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Steven R ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Steven R." s
+					data-text="It was quite an exciting adventure creating GeoGem! I had a good time 
+					working with some awesome people. Don't let the suit fool you...I'm not that important." 
+					data-img="<%=asset_path("stevenr.jpg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("stevenr.jpg") %>);"></div>
+				<h5>Steven R.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Steven Y---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" data-name="Steven Y." 
+					data-text="I had a great time in capstone. I look forward to putting my capstone experience towards a career." 
+					data-img="<%=asset_path("steveny.JPG") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("steveny.JPG") %>);"></div>
+				<h5>Steven Y.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Taylor S ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
+					data-name="Taylor S." data-text="I had a great time in Capstone working with everyone on GeoGem. 
+					I handled coding the session summary reports, and it was a very fun and rewarding experience!" 
+					data-img="<%=asset_path("taylors.jpg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("taylors.jpg") %>);"></div>
+				<h5>Taylor S.</h5>
+			</div>
+		</div><!-- End Col-->
+		<!---- Tommy B ---->
+		<div class="col-xs-4 col-sm-3">
+			<div class="group_item text-center" data-toggle="modal" data-target="#bio" 
+					data-name="Tommy B." data-text="I had a great time working with Kevin M. on the teacher-focused pages and trying to keep up with him! 
+					It was a great experience working with everyone from 0 to a full, deployed application in only a few weeks!" 
+					data-img="<%=asset_path("tommyb.jpg") %>">		
+				<div class="sq-about center-block" style="background-image: url(<%=asset_path("tommyb.jpg") %>);"></div>
+				<h5>Tommy B.</h5>
+			</div>
+		</div><!-- End Col-->
+	</div><!--End Row-->
+
+	</div> <!-- content-col -->
+</div> <!-- container -->	
 
 <!------- Bio Modal: Pops up on click of picture ------->
 <div class="modal fade" id="bio" tabindex="-1">

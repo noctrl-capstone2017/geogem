@@ -1,16 +1,12 @@
-# Login Session Controller
-# Finish log in & log out
 # Author: Meagan Moore & Steven Royster
-
 class LoginSessionController < ApplicationController
 
   include LoginSessionHelper
 
-  # The teacher can only log out if they are actually logged in
-  before_action :logged_in, only: [:logout]
-  
-    
-  # Skips guard require login because these are login pages
+  # login and logout are special pages that handle their own navbar and layout 
+  before_action :special_navbar_and_layout
+
+  # skip login guard; these pages don't require login
   skip_before_action :require_login
   
   # login page

@@ -1,21 +1,16 @@
 # author: Kevin M, Tommy B
-# admin methods by Dakota B.
-# guards by Meagan Moore
-# Teacher methods, as well as admin, super, and home stuff.
+# admin methods by Dakota B; guards by Meagan Moore
 class TeachersController < ApplicationController
-  
+
   include TeachersHelper
-  
+
   before_action :is_suspended
 
-  #Before actions to reduce access and prime pages to show teacher info.
   before_action :set_teacher, only: [:show, :edit, :update]
   before_action :same_school, only: [:show, :edit, :update]
   #Guards added by Meagan Moore
   before_action :is_admin, only: [:admin, :admin_report, :index, :new, :create, :login_settings, :show]
   before_action :is_super, only: [:super, :updateFocus, :super_report]
-
-
 
   # GET /teachers
   # This method prepares the index view. It sets up pagination in an ascending

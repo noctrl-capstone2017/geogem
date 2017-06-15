@@ -43,7 +43,7 @@ class RosterSquaresController < ApplicationController
     if params[:remove_square]
       if params[:remove_square_id] != nil
         @roster_squares.delete(RosterSquare.find(params[:remove_square_id]))
-        flash[:success] = 'Roster Square was successfully removed.'
+        flash[:success] = 'Roster square was successfully removed.'
         redirect_to  "/roster_squares/#{params[:id]}/edit"
       end
     end
@@ -100,7 +100,7 @@ class RosterSquaresController < ApplicationController
     @square = Square.find_by_id(params[:id])
     @student_squares = RosterSquare.where(student_id: @students)
       if @roster_square.save
-        flash[:success] = 'Roster Square was successfully created.'
+        flash[:success] = 'Roster square was successfully added.'
         redirect_to "/roster_squares/#{@roster_square.student_id}/edit"
       else
         format.html { render :new }

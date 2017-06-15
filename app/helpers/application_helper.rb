@@ -1,15 +1,22 @@
-# Application Helper
-# Fills an array with all student art, gets a random image
 # Author: Meagan Moore & Steven Royster
-
 
 module ApplicationHelper
   
+  # Returns the full title on a per-page basis.
+  # Source: https://github.com/noctrl-csc694-fall2016/giftgarden
+  def full_title(page_title = '')
+    base_title = "GeoGem"
+    if page_title.empty?
+      base_title
+    else
+      page_title + " ◆ " + base_title
+    end
+  end
+
   # Returns random artwork path
   def random_student_art
-    # fill array with all student art
+    # fill array with all student art, return one at random
     images = Dir.glob("app/assets/images/student_art/*.jpg").to_a
-    # get a random image from array
     images[rand(images.size)]
   end
 
