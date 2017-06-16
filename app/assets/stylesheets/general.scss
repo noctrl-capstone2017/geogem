@@ -6,6 +6,7 @@
 * General CSS Stylesheet Document 
 * Written by: Debra Jensen
 ************************************************************/
+
 /*********************************************************
 *  TEXT STYLING
 *********************************************************/
@@ -43,6 +44,16 @@ body
 }
 
 /*********************************************************
+*  COLOR VARIABLES
+* Variables for colors used in GeoGem CSS
+* Colors are loosely stolen from the Autism Awareness ribbon
+*********************************************************/
+$geogem-blue: #2458B7;
+$geogem-lightblue: #4195fc;
+$geogem-aqua: #97edec;
+$geogem-yellow: #FFEB65;
+
+/*********************************************************
 *  ALIGNMENT
 * Handy for aligning two columns or divs. Use on a row div
 * http://stackoverflow.com/questions/20547819/vertical-align-with-bootstrap-3
@@ -65,16 +76,16 @@ body
 *********************************************************/
 .navbar
 {
-	background: #2458B7;
+	background: $geogem-blue;
 }
 .navbar a
 {
 	color:white;
 }
-.navbar .brand, .navbar .nav > li > a:hover
+.navbar .brand, .navbar .nav > li > a:hover, .navbar-header > a:hover 
 {
 	color:white;
-	background-color:#97EDEC;
+	background-color: $geogem-aqua;
 }
 
 /*********************************************************
@@ -134,18 +145,18 @@ body
 
 .sq-active
 {
-	border-color: #97EDEC;
+	border-color: $geogem-aqua;
 	border-style: solid;
 	border-width:3px;
 	
-  -webkit-box-shadow: 0px 0px 7px #4195fc;
-  -moz-box-shadow: 0px 0px 7px #4195fc;
-  box-shadow: 0px 0px 7px #4195fc;
+  -webkit-box-shadow: 0px 0px 7px $geogem-lightblue;
+  -moz-box-shadow: 0px 0px 7px $geogem-lightblue;
+  box-shadow: 0px 0px 7px $geogem-lightblue;
 }
 
 .square h1, .square h2,.square h3, .square h4, .square p
 {
-	color:#FFFFFF;
+	color: white;
 }
 
 /**********************************************************
@@ -206,15 +217,15 @@ body
 
 .student-icon
 {
-	color: #FFFFFF;
+	color: white;
 }
 .teacher-icon
 {
-	color: #FFFFFF;
+	color: white;
 }
 .icon-white
 {
-	color: #FFFFFF;
+	color: white;
 }
 
 /*This fixes the weird ruby buttons by doing the width and a 0 top margin*/
@@ -326,12 +337,10 @@ body
 *  Used for admin screens
 *********************************************************/
 .table-striped > tbody > tr:hover td{
-  background-color: #FFEB65;
+  background-color: $geogem-yellow;
 }
 
 .schools-table {
-/*	width: 90%;
-	margin-left: 40px; */
 	margin-top: 40px;
 }
 .teachers-table {
@@ -407,13 +416,13 @@ body
 }
 
 input[type="radio"]:checked + label {
-    border-color: #97EDEC;
+    border-color: $geogem-aqua;
 	border-style: solid;
 	border-width:3px;
     	
-    -webkit-box-shadow: 0px 0px 7px #4195fc;
-    -moz-box-shadow: 0px 0px 7px #4195fc;
-    box-shadow: 0px 0px 7px #4195fc;
+    -webkit-box-shadow: 0px 0px 7px $geogem-lightblue;
+    -moz-box-shadow: 0px 0px 7px $geogem-lightblue;
+    box-shadow: 0px 0px 7px $geogem-lightblue;
 }
 
 .row-offcanvas {
@@ -424,7 +433,7 @@ input[type="radio"]:checked + label {
   width: inherit;
   min-width: 220px;
   max-width: 220px;
-  background-color:#f5f5f5;
+  background-color: whitesmoke;   /* hex is #f5f5f5 */
   float: left;
   height:100%;
   position:relative;
@@ -518,7 +527,7 @@ input[type="radio"]:checked + label {
 .listText span
 {
 	font-size: 1em;
-	color: #000000;
+	color: black;
 }
 
 /*********************************************************
@@ -527,7 +536,7 @@ input[type="radio"]:checked + label {
 
 .school-icon
 {
-	color: #FFFFFF; /*This should be white, don't change to black*/
+	color: white;
 }
 
 /*********************************************************
@@ -541,7 +550,7 @@ input[type="radio"]:checked + label {
 .login-col {
 	background-color: rgba(36,88,183,0.2);
 	border-radius: 10px;
-	border: 1px solid #2458B7;
+	border: 1px solid $geogem-blue;
 }
 
 .login-header-text {
@@ -583,14 +592,14 @@ input[type="radio"]:checked + label {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #FFFFFF;
+    color: white;
     display: block;
     transition: 0.3s
 }
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover, .offcanvas a:focus{
-    color: #97EDEC; /*Light Blue*/
+    color: $geogem-aqua;
 }
 
 /* Added styling for text */

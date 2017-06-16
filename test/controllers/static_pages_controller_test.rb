@@ -15,7 +15,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   # test About page 
-  test "should get about1" do
+  test "should get about" do
     get about_url
     assert_response :success
     assert_select "title", "About ◆ GeoGem"
@@ -23,7 +23,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 
   # test About Student Art page
   test "should get about student art" do
-    get about2_url
+    get about_student_art_url
     assert_response :success
     assert_select "h2", "About student art - artwork contributed to GeoGem"
     # prof bill email should be in the About Student Art page
