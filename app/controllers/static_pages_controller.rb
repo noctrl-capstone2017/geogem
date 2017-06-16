@@ -6,10 +6,10 @@ class StaticPagesController < ApplicationController
   # skip login guard; these pages don't require login
   skip_before_action :require_login
 
-  def about1
+  def about
   end
 
-  def about2
+  def about_student_art
   end
 
   def help

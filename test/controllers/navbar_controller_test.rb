@@ -21,14 +21,14 @@ class NavbarControllerTest < ActionDispatch::IntegrationTest
   end
     
   # if on about1, it should be navbar3  
-  test "should get navbar3 for about1" do
+  test "should get navbar3 for about" do
     get about_path
     assert_response :success
   end
     
   # if on about2, it should be navbar3
   test "should get navbar3 for about2" do
-    get about2_path
+    get about_student_art_path
     assert_response:success
   end
 end
