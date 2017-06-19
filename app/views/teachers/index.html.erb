@@ -2,13 +2,9 @@
 <% provide(:title, "All teachers") %>
 
 <!-- page header -->
-<div class="page-header vertical-align">
-	<div class="col-xs-11">
-		<!-- Dynamically fills in with school id -->
-		<h2>All Teachers<small> - manage teachers at <%= @current_school.screen_name %></small></h2>
-	</div>
-	<%= render 'layouts/current_teacher_icon' %>
-</div><!-- End page header -->
+<%= render partial: 'schools/school_page_header', 
+			:locals => { 	:title => "All Teachers", 
+										:description => "view/manage all teachers"} %>
 
 <!-- New Teacher Button -->
 <div class="row first-content-row">
@@ -20,7 +16,10 @@
 	</div><!-- End col-->
 </div><!-- End row -->
 
- <!--T eacher display area -->
+<!-- All teachers display table -->
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+
 <table class="table table-striped table-hover table-responsive teachers-table">
 	<thead>
 		<tr>
@@ -33,7 +32,6 @@
 	</thead>
 	
 	<tbody>
-		<%= will_paginate %>
 			<% @teachers.each do |teacher| %>
 			
 				<!-- Teacher icon section-->
@@ -73,8 +71,11 @@
 					<td><p class="listText"><span></span></p>
 					</td>
 				</tr>
-				
+
 			<% end %>
 	</tbody>
 </table>
 <%= will_paginate %>
+
+	</div>   <!-- col -->
+</div>  <!-- row -->

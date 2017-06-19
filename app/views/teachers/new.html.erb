@@ -1,12 +1,10 @@
 <!--Adapted for use by Kevin M. -->
 <% provide(:title, "New teacher") %>
 
-<div class="page-header cap17-header vertical-align">
-	<div class="col-xs-11">
-		<h2>New Teacher <small>- add a new teacher to TPTE</small></h2>
-	</div>
-	<%= render 'layouts/current_teacher_icon' %>
-</div>
+<!-- page header -->
+<%= render partial: 'schools/school_page_header', 
+			:locals => { 	:title => "New Teacher", 
+										:description => "add a new teacher"} %>
 
 <!-- Teacher profile area -->
 <%= form_for(@teacher) do |f| %>
@@ -122,7 +120,7 @@
 	
 	<!-- Button area -->
 	<div class="row action-buttons-row">
-		<div class="col-sm-1 col-sm-offset-1"> 
+		<div class="col-sm-1 col-sm-offset-2"> 
 			<%= button_tag(type: 'submit', class: "btn btn-success") do %>  
 	  		Add New Teacher
 	  	<% end %>
@@ -132,4 +130,3 @@
 		</div>
 	</div>
 <% end %>
-

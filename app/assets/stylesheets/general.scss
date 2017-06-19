@@ -12,6 +12,7 @@
 *********************************************************/
 
 @import url('https://fonts.googleapis.com/css?family=Hind|Rubik');
+
 h1, h2, h3, h4, h5, h6
 {
 	font-family: "Rubik", sans-serif;
@@ -63,25 +64,14 @@ $geogem-yellow: #FFEB65;
     align-items: center;
 }
 
-.page-header .h1
-{
-	padding-left: 100px;
-}
-.cap17-header {
-	margin-bottom: 40px;
-}
+.page-header .h1 { padding-left: 100px; }
+.geogem-page-header { margin-bottom: 40px; }
 
 /*********************************************************
 *  NAVBAR STYLING
 *********************************************************/
-.navbar
-{
-	background: $geogem-blue;
-}
-.navbar a
-{
-	color:white;
-}
+.navbar { background: $geogem-blue; }
+.navbar a { color:white; }
 .navbar .brand, .navbar .nav > li > a:hover, .navbar-header > a:hover 
 {
 	color:white;
@@ -215,18 +205,10 @@ $geogem-yellow: #FFEB65;
 	}
 }
 
-.student-icon
-{
-	color: white;
-}
-.teacher-icon
-{
-	color: white;
-}
-.icon-white
-{
-	color: white;
-}
+.page-header-icon { color: white; }
+.student-icon { color: white; }
+.teacher-icon { color: white; }
+.icon-white {	color: white; }
 
 /*This fixes the weird ruby buttons by doing the width and a 0 top margin*/
 /*The margin fixes in-line problems. Variations may be necessary due to variable lengths*/
@@ -352,62 +334,19 @@ $geogem-yellow: #FFEB65;
 * i-navy, i-ltblue, i-red, and i-yellow are also found in
 * our main color scheme
 *********************************************************/
-.i-gray
-{
-	background-color: #787676;
-}
-
-.i-navy
-{
-	background-color:#2458B7;
-}
-
-.i-red
-{
-	background-color: #EC514A;
-}
-.i-yellow
-{
-	background-color: #FFEB65;
-}
-
-.i-ltblue
-{
-	background-color:#97EDEC;
-}
-
-.i-orange
-{
-	background-color:#F8BD28;
-}
-.i-green
-{
-	background-color:#8BC04F;
-}
-.i-lavender
-{
-	background-color: #8E7BB9;
-}
-.i-plum
-{
-	background-color: #B23F73;
-}
-.i-mint
-{
-	background-color:#5BC2A8;
-}
-.i-pink
-{
-	background-color:#E889B9;
-}
-.i-dkorange
-{
-	background-color:#E77F24;
-}
-.i-aqua
-{
-	background-color:#50C0E8;
-}
+.i-gray { background-color: #787676; }
+.i-navy { background-color:#2458B7; }
+.i-red { background-color: #EC514A; }
+.i-yellow { background-color: #FFEB65; }
+.i-ltblue { background-color:#97EDEC; }
+.i-orange { background-color:#F8BD28; }
+.i-green { background-color:#8BC04F; }
+.i-lavender { background-color: #8E7BB9; }
+.i-plum { background-color: #B23F73; }
+.i-mint { background-color:#5BC2A8; }
+.i-pink { background-color:#E889B9; }
+.i-dkorange { background-color:#E77F24; }
+.i-aqua { background-color:#50C0E8; }
 
 /* Note from Carolyn C- moved from teachers.scss */
 

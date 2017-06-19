@@ -2,16 +2,9 @@
 <% provide(:title, "Super dashboard") %>
 
 <!-- page header -->
-<div class="page-header vertical-align">
-	<div class="col-xs-11">
-		<h2>Super Dashboard<small> - create and manage  <%= @current_school.full_name %> using super powers</small></h2><!-- Dynamically fills in with school id -->
-	</div>
-	<div class="col-xs-1 center-block">
-		<div class="header-sq i-aqua" title="Hi Prof Bill. Yow!">
-			<span class="fa fa-hand-peace-o fa-2x teacher-icon"></span>
-		</div>
-	</div>
-</div><!-- page-header -->
+<%= render partial: 'teachers/super_page_header', 
+			:locals => { 	:title => "Super Dashboard", 
+										:description => "exercise GeoGem superpowers"} %>
 
 <!-- school focus spinner -->
 <div class="row first-content-row">

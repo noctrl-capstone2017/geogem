@@ -2,29 +2,23 @@
 <% provide(:title, "All schools") %>
 
 <!-- page header -->
-<div class="page-header vertical-align">
-	<div class="col-xs-11">
-		<h2>All Schools<small> - View or Edit all schools</small></h2><!-- Dynamically fills in with school id -->
-	</div>
-	<div class="col-xs-1 pull-right">
-		<div class="header-sq i-<%= @current_teacher.color %>" title=<%= @current_teacher.screen_name %>>
-			<span class="fa fa-<%= @current_teacher.icon %> fa-3x teacher-icon"></span>
-		</div>
-	</div>
-</div><!--page-header-->
+<%= render partial: 'teachers/super_page_header', 
+			:locals => { 	:title => "All schools", 
+										:description => "view/manage all schools in GeoGem"} %>
 
 <!-- new school button -->
 <div class="row first-content-row">
-	<div class="col-xs-3 col-xs-offset-1">
-		
+	<div class="col-xs-4 col-xs-offset-1">
 		<%= button_to new_school_path, method: :get, class: 'col-sm-offset-1 btn btn-lg btn-success' do %>
   		<i class="fa fa-plus-square-o"></i> New School
 		<% end %>
-
 	</div>   <!-- col -->
 </div>   <!-- row -->
 
 <!-- all schools table -->
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+
 <table class="table table-striped table-hover table-responsive schools-table">
  	<thead>
  		<tr>
@@ -34,33 +28,25 @@
 		<th>Description</th>
 	</tr>
 	</thead>
-	
+
 	<!-- This section lists all schools in the database -->
 	<tbody>
-		<%= will_paginate %>
-        <% @schools.each do |school| %>
-	    <tr data-link=<%= edit_school_path(school.id) %>>	 	
-      			<td>
-					<div class="table-sq i-plum" title="<%= school.full_name %>">
-						<div class="table-sq i-<%= school.color%>">
-							<i class="fa fa-home fa-2x school-icon"></i>
-						</div>
+		<% @schools.each do |school| %>
+			<tr data-link=<%= edit_school_path(school.id) %>>	 	
+				<td>
+					<div class="table-sq i-<%= school.color %>" title="school=<%= school.full_name %>">
+						<i class="fa fa-fw fa-2x fa-<%= school.icon %> school-icon"></i>
 					</div>
 				</td>
-				<td>
-			     	<%= school.screen_name %>
-      			</td>
-      															   		
-		 		<td>
-			      	<%= school.full_name %>
-      			</td>
-
-				<td>
-					 <%= school.description %> 
-				</td>
-		</tr>
-	    <% end %>
+				<td> <%= school.screen_name %> </td>
+		 		<td> <%= school.full_name %> </td>
+				<td> <%= school.description %> </td>
+			</tr>
+		<% end %>
 	</tbody>
 </table>
-
 <%= will_paginate %>
+
+	</div>   <!-- col -->
+</div>   <!-- row -->
+

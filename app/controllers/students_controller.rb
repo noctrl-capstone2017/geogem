@@ -2,9 +2,9 @@
 # Controller for Students
   
 class StudentsController < ApplicationController
-  
+
   include TeachersHelper
-  
+
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   before_action :set_school   #set up the school info for the logged in teacher
   before_action :is_admin, only: [:index]       #make sure only admins can reach any of this
