@@ -2,39 +2,39 @@
 <% provide(:title, "Suspend school") %>
 
 <!-- page header -->
-<div class="page-header vertical-align">
-	<div class="col-xs-11">
-		<h2>Suspend School<small> - suspend all teacher logins for a school</small></h2>
-	</div>
-	<div class="col-xs-1 center-block">
-		<div class="header-sq i-red" title="Prof Bill is Super User">
-			<span class="fa fa-flash fa-3x teacher-icon"></span>
-		</div>
-	</div>
-</div><!--End page header-->
-
+<%= render partial: 'schools/school_page_header', 
+			:locals => { 	:title => "Suspend School", 
+										:description => "suspend all teacher logins"} %>
 
 <div class="row first-content-row content-text">
-	<p>
-		Suspend logins at Super User's focus school: <span style="color: red; font-size: 1.4em; font-weight: bold;"><%= @school_name %></span>
-	</p>
-	<p>
-		This school has: <span style="color: red; font-size: 1.4em; font-weight: bold;"><%= @teacher_count %> teachers</span> to be suspended.
-	</p>
+	<div class="col-xs-10">
+		<p>
+			Super's focus school: 
+			<span style="color: <%= @school.color %>; font-size: 1.2em; font-weight: bold;">
+				<%= @school.full_name %>
+			</span>
+		</p>
+		<p>
+			Active teacher count at this school:
+			<span style="color: gray; font-size: 1.2em; font-weight: bold;">
+					<%= @teacher_count %> teachers
+			</span>
+		</p>
+	
+		<form class="form-horizontal" action="super">
+			<!-- Action buttons -->
+			<div class="row action-buttons-row">
+				<div class="col-xs-4 col-xs-offset-1 text-center"> 
+					<%= form_for :@activeTeachers do |t| %>
+								<%= t.hidden_field :suspended, :value=>true, class: 'form-control' %>
+								<%= button_tag(type: 'submit', class: "btn btn-success") do %>  
+		  						Suspend School
+		  					<% end %>
+					<% end %>
+					&nbsp; &nbsp; &nbsp;
+					<button type="submit" class="btn btn-danger">Cancel</button></div>
+			</div>
+		</form>
 
-	<form class="form-horizontal" action="super">
-		<!-- Action buttons -->
-		<div class="row action-buttons-row">
-			<div class="col-xs-3 col-xs-offset-1 text-center"> 
-			<%= form_for :@activeTeachers do |t| %>
-
-						<%= t.hidden_field :suspended, :value=>true, class: 'form-control' %>
-						<%= button_tag(type: 'submit', class: "btn btn-success") do %>  
-  						Suspend School
-  					<% end %>
-			<% end %>
-				&nbsp; &nbsp; &nbsp;
-				<button type="submit" class="btn btn-danger">Cancel</button></div>
-		</div>
-	</form>
-</div>
+	</div>   <!-- end col -->
+</div>   <!-- end row -->

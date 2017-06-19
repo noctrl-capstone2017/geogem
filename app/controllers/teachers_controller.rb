@@ -17,7 +17,7 @@ class TeachersController < ApplicationController
   # order by their screen_name.
   def index
     @current_teacher = current_teacher
-    @current_school = School.find(@current_teacher.school_id)
+    @school = School.find(@current_teacher.school_id)
     @teachers = Teacher.where(school_id: @current_teacher.school_id).paginate(page: params[:page], :per_page => 10)
     @teachers = @teachers.order('screen_name ASC')
   end
@@ -26,6 +26,7 @@ class TeachersController < ApplicationController
   #This method prepares the admin_report view.
   def admin_report
     @current_teacher = current_teacher
+    @school = School.find(@current_teacher.school_id)
     @students = Student.where(school_id: current_teacher.school_id).order('full_name ASC')
     @teachers = Teacher.where(school_id: current_teacher.school_id).order('full_name ASC')
     @squares = Square.where(school_id: current_teacher.school_id).order('full_name ASC')
@@ -79,6 +80,8 @@ class TeachersController < ApplicationController
   # GET /teachers/new
   # This prepares the new teacher form.
   def new
+    @current_teacher = current_teacher
+    @school = School.find(@current_teacher.school_id)
     @teacher = Teacher.new
   end
 
@@ -96,7 +99,7 @@ class TeachersController < ApplicationController
   # This prepares the admin dashboard.
   def admin
     @teacher = current_teacher
-    @current_school = School.find(current_teacher.school_id)
+    @school = School.find(current_teacher.school_id)
   end 
   
   # GET /teachers/password
@@ -207,12 +210,11 @@ class TeachersController < ApplicationController
   end
    
   # This method prepares the super view.
-  def super 
+  def super
     @schools = School.all
    # @school = School.first
     @teacher = Teacher.find(params[:id])
   end
-  
 
 
   private

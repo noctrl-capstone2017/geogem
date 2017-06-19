@@ -1,33 +1,26 @@
 <!-- authors: Ricky Perez & Michael Loptien -->
-<!-- Index view for squares, list of all applicable students -->
 <% provide(:title, "All squares") %>
 
-<p id="notice"><%= notice %></p>
-
 <!-- page header -->
-<div class="page-header vertical-align">
-  <div class="col-xs-11">
-	  <h2>All Squares<small> - manage behavior squares at  <%= @screen_name %></small></h2>
-	</div>
-	<div class="col-xs-1 center-block">
-		<div class="header-sq i-<%= @color %>" title="<%= @full_name%>">
-					<span class="fa fa-<%= @icon %> fa-3x teacher-icon"></span>
-		</div>
-	</div>
-</div>   <!-- page-header -->
+<%= render partial: 'schools/school_page_header', 
+			:locals => { 	:title => "All Squares", 
+										:description => "view/manage all behavior squares"} %>
 
 <!-- New Square Button -->
-	<div class="row first-content-row">
-		<div class="col-xs-3 col-xs-offset-1">
-			<%= button_to new_square_path, method: :get, class: 'col-sm-offset-1 btn btn-lg btn-success' do %>
-  			<i class="fa fa-plus-square-o"></i> New Square
-			<% end %>
-			
-		</div>
+<div class="row first-content-row">
+	<div class="col-xs-3 col-xs-offset-1">
+		<%= button_to new_square_path, method: :get, class: 'col-sm-offset-1 btn btn-lg btn-success' do %>
+			<i class="fa fa-plus-square-o"></i> New Square
+		<% end %>
+		
 	</div>
+</div>
 
-<!-- Squares Table Header-->
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+
 <table class= "table table-striped table-hover table-responsive schools-table">
+  <!-- Squares Table Header-->
   <thead>
 	  <tr>
 			<th>Icon</th>
@@ -37,9 +30,8 @@
 		</tr>
 	</thead>
 
-<!-- Squares Table Body -->
+  <!-- Squares Table Body -->
   <tbody>
-  	<%= will_paginate %>
     <% @squares.each do |square| %>
     
 			<!--Make the entire line link--> 
@@ -71,7 +63,8 @@
       </tr>
     <% end %>
   </tbody>
-  <!--End Table Body-->
 </table>
-<!--End Table-->
 <%= will_paginate %>
+
+  </div>   <!-- col -->
+</div>   <!-- row -->

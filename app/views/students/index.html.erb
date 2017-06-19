@@ -1,30 +1,13 @@
 <!-- authors: Ricky Perez & Michael Loptien -->
-<!-- Index view for students, list of all applicable students -->
 <% provide(:title, "All students") %>
 
-<p id="notice"><%= notice %></p>
-
-<!-- Page Header -->
-<div class="page-header vertical-align">
-  
-  <!-- Dynamically fills in with school full name -->
-	<div class="col-xs-11">
-	    <h2>All Students<small> - manage students at school <%= @screen_name %></small></h2>
-	</div>
-	
-	<!-- Dynamically fills in with school color, icon, and title of school -->
-	<div class="col-xs-1 center-block">
-		<div class="header-sq i-<%= @color %>" title="<%= @full_name%>">
-					<span class="fa fa-<%= @icon %> fa-3x teacher-icon"></span>
-		</div>
-	</div>
-</div>
-<!--End page header-->
-
-<br>
+<!-- page header -->
+<%= render partial: 'schools/school_page_header', 
+			:locals => { 	:title => "All Students", 
+										:description => "view/manage all students"} %>
 
 <!-- New Student Button -->
-<div class="row">
+<div class="row first-content-row">
 	<div class="col-xs-3 col-xs-offset-1">
 		<form  action="/students/new">
 			<button type="submit" class="col-sm-offset-1 btn btn-lg btn-success">
@@ -34,9 +17,10 @@
   </div>
 </div>
 
-<br>
-
 <!-- Start of Table -->
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+
 <table class="table table-striped table-hover table-responsive schools-table">
   
   <!-- Table Header -->
@@ -51,7 +35,6 @@
   
   <!-- Table Body -->
   <tbody>
-    <%= will_paginate %>
     <% @students.each do |student| %>
     
       <!--Make the entire line link--> 
@@ -80,13 +63,14 @@
         <% if this_session != nil %>
           <td><%= this_session.end_time %></td>
         <% else %>
-          <td>no previous sessions</td>
+          <td>No previous sessions</td>
         <% end %>
         
       </tr>
     <% end %>
   </tbody>
-  <!-- End Table Body -->
 </table>
-<!-- End Table -->
 <%= will_paginate %>
+
+  </div>   <!-- col -->
+</div>   <!-- row -->

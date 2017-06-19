@@ -2,20 +2,12 @@
 <% provide(:title, "Super report") %>
 
 <!-- page header -->
-<div class="page-header vertical-align">
-	<div class="col-xs-11">
-		<h2>Super Report<small> - stats and more for the Super User</small></h2><!-- Dynamically fills in with school id -->
-	</div>
-	<div class="col-xs-1 center-block">
-		<div class="header-sq i-red" title="Prof Bill is Super User">
-			<span class="fa fa-flash fa-3x teacher-icon"></span>
-		</div>
-	</div>
-</div><!--End page header-->
+<%= render partial: 'teachers/super_page_header', 
+			:locals => { 	:title => "Super Report", 
+										:description => "stats and more about all of GeoGem"} %>
 
 <!-- content, just some basic statistics -->
 <div class="row content-text">
-	<br>
 	<h4>
 		Welcome to GeoGem <%= DeployHelper.geogem_version =%>
 		<br><br><br>

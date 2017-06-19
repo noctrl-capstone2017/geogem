@@ -2,16 +2,9 @@
 <% provide(:title, "Admin dashboard") %>
 
 <!-- page header -->
-<div class="page-header vertical-align">
-		<div class="col-xs-11">
-			<h2>Admin Dashboard<small> -  manage <%= @current_school.full_name %> teachers, students, squares, etc</small></h2><!-- Dynamically fills in with school id -->
-		</div>
-		<div class="col-xs-1 pull-right">
-			<div class="header-sq i-<%= @current_school.color %>" title=<%= @teacher.screen_name %>>
-				<span class="fa fa-home fa-3x school-icon"></span>
-			</div>
-		</div>
-	</div>   <!-- page-header -->
+<%= render partial: 'schools/school_page_header', 
+			:locals => { 	:title => "Admin Dashboard", 
+										:description => "exercise admin powers"} %>
 
 <!-- action icons, first row -->		
 <div class="row action-icon-row">

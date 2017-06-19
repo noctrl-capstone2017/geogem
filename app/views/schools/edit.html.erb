@@ -1,15 +1,8 @@
 <% provide(:title, "School profile") %>
 
 <!-- page header -->
-<div class="page-header vertical-align">
-	<div class="col-xs-11">
-		<h2>School Profile<small> - edit information for school <%= @school.full_name %></small></h2>
-	</div>
-	<div class="col-xs-1 pull-right">
-		<div class="header-sq i-plum" >
-			<span class="fa fa-apple fa-3x teacher-icon"></span>
-		</div>
-	</div>
-</div>   <!-- page-header -->
+<%= render partial: 'schools/school_page_header', 
+			:locals => { 	:title => "School Profile", 
+										:description => "view/edit school information"} %>
 
 <%= render 'form', school: @school %>
