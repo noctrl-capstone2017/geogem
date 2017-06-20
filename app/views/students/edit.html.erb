@@ -1,22 +1,10 @@
 <!-- authors: Ricky Perez & Michael Loptien -->
-<!-- edit view for students, renderd _form -->
 <% provide(:title, "Student profile") %>
 
 <!-- page header -->
-<div class="page-header vertical-align">
-
-	<!-- Fills in with student full name -->
-	<div class="col-xs-11">
-		<h2>Student Profile <small>- view/edit information for student <%= @student.full_name %></small></h2>
-	</div>
-
-	<!-- Fills in Student icon, color, & float over name -->
-	<div class="col-xs-1 center-block">
-		<div class="header-sq i-<%= @student.color %>" title="<%= @student.screen_name %>">
-			<span class="fa fa-<%= @student.icon %> fa-3x teacher-icon"></span>
-		</div>
-	</div>
-</div>   <!-- page-header -->
+<%= render partial: 'student_page_header', 
+			:locals => { 	:title => "Student profile", 
+										:description => "view/edit a student"} %>
 
 <%= render 'form', student: @student, isNew: false %> <!--Renders my form partial-->
 
@@ -24,8 +12,8 @@
 <div class="row action-icon-row">
 	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit squares for student">
 
-		<div class="action-sq i-ltblue center-block">
-			<a href="<%= edit_roster_square_path(@student)%>"><span class="fa fa-square-o fa-4x action-icon"></span></a>
+		<div class="action-sq i-action-gray1 center-block">
+			<a href="<%= edit_roster_square_path(@student)%>"><span class="fa fa-4x fa-fw fa-square-o action-icon"></span></a>
 		</div>
 		<p>
 			<a href="<%= edit_roster_square_path(@student)%>"><span class="student-icon-text">View Squares</span></a>

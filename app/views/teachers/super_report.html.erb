@@ -3,18 +3,35 @@
 
 <!-- page header -->
 <%= render partial: 'teachers/super_page_header', 
-			:locals => { 	:title => "Super Report", 
-										:description => "stats and more about all of GeoGem"} %>
+			:locals => { 	:title => "Super report", 
+										:description => "some super stats about GeoGem"} %>
 
 <!-- content, just some basic statistics -->
 <div class="row content-text">
-	<h4>
-		Welcome to GeoGem <%= DeployHelper.geogem_version =%>
-		<br><br><br>
-		<!-- Shows the total number of records present in Schools, teachers, students, squares and sessions. -->
-		There are currently <%=Teacher.count%> Teachers, helping to promote the education <%=Student.count%> students, across <%=School.count%> schools.
-		<br><br><br>
-		These <%=Teacher.count%> teachers have observed <%=Square.count%> behavior Squares, and maintained <%=Session.count%> Sessions since <%= DeployHelper.geogem_deploy_date =%>
+	<div class="col-xs-10 col-xs-offset-1">
+		<h3>Hello, Super</h3>
+		<p>
+			Welcome to GeoGem <%= DeployHelper.geogem_version =%>
+		</p>
+		<p>
+			The system deploy date: <%= DeployHelper.geogem_deploy_date =%>
+		</p>
+		<br>
+
+		<h3>Quick stats</h3>
+		<p>
+			<!-- Shows the total number of schools, teachers, students, squares and sessions. -->
+			Some quick GeoGem stats:
+		</p>
+		<ul>
+			<li><p>There are currently <%=School.count%> schools </p></li>
+			<li><p>And there are <%=Teacher.count%> teachers </p></li>
+			<li><p>Helping to promote the education of <%=Student.count%> students</p></li>
+			<li><p>These <%=Teacher.count%> teachers have observed <%=Square.count%> behavior squares</p></li>
+			<li><p>There have been <%=Session.count%> behavior sessions since <%= DeployHelper.geogem_deploy_date =%></p></li>
+		</ul>
+
 		<br><br><br><br>
-	</h4>
-</div>
+
+	</div>   <!-- col -->
+</div>   <!-- row -->

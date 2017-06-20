@@ -3,33 +3,34 @@
 
 <!-- page header -->
 <%= render partial: 'schools/school_page_header', 
-			:locals => { 	:title => "Admin Report", 
-										:description => "show schools stats and more"} %>
+			:locals => { 	:title => "Admin report", 
+										:description => "basic list of students, teachers, and squares"} %>
 
 <div class="row content-text">
 	<div class="col-xs-10 col-xs-offset-1">
 
 <!-- This section lists all Students -->
-<h3>All Students at <%= @school.full_name %></h3>
-  <table class="table table-striped table-hover table-responsive students-table">
- 		<thead>
- 			<tr>
- 				<th>Student Icon</th>
+<h3 class="text-center">All students<small> - there are <%= @students.count %> students at <%= @school.full_name %> </small></h3>
+<br>
+<table class="table table-striped table-hover table-responsive students-table">
+	<thead>
+		<tr>
+			<th>Student Icon</th>
 			<th>Student ID</th>
 			<th>Full Name</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @students.each do |students| %>
-				<tr data-link="<%= edit_student_path(students.id) %>">
-				<td>
-					<div class="table-sq i-<%= students.color %>">
-					 	<span class="fa fa-<%= students.icon %> fa-2x table-icon"></span>
-					</div>
-				</td>	
-				<td><p class="listText"><span> <%= students.screen_name %></span> </p></td>
-				<td><p class="listText"><span> <%= students.full_name %></span> </p></td>
-			</tr>
+		<tr data-link="<%= edit_student_path(students.id) %>">
+			<td>
+				<div class="table-sq i-<%= students.color %>">
+				 	<span class="fa fa-lg fa-fw fa-<%= students.icon %> table-icon"></span>
+				</div>
+			</td>	
+			<td><p class="listText"><span> <%= students.screen_name %></span> </p></td>
+			<td><p class="listText"><span> <%= students.full_name %></span> </p></td>
+		</tr>
 		<% end %>
 	</tbody>
 </table>   <!-- end students table -->
@@ -37,8 +38,7 @@
 <br><hr><br>
 
 <!-- This section lists all Teachers -->
-<br><br>
-<h3>All Teachers at <%= @school.full_name %></h3>
+<h3 class="text-center">All teachers<small> - there are <%= @teachers.count %> teachers at <%= @school.full_name %> </small></h3>
 <table class="table table-striped table-hover table-responsive teachers-table">
  	<thead>
  		<tr>
@@ -54,7 +54,7 @@
 			<tr data-link="<%= edit_teacher_path(teacher.id) %>">
 				<td>
 				  <div class="table-sq i-<%= teacher.color %>">                 <!--Generate Teacher Color-->
-					  <i class="fa fa-<%= teacher.icon %> fa-2x table-icon"></i>  <!--Generate Teacher Icon-->
+					  <i class="fa fa-lg fa-fw fa-<%= teacher.icon %> table-icon"></i>  <!--Generate Teacher Icon-->
 				  </div>
 				</td>	
 				<td><p class="listText"><span> <%= teacher.screen_name %></span> </p></td>
@@ -69,7 +69,7 @@
 <br><hr><br>
 
 <!-- This section lists all Squares -->
-<h3>All Squares at <%= @school.full_name %></h3>
+<h3 class="text-center">All squares<small> - there are <%= @squares.count %> squares defined at <%= @school.full_name %> </small></h3>
 <table class="table table-striped table-hover table-responsive teachers-table">
  	<thead>
  		<tr>
@@ -85,7 +85,7 @@
 			<tr data-link="<%= edit_square_path(square.id) %>">
 				<td>
 					<div class="table-sq i-<%= square.color %>">
-						<span class="fa fa-square-o fa-3x teacher-icon"></span>
+						<span class="fa fa-2x fa-fw fa-square-o teacher-icon"></span>
 					</div>
 				</td>	
 				<td><p class="listText"><span> <%= square.screen_name %></span> </p></td>

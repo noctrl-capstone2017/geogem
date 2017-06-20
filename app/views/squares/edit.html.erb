@@ -1,23 +1,9 @@
 <!-- authors: Ricky Perez & Michael Loptien -->
-<!-- edit view for squares, renders _form -->
 <% provide(:title, "Square profile") %>
 
-<!-- Page Header -->
-<div class="page-header vertical-align">
-	
-	<!-- Fills in with square screen name -->
-	<div class="col-xs-11">
-		<h2>Square Profile<small> - view/edit behavior square <%= @square.screen_name %></small></h2>
-	</div>
-	
-	<!-- Fills in Square icon, color, & float over name -->
-	<div class="col-xs-1 center-block">
-		<div class="header-sq i-<%= @square.color %>" title="<%= @square.screen_name %>">
-      <span class="fa fa-square-o fa-3x teacher-icon"></span>
-		</div>
-	</div>
-	
-</div>
-<!--End page header-->
+<!-- page header -->
+<%= render partial: 'square_page_header', 
+			:locals => { 	:title => "Square profile", 
+										:description => "view/edit a behavior square"} %>
 
 <%= render 'form', square: @square, isNew: false %>

@@ -1,6 +1,5 @@
-# authors: Ricky Perez & Michael Loptien
-# Controller for Students
-  
+# Authors: Ricky Perez & Michael Loptien
+
 class StudentsController < ApplicationController
 
   include TeachersHelper

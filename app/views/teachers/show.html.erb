@@ -1,17 +1,15 @@
 <!--Author: Kevin M -->
 <% provide(:title, "Student roster") %>
 
-<div class="page-header vertical-align geogem-page-header">
-	<div class="col-xs-11">
-		<h2>Student Roster<small> - students accessible to teacher <%= @teacher.full_name %></small></h2>
-	</div>
-	<%= render 'layouts/current_teacher_icon' %>
-</div>
+<!-- page header -->
+<%= render partial: 'teacher_page_header', 
+			:locals => { 	:title => "Student roster", 
+										:description => "students accessible to teacher"} %>
 
 <!-- Roster Form -->
 <div class="row">
 	<div class="col-sm-10 col-sm-offset-1">
-		
+
 		<!-- Can only edit roster if the user is not an admin. -->
 		<% if !(@teacher.powers == "Admin") %>
 			<form>
@@ -63,7 +61,7 @@
 	<% end %>
 		<div class="col-xs-2 text-center">
 			<div class ="header-sq i-<%= student.color %> center-block">
-				<span class="fa fa-<%= student.icon %> fa-3x student-icon "></span>
+				<span class="fa fa-2x fa-fw fa-<%= student.icon %> student-icon "></span>
 			</div>
 				<p><span class="student-icon-text"> <%= student.full_name %> </span></p>
 		</div> <!-- col -->

@@ -1,6 +1,11 @@
 <!-- @author: Matthew O & Alex P  & Debra J-->
 <% provide(:title, "Home") %>
 
+<!-- page header -->
+<%= render partial: 'home_page_header', 
+			:locals => { 	:title => "Home", 
+										:description => ""} %>
+
 <!-- Control the selection and unselection of the student roster -->
 <script>
 	$(document).ready(function() {
@@ -16,18 +21,6 @@
 	});
 </script>
 
-
-<!-- page header -->
-<div class="page-header vertical-align">
-	<div class="col-xs-11">
-		<h2>Home<small> - home page with student roster; teacher=<%= @teacher.full_name %></small></h2>
-	</div>
-	<div class="col-xs-1 pull-right">
-		<div class="header-sq i-<%= @teacher.color %>" >
-			<span class="fa fa -fw fa-2x fa-<%= @teacher.icon %> teacher-icon"></span>
-		</div>
-	</div>
-</div>   <!--page-header-->
 
 <!--Student Roster Area -->
 <div id="student-roster"> <!--Student display area: shows the last 8 students teacher worked with -->
