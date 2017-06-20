@@ -1,13 +1,11 @@
 <% provide(:title, "Login settings") %>
 
-<div class="page-header vertical-align geogem-page-header">
-	<div class="col-xs-11">
-		<h2>Login Settings<small> - edit login settings for Teacher <%= @teacher.user_name %></small></h2>
-	</div>
-	<%= render 'layouts/current_teacher_icon' %>
-</div>
+<!-- page header -->
+<%= render partial: 'teacher_page_header', 
+			:locals => { 	:title => "Login settings", 
+										:description => "view/edit login settings for teacher"} %>
 
-	<!--Edit Login Settings form -->
+<!--Edit Login Settings form -->
 <%= form_for(@teacher) do |f| %>
 	<form class="form-horizontal">
 		<%= render 'layouts/flash' %>

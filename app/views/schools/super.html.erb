@@ -3,7 +3,7 @@
 
 <!-- page header -->
 <%= render partial: 'teachers/super_page_header', 
-			:locals => { 	:title => "Super Dashboard", 
+			:locals => { 	:title => "Super dashboard", 
 										:description => "exercise GeoGem superpowers"} %>
 
 <!-- school focus spinner -->
@@ -13,56 +13,59 @@
 	</div>
 </div>
 
-<!-- action icons -->
+<!-- first row of action icons -->
 <div class="row" style="margin-top: 60px;">
-	<%= link_to schools_path do %>	
+
+	<!-- All schools icon -->
 	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit schools">
-	<div class ="action-sq i-navy center-block">
-	<span class="fa fa-home fa-4x action-icon" ></span>
+		<div class ="action-sq i-action-gray1 center-block">
+			<%= link_to schools_path do %>
+				<span class="fa fa-3x fa-fw fa-home action-icon"></span>
+			<% end %>
+		</div>
+		<%= link_to schools_path do %>All schools<% end %>
 	</div>
-	<p><span class="student-icon-text">All schools</span></p>
-	
-	</div> <!-- col -->
-	<% end %>
-	
-	<%= link_to super_report_path do %>
-	<div class="col-xs-2 text-center" title="Stats++ for the Super User">
-	<div class ="action-sq i-pink center-block">
-		<span class="fa fa-file-text fa-4x action-icon"></span>
+
+	<!-- Super report icon -->
+	<div class="col-xs-2 text-center" title="GeoGem stats for Super">
+		<div class ="action-sq i-action-gray2 center-block">
+			<%= link_to super_report_path do %>
+				<span class="fa fa-3x fa-fw fa-file-text action-icon"></span>
+			<% end %>
+		</div>
+		<%= link_to super_report_path do %>Super report<% end %>
 	</div>
-	<p><span class="student-icon-text">Super Report</span></p>
-	</div><!-- col -->
-	<% end %>
-</div><!-- row -->
+</div>   <!-- first row of icons -->
 
 <!-- action icons, row 2 -->
 <div class="row action-icon-row" >
-	
-	<%= link_to school_backup_path do %>
-	<div class="col-xs-2 col-xs-offset-1 text-center" title="Backup all data of Super's focus school">
-	<div class ="action-sq i-green center-block" >
-		<span class="fa fa-floppy-o fa-4x action-icon" ></span>
+	<!-- Backup school icon -->
+	<div class="col-xs-2 col-xs-offset-1 text-center" title="Backup data of Super focus school">
+		<div class ="action-sq i-action-gray3 center-block">
+			<%= link_to school_backup_path do %>
+				<span class="fa fa-3x fa-fw fa-floppy-o action-icon"></span>
+			<% end %>
+		</div>
+		<%= link_to school_backup_path do %>Backup school<% end %>
 	</div>
-	<p><span class="student-icon-text">Backup school</span></p>
-	</div> <!-- col -->
-	<% end %>
 
-	<%= link_to school_suspend_path do %>
-	<div class="col-xs-2 text-center" title="Suspend all teacher logins of Super's focus school">
-	<div class ="action-sq i-red center-block">
-		<span class="fa fa-bomb fa-4x action-icon"></span>
+	<!-- Suspend school icon -->
+	<div class="col-xs-2 text-center" title="Suspend all teachers at Super focus school">
+		<div class ="action-sq i-action-gray4 center-block">
+			<%= link_to school_suspend_path do %>
+				<span class="fa fa-3x fa-fw fa-bomb action-icon"></span>
+			<% end %>
+		</div>
+		<%= link_to school_suspend_path do %>Suspend school<% end %>
 	</div>
-	<p><span class="student-icon-text">Suspend school</span></p>
-	</div><!-- col -->
-	<% end %>
-	
-	<%= link_to school_restore_path do %>
-	<div class="col-xs-2 text-center" title="Restore all teacher logins of Super's focus school">
-	<div class ="action-sq i-yellow center-block">
-		<span class="fa fa-undo fa-4x action-icon"></span>
+
+	<!-- Retore school icon -->
+	<div class="col-xs-2 text-center" title="Restore teacher logins at Super focus school">
+		<div class ="action-sq i-action-gray5 center-block">
+			<%= link_to school_restore_path do %>
+				<span class="fa fa-3x fa-fw fa-undo action-icon"></span>
+			<% end %>
+		</div>
+		<%= link_to school_restore_path do %>Restore school<% end %>
 	</div>
-	<p><span class="student-icon-text">Restore school</span></p>
-	</div><!-- col -->
-	<% end %>
-	
-</div><!-- row -->
+</div>   <!-- 2nd row of icons -->

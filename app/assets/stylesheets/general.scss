@@ -245,7 +245,6 @@ $geogem-yellow: #FFEB65;
 	align-items: center;
 	justify-content: center;
 	border-radius: 10px;
-
 	transition: all .2s ease-in-out;
 }
 .action-sq:hover {
@@ -347,6 +346,12 @@ $geogem-yellow: #FFEB65;
 .i-pink { background-color:#E889B9; }
 .i-dkorange { background-color:#E77F24; }
 .i-aqua { background-color:#50C0E8; }
+
+.i-action-gray1 { background-color: gray; }
+.i-action-gray2 { background-color: darkslategray; }
+.i-action-gray3 { background-color: lightslategray; }
+.i-action-gray4 { background-color: lightgray; }
+.i-action-gray5 { background-color: black; }
 
 /* Note from Carolyn C- moved from teachers.scss */
 
@@ -600,5 +605,5 @@ when submitted with errors */
 .help-header { padding-top: 60px; padding-bottom: 20px; }
 .help-qa-letter { font-size: 1.2em; font-weight: bold; color: gray; }
 .help-line { width: 90%; border-top: 1px dotted lightgray; padding-bottom: 20px; margin-right: 100px;}
-.help-small-sq { border-radius: 6px; color: white; }
+.help-small-sq { height: 1.2em; border-radius: 4px; color: white; }
 .help-answer-para { margin-left: 5%; margin-right: 5%; }

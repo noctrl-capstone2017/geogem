@@ -1,13 +1,16 @@
 #Author: Ricky Perez
 #Description: This contains the methods and helpers used for the roster square page
+
 class RosterSquaresController < ApplicationController
   before_action :set_roster_square, only: [:show, :edit, :update]
-  helper_method :set_square_name
+
+  helper_method :set_square_name    # methods used in roster square views
   helper_method :set_square_color
   helper_method :set_square_id
   helper_method :set_square_desc
   helper_method :set_roster_id
   helper_method :is_student_square
+
   # GET /roster_squares
   # GET /roster_squares.json
   def index
@@ -26,17 +29,17 @@ class RosterSquaresController < ApplicationController
   end
 
   # GET /roster_squares/1/edit
+  # edit the behavior squares available to a student
   def edit
-    #Get set of squares and students to be used in roster squares.
     @roster_square = RosterSquare.new
     @roster_squares = RosterSquare.all
-    #Get the students information
-    @students = Student.find_by_id(params[:id])
-    #Set the students squares
-    @student_squares = RosterSquare.where(student_id: @students.id)
+
+    @student = Student.find_by_id(params[:id])
+    @student_squares = RosterSquare.where(student_id: @student.id)
     @not_student_squares = []
+
     #Set the squares for the specific school
-    @school_squares = Square.where(school_id: @students.school_id)
+    @school_squares = Square.where(school_id: @student.school_id)
     @square = Square.find_by_id(params[:id])
     @squares = Square.all
     
@@ -48,7 +51,7 @@ class RosterSquaresController < ApplicationController
       end
     end
   end
-  
+
   #Below are helpers methos that when called allow you to check certain fields
   #that would otherwise be unavailable
   def set_roster_id (roster_square)
@@ -95,10 +98,10 @@ class RosterSquaresController < ApplicationController
   # POST /roster_squares.json
   def create
     @roster_square = RosterSquare.new(roster_square_params)
-    @students = Student.find_by_id(params[:id])
+    @student = Student.find_by_id(params[:id])
     @squares = Square.all
     @square = Square.find_by_id(params[:id])
-    @student_squares = RosterSquare.where(student_id: @students)
+    @student_squares = RosterSquare.where(student_id: @student)
       if @roster_square.save
         flash[:success] = 'Roster square was successfully added.'
         redirect_to "/roster_squares/#{@roster_square.student_id}/edit"
@@ -126,7 +129,7 @@ class RosterSquaresController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_roster_square
       #Sets the edit page to the specified student
-      @students = Student.find(params[:id])
+      @student = Student.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

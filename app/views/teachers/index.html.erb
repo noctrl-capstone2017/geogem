@@ -3,7 +3,7 @@
 
 <!-- page header -->
 <%= render partial: 'schools/school_page_header', 
-			:locals => { 	:title => "All Teachers", 
+			:locals => { 	:title => "All teachers", 
 										:description => "view/manage all teachers"} %>
 
 <!-- New Teacher Button -->
@@ -19,6 +19,9 @@
 <!-- All teachers display table -->
 <div class="row">
 	<div class="col-xs-10 col-xs-offset-1">
+
+<br><br>
+<h4>There are <%= @teachers.count %> teachers at <%= @school.full_name %>. </h4>
 
 <table class="table table-striped table-hover table-responsive teachers-table">
 	<thead>
@@ -39,7 +42,7 @@
 					<td>
 						<div class="table-sq i-plum" title="<%= teacher.user_name %>">
 							<div class="table-sq i-<%= teacher.color%>">
-									<i class="fa fa-<%= teacher.icon%> fa-2x table-icon"></i>
+									<i class="fa fa-lg fa-fw fa-<%= teacher.icon%> table-icon"></i>
 							</div>
 						</div>
 					</td>

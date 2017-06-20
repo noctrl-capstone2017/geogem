@@ -29,7 +29,7 @@
 		 <!-- Populates drop down for add box-->
   	 <%= f.select :square_id, options_for_select(@not_student_squares.map {|squares| ["#{squares.screen_name } - #{squares.full_name }", squares.id, ]}), class: "form-control", id: "addSquare"%>
     <!-- This the id for the student it's just hidden-->
-    <%= f.hidden_field :student_id, :value => @students.id%>
+    <%= f.hidden_field :student_id, :value => @student.id%>
 	</div>
 	<div class="col-xs-2 text-center">
 	   <%= button_tag(type: 'submit', class: "btn btn-success", id: "addStudBtn") do %> <i class="fa fa-plus icon-white"></i> <% end %>

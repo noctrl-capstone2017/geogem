@@ -1,25 +1,17 @@
 <!--Author: Michael Loptien and Ricky Perez -->
-<!--This page is used to display each students set of squares -->
 <% provide(:title, "Student squares") %>
 
 <!-- page header -->
-<div class="page-header vertical-align">
-	<div class="col-xs-11">
-		<h2>Student Squares<small> - behavior squares for student <%= @students.screen_name %></small></h2><!-- Dynamically fills in with school id -->
-	</div>
-	<div class="col-xs-1 center-block">
-		<div class="header-sq i-<%= @students.color %>" title="<%=@students.screen_name%>">
-			<a href="<%= edit_student_path(@students)%>"><span class="fa fa-<%= @students.icon %> fa-3x teacher-icon"></span></a>
-		</div>
-	</div>
-</div><!--page-header-->
+<%= render partial: 'students/student_page_header', 
+			:locals => { 	:title => "Student squares", 
+										:description => "view/edit behavior squares for a student"} %>
 
 	<!-- student behavior Squares -->
 	<div class="row squares-row first-content-row">
 		<!--Link to possible solution: https://stackoverflow.com/questions/14528919/new-row-every-3-items -->
 		<!-- set the squares for the specific student-->
 	    <%@roster_squares.each do |roster_square, index|%>
-		    <% if roster_square.student_id == @students.id %>
+		    <% if roster_square.student_id == @student.id %>
 		      <% square_name = set_square_name(roster_square) %>
 		    	<% square_color = set_square_color(roster_square) %>
 		    	<% square_id = set_square_id(roster_square) %>
