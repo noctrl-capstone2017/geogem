@@ -5,6 +5,6 @@
 <!-- page header -->
 <%= render partial: 'schools/school_page_header', 
 			:locals => { 	:title => "New square", 
-										:description => "add a new behavior square"} %>
+										:subtitle => "add a new behavior square to #{ @school.full_name }"} %>
 
 <%= render 'form', square: @square, isNew: true %>

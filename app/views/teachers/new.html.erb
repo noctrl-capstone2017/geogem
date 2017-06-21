@@ -4,7 +4,7 @@
 <!-- page header -->
 <%= render partial: 'schools/school_page_header', 
 			:locals => { 	:title => "New teacher", 
-										:description => "add a new teacher"} %>
+										:subtitle => "add a new teacher to #{ @school.full_name }"} %>
 
 <!-- Teacher profile area -->
 <%= form_for(@teacher) do |f| %>

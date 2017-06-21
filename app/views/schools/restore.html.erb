@@ -4,7 +4,7 @@
 <!-- page header -->
 <%= render partial: 'schools/school_page_header', 
 			:locals => { 	:title => "Restore school", 
-										:description => "restore all teacher logins"} %>
+										:subtitle => "restore all teacher logins at #{ @school.full_name}"} %>
 
 <div class="row first-content-row content-text">
 	<div class="col-xs-10">

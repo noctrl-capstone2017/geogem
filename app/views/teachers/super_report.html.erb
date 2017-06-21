@@ -2,9 +2,9 @@
 <% provide(:title, "Super report") %>
 
 <!-- page header -->
-<%= render partial: 'teachers/super_page_header', 
+<%= render partial: 'super_page_header', 
 			:locals => { 	:title => "Super report", 
-										:description => "some super stats about GeoGem"} %>
+										:subtitle => "some super stats about GeoGem, #{ super_teacher.full_name }"} %>
 
 <!-- content, just some basic statistics -->
 <div class="row content-text">

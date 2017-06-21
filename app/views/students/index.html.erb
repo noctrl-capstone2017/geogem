@@ -4,11 +4,19 @@
 <!-- page header -->
 <%= render partial: 'schools/school_page_header', 
 			:locals => { 	:title => "All students", 
-										:description => "view/manage all students"} %>
+										:subtitle => "view/manage all students at #{ @school.full_name }"} %>
+
+<!-- Start with some info, num students in the school -->
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-1">
+    <h4>There are <%= @students.count %> students at <%= @school.full_name %>. </h4>
+    </div>
+</div>
 
 <!-- New Student Button -->
 <div class="row first-content-row">
 	<div class="col-xs-3 col-xs-offset-1">
+	  <br>
 		<form  action="/students/new">
 			<button type="submit" class="col-sm-offset-1 btn btn-lg btn-success">
 			  <i class="fa fa-plus-square-o"></i> New Student
@@ -20,8 +28,6 @@
 <!-- Start of Table -->
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1">
-<br><br>
-<h4>There are <%= @students.count %> students at <%= @school.full_name %>. </h4>
 
 <table class="table table-striped table-hover table-responsive schools-table">
 
