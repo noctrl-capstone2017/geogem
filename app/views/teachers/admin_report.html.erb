@@ -4,13 +4,13 @@
 <!-- page header -->
 <%= render partial: 'schools/school_page_header', 
 			:locals => { 	:title => "Admin report", 
-										:description => "basic list of students, teachers, and squares"} %>
+										:subtitle => "basic lists of students, teachers, and squares at #{ @school.full_name }"} %>
 
 <div class="row content-text">
 	<div class="col-xs-10 col-xs-offset-1">
 
 <!-- This section lists all Students -->
-<h3 class="text-center">All students<small> - there are <%= @students.count %> students at <%= @school.full_name %> </small></h3>
+<h3>1) All students<small> - there are <%= @students.count %> students at <%= @school.full_name %> </small></h3>
 <br>
 <table class="table table-striped table-hover table-responsive students-table">
 	<thead>
@@ -38,7 +38,7 @@
 <br><hr><br>
 
 <!-- This section lists all Teachers -->
-<h3 class="text-center">All teachers<small> - there are <%= @teachers.count %> teachers at <%= @school.full_name %> </small></h3>
+<h3>2) All teachers<small> - there are <%= @teachers.count %> teachers at <%= @school.full_name %> </small></h3>
 <table class="table table-striped table-hover table-responsive teachers-table">
  	<thead>
  		<tr>
@@ -69,7 +69,7 @@
 <br><hr><br>
 
 <!-- This section lists all Squares -->
-<h3 class="text-center">All squares<small> - there are <%= @squares.count %> squares defined at <%= @school.full_name %> </small></h3>
+<h3>3) All squares<small> - there are <%= @squares.count %> behavior squares defined at <%= @school.full_name %> </small></h3>
 <table class="table table-striped table-hover table-responsive teachers-table">
  	<thead>
  		<tr>

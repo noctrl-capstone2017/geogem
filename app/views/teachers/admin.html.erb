@@ -4,7 +4,7 @@
 <!-- page header -->
 <%= render partial: 'schools/school_page_header', 
 			:locals => { 	:title => "Admin dashboard", 
-										:description => "exercise admin powers"} %>
+										:subtitle => "exercise admin powers at #{ @school.full_name }"} %>
 
 <!-- action icons, first row -->		
 <div class="row action-icon-row">

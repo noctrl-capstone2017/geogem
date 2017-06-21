@@ -4,7 +4,7 @@
 <!-- page header -->
 <%= render partial: 'schools/school_page_header', 
 			:locals => { 	:title => "All squares", 
-										:description => "view/manage all behavior squares"} %>
+										:subtitle => "view/manage all behavior squares at #{ @school.full_name }"} %>
 
 <!-- New Square Button -->
 <div class="row first-content-row">
