@@ -4,7 +4,7 @@
 <!-- page header -->
 <%= render partial: 'student_page_header', 
 			:locals => { 	:title => "Student profile", 
-										:description => "view/edit a student"} %>
+										:subtitle => "view/edit student #{ @student.full_name }"} %>
 
 <%= render 'form', student: @student, isNew: false %> <!--Renders my form partial-->
 

@@ -6,22 +6,15 @@
 			:locals => { 	:title => "All students", 
 										:subtitle => "view/manage all students at #{ @school.full_name }"} %>
 
-<!-- Start with some info, num students in the school -->
-<div class="row">
-	<div class="col-xs-8 col-xs-offset-1">
-    <h4>There are <%= @students.count %> students at <%= @school.full_name %>. </h4>
-    </div>
-</div>
-
-<!-- New Student Button -->
+<!-- Start with student info and the New Student button -->
 <div class="row first-content-row">
-	<div class="col-xs-3 col-xs-offset-1">
-	  <br>
-		<form  action="/students/new">
-			<button type="submit" class="col-sm-offset-1 btn btn-lg btn-success">
-			  <i class="fa fa-plus-square-o"></i> New Student
-			</button>
-		</form>
+	<div class="col-xs-5 col-xs-offset-1">
+    <h4>There are <%= @students.count %> students at <%= @school.full_name %>. </h4>
+  </div>
+  <div class="col-xs-5 text-center">
+    <%= button_to new_student_path, method: :get, class: 'btn btn-lg btn-success' do %>
+  		<span class="fa fa-fw fa-lg fa-plus-square-o"></span> New Student
+		<% end %>
   </div>
 </div>
 
@@ -44,29 +37,24 @@
   <!-- Table Body -->
   <tbody>
     <% @students.each do |student| %>
-    
+
       <!--Make the entire line a link--> 
       <tr data-link = "<%= edit_student_path(student) %>">
-        
+
         <!-- Display the students symbol + color comdo --> 
         <td>
-          <div class="table-sq i-<%= student.color %>">                 
-					  <i class="fa fa-lg fa-fw fa-<%= student.icon %> table-icon"></i>
+          <div class="table-sq i-<%= student.color %>">
+            <span class="fa fa-lg fa-fw fa-<%= student.icon %> table-icon"></span>
 				  </div>
         </td>
         
         <!-- Displays the students screen name -->
         <td><%= student.screen_name %></td>
-        
+
         <!-- Displays the student full name -->
         <td><%= student.full_name %></td>
         
-        <!-- 
-        Displays the students last ran session
-        querys the last session from current student
-        if not nil display the end time
-        if it is nil then show default message
-        -->
+        <!-- Displays the students last ran session -->
         <% this_session = @sessions.where(session_student: student.id).last %>
         <% if this_session != nil %>
           <td><%= this_session.end_time %></td>

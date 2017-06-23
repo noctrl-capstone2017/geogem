@@ -4,6 +4,6 @@
 <!-- page header -->
 <%= render partial: 'square_page_header', 
 			:locals => { 	:title => "Square profile", 
-										:description => "view/edit a behavior square"} %>
+										:subtitle => "view/edit behavior square #{ @square.screen_name }"} %>
 
 <%= render 'form', square: @square, isNew: false %>

@@ -4,7 +4,7 @@
 <!-- page header -->
 <%= render partial: 'teacher_page_header', 
 			:locals => { 	:title => "Teacher profile", 
-										:description => "view/edit a teacher"} %>
+										:subtitle => "view/edit teacher #{ @teacher.full_name }"} %>
 
 <!-- Teacher profile area -->
 <% if is_admin? %>
