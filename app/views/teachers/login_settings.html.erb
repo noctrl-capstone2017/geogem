@@ -3,7 +3,7 @@
 <!-- page header -->
 <%= render partial: 'teacher_page_header', 
 			:locals => { 	:title => "Login settings", 
-										:description => "view/edit login settings for teacher"} %>
+										:subtitle => "view/edit login settings for teacher #{ @teacher.full_name }"} %>
 
 <!--Edit Login Settings form -->
 <%= form_for(@teacher) do |f| %>

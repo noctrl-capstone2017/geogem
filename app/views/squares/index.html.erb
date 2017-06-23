@@ -6,21 +6,21 @@
 			:locals => { 	:title => "All squares", 
 										:subtitle => "view/manage all behavior squares at #{ @school.full_name }"} %>
 
-<!-- New Square Button -->
-<div class="row first-content-row">
-	<div class="col-xs-3 col-xs-offset-1">
+<!-- Start with square info and the New Square button -->
+<div class="row">
+	<div class="col-xs-5 col-xs-offset-1">
+	  <h4>There are <%= @squares.count %> behavior squares defined at <%= @school.full_name %>. </h4>
+	</div>
+	<div class="col-xs-5 text-center">
 		<%= button_to new_square_path, method: :get, class: 'col-sm-offset-1 btn btn-lg btn-success' do %>
-			<i class="fa fa-plus-square-o"></i> New Square
+			<span class="fa fa-fw fa-lg fa-plus-square-o"></span> New Square
 		<% end %>
-		
 	</div>
 </div>
 
+<!-- Start all squares table -->
 <div class="row">
 	<div class="col-xs-10 col-xs-offset-1">
-
-<br><br>
-<h4>There are <%= @squares.count %> behavior squares defined at <%= @school.full_name %>. </h4>
 
 <table class= "table table-striped table-hover table-responsive schools-table">
   <!-- Squares Table Header-->

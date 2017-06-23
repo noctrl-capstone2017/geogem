@@ -4,7 +4,7 @@
 <!-- page header -->
 <%= render partial: 'students/student_page_header', 
 			:locals => { 	:title => "Student squares", 
-										:description => "view/edit behavior squares for a student"} %>
+										:subtitle => "view/edit behavior squares for student #{ @student.full_name }"} %>
 
 	<!-- student behavior Squares -->
 	<div class="row squares-row first-content-row">

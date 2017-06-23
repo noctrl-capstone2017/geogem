@@ -43,7 +43,7 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     get edit_teacher_url(@teacher)
     assert_template "teachers/edit"
     #This is all that's necessary, since if one part of it fails, all of it does.
-    assert_select 'h2', text: "Teacher profile - view/edit a teacher; teacher=#{@teacher.full_name}"
+    assert_select 'h2', text: "Teacher profile - view/edit teacher #{@teacher.full_name}"
   end
   
   # Steven Royster
