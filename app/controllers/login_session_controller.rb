@@ -2,13 +2,14 @@
 class LoginSessionController < ApplicationController
 
   include LoginSessionHelper
+  include TeachersHelper
 
   # login and logout are special pages that handle their own navbar and layout 
   before_action :special_navbar_and_layout
 
   # skip login guard; these pages don't require login
   skip_before_action :require_login
-  
+
   # login page
   def new
     #Edit by Kevin M:
@@ -42,7 +43,9 @@ class LoginSessionController < ApplicationController
 
   # logout page
   def logout
-      log_out if logged_in?
+    # reset super focus school to Noctrl
+    current_teacher.update_attribute(:school_id, 1) if is_super?
+    log_out if logged_in?
   end
 
 end

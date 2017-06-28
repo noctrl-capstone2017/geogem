@@ -12,11 +12,11 @@
 	<!-- View/edit school -->
 	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit schools">
 		<div class ="action-sq i-action-gray1 center-block">
-			<%= link_to edit_school_path(@current_teacher) do %>
+			<%= link_to edit_school_path(@current_teacher.school_id) do %>
 				<span class="fa fa-3x fa-fw fa-home action-icon"></span>
 			<% end %>
 		</div>
-		<%= link_to edit_school_path(@current_teacher) do %>School profile<% end %>
+		<%= link_to edit_school_path(@current_teacher.school_id) do %>School profile<% end %>
 	</div>
 
 	<!-- Basic school report for admins -->

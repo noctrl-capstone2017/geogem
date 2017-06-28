@@ -5,12 +5,10 @@ class TeachersController < ApplicationController
   include TeachersHelper
 
   before_action :is_suspended
-
   before_action :set_teacher, only: [:show, :edit, :update]
   before_action :same_school, only: [:show, :edit, :update]
-  #Guards added by Meagan Moore
   before_action :is_admin, only: [:admin, :admin_report, :index, :new, :create, :login_settings, :show]
-  before_action :is_super, only: [:super, :updateFocus, :super_report]
+  before_action :is_super, only: [:super, :update_super_focus, :super_report]
 
   # GET /teachers
   # This method prepares the index view. It sets up pagination in an ascending
@@ -176,7 +174,7 @@ class TeachersController < ApplicationController
       end
     end
   end
-  
+
   # This method displays flashes for updates to login settings. It's virtually
   # identical to update, but it redirects to a different location with a different
   # flash.
@@ -189,7 +187,7 @@ class TeachersController < ApplicationController
       end
     end
   end
-  
+
   # This method changes the Teacher's password and displays appropriate flashes.
   # Used http://stackoverflow.com/questions/25490308/ruby-on-rails-two-different-edit-pages-and-forms-how-to for help
   # for method layout.
@@ -209,13 +207,21 @@ class TeachersController < ApplicationController
     end
   end
    
-  # This method prepares the super view.
+  # prepares variables for the super view
   def super
+    @teacher = Teacher.first
     @schools = School.all
-   # @school = School.first
-    @teacher = Teacher.find(params[:id])
+    @school =  School.find(Teacher.first.school_id)
   end
 
+  # updates the focus school of the super user
+  def update_super_focus
+    @teacher = Teacher.first
+    if ! @teacher.update(super_params)
+      flash[:danger] = "Error changing Super focus school"
+    end
+    redirect_to super_path
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -233,17 +239,16 @@ class TeachersController < ApplicationController
       :full_name, :screen_name, :icon, :color, :email, :description, :powers, 
       :school_id, :password, :password_confirmation, :suspended, :current_password, :hiddenVal) #add hidden field to permited
     end
-    
+
+    def super_params
+      params.require(:teacher).permit(:school_id)
+    end
+
     #Can only access teachers and info from the same school
     def same_school
       if current_teacher.school_id != Teacher.find(params[:id]).school_id
         redirect_to home_path, :flash => { :notice => "You can't access other schools." }
       end
     end
-    
-    # Switching the focus school 
 
-  # def focus_school_params 
-  #  params.permit(:full_name)
-  # end 
 end
