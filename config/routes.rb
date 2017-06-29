@@ -21,13 +21,13 @@ Rails.application.routes.draw do
 
   get     '/super',           to: 'teachers#super'
   patch   '/super',           to: 'teachers#update_super_focus'
-#  get     '/super',           to: 'schools#super'
-#  post    '/super',           to: 'schools#updateFocus',    as: :updateFocus
 
   get     '/school_backup',   to: 'schools#backup'
+
   get     '/school_suspend',  to: 'schools#suspend'  
-  post    '/school_suspend',  to: 'schools#suspend',         as: :suspend
+  patch   '/school_suspend',  to: 'schools#do_suspend'
   get     '/school_restore',  to: 'schools#restore'
+  patch   '/school_restore',  to: 'schools#do_restore'
 
   # Teacher routes
   # Author: Kevin M and Tommy B
