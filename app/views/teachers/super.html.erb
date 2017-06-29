@@ -6,7 +6,37 @@
 			:locals => { 	:title => "Super dashboard", 
 										:subtitle => "exercise your GeoGem superpowers, #{ super_teacher.full_name }" } %>
 
+<!-- Super powers icons are first: all schools and super report -->
 <div class="row">
+	<div class="col-xs-5 col-xs-offset-1">
+			<h4>Super powers</h4>
+	</div>
+</div>
+
+<div class="row first-content-row" >
+
+	<!-- All schools icon -->
+	<div class="col-xs-2 col-xs-offset-2 text-center" title="View/edit schools">
+		<div class ="action-sq i-action-gray1 center-block">
+			<%= link_to schools_path do %>
+				<span class="fa fa-3x fa-fw fa-home action-icon"></span>
+			<% end %>
+		</div>
+		<%= link_to schools_path do %>All schools<% end %>
+	</div>
+
+	<!-- Super report icon -->
+	<div class="col-xs-2 text-center" title="GeoGem stats for Super">
+		<div class ="action-sq i-action-gray2 center-block">
+			<%= link_to super_report_path do %>
+				<span class="fa fa-3x fa-fw fa-file-text action-icon"></span>
+			<% end %>
+		</div>
+		<%= link_to super_report_path do %>Super report<% end %>
+	</div>
+</div>   <!-- first row of icons -->
+
+<div class="row first-content-row">
 	<div class="col-xs-5 col-xs-offset-1">
 		<h4>Focus school</h4>
 	</div>
@@ -49,35 +79,7 @@
 </div>  <!-- row -->
 
 <br>
-<div class="row first-content-row">
-	<div class="col-xs-5 col-xs-offset-1">
-			<h4>Super powers</h4>
-	</div>
-</div>
 
-<!-- first row of action icons -->
-<div class="row first-content-row" >
-
-	<!-- All schools icon -->
-	<div class="col-xs-2 col-xs-offset-2 text-center" title="View/edit schools">
-		<div class ="action-sq i-action-gray1 center-block">
-			<%= link_to schools_path do %>
-				<span class="fa fa-3x fa-fw fa-home action-icon"></span>
-			<% end %>
-		</div>
-		<%= link_to schools_path do %>All schools<% end %>
-	</div>
-
-	<!-- Super report icon -->
-	<div class="col-xs-2 text-center" title="GeoGem stats for Super">
-		<div class ="action-sq i-action-gray2 center-block">
-			<%= link_to super_report_path do %>
-				<span class="fa fa-3x fa-fw fa-file-text action-icon"></span>
-			<% end %>
-		</div>
-		<%= link_to super_report_path do %>Super report<% end %>
-	</div>
-</div>   <!-- first row of icons -->
 
 <!-- action icons, row 2 -->
 <div class="row action-icon-row" >

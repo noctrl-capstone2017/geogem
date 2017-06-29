@@ -9,19 +9,19 @@ class SchoolsController < ApplicationController
   before_action :is_admin, only: [:edit]
 
 
-  # Used in the /schools route to display all schools
+  # GET /schools - view all schools, sorted by full name
   def index
     @schools = School.paginate(page: params[:page], :per_page => 10).order('full_name ASC')
     @school = set_school
     set_school.full_name = params[:full_name]
   end
 
-  # Used in the creation of new schools
+  # GET /schools/new - setup creation of a new school
   def new
     @school = School.new
   end
 
-  # Used in addition the the new method in the creation of schools.
+  # PUT schools/new - create the school with error-checking
   def create
     @school = School.new(school_params)
     respond_to do |format|
@@ -35,51 +35,74 @@ class SchoolsController < ApplicationController
     end
   end
 
-  # edit school, get action
+  # GET /schools/#/edit - view a school, prep for updates
   def edit
     @school = School.find(params[:id])
   end
 
-  # update school, post for edit schools
+  # PUT /schools/#/edit - update school
   def update
     if @school.update(school_params)
       redirect_to super_path
     else
-      redirect_to schools_path
+      render :edit
     end
   end
 
-
-  # Used to pass information about which school will be backed up to the /backup page
+  # GET /school_backup - prep for text backup of the Super focus school
   def backup
     @current_teacher = current_teacher
     @school = School.find(current_teacher.school_id)
   end
 
-  # Used to pass information about which teacher at what school will be backed up to the /suspend page
+  # GET /school_suspend - prep to suspend all teacher logins at Super focus school
   def suspend
     @current_teacher = current_teacher
     @school = School.find(current_teacher.school_id)
-    # id = 1 written below refers to ProfBill, the SuperUser. He can't get deleted,
-    # and therefore will never be in the set of teachers elligible for deletion
+
+    # "Active teachers" are those 1) at the school, 2) not yet suspended, 
+    # and 3) not id=1, aka the Super user.
+    # We don't want to suspend the Super login; that would be BAD.
     @activeTeachers = Teacher.where(school_id: @school).where.not(id: 1, suspended: true)
     @teacher_count = @activeTeachers.count
-
-    # Should update all the appropriate teachers to be suspended
-    @activeTeachers.update_all(suspended: true)
   end 
 
-  # Used to pass information to the /restore page about which teachers at what school will be restored.
+  # PATCH /school_suspend - just do it; suspend all teacher logins at Super focus school
+  def do_suspend
+    @school = School.find(current_teacher.school_id)
+    @activeTeachers = Teacher.where(school_id: @school).where.not(id: 1, suspended: true)
+    if @activeTeachers.update_all( suspended: true)
+      flash[:success] = "All teacher logins suspended at #{@school.full_name}"
+      redirect_to :super
+    else
+      flash[:danger] = "Error in suspend school"
+      render suspend
+    end
+  end
+
+  # GET /school_restore - prep to restore all teacher logins in Super focus school
   def restore
     @current_teacher = current_teacher
     @school = School.find(current_teacher.school_id)
-    #id = 1 is ProfBill, the SuperUser. He can't get deleted in the first place. No point in restoring.
-    @activeTeachers = Teacher.where(school_id: current_teacher.school_id).where.not(id: 1, suspended: false)
 
-    @teacher_count = @activeTeachers.count
-    
-    # Should update all the appropriate teachers to be suspended
-    @activeTeachers.update_all(suspended: false)
+    # "Inactive teachers" are those 1) at the school, 2) suspended, 
+    # and 3) not id=1, aka the Super user.
+    # We don't want to mess with the Super user login; that would be BAD.
+    @inactiveTeachers = Teacher.where(school_id: current_teacher.school_id).where.not(id: 1, suspended: false)
+    @teacher_count = @inactiveTeachers.count
+  end
+
+  # PATCH /school_restore - restore all logins at the Super's focus school
+  def do_restore
+    @school = School.find(current_teacher.school_id)
+    @inactiveTeachers = Teacher.where(school_id: current_teacher.school_id).where.not(id: 1, suspended: false)
+    if @inactiveTeachers.update_all( suspended: false)
+      flash[:success] = "All teacher logins restored at #{@school.full_name}"
+      redirect_to :super
+    else
+      flash[:danger] = "Error in restore school"
+      render suspend
+    end
   end
 
   private

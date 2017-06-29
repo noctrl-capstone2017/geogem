@@ -11,28 +11,16 @@ class TeachersController < ApplicationController
   before_action :is_super, only: [:super, :update_super_focus, :super_report]
 
   # GET /teachers
-  # This method prepares the index view. It sets up pagination in an ascending
-  # order by their screen_name.
+  # Show all teachers. Sets up pagination in an ascending order by their screen_name.
   def index
     @current_teacher = current_teacher
     @school = School.find(@current_teacher.school_id)
     @teachers = Teacher.where(school_id: @current_teacher.school_id).paginate(page: params[:page], :per_page => 10)
     @teachers = @teachers.order('screen_name ASC')
   end
-  
-  # GET /admin_report
-  #This method prepares the admin_report view.
-  def admin_report
-    @current_teacher = current_teacher
-    @school = School.find(@current_teacher.school_id)
-    @students = Student.where(school_id: current_teacher.school_id).order('full_name ASC')
-    @teachers = Teacher.where(school_id: current_teacher.school_id).order('full_name ASC')
-    @squares = Square.where(school_id: current_teacher.school_id).order('full_name ASC')
-  end
-  
+
   # GET /teachers/1
-  # This prepares the roster view for the teacher. It sets up pagination similarly
-  # to the teacher index.
+  # View for a teacher. It sets up pagination similarly to the teacher index.
   def show
     @teacher = Teacher.find(params[:id])
     @students = @teacher.students.order('full_name ASC')
@@ -69,11 +57,6 @@ class TeachersController < ApplicationController
       end
     end
   end
-  
-  # GET /teachers/id/login_settings
-  def login_settings
-    @teacher = Teacher.find(params[:id])
-  end
 
   # GET /teachers/new
   # This prepares the new teacher form.
@@ -81,6 +64,20 @@ class TeachersController < ApplicationController
     @current_teacher = current_teacher
     @school = School.find(@current_teacher.school_id)
     @teacher = Teacher.new
+  end
+
+  # POST /teachers/new
+  # Creates a new Teacher. Just scaffolding, but the redirect has been changed.
+  def create
+    @teacher = Teacher.new(teacher_params)
+    @school = School.find(@teacher.school_id)
+
+    if @teacher.save
+      flash[ :success] = "Teacher was successfully created."
+      redirect_to teachers_path
+    else
+      render :new
+    end
   end
 
   # GET /teachers/1/edit
@@ -92,7 +89,30 @@ class TeachersController < ApplicationController
       params[:id] = @teacher.id
     end
   end
-  
+
+  # PATCH/PUT /teachers/1
+  # This updates a teacher. If current_password is in the params, then they're
+  # trying to change their password, so it redirects the put to change_password.
+  #
+  # Similarly, if suspended is in the params, then it changes their success or
+  # error redirection.
+  def update      
+    if params[:teacher][:current_password]
+      change_password
+    elsif params[:teacher][:suspended]
+      change_login_settings
+    else
+      respond_to do |format|
+        if @teacher.update(teacher_params)
+          format.html { redirect_to edit_teacher_path(@teacher.id), :flash => { :notice => 'Teacher was successfully updated.' } }
+        else
+          format.html { render :edit }
+        end
+      end
+    end
+  end
+
+
   # GET /admin
   # This prepares the admin dashboard.
   def admin
@@ -100,6 +120,17 @@ class TeachersController < ApplicationController
     @school = School.find(current_teacher.school_id)
   end 
   
+
+  # GET /admin_report
+  #This method prepares the admin_report view.
+  def admin_report
+    @current_teacher = current_teacher
+    @school = School.find(@current_teacher.school_id)
+    @students = Student.where(school_id: current_teacher.school_id).order('full_name ASC')
+    @teachers = Teacher.where(school_id: current_teacher.school_id).order('full_name ASC')
+    @squares = Square.where(school_id: current_teacher.school_id).order('full_name ASC')
+  end
+
   # GET /teachers/password
   # This prepares the password change page. It will always show the current user's,
   # even if they try to access it with another ID via /teachers/id/edit_password.
@@ -107,21 +138,6 @@ class TeachersController < ApplicationController
   def edit_password
     @teacher = current_teacher
     params[:id] = @teacher.id
-  end
-
-  # POST /teachers
-  # This creates a new Teacher. It's basically just scaffolding, but the redirect
-  # has been changed.
-  def create
-    @teacher = Teacher.new(teacher_params)
-
-    respond_to do |format|
-      if @teacher.save
-        format.html { redirect_to teachers_path, :flash => { :notice => "Teacher was successfully created." } }
-      else
-        format.html { render :new }
-      end
-    end
   end
 
   #author: Matthew O & Alex P
@@ -151,28 +167,11 @@ class TeachersController < ApplicationController
         redirect_to analysis_student_path(params[:student_id])
     end
   end
-  
-  
-  # PATCH/PUT /teachers/1
-  # This updates a teacher. If current_password is in the params, then they're
-  # trying to change their password, so it redirects the put to change_password.
-  #
-  # Similarly, if suspended is in the params, then it changes their success or
-  # error redirection.
-  def update      
-    if params[:teacher][:current_password]
-      change_password
-    elsif params[:teacher][:suspended]
-      change_login_settings
-    else
-      respond_to do |format|
-        if @teacher.update(teacher_params)
-          format.html { redirect_to edit_teacher_path(@teacher.id), :flash => { :notice => 'Teacher was successfully updated.' } }
-        else
-          format.html { render :edit }
-        end
-      end
-    end
+
+
+  # GET /teachers/id/login_settings
+  def login_settings
+    @teacher = Teacher.find(params[:id])
   end
 
   # This method displays flashes for updates to login settings. It's virtually
@@ -206,7 +205,7 @@ class TeachersController < ApplicationController
       redirect_to edit_password_teacher_path, :flash => { :error => "Incorrect password." }
     end
   end
-   
+
   # prepares variables for the super view
   def super
     @teacher = Teacher.first

@@ -2,8 +2,8 @@
 <% provide(:title, "Suspend school") %>
 
 <!-- page header -->
-<%= render partial: 'schools/school_page_header', 
-			:locals => { 	:title => "Suspend school", 
+<%= render partial: 'school_page_header', 
+			:locals => { 	:title => "Suspend school",
 										:subtitle => "suspend all teacher logins at #{ @school.full_name}"} %>
 
 <div class="row first-content-row content-text">
@@ -20,21 +20,17 @@
 					<%= @teacher_count %> teachers
 			</span>
 		</p>
-	
-		<form class="form-horizontal" action="super">
-			<!-- Action buttons -->
-			<div class="row action-buttons-row">
-				<div class="col-xs-4 col-xs-offset-1 text-center"> 
-					<%= form_for :@activeTeachers do |t| %>
-								<%= t.hidden_field :suspended, :value=>true, class: 'form-control' %>
-								<%= button_tag(type: 'submit', class: "btn btn-success") do %>  
-		  						Suspend School
-		  					<% end %>
-					<% end %>
-					&nbsp; &nbsp; &nbsp;
-					<button type="submit" class="btn btn-danger">Cancel</button></div>
-			</div>
-		</form>
+	</div>   <!-- col -->
+</div>   <!-- row -->
 
-	</div>   <!-- end col -->
-</div>   <!-- end row -->
+<!-- OK/cancel buttons -->
+<div class="row first-content-row">
+	<div class="col-xs-10 col-xs-offset-1">
+		<%= form_for( @school, :url => { :action => :do_suspend }) do |f| %>
+			<%= button_tag(type: 'submit', :disabled => (@teacher_count <= 0), 
+											class: "btn btn-success") do %>Suspend school<% end %>
+			&nbsp; &nbsp; &nbsp;
+			<%= link_to "Cancel", super_path, :class => "btn btn-danger" %>
+		<% end %>
+	</div>
+</div>
