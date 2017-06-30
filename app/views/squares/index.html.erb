@@ -9,7 +9,10 @@
 <!-- Start with square info and the New Square button -->
 <div class="row">
 	<div class="col-xs-5 col-xs-offset-1">
-	  <h4>There are <%= @squares.count %> behavior squares defined at <%= @school.full_name %>. </h4>
+	  <h4>
+      There <%= @squares.count == 1 ? 'is' : 'are' %> 
+      <%= pluralize(@squares.count, "behavior square") %> at <%= @school.full_name %>. 
+    </h4>
 	</div>
 	<div class="col-xs-5 text-center">
 		<%= button_to new_square_path, method: :get, class: 'col-sm-offset-1 btn btn-lg btn-success' do %>

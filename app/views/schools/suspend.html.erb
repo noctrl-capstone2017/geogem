@@ -17,7 +17,7 @@
 		<p>
 			Active teacher count at this school:
 			<span style="color: gray; font-size: 1.2em; font-weight: bold;">
-					<%= @teacher_count %> teachers
+				<%= pluralize(@teacher_count, "teacher") %>
 			</span>
 		</p>
 	</div>   <!-- col -->

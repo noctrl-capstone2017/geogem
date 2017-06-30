@@ -9,7 +9,10 @@
 <!-- Start with teacher info and the New Teacher button -->
 <div class="row">
 	<div class="col-xs-5 col-xs-offset-1">
-		<h4>There are <%= @teachers.count %> teachers at <%= @school.full_name %>. </h4>
+		<h4>
+			There <%= @teachers.count == 1 ? 'is' : 'are' %> <%= pluralize(@teachers.count, "teacher") %> 
+			at <%= @school.full_name %>.
+		</h4>
 	</div>
 	<div class="col-xs-5 text-center">
 		<%= button_to new_teacher_path, method: :get, class: 'btn btn-lg btn-success' do %>

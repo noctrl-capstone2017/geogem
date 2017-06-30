@@ -63,13 +63,14 @@
 	    		<label class="control-label">School:</label>
 	    	</div>
 	    	<div class="col-xs-7">
-	    		<%= f.select :school_id, @schools.map{|c| [c.full_name, c.id]}, class: 'form-control'%>
+	    		<%= f.select :school_id, @schools.map{|c| [c.full_name, c.id]}, {},
+	    				{ :class => 'form-control', :style => "min-width: 240px;" } %>
     		</div>
      	</div>   <!-- form group-->
     </div>   <!-- row -->
 
     <div class="row">
-    	<div class="col-xs-8 col-xs-offset-3">
+    	<div class="col-xs-8 col-xs-offset-2">
 				<%= button_tag(type: 'submit', class: "btn btn-success") do %>Change Focus School<% end %>
 			</div>
     </div>

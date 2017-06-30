@@ -22,8 +22,9 @@ Rails.application.routes.draw do
   get     '/super',           to: 'teachers#super'
   patch   '/super',           to: 'teachers#update_super_focus'
 
+  # super pages for school-wide operations: backup, suspend, restore
   get     '/school_backup',   to: 'schools#backup'
-
+  patch   '/school_backup',  to: 'schools#do_backup'
   get     '/school_suspend',  to: 'schools#suspend'  
   patch   '/school_suspend',  to: 'schools#do_suspend'
   get     '/school_restore',  to: 'schools#restore'
