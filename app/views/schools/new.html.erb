@@ -59,12 +59,18 @@
 	<div class="col-xs-1 col-xs-offset-1">
 	  <h4>Color: </h4></div>
 	<div class="col-xs-4 col-xs-offset-1">
-    <%= f.select :color, ['navy','red','yellow',
-    ['light blue', 'ltblue'],['light orange','ltorange'],'green','lavender','plum','mint','pink',
-    ['dark orange','dkorange']]%>
+	  <%= f.select :color, colorNames.map {|color| [color.titleize, color]}, class: 'form-control' %>
 	</div>
 </div>
-	
+
+<!-- school icon -->
+  <div class="row form-row">
+  	<div class="col-xs-1 col-xs-offset-1"><h4>Icon: </h4></div>
+  	<div class="col-xs-4 col-xs-offset-1">
+  		<%= f.select :icon, schoolIcons.map {|icon| [icon.titleize, icon]}, class: 'form-control' %>
+  	</div>
+  </div>
+
 <!-- School Description -->
 <div class="row form-row">
 	<div class="col-xs-1 col-xs-offset-1"><h4>Description: </h4></div>

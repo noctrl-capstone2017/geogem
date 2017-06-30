@@ -24,6 +24,7 @@ class School < ApplicationRecord
              # uniqueness: { case_sensitive: false }
                     
   validates :description, presence: true, length: { maximum: 255 }
+  validates :icon, presence: true
   validates :color, presence: true
     
   private

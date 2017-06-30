@@ -9,17 +9,12 @@ class RosterStudentsController < ApplicationController
   #Creates a roster_student.
   def create
     @roster_student = RosterStudent.new(roster_student_params)
-    
-    respond_to do |format|
-      @roster_student.save
-    end
+    @roster_student.save
   end
 
   #Updates a roster_student.
   def update
-    respond_to do |format|
-      @roster_student.update(roster_student_params)
-    end
+    @roster_student.update(roster_student_params)
   end
 
   #Destroys a roster_student.

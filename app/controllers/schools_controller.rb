@@ -4,7 +4,7 @@ class SchoolsController < ApplicationController
   include TeachersHelper
   include LoginSessionHelper
 
-  before_action :set_school, only: [:show, :edit, :update, :destroy]
+  before_action :set_school, only: [:show, :edit, :update]
   before_action :is_super, only: [:suspend, :backup, :restore, :index]
   before_action :is_admin, only: [:edit]
 
@@ -24,14 +24,11 @@ class SchoolsController < ApplicationController
   # PUT schools/new - create the school with error-checking
   def create
     @school = School.new(school_params)
-    respond_to do |format|
-      if @school.save
-        format.html { redirect_to schools_path }
-        format.json { render :show, status: :created, location: @school }
-      else
-        format.html { render :new }
-        format.json { render json: @school.errors, status: :unprocessable_entity }
-      end
+    if @school.save
+      flash[ :success] = "School #{@school.full_name} was successfully created."
+      redirect_to schools_path
+    else
+      render :new
     end
   end
 
@@ -42,8 +39,10 @@ class SchoolsController < ApplicationController
 
   # PUT /schools/#/edit - update school
   def update
+    @school = School.find(params[:id])
     if @school.update(school_params)
-      redirect_to super_path
+      flash[ :success] = "School update successful, #{ @school.full_name }"
+      redirect_to :schools
     else
       render :edit
     end
@@ -119,7 +118,8 @@ class SchoolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def school_params
-      params.require(:school).permit(:full_name, :screen_name, :icon, :color, :email, :website, :description)
+      params.require(:school).permit(:full_name, :screen_name, :icon, :color, 
+                        :email, :website, :description)
     end
 
     #Require a teacher to be suspended

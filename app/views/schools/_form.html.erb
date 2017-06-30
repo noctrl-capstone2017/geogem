@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-<!--  School Icon Name -->  
+<!-- school screen name -->  
   <div class="row form-row">
     <div class="col-xs-2 col-xs-offset-1"><h4> School ID: </h4></div>
     <div class="col-xs-2">
@@ -20,7 +20,7 @@
     </div>
   </div>
 	
-<!--  School Name -->  
+<!-- school name -->  
   <div class="row form-row">
     <div class="col-xs-1 col-xs-offset-1"><h4>School Name: </h4></div>
     <div class="col-xs-4 col-xs-offset-1">
@@ -30,7 +30,7 @@
 
   <div class="" form-spacer="">	&nbsp;</div>
 
-<!--  School Email -->  
+<!-- school email -->  
   <div class="row form-row">
     <div class="col-xs-1 col-xs-offset-1"><h4>Email: </h4></div>
     <div class="col-xs-4 col-xs-offset-1">
@@ -38,7 +38,7 @@
     </div>
   </div>
 
-<!--  School Website -->  
+<!-- school website -->  
   <div class="row form-row">
     <div class="col-xs-1 col-xs-offset-1"><h4>Website: </h4></div>
     <div class="col-xs-4 col-xs-offset-1">
@@ -46,7 +46,7 @@
     </div>
   </div>
 
-<!-- Show School Color Field -->
+<!-- school color -->
   <div class="row form-row">
 		<div class="col-xs-1 col-xs-offset-1">
 		  <h4>Color: </h4></div>
@@ -56,8 +56,16 @@
       ['dark orange','dkorange']]%>
 		</div>
 	</div>
-	
-<!-- Show School Description Field -->
+
+<!-- school icon -->
+  <div class="row form-row">
+  	<div class="col-xs-1 col-xs-offset-1"><h4>Icon: </h4></div>
+  	<div class="col-xs-4 col-xs-offset-1">
+  		<%= f.select :icon, schoolIcons.map {|icon| [icon.titleize, icon]}, class: 'form-control' %>
+  	</div>
+  </div>
+
+<!-- school description -->
 	<div class="row form-row">
 		<div class="col-xs-1 col-xs-offset-1"><h4>Description: </h4></div>
 		<div class="col-xs-6 col-xs-offset-1">
@@ -65,12 +73,7 @@
 		</div>
 	</div>
 
-  <!-- This area displays the save or cancel buttons
- It uses an If statment to test a passed in value "isNew"
- to determine which button text will show 
- Matt O -->
-
-
+<!-- OK/cancel buttons -->
 <div class="row action-buttons-row">
 	<div class="col-sm-5 col-sm-offset-1 text-center"> 
 	  <%= button_tag(type: 'submit', class: "btn btn-success") do %>  

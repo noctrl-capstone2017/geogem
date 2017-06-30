@@ -5,4 +5,90 @@
 			:locals => { 	:title => "School profile", 
 										:subtitle => "view/edit information for #{ @school.full_name }"} %>
 
-<%= render 'form', school: @school %>
+<!-- changed by Robert Herrera -->
+<%= form_for(@school) do |f| %>
+  <% if @school.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@school.errors.count, "error") %> prohibited this school from being saved:</h2>
+
+      <ul>
+      <% @school.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<!-- school screen name -->  
+  <div class="row form-row">
+    <div class="col-xs-2 col-xs-offset-1"><h4> School ID: </h4></div>
+    <div class="col-xs-2">
+      <%= f.text_field :screen_name, class: "form-control", :readonly => true %>	
+    </div>
+  </div>
+	
+<!-- school name -->  
+  <div class="row form-row">
+    <div class="col-xs-1 col-xs-offset-1"><h4>School Name: </h4></div>
+    <div class="col-xs-4 col-xs-offset-1">
+      <%= f.text_field :full_name, class: "form-control", :readonly => true  %>    				
+    </div>
+  </div>
+
+  <div class="" form-spacer="">	&nbsp;</div>
+
+<!-- school email -->  
+  <div class="row form-row">
+    <div class="col-xs-1 col-xs-offset-1"><h4>Email: </h4></div>
+    <div class="col-xs-4 col-xs-offset-1">
+      <%= f.text_field :email, class: "form-control"  %>    				
+    </div>
+  </div>
+
+<!-- school website -->  
+  <div class="row form-row">
+    <div class="col-xs-1 col-xs-offset-1"><h4>Website: </h4></div>
+    <div class="col-xs-4 col-xs-offset-1">
+      <%= f.text_field :website, class: "form-control"  %>    				
+    </div>
+  </div>
+
+<!-- school color -->
+  <div class="row form-row">
+		<div class="col-xs-1 col-xs-offset-1">
+		  <h4>Color: </h4></div>
+		<div class="col-xs-4 col-xs-offset-1">
+      <%= f.select :color, ['navy','red','yellow',
+      ['light blue', 'ltblue'],['light orange','ltorange'],'green','lavender','plum','mint','pink',
+      ['dark orange','dkorange']]%>
+		</div>
+	</div>
+
+<!-- school icon -->
+  <div class="row form-row">
+  	<div class="col-xs-1 col-xs-offset-1"><h4>Icon: </h4></div>
+  	<div class="col-xs-4 col-xs-offset-1">
+  		<%= f.select :icon, schoolIcons.map {|icon| [icon.titleize, icon]}, class: 'form-control' %>
+  	</div>
+  </div>
+
+<!-- school description -->
+	<div class="row form-row">
+		<div class="col-xs-1 col-xs-offset-1"><h4>Description: </h4></div>
+		<div class="col-xs-6 col-xs-offset-1">
+		  <%= f.text_area :description, class: "form-control"  %>
+		</div>
+	</div>
+
+<!-- OK/cancel buttons -->
+<div class="row action-buttons-row">
+	<div class="col-sm-5 col-sm-offset-1 text-center"> 
+	  <%= button_tag(type: 'submit', class: "btn btn-success") do %>  
+	  	Save Changes
+	  <% end %>
+    &nbsp; &nbsp; &nbsp;  
+		<%= link_to "Cancel", super_path, :class => "btn btn-danger" %>
+	</div>
+</div>
+
+<% end %>   <!-- end form -->
