@@ -47,7 +47,7 @@
 	<div class="col-xs-2 col-xs-offset-2 text-center" title="school=<%= @school.full_name %>">
 		<div class ="action-sq i-<%= @school.color %> center-block">
 			<%= link_to edit_school_path(@school.id) do %>
-				<span class="fa fa-3x fa-fw fa-home action-icon"></span>
+				<span class="fa fa-3x fa-fw fa-<%= @school.icon %> action-icon"></span>
 			<% end %>
 		</div>
 		<%= link_to edit_school_path(@school.id) do %>

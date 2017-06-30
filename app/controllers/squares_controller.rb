@@ -62,10 +62,7 @@ class SquaresController < ApplicationController
   # DELETE /squares/1.json
   def destroy
     @square.destroy
-    respond_to do |format|
-      format.html { redirect_to squares_url, notice: 'Square was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[ :success] = "Square was successfully destroyed."
   end
 
   private

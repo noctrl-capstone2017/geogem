@@ -43,7 +43,7 @@
 				</td>
 				<td> <%= school.screen_name %> </td>
 		 		<td> <%= school.full_name %> </td>
-				<td> <%= school.description %> </td>
+				<td> <%= truncate school.description, :length => 60 %> </td>
 			</tr>
 		<% end %>
 	</tbody>

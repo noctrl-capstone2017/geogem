@@ -13,7 +13,7 @@ module UxHelper
 
   # school icon string names for selections, same as the fa CSS class names
   def schoolIcons
-    ["home"]
+    ["home", "building-o", "university"]
   end
 
   # color string names for selections

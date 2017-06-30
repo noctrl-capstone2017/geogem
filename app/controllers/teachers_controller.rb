@@ -26,10 +26,10 @@ class TeachersController < ApplicationController
     @students = @teacher.students.order('full_name ASC')
     @students_at_school = Student.where(school_id: @teacher.school_id).order('full_name ASC')
     @students_not_in_roster = Student.where(school_id: @teacher.school_id).where.not(id: @teacher.students).order('full_name ASC')
-    
+
     #Whenever this page is visited, it updates the roster for the admin.
     if @teacher.powers == "Admin"
-      
+
       #https://stackoverflow.com/questions/3343861/how-do-i-check-to-see-if-my-array-includes-an-object
       @students_at_school.each do |student|
         unless @students.include?(student)
@@ -40,7 +40,7 @@ class TeachersController < ApplicationController
       @students = @students_at_school
       @students_not_in_roster = []
     end
-    
+
     #Admins always have every student, so they can't add or remove from any admins.
     if params[:add_student]
         if params[:add_student_id] != nil
@@ -48,7 +48,7 @@ class TeachersController < ApplicationController
             @teacher.students << Student.find(params[:add_student_id])
           end
         end
-        
+
     elsif params[:remove_student]
       if params[:remove_student_id] != nil
         if @teacher.powers != "Admin"
@@ -73,7 +73,7 @@ class TeachersController < ApplicationController
     @school = School.find(@teacher.school_id)
 
     if @teacher.save
-      flash[ :success] = "Teacher was successfully created."
+      flash[ :success] = "Teacher #{ @teacher.full_name } was successfully created."
       redirect_to teachers_path
     else
       render :new
@@ -102,12 +102,12 @@ class TeachersController < ApplicationController
     elsif params[:teacher][:suspended]
       change_login_settings
     else
-      respond_to do |format|
-        if @teacher.update(teacher_params)
-          format.html { redirect_to edit_teacher_path(@teacher.id), :flash => { :notice => 'Teacher was successfully updated.' } }
-        else
-          format.html { render :edit }
-        end
+      debugger
+      if @teacher.update(teacher_params)
+        flash[ :success] = "Teacher update successful, #{@teacher.full_name}"
+        redirect_to edit_teacher_path(@teacher.id)
+      else
+        render :edit
       end
     end
   end
@@ -146,23 +146,21 @@ class TeachersController < ApplicationController
     @teacher = current_teacher
     @top_students = Student.where(id: Session.where(session_teacher: @teacher.id).group('session_student').order('count(*)').select('session_student').limit(8))
     if params[:start_session]
-        @student = Student.find(params[:student_id])
-        if(@student.squares.size == 0)
-          respond_to do |format|
-            format.html { redirect_to home_path, :flash => { :notice => 'Cannot start session with student who has no behaviors to track' } }
-          end
+      @student = Student.find(params[:student_id])
+      if(@student.squares.size == 0)
+        flash[ :danger] = "Cannot start session; student #{@student.full_name} has no behavior squares"
+        redirect_to home_path
+      else
+        @session = Session.new
+        @session.session_teacher = @teacher.id
+        @session.session_student = params[:student_id]
+        if @session.save
+          flash[ :success] = "Session was successfully created."
+          redirect_to @session
         else
-          @session = Session.new
-          @session.session_teacher = @teacher.id
-          @session.session_student = params[:student_id]
-          respond_to do |format|
-            if @session.save
-              format.html { redirect_to @session, :flash => { :notice => 'Session was successfully created.' } }
-            else
-              format.html { render :new }
-            end
-          end
+          render :new
         end
+      end
     elsif params[:analyze]
         redirect_to analysis_student_path(params[:student_id])
     end
@@ -178,12 +176,11 @@ class TeachersController < ApplicationController
   # identical to update, but it redirects to a different location with a different
   # flash.
   def change_login_settings
-    respond_to do |format|
-      if @teacher.update(teacher_params)
-        format.html { redirect_to edit_teacher_path(@teacher.id), :flash => { :notice => 'Login settings for this teacher were successully updated.' } }
-      else
-        format.html { render :login_settings }
-      end
+    if @teacher.update(teacher_params)
+      flash[ :success] = "Login settings for this teacher were successully updated."
+      redirect_to edit_teacher_path(@teacher.id)
+    else
+      render :login_settings
     end
   end
 
