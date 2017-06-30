@@ -24,11 +24,11 @@
 			Some quick GeoGem stats:
 		</p>
 		<ul>
-			<li><p>There are currently <%=School.count%> schools </p></li>
-			<li><p>And there are <%=Teacher.count%> teachers </p></li>
-			<li><p>Helping to promote the education of <%=Student.count%> students</p></li>
-			<li><p>These <%=Teacher.count%> teachers have observed <%=Square.count%> behavior squares</p></li>
-			<li><p>There have been <%=Session.count%> behavior sessions since <%= DeployHelper.geogem_deploy_date =%></p></li>
+			<li><p>There <%= School.count == 1 ? 'is' : 'are' %> currently <%= pluralize(School.count, "school") %> </p></li>
+			<li><p>And there <%= Teacher.count == 1 ? 'is' : 'are' %> <%= pluralize(Teacher.count, "teacher") %> </p></li>
+			<li><p>Helping to promote the education of <%= pluralize(Student.count, "student") %> </p></li>
+			<li><p>These <%= pluralize(Teacher.count, "teacher") %> have observed <%= pluralize(Square.count, "behavior square") %> </p></li>
+			<li><p>There have been <%= pluralize(Session.count, "behavior session") %> since <%= DeployHelper.geogem_deploy_date =%></p></li>
 		</ul>
 
 		<br><br><br><br>

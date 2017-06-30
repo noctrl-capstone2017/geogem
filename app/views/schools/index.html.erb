@@ -9,7 +9,7 @@
 <!-- Start with school info and the New School button -->
 <div class="row first-content-row">
 	<div class="col-xs-5 col-xs-offset-1">
-    <h4>There are <%= @schools.count %> schools in GeoGem. </h4>
+    <h4>There <%= School.count == 1 ? 'is' : 'are' %> <%= pluralize(School.count, "school") %> in GeoGem. </h4>
   </div>
 	<div class="col-xs-5 text-center">
 		<%= button_to new_school_path, method: :get, class: 'btn btn-lg btn-success' do %>

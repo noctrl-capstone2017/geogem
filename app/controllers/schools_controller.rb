@@ -55,6 +55,12 @@ class SchoolsController < ApplicationController
     @school = School.find(current_teacher.school_id)
   end
 
+  # PATCH /school_backup - just do it; print backup file of Super focus school
+  def do_backup
+    flash[ :danger] = "Backup isn't working yet."
+    redirect_to :super
+  end
+
   # GET /school_suspend - prep to suspend all teacher logins at Super focus school
   def suspend
     @current_teacher = current_teacher
