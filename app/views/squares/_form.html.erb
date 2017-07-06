@@ -44,11 +44,8 @@
 		  <h4>Color: </h4>
 		</div>
 		<div class="col-xs-4 col-xs-offset-1">
-		  <% if @square.color == 'ltblue' %>
-        <%= f.select :color, colorNames.map {|color| [color.titleize, color]},  :selected => 'light blue', class: 'form-control' %>
-      <% else %>
-        <%= f.select :color, colorNames.map {|color| [color.titleize, color]}, class: 'form-control' %>
-      <% end %>
+      <%= f.select :color, colorNames.map {|color| [color.titleize, color]}, 
+                class: 'form-control' %>
 		</div>
 	</div>
 

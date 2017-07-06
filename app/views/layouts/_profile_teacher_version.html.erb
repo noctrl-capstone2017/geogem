@@ -66,18 +66,7 @@
 <div class="row form-row vertical-align">
 	<div class="col-sm-offset-1 col-sm-2"><h4>Color: </h4></div>
 	<div class="col-sm-4 col-sm-offset-0">
-		
-		<!--A roundabout way of making ltblue display as light blue.-->
-		<% if @teacher.color == 'ltblue' %>
-			<%= f.select :color, options_for_select(colorNames.map {|color| [color.titleize, color]}, :selected => 'light blue'), 
-			class: 'form-control' %>
-		<% end %>
-		
-		<!--Otherwise, the value is drawn naturally from the model entry. -->
-		<% if @teacher.color != 'ltblue' %>
-			<%= f.select :color, colorNames.map {|color| [color.titleize, color]}, class: 'form-control' %>
-		<% end %>
-		
+		<%= f.select :color, colorNames.map {|color| [color.titleize, color]}, class: 'form-control' %>
 	</div>
 </div>
 

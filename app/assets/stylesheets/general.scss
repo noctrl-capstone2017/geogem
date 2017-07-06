@@ -49,10 +49,18 @@ body
 * Variables for colors used in GeoGem CSS
 * Colors are loosely stolen from the Autism Awareness ribbon
 *********************************************************/
-$geogem-blue: #2458B7;
-$geogem-lightblue: #4195fc;
-$geogem-aqua: #97edec;
+$navbar-blue: #2458B7;
+$navbar-lightblue: #97edec;
+$geogem-lightblue: #4195fc;	/* #4195fc; */
+$geogem-aqua: #DCEDFF;	/* #97edec; */
 $geogem-yellow: #FFEB65;
+
+/* Autism awareness ribbon colors */
+/* https://commons.wikimedia.org/wiki/File:Autism_Awareness_Ribbon.png */
+$ribbon-blue: #3B43B5;
+$ribbon-lightblue: #4393C2;
+$ribbon-red: red;
+$ribbon-yellow: #f9f906;
 
 /*********************************************************
 *  ALIGNMENT
@@ -70,17 +78,109 @@ $geogem-yellow: #FFEB65;
 /*********************************************************
 *  NAVBAR STYLING
 *********************************************************/
-.navbar { background: $geogem-blue; }
+.navbar { background: $navbar-blue; }
 .navbar a { color:white; }
 .navbar .brand, .navbar .nav > li > a:hover, .navbar-header > a:hover 
 {
 	color:white;
-	background-color: $geogem-aqua;
+	background-color: $navbar-lightblue;
 }
 
 /*********************************************************
-*  ICON STYLING
+	ICON STYLING
+	Icons are organized by page and action: 
+	Home, Action (Super and Admin pages)
 *********************************************************/
+
+/* Home page - student icons */
+.home-icon {
+	height: 8em;
+	width: 8em;
+	display: flex;
+	flex-flow:column;
+	align-items: center;
+	justify-content: center;
+	border-radius: 24px;
+
+	color: white;
+	border: 4px solid white;
+
+	&:hover {	color: lightgray; }
+}
+
+.home-icon-blue {
+	background: $ribbon-blue;
+	&:hover { box-shadow: 0 0 16px $ribbon-blue; }
+}
+
+.home-icon-lightblue {
+	background: $ribbon-lightblue;
+	&:hover { box-shadow: 0 0 16px $ribbon-lightblue; }
+}
+
+.home-icon-red {
+	background: $ribbon-red;
+	&:hover { box-shadow: 0 0 16px $ribbon-red; }
+}
+
+.home-icon-yellow {
+	background: $ribbon-yellow;
+	&:hover { box-shadow: 0 0 16px $ribbon-yellow; }
+}
+
+.home-icon-gray {
+	background: gray;
+	&:hover { box-shadow: 0 0 16px $ribbon-lightblue; }
+}
+
+.home-icon-black {
+	background: black;
+	&:hover { box-shadow: 0 0 16px $ribbon-red; }
+}
+
+/* Action icons used in Super and Admin pages */
+.action-icon-square {
+	height: 96px;
+	width: 96px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: 18px;
+	border: 4px solid white;
+}
+.action-icon {
+	font-size: 6em;
+	color: white;
+	&:hover { color: lightgray; }
+}
+
+/* Action icons are shades of gray. */
+/* Source: https://en.wikipedia.org/wiki/Shades_of_gray */
+.action-icon-gray {
+	background: gray;
+	&:hover { box-shadow: 0 0 16px $ribbon-lightblue; }
+}
+.action-icon-dimgray {
+	background: dimgray;
+	&:hover { box-shadow: 0 0 16px $ribbon-red; }
+}
+.action-icon-lightslategray {
+	background: lightslategray;
+	&:hover { box-shadow: 0 0 16px $ribbon-blue; }
+}
+.action-icon-darkslategray {
+	background: darkslategray;
+	&:hover { box-shadow: 0 0 16px $ribbon-yellow; }
+}
+.action-icon-black {
+	background: black;
+	&:hover { box-shadow: 0 0 16px $ribbon-lightblue; }
+}
+.action-icon-neutral:hover {
+	box-shadow: 0 0 16px gray;
+}
+
 /*Big square used on home and session screen*/
 .square
 {
@@ -253,10 +353,7 @@ $geogem-yellow: #FFEB65;
 	-o-transform:scale(1.1);
 	transform:scale(1.1);
 }
-.action-icon {
-	font-size: 6em;
-	color: white;
-}
+
 
 .logout-art {
 	padding-top: 2%;
@@ -329,15 +426,15 @@ $geogem-yellow: #FFEB65;
 }
 
 /*********************************************************
-*  ICON COLORS
-* i-navy, i-ltblue, i-red, and i-yellow are also found in
-* our main color scheme
+* ICON COLORS
+* Colors i-navy, i-lighttblue, i-red, and i-yellow 
+* are also found in our main color scheme
 *********************************************************/
 .i-gray { background-color: #787676; }
 .i-navy { background-color:#2458B7; }
 .i-red { background-color: #EC514A; }
 .i-yellow { background-color: #FFEB65; }
-.i-ltblue { background-color:#97EDEC; }
+.i-lightblue { background-color:#97EDEC; }
 .i-orange { background-color:#F8BD28; }
 .i-green { background-color:#8BC04F; }
 .i-lavender { background-color: #8E7BB9; }
@@ -346,12 +443,15 @@ $geogem-yellow: #FFEB65;
 .i-pink { background-color:#E889B9; }
 .i-dkorange { background-color:#E77F24; }
 .i-aqua { background-color:#50C0E8; }
+.i-black {background-color: black; }
+.i-blue {background-color: $ribbon-blue; }
 
 .i-action-gray1 { background-color: gray; }
 .i-action-gray2 { background-color: darkslategray; }
 .i-action-gray3 { background-color: lightslategray; }
 .i-action-gray4 { background-color: lightgray; }
 .i-action-gray5 { background-color: black; }
+
 
 /* Note from Carolyn C- moved from teachers.scss */
 
@@ -494,7 +594,7 @@ input[type="radio"]:checked + label {
 .login-col {
 	background-color: rgba(36,88,183,0.2);
 	border-radius: 10px;
-	border: 1px solid $geogem-blue;
+	border: 1px solid $navbar-blue;
 }
 
 .login-header-text {
