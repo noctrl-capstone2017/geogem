@@ -17,7 +17,7 @@
 
 	<!-- All schools icon -->
 	<div class="col-xs-2 col-xs-offset-2 text-center" title="View/edit schools">
-		<div class ="action-sq i-action-gray1 center-block">
+		<div class ="action-icon-square action-icon-gray center-block">
 			<%= link_to schools_path do %>
 				<span class="fa fa-3x fa-fw fa-home action-icon"></span>
 			<% end %>
@@ -27,7 +27,7 @@
 
 	<!-- Super report icon -->
 	<div class="col-xs-2 text-center" title="GeoGem stats for Super">
-		<div class ="action-sq i-action-gray2 center-block">
+		<div class ="action-icon-square action-icon-darkslategray center-block">
 			<%= link_to super_report_path do %>
 				<span class="fa fa-3x fa-fw fa-file-text action-icon"></span>
 			<% end %>
@@ -45,7 +45,7 @@
 <!-- spinner to allow Super to change focus school -->
 <div class="row first-content-row">
 	<div class="col-xs-2 col-xs-offset-2 text-center" title="school=<%= @school.full_name %>">
-		<div class ="action-sq i-<%= @school.color %> center-block">
+		<div class ="action-icon-square action-icon-neutral i-<%= @school.color %> center-block">
 			<%= link_to edit_school_path(@school.id) do %>
 				<span class="fa fa-3x fa-fw fa-<%= @school.icon %> action-icon"></span>
 			<% end %>
@@ -86,7 +86,7 @@
 <div class="row action-icon-row" >
 	<!-- Backup school icon -->
 	<div class="col-xs-2 col-xs-offset-2 text-center" title="Backup data of Super focus school">
-		<div class ="action-sq i-action-gray3 center-block">
+		<div class ="action-icon-square action-icon-lightslategray center-block">
 			<%= link_to school_backup_path do %>
 				<span class="fa fa-3x fa-fw fa-floppy-o action-icon"></span>
 			<% end %>
@@ -96,7 +96,7 @@
 
 	<!-- Suspend school icon -->
 	<div class="col-xs-2 text-center" title="Suspend all teachers at Super focus school">
-		<div class ="action-sq i-action-gray4 center-block">
+		<div class ="action-icon-square action-icon-black center-block">
 			<%= link_to school_suspend_path do %>
 				<span class="fa fa-3x fa-fw fa-bomb action-icon"></span>
 			<% end %>
@@ -106,7 +106,7 @@
 
 	<!-- Retore school icon -->
 	<div class="col-xs-2 text-center" title="Restore teacher logins at Super focus school">
-		<div class ="action-sq i-action-gray5 center-block">
+		<div class ="action-icon-square action-icon-dimgray center-block">
 			<%= link_to school_restore_path do %>
 				<span class="fa fa-3x fa-fw fa-undo action-icon"></span>
 			<% end %>

@@ -1,9 +1,9 @@
-# author: Kevin M, Tommy B
-# Teacher model validation, methods, and more!
+# Author: Kevin M, Tommy B
 
 class Teacher < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token, :current_password
-  before_save   :downcase_email, :color_check, :super_check
+  before_save   :downcase_email, :super_check
+
   ###REGEX###
   #Only allows legit email formatting
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -52,7 +52,7 @@ class Teacher < ApplicationRecord
   def Teacher.new_token
     SecureRandom.urlsafe_base64
   end
-  
+
   # Remembers a user in the database for use in persistent sessions.
   def remember
     self.remember_token = Teacher.new_token
@@ -80,15 +80,7 @@ class Teacher < ApplicationRecord
     def downcase_email
       self.email = email.downcase
     end
-    
-    # Converts light blue to ltblue, so it can easily be drawn on in views.
-    # 'light blue' isn't a color that's recognized by bootstrap, but 'ltblue' is!
-    def color_check
-      if self.color == 'light blue'
-        self.color = 'ltblue'
-      end
-    end
-    
+
     # Makes sure Bill doesn't accidentally remove his admin powers or suspend himself
     def super_check
       if self.user_name == 'profbill'

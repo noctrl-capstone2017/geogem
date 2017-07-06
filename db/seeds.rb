@@ -32,15 +32,6 @@ Teacher.create!(user_name: "profbill",
                 powers: "Admin",
                 school_id: 1)
 
-# stud_icons = ["bug", "car", "puzzle-piece", "flash", "futbol-o", 
-#             "gamepad","heart", "leaf","paper-plane","paw","star","graduation-cap"]
-#
-#school_icons = ["home"]
-#
-# Took out light blue for now because controller changes it 
-# to lt blue which is not linked here
-#colors = ["red", "orange", "yellow", "green", "mint", "navy", "lavender", "plum", "pink"]
-
 case Rails.env
 
 when "development"
@@ -81,7 +72,7 @@ Teacher.create!(user_name: "admin",
                     contact_info: "student contact info",
                     description: "student description",
                     icon: studentIcons.sample,
-                    color: colorNames.sample,
+                    color: studentColors.sample,
                     session_interval: 15,
                     school_id: 1,
                     full_name: first_name + " " + last_name)
@@ -111,7 +102,7 @@ end
                     contact_info: "student contact info",
                     description: "student description",
                     icon: "bicycle",
-                    color: "green",
+                    color: "lightblue",
                     session_interval: 15,
                     school_id: 2,
                     full_name: first_name + " " + last_name)

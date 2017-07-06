@@ -21,9 +21,9 @@
 	});
 </script>
 
-
 <!--Student Roster Area -->
-<div id="student-roster"> <!--Student display area: shows the last 8 students teacher worked with -->
+<div id="student-roster"> 
+	<!--Student display area: shows the last 8 students teacher worked with -->
 	<% @top_students.each_with_index do |student, index| %>
 		<% if index == 0 || index == 4 %>
 			<div class="row students-row">
@@ -33,13 +33,13 @@
 			<input name="student_roster" id="student<%= student.id %>" value="student<%= student.id %>" style="display:none;" type="radio"/>
 			<label for="student<%= student.id %>">
 				<div class="image-radio" id="<%= student.id %>">
-		      <div class ="square i-<%= student.color %> center-block">
-		          <span class="fa fa-<%= student.icon %> fa-5x student-icon center-block"></span>
-		      </div>
-	      </div>
-      </label>
+					<div class ="home-icon <%= home_icon_color(student) %> center-block">
+						<span class="fa fa-fw fa-4x fa-<%= student.icon %>"></span>
+					</div>
+				</div>
+			</label>
       <p><span class="student-icon-text" id="<%= student.id %>"><%= student.full_name%></span></p>
-    </div>    <!-- col -->
+		</div>    <!-- col -->
 
     <% if index == 3 || index == 7 || index == (@top_students.size-1) %>
     	</div>   <!-- row -->
