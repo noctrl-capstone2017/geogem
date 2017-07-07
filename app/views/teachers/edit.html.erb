@@ -21,14 +21,14 @@
 <!--Action Icons -->
 <!--Figured out span link_to from http://stackoverflow.com/questions/7563911/adding-span-tag-in-rails-link-to -->
 <div class="row action-icon-row" style="margin-top: 40px;">
-	
+
 	<!--If the teacher viewing the page 'owns' the page, show them this option-->
 	<% if @teacher.id == current_teacher.id %>
 		<!-- Change password -->
 		<div class="col-xs-2 col-xs-offset-1 text-center" title="Change your password">
-			<div class ="action-sq i-action-gray5 center-block">
+			<div class="action-div">
 				<%= link_to '/password' do %>
-					<span class="fa fa-3x fa-fw fa-key action-icon"></span>
+					<%= render 'action_icon', icon_color: "action-icon-black", fa_icon: "fa-key" %>
 				<% end %>
 			</div>
 			<%= link_to '/password' do %>Change password<% end %>
@@ -40,9 +40,9 @@
 	
 		<!-- Student roster icon -->
 		<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit teacher's student roster">
-			<div class ="action-sq i-action-gray3 center-block">
+			<div class="action-div">
 				<%= link_to teacher_path(@teacher.id) do %>
-					<span class="fa fa-3x fa-fw fa-child action-icon"></span>
+					<%= render 'action_icon', icon_color: "action-icon-lightslategray", fa_icon: "fa-child" %>
 				<% end %>
 			</div>
 			<%= link_to teacher_path(@teacher.id) do %>Student roster<% end %>
@@ -50,12 +50,12 @@
 	
 		<!-- Login settings icon -->
 		<div class="col-xs-2 text-center" title="View/edit teacher's login settings">
-			<div class ="action-sq i-action-gray2 center-block">
+			<div class="action-div">
 				<%= link_to 'login_settings' do %>
-					<span class="fa fa-3x fa-fw fa-gear action-icon"></span>
+					<%= render 'action_icon', icon_color: "action-icon-darkslategray", fa_icon: "fa-gear" %>
 				<% end %>
 			</div>
-			<%= link_to '/login_settings' do %>Login settings<% end %>
+			<%= link_to 'login_settings' do %>Login settings<% end %>
 		</div>
 	<% end %>
 

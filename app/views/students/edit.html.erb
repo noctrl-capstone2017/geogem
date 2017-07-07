@@ -11,12 +11,11 @@
 <!-- Student squares action icon after the student info/form -->
 <div class="row action-icon-row">
 	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit squares for student">
-
-		<div class="action-sq i-action-gray1 center-block">
-			<a href="<%= edit_roster_square_path(@student)%>"><span class="fa fa-4x fa-fw fa-square-o action-icon"></span></a>
+		<div class="action-div">
+			<%= link_to edit_roster_square_path(@student) do %>
+				<%= render 'action_icon', icon_color: "action-icon-lightslategray", fa_icon: "fa-square-o" %>
+			<% end %>
 		</div>
-		<p>
-			<a href="<%= edit_roster_square_path(@student)%>"><span class="student-icon-text">View Squares</span></a>
-		</p>
+		<%= link_to edit_roster_square_path(@student) do %>View Squares<% end %>
 	</div>   <!-- col -->
 </div>   <!-- row -->
