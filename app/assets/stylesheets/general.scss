@@ -155,6 +155,8 @@ $ribbon-yellow: #f9f906;
 	&:hover { color: lightgray; }
 }
 
+.action-div a:hover { text-decoration: none; }
+
 /* Action icons are shades of gray. */
 /* Source: https://en.wikipedia.org/wiki/Shades_of_gray */
 .action-icon-gray {
@@ -180,6 +182,27 @@ $ribbon-yellow: #f9f906;
 .action-icon-neutral:hover {
 	box-shadow: 0 0 16px gray;
 }
+
+.help-icon-blue {
+	background: $ribbon-blue;
+	&:hover { box-shadow: 0 0 16px $ribbon-blue; }
+}
+
+.help-icon-lightblue {
+	background: $ribbon-lightblue;
+	&:hover { box-shadow: 0 0 16px $ribbon-lightblue; }
+}
+
+.help-icon-red {
+	background: $ribbon-red;
+	&:hover { box-shadow: 0 0 16px $ribbon-red; }
+}
+
+.help-icon-yellow {
+	background: $ribbon-yellow;
+	&:hover { box-shadow: 0 0 16px $ribbon-yellow; }
+}
+
 
 /*Big square used on home and session screen*/
 .square
@@ -443,14 +466,14 @@ $ribbon-yellow: #f9f906;
 .i-pink { background-color:#E889B9; }
 .i-dkorange { background-color:#E77F24; }
 .i-aqua { background-color:#50C0E8; }
-.i-black {background-color: black; }
-.i-blue {background-color: $ribbon-blue; }
+.i-black { background-color: black; }
+.i-blue { background-color: $ribbon-blue; }
+.i-lightgray { background-color: lightgray; }
 
-.i-action-gray1 { background-color: gray; }
-.i-action-gray2 { background-color: darkslategray; }
-.i-action-gray3 { background-color: lightslategray; }
-.i-action-gray4 { background-color: lightgray; }
-.i-action-gray5 { background-color: black; }
+.i-ribbon-blue { background-color: $ribbon-blue; }
+.i-ribbon-lightblue { background-color: $ribbon-lightblue; }
+.i-ribbon-red { background-color: $ribbon-red; }
+.i-ribbon-yellow { background-color: $ribbon-yellow; }
 
 
 /* Note from Carolyn C- moved from teachers.scss */
@@ -705,5 +728,14 @@ when submitted with errors */
 .help-header { padding-top: 60px; padding-bottom: 20px; }
 .help-qa-letter { font-size: 1.2em; font-weight: bold; color: gray; }
 .help-line { width: 90%; border-top: 1px dotted lightgray; padding-bottom: 20px; margin-right: 100px;}
-.help-small-sq { height: 1.2em; border-radius: 4px; color: white; }
 .help-answer-para { margin-left: 5%; margin-right: 5%; }
+
+.help-small-icon-square {
+	height: 96px;
+	width: 96px;
+	display: inline;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	border-radius: 4px;
+}

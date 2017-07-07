@@ -9,24 +9,28 @@
 <div class="container">
 	<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
 
-	<div class="form-group">		
-		<%= render 'layouts/flash' %>
-	</div>
-
 	<!-- page header -->
-	<div class="page-header vertical-align">
+	<div class="page-header vertical-align geogem-page-header">
 		<div class="col-xs-11">
-			<h2>About<small> - GeoGem <%= DeployHelper.geogem_version =%>, deployed <%= DeployHelper.geogem_deploy_date =%></small></h2>
+			<h2>About<small> - all about GeoGem</small>
+			</h2>
 		</div>
-		<div class="col-xs-1 center-block">
-			<div class="header-sq i-lightblue" title="All about GeoGem">
-				<span class="fa fa-info-circle fa-3x teacher-icon"></span>
+		<div class="col-xs-1">
+			<div class="header-sq i-ribbon-lightblue" title="All about GeoGem" >
+				<span class="fa fa-2x fa-fw fa-info-circle page-header-icon"></span>
 			</div>
 		</div>
 	</div>   <!-- page-header -->
 
 	<div class="row content-text">
 		<div class="col-xs-12">
+			<p>
+				This is GeoGem <%= DeployHelper.geogem_version =%>.
+			</p>
+			<p>
+				It was deployed on <%= DeployHelper.geogem_deploy_date =%>.
+			</p>
+			<br>
 			<p>
 				<!--Part 1: Describe GeoGem. What it does. And how it was created.-->
 				GeoGem is a web application designed to make tracking student behaviors easier for teachers and aides. 

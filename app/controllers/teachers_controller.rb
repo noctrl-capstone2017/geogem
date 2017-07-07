@@ -102,7 +102,6 @@ class TeachersController < ApplicationController
     elsif params[:teacher][:suspended]
       change_login_settings
     else
-      debugger
       if @teacher.update(teacher_params)
         flash[ :success] = "Teacher update successful, #{@teacher.full_name}"
         redirect_to edit_teacher_path(@teacher.id)

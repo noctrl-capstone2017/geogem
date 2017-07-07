@@ -15,25 +15,26 @@
 
 <div class="row first-content-row" >
 
-	<!-- All schools icon -->
+	<!-- All schools action icon -->
 	<div class="col-xs-2 col-xs-offset-2 text-center" title="View/edit schools">
-		<div class ="action-icon-square action-icon-gray center-block">
+		<div class="action-div">
 			<%= link_to schools_path do %>
-				<span class="fa fa-3x fa-fw fa-home action-icon"></span>
+				<%= render 'action_icon', icon_color: "action-icon-gray", fa_icon: "fa-home" %>
 			<% end %>
 		</div>
 		<%= link_to schools_path do %>All schools<% end %>
 	</div>
 
-	<!-- Super report icon -->
+	<!-- Super report action icon -->
 	<div class="col-xs-2 text-center" title="GeoGem stats for Super">
-		<div class ="action-icon-square action-icon-darkslategray center-block">
+		<div class="action-div">
 			<%= link_to super_report_path do %>
-				<span class="fa fa-3x fa-fw fa-file-text action-icon"></span>
+				<%= render 'action_icon', icon_color: "action-icon-darkslategray", fa_icon: "fa-file-text" %>
 			<% end %>
 		</div>
 		<%= link_to super_report_path do %>Super report<% end %>
 	</div>
+
 </div>   <!-- first row of icons -->
 
 <div class="row first-content-row">
@@ -44,10 +45,14 @@
 
 <!-- spinner to allow Super to change focus school -->
 <div class="row first-content-row">
+
+	<!-- icon of the focus school -->
 	<div class="col-xs-2 col-xs-offset-2 text-center" title="school=<%= @school.full_name %>">
-		<div class ="action-icon-square action-icon-neutral i-<%= @school.color %> center-block">
+		<div class="action-div">
 			<%= link_to edit_school_path(@school.id) do %>
-				<span class="fa fa-3x fa-fw fa-<%= @school.icon %> action-icon"></span>
+				<div class ="action-icon-square action-icon-neutral i-<%= @school.color %> center-block">
+					<span class="fa fa-3x fa-fw fa-<%= @school.icon %> action-icon"></span>
+				</div>
 			<% end %>
 		</div>
 		<%= link_to edit_school_path(@school.id) do %>
@@ -55,6 +60,7 @@
 		<% end %>
 	</div>
 
+	<!-- focus school spinner -->
 	<div class="col-xs-5 text-center" style="margin-top:10px;">
 		<%= form_for( @teacher, :url => { :action => :update_super_focus }) do |f| %>
     <div class="row vertical-align">
@@ -81,36 +87,39 @@
 
 <br>
 
-
 <!-- action icons, row 2 -->
 <div class="row action-icon-row" >
+
 	<!-- Backup school icon -->
 	<div class="col-xs-2 col-xs-offset-2 text-center" title="Backup data of Super focus school">
-		<div class ="action-icon-square action-icon-lightslategray center-block">
+		<div class="action-div">
 			<%= link_to school_backup_path do %>
-				<span class="fa fa-3x fa-fw fa-floppy-o action-icon"></span>
+				<%= render 'action_icon', icon_color: "action-icon-lightslategray", fa_icon: "fa-floppy-o" %>
 			<% end %>
 		</div>
 		<%= link_to school_backup_path do %>Backup school<% end %>
 	</div>
 
+
 	<!-- Suspend school icon -->
 	<div class="col-xs-2 text-center" title="Suspend all teachers at Super focus school">
-		<div class ="action-icon-square action-icon-black center-block">
+		<div class="action-div">
 			<%= link_to school_suspend_path do %>
-				<span class="fa fa-3x fa-fw fa-bomb action-icon"></span>
+				<%= render 'action_icon', icon_color: "action-icon-black", fa_icon: "fa-bomb" %>
 			<% end %>
 		</div>
 		<%= link_to school_suspend_path do %>Suspend school<% end %>
 	</div>
 
+
 	<!-- Retore school icon -->
 	<div class="col-xs-2 text-center" title="Restore teacher logins at Super focus school">
-		<div class ="action-icon-square action-icon-dimgray center-block">
+		<div class="action-div">
 			<%= link_to school_restore_path do %>
-				<span class="fa fa-3x fa-fw fa-undo action-icon"></span>
+				<%= render 'action_icon', icon_color: "action-icon-dimgray", fa_icon: "fa-undo" %>
 			<% end %>
 		</div>
 		<%= link_to school_restore_path do %>Restore school<% end %>
 	</div>
+
 </div>   <!-- 2nd row of icons -->

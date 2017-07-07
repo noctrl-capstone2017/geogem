@@ -10,20 +10,22 @@
 <div class="row">
 
 	<!-- View/edit school -->
-	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit schools">
-		<div class ="action-icon-square action-icon-gray center-block">
-			<%= link_to edit_school_path(@current_teacher.school_id) do %>
-				<span class="fa fa-3x fa-fw fa-home action-icon"></span>
+	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit school, <%= @school.full_name %>">
+		<div class="action-div">
+			<%= link_to edit_school_path(@school.id) do %>
+				<div class ="action-icon-square action-icon-neutral i-<%= @school.color %> center-block">
+					<span class="fa fa-3x fa-fw fa-<%= @school.icon %> action-icon"></span>
+				</div>
 			<% end %>
 		</div>
-		<%= link_to edit_school_path(@current_teacher.school_id) do %>School profile<% end %>
+		<%= link_to edit_school_path(@school.id) do %>School profile<% end %>
 	</div>
 
 	<!-- Basic school report for admins -->
-	<div class="col-xs-2 text-center" title="GeoGem stats for Super">
-		<div class ="action-icon-square action-icon-darkslategray center-block">
+	<div class="col-xs-2 text-center" title="Report basic lists at school, <%= @school.full_name %>">
+		<div class="action-div">
 			<%= link_to admin_report_path do %>
-				<span class="fa fa-3x fa-fw fa-file-text-o action-icon"></span>
+				<%= render 'action_icon', icon_color: "action-icon-darkslategray", fa_icon: "fa-file-text-o" %>
 			<% end %>
 		</div>
 		<%= link_to admin_report_path do %>Admin report<% end %>
@@ -35,9 +37,9 @@
 
 	<!-- View/edit all students -->
 	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit all students">
-		<div class ="action-icon-square action-icon-dimgray center-block">
+		<div class="action-div">
 			<%= link_to students_path do %>
-				<span class="fa fa-3x fa-fw fa-child action-icon"></span>
+				<%= render 'action_icon', icon_color: "action-icon-dimgray", fa_icon: "fa-child" %>
 			<% end %>
 		</div>
 		<%= link_to students_path do %>All Students<% end %>
@@ -45,9 +47,9 @@
 
 	<!-- View/edit all teachers -->
 	<div class="col-xs-2 text-center" title="View/edit all teachers">
-		<div class ="action-icon-square action-icon-lightslategray center-block">
+		<div class="action-div">
 			<%= link_to teachers_path do %>
-				<span class="fa fa-3x fa-fw fa-apple action-icon"></span>
+				<%= render 'action_icon', icon_color: "action-icon-lightslategray", fa_icon: "fa-apple" %>
 			<% end %>
 		</div>
 		<%= link_to teachers_path do %>All Teachers<% end %>
@@ -55,11 +57,12 @@
 
 	<!-- View/edit all behavior squares-->
 	<div class="col-xs-2 text-center" title="View/edit all behavior squares">
-		<div class ="action-icon-square action-icon-black center-block">
+		<div class="action-div">
 			<%= link_to squares_path do %>
-				<span class="fa fa-3x fa-fw fa-square-o action-icon"></span>
+				<%= render 'action_icon', icon_color: "action-icon-black", fa_icon: "fa-square-o" %>
 			<% end %>
 		</div>
 		<%= link_to squares_path do %>All Squares<% end %>
 	</div>
+
 </div>   <!-- 2nd row of icons -->

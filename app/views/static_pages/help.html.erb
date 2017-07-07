@@ -10,13 +10,12 @@
 	<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
 
 <!-- page header -->
-<div class="page-header vertical-align">
+<div class="page-header vertical-align geogem-page-header">
 	<div class="col-xs-11">
 		<h2>Help<small> - frequently asked questions about GeoGem</small></h2>
 	</div>
-
-	<div class="col-xs-1 center-block">
-		<div class="header-sq i-gray" title="Help page">
+	<div class="col-xs-1">
+		<div class="header-sq i-lightgray" title="About our student art" >
 			<span class="fa fa-2x fa-fw fa-question-circle-o page-header-icon"></span>
 		</div>
 	</div>
@@ -38,49 +37,62 @@
 
 	<!-- Getting started icon-->
 	<div class="col-xs-2 col-xs-offset-1 text-center" >
-		<div class ="action-sq i-navy center-block" >
-			<a href="#getting-started"><span class="fa fa-paper-plane-o fa-4x action-icon" ></span></a>
+		<div class="action-div">
+			<%= link_to "#getting-started" do %>
+				<%= render 'action_icon', icon_color: "help-icon-blue", fa_icon: "fa-paper-plane-o" %>
+			<% end %>
 		</div>
-		<p>
-			<a href="#getting-started"><span class="student-icon-text">Getting started</span></a>
-		</p>
+		<%= link_to "#getting-started" do %>
+			<span class="student-icon-text">Getting started</span>
+		<% end %>
 	</div>
 
 	<!-- Sessions icon-->
 	<div class="col-xs-2 text-center" >
-		<div class ="action-sq i-red center-block">
-			<a href="#sessions"><span class="fa fa-key fa-4x action-icon"></span></a>
+		<div class="action-div">
+			<%= link_to "#sessions" do %>
+				<%= render 'action_icon', icon_color: "help-icon-red", fa_icon: "fa-key" %>
+			<% end %>
 		</div>
-		<p>
-			<a href="#sessions"><span class="student-icon-text">Sessions</span></a>
-		</p>
+		<%= link_to "#sessions" do %>
+			<span class="student-icon-text">Sessions</span>
+		<% end %>
 	</div>
             
-	<!-- Admin poweres icon-->
+	<!-- Admin powers icon-->
 	<div class="col-xs-2 text-center" >
-		<div class ="action-sq i-yellow center-block">
-			<a href="#admin-powers"><span class="fa fa-trophy fa-4x action-icon"></span></a>
+		<div class="action-div">
+			<%= link_to "#admin-powers" do %>
+				<%= render 'action_icon', icon_color: "help-icon-yellow", fa_icon: "fa-trophy" %>
+			<% end %>
 		</div>
-		<p>
-			<a href="#admin-powers"><span class="student-icon-text">Admin powers</span></a>
-		</p>
+		<%= link_to "#admin-powers" do %>
+			<span class="student-icon-text">Admin powers</span>
+		<% end %>
 	</div>
 
 	<!-- Etc icon-->
 	<div class="col-xs-2 text-center">
-		<div class ="action-sq i-lightblue center-block">
-			<a href="#etc"><span class="fa fa-shower fa-4x action-icon"></span></a>
+		<div class="action-div">
+			<%= link_to "#etc" do %>
+				<%= render 'action_icon', icon_color: "help-icon-lightblue", fa_icon: "fa-shower" %>
+			<% end %>
 		</div>
-		<p>
-			<a href="#etc"><span class="student-icon-text">Etc</span></a>
-		</p>
+		<%= link_to "#etc" do %>
+			<span class="student-icon-text">Etc</span>
+		<% end %>
 	</div>
+
 </div>   <!-- row -->
 
 <!-- Getting started Q/A -->
 <div class="row content-text">
 	<a id="getting-started"></a>
-	<h3 class="help-header">Getting Started &nbsp; <span class="fa fa-fw fa-1x i-navy fa-paper-plane-o help-small-sq" ></span> </h3>
+	<h3 class="help-header">Getting Started &nbsp; 
+		<span class ="help-small-icon-square i-ribbon-blue center-block">
+			<span class="fa fa-fw fa-paper-plane-o"></span>
+		</span>
+	</h3>
 	<p>
 		<span class="help-qa-letter">Q1.</span> What is GeoGem?
 	</p>
@@ -146,7 +158,11 @@
 
 	<!-- Sessions Q/A -->
 	<a id="sessions"></a>
-	<h3 class="help-header">Sessions &nbsp;  <span class="fa fa-fw fa-1x i-red fa-key help-small-sq" ></span></h3>
+	<h3 class="help-header">Sessions &nbsp; 
+		<span class ="help-small-icon-square i-ribbon-red center-block">
+			<span class="fa fa-fw fa-key"></span>
+		</span>
+	</h3>
 	<p>
 		<span class="help-qa-letter">Q7.</span> Why does my Home page only show 8 student icons? I have more than 8 students.
 	</p>
@@ -183,7 +199,11 @@
 
 	<!-- Admin powers questions-->
 	<a id="admin-powers"></a>
-	<h3 class="help-header">Admin Powers &nbsp;  <span class="fa fa-fw fa-1x i-yellow fa-trophy help-small-sq"></span></h1>
+	<h3 class="help-header">Admin Powers &nbsp; 
+		<span class ="help-small-icon-square i-ribbon-yellow center-block">
+			<span class="fa fa-fw fa-trophy"></span>
+		</span>
+	</h3>
 	<p>
 		<span class="help-qa-letter">Q10.</span> I’m overwhelmed. Where do I start?
 	</p>
@@ -293,7 +313,12 @@
 
 	<!-- Etc Q/A -->
 	<a id="etc"></a>
-	<h3 class="help-header">Etc &nbsp;  <span class="fa fa-fw fa-1x i-ltblue fa-shower help-small-sq" ></span></h1>
+	<h3 class="help-header">Etc &nbsp;  
+		<span class ="help-small-icon-square i-ribbon-lightblue center-block">
+			<span class="fa fa-fw fa-shower"></span>
+		</span>
+	</h3>
+
 	<p>
 		<span class="help-qa-letter">Q18.</span>  Are you planning improvements and new GeoGem features in the future?  
 	</p>
