@@ -41,7 +41,7 @@ Teacher.create!(user_name: "teacher",
                 password: "password",
                 password_confirmation: "password",
                 last_login: Time.now,
-                full_name: "teacher",
+                full_name: "Tammy Teacher",
                 screen_name: "teacher",
                 icon: "pencil",
                 color: "green",
@@ -55,7 +55,7 @@ Teacher.create!(user_name: "admin",
                 password: "password",
                 password_confirmation: "password",
                 last_login: Time.now,
-                full_name: "admin",
+                full_name: "Cranky McAdmin",
                 screen_name: "admin",
                 icon: "calculator",
                 color: "green",
@@ -88,7 +88,7 @@ end
   School.create!(full_name: Faker::University.name,
                  screen_name: "schl-#{n+2}",
                  icon: schoolIcons.sample,
-                 color: colorNames.sample,
+                 color: schoolColors.sample,
                  email: "example-#{n+1}@railstutorial.org",
                  website: "www.example.edu",
                  description: Faker::Lorem.sentence)
@@ -100,7 +100,7 @@ end
   last_name = Faker::Name.last_name
   Student.create!(  screen_name: first_name.downcase[0] + last_name.downcase,
                     contact_info: "student contact info",
-                    description: "student description",
+                    description: "A seed student created by faker",
                     icon: "bicycle",
                     color: "lightblue",
                     session_interval: 15,
@@ -116,7 +116,7 @@ end
                  screen_name: "S#{n+1}",
                  tracking_type: (n%3)+1,    #1, 2, or 3 NEED TO CHANGE THIS FOR ENUM CLASS
                  description: name,
-                 color: colorNames.sample,
+                 color: squareColors.sample,
                  school_id: 1)
 end
 
