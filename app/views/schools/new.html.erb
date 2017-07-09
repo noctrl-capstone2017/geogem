@@ -59,7 +59,7 @@
 	<div class="col-xs-1 col-xs-offset-1">
 	  <h4>Color: </h4></div>
 	<div class="col-xs-4 col-xs-offset-1">
-	  <%= f.select :color, colorNames.map {|color| [color.titleize, color]}, class: 'form-control' %>
+	  <%= f.select :color, schoolColors.map {|color| [color.titleize, color]}, {}, {class: 'form-control'} %>
 	</div>
 </div>
 
@@ -67,7 +67,7 @@
   <div class="row form-row">
   	<div class="col-xs-1 col-xs-offset-1"><h4>Icon: </h4></div>
   	<div class="col-xs-4 col-xs-offset-1">
-  		<%= f.select :icon, schoolIcons.map {|icon| [icon.titleize, icon]}, class: 'form-control' %>
+  		<%= f.select :icon, schoolIcons.map {|icon| [icon.titleize, icon]}, {}, {class: 'form-control'} %>
   	</div>
   </div>
 

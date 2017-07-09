@@ -45,15 +45,14 @@ body
 }
 
 /*********************************************************
-*  COLOR VARIABLES
-* Variables for colors used in GeoGem CSS
-* Colors are loosely stolen from the Autism Awareness ribbon
+* COLORS
+* Variables and css for colors used in GeoGem CSS
 *********************************************************/
 $navbar-blue: #2458B7;
 $navbar-lightblue: #97edec;
-$geogem-lightblue: #4195fc;	/* #4195fc; */
-$geogem-aqua: #DCEDFF;	/* #97edec; */
-$geogem-yellow: #FFEB65;
+$old-lightblue: #4195fc;	/* #4195fc; */
+$old-aqua: #DCEDFF;	/* #97edec; */
+$old-yellow: #FFEB65;
 
 /* Autism awareness ribbon colors */
 /* https://commons.wikimedia.org/wiki/File:Autism_Awareness_Ribbon.png */
@@ -61,6 +60,81 @@ $ribbon-blue: #3B43B5;
 $ribbon-lightblue: #4393C2;
 $ribbon-red: red;
 $ribbon-yellow: #f9f906;
+
+/* Top ten colors, source: http://clrs.cc/ */
+$geogem-aqua: #7FDBFF;
+$geogem-black: #111111;
+$geogem-blue: #0074D9;
+$geogem-gray: #AAAAAA;
+$geogem-green: #2ECC40;
+$geogem-orange: #FF851B;
+$geogem-pink: #F012BE;   /* or hotpink, #FF69B4 */
+$geogem-purple: #B10DC9;
+$geogem-red: #FF4136;   /* is red better? */
+$geogem-yellow: #FFDC00;
+
+.bg-aqua { background-color: $geogem-aqua; }
+.bg-black { background-color: $geogem-black; }
+.bg-blue { background-color: $geogem-blue; }
+.bg-gray { background-color: $geogem-gray; }
+.bg-green { background-color: $geogem-green; }
+.bg-orange { background-color: $geogem-orange; }
+.bg-pink { background-color: $geogem-pink; }
+.bg-purple { background-color: $geogem-purple; }
+.bg-red { background-color: $geogem-red; }
+.bg-yellow { background-color: $geogem-yellow; }
+
+.color-aqua { color: $geogem-aqua; }
+.color-black { color: $geogem-black; }
+.color-blue { color: $geogem-blue; }
+.color-gray { color: $geogem-gray; }
+.color-green { color: $geogem-green; }
+.color-orange { color: $geogem-orange; }
+.color-pink { color: $geogem-pink; }
+.color-purple { color: $geogem-purple; }
+.color-red { color: $geogem-red; }
+.color-yellow { color: $geogem-yellow; }
+
+/*********************************************************
+* ICON COLORS
+* Colors i-navy, i-lighttblue, i-red, and i-yellow 
+* are also found in our main color scheme
+*********************************************************/
+.i-aqua { background-color: $geogem-aqua; }
+.i-black { background-color: $geogem-black; }
+.i-blue { background-color: $geogem-blue; }
+.i-gray { background-color: $geogem-gray; }
+.i-green { background-color: $geogem-green; }
+.i-orange { background-color: $geogem-orange; }
+.i-pink { background-color: $geogem-pink; }
+.i-purple { background-color: $geogem-purple; }
+.i-red { background-color: $geogem-red; }
+.i-yellow { background-color: $geogem-yellow; }
+
+
+.i-navy { background-color:#2458B7; }
+.i-lightblue { background-color:#97EDEC; }
+.i-lavender { background-color: #8E7BB9; }
+.i-plum { background-color: #B23F73; }
+.i-mint { background-color:#5BC2A8; }
+.i-dkorange { background-color:#E77F24; }
+.i-lightgray { background-color: lightgray; }
+// .i-gray { background-color: #787676; }
+// .i-red { background-color: #EC514A; }
+// .i-yellow { background-color: #FFEB65; }
+// .i-orange { background-color:#F8BD28; }
+// .i-green { background-color:#8BC04F; }
+// .i-pink { background-color:#E889B9; }
+// .i-aqua { background-color:#50C0E8; }
+// .i-black { background-color: black; }
+// .i-blue { background-color: $ribbon-blue; }
+
+
+.i-ribbon-blue { background-color: $ribbon-blue; }
+.i-ribbon-lightblue { background-color: $ribbon-lightblue; }
+.i-ribbon-red { background-color: $ribbon-red; }
+.i-ribbon-yellow { background-color: $ribbon-yellow; }
+
 
 /*********************************************************
 *  ALIGNMENT
@@ -108,34 +182,29 @@ $ribbon-yellow: #f9f906;
 	&:hover {	color: lightgray; }
 }
 
-.home-icon-blue {
-	background: $ribbon-blue;
-	&:hover { box-shadow: 0 0 16px $ribbon-blue; }
+.home-icon-aqua {
+	background: $geogem-aqua;
+	&:hover { box-shadow: 0 0 16px $geogem-aqua; }
 }
-
-.home-icon-lightblue {
-	background: $ribbon-lightblue;
-	&:hover { box-shadow: 0 0 16px $ribbon-lightblue; }
-}
-
-.home-icon-red {
-	background: $ribbon-red;
-	&:hover { box-shadow: 0 0 16px $ribbon-red; }
-}
-
-.home-icon-yellow {
-	background: $ribbon-yellow;
-	&:hover { box-shadow: 0 0 16px $ribbon-yellow; }
-}
-
-.home-icon-gray {
-	background: gray;
-	&:hover { box-shadow: 0 0 16px $ribbon-lightblue; }
-}
-
 .home-icon-black {
-	background: black;
-	&:hover { box-shadow: 0 0 16px $ribbon-red; }
+	background: $geogem-black;
+	&:hover { box-shadow: 0 0 16px $geogem-red; }
+}
+.home-icon-blue {
+	background: $geogem-blue;
+	&:hover { box-shadow: 0 0 16px $geogem-blue; }
+}
+.home-icon-gray {
+	background: $geogem-gray;
+	&:hover { box-shadow: 0 0 16px $geogem-aqua; }
+}
+.home-icon-red {
+	background: $geogem-red;
+	&:hover { box-shadow: 0 0 16px $geogem-red; }
+}
+.home-icon-yellow {
+	background: $geogem-yellow;
+	&:hover { box-shadow: 0 0 16px $geogem-yellow; }
 }
 
 /* Action icons used in Super and Admin pages */
@@ -184,23 +253,23 @@ $ribbon-yellow: #f9f906;
 }
 
 .help-icon-blue {
-	background: $ribbon-blue;
-	&:hover { box-shadow: 0 0 16px $ribbon-blue; }
+	background: $geogem-blue;
+	&:hover { box-shadow: 0 0 16px $geogem-blue; }
 }
 
 .help-icon-lightblue {
-	background: $ribbon-lightblue;
-	&:hover { box-shadow: 0 0 16px $ribbon-lightblue; }
+	background: $geogem-aqua;
+	&:hover { box-shadow: 0 0 16px $geogem-aqua; }
 }
 
 .help-icon-red {
-	background: $ribbon-red;
-	&:hover { box-shadow: 0 0 16px $ribbon-red; }
+	background: $geogem-red;
+	&:hover { box-shadow: 0 0 16px $geogem-red; }
 }
 
 .help-icon-yellow {
-	background: $ribbon-yellow;
-	&:hover { box-shadow: 0 0 16px $ribbon-yellow; }
+	background: $geogem-yellow;
+	&:hover { box-shadow: 0 0 16px $geogem-yellow; }
 }
 
 
@@ -258,13 +327,13 @@ $ribbon-yellow: #f9f906;
 
 .sq-active
 {
-	border-color: $geogem-aqua;
+	border-color: old-aqua;
 	border-style: solid;
 	border-width:3px;
 	
-  -webkit-box-shadow: 0px 0px 7px $geogem-lightblue;
-  -moz-box-shadow: 0px 0px 7px $geogem-lightblue;
-  box-shadow: 0px 0px 7px $geogem-lightblue;
+  -webkit-box-shadow: 0px 0px 7px $old-lightblue;
+  -moz-box-shadow: 0px 0px 7px $old-lightblue;
+  box-shadow: 0px 0px 7px $old-lightblue;
 }
 
 .square h1, .square h2,.square h3, .square h4, .square p
@@ -438,7 +507,7 @@ $ribbon-yellow: #f9f906;
 *  Used for admin screens
 *********************************************************/
 .table-striped > tbody > tr:hover td{
-  background-color: $geogem-yellow;
+  background-color: $old-yellow;
 }
 
 .schools-table {
@@ -448,34 +517,6 @@ $ribbon-yellow: #f9f906;
 	margin-top: 40px;
 }
 
-/*********************************************************
-* ICON COLORS
-* Colors i-navy, i-lighttblue, i-red, and i-yellow 
-* are also found in our main color scheme
-*********************************************************/
-.i-gray { background-color: #787676; }
-.i-navy { background-color:#2458B7; }
-.i-red { background-color: #EC514A; }
-.i-yellow { background-color: #FFEB65; }
-.i-lightblue { background-color:#97EDEC; }
-.i-orange { background-color:#F8BD28; }
-.i-green { background-color:#8BC04F; }
-.i-lavender { background-color: #8E7BB9; }
-.i-plum { background-color: #B23F73; }
-.i-mint { background-color:#5BC2A8; }
-.i-pink { background-color:#E889B9; }
-.i-dkorange { background-color:#E77F24; }
-.i-aqua { background-color:#50C0E8; }
-.i-black { background-color: black; }
-.i-blue { background-color: $ribbon-blue; }
-.i-lightgray { background-color: lightgray; }
-
-.i-ribbon-blue { background-color: $ribbon-blue; }
-.i-ribbon-lightblue { background-color: $ribbon-lightblue; }
-.i-ribbon-red { background-color: $ribbon-red; }
-.i-ribbon-yellow { background-color: $ribbon-yellow; }
-
-
 /* Note from Carolyn C- moved from teachers.scss */
 
 .image-radio input[type="radio"] {
@@ -483,13 +524,13 @@ $ribbon-yellow: #f9f906;
 }
 
 input[type="radio"]:checked + label {
-    border-color: $geogem-aqua;
+    border-color: old-aqua;
 	border-style: solid;
 	border-width:3px;
     	
-    -webkit-box-shadow: 0px 0px 7px $geogem-lightblue;
-    -moz-box-shadow: 0px 0px 7px $geogem-lightblue;
-    box-shadow: 0px 0px 7px $geogem-lightblue;
+    -webkit-box-shadow: 0px 0px 7px $old-lightblue;
+    -moz-box-shadow: 0px 0px 7px $old-lightblue;
+    box-shadow: 0px 0px 7px $old-lightblue;
 }
 
 .row-offcanvas {
@@ -666,7 +707,7 @@ input[type="radio"]:checked + label {
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover, .offcanvas a:focus{
-    color: $geogem-aqua;
+    color: old-aqua;
 }
 
 /* Added styling for text */

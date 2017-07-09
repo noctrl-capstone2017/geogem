@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   # Cleanup by: Michael Loptien
   root    'login_session#new'
-  get     '/home' ,           to: 'teachers#home'
+  get     '/home',            to: 'teachers#home'
 
   # Login Session Controller Routing 
   # Author: Meagan Moore & Steven Royster
