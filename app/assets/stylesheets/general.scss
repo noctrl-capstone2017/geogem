@@ -8,7 +8,9 @@
 ************************************************************/
 
 /*********************************************************
-*  TEXT STYLING
+*  TOP-LEVEL STYLING
+*	some of the most important stuff in the system:
+* main font, background image, content divs, etc.
 *********************************************************/
 
 @import url('https://fonts.googleapis.com/css?family=Hind|Rubik');
@@ -23,16 +25,13 @@ p, a
 	font-family:"Hind", sans-serif;
 }
 
-/*********************************************************
-*  BACKGROUND & CONTENT 
-* Creates a white div which holds all of the content on
-* top of the background image
-*********************************************************/
+// this background image is the GEO in GeoGem. (smile)
 body 
 {
 	background: lightgray url(geometry.png) repeat ; 
 }
 
+// KEY- all content within a white background
 .content-col
 {
 	background-color: rgba(255,255,255,0.8);
@@ -47,32 +46,36 @@ body
 /*********************************************************
 * COLORS
 * Variables and css for colors used in GeoGem CSS
+* Two important choices here.
+* 1) Basic color palette for system things like navbar and login is 
+* blue and (pretty) boring, because there's a lot of color in our icons. 
+* Source: http://www.colorcombos.com/color-schemes/7133/ColorCombo7133.html
+* 
+* 2) Top 10 fave colors in U.S. used for all icons: school, student, teacher, 
+* square, action, help, etc. Source: http://clrs.cc/
 *********************************************************/
-$navbar-blue: #2458B7;
-$navbar-lightblue: #97edec;
-$old-lightblue: #4195fc;	/* #4195fc; */
-$old-aqua: #DCEDFF;	/* #97edec; */
-$old-yellow: #FFEB65;
+/* Basic system color scheme for system things: navbar, login, action icons, etc */
+$scheme-blue: #206BA4;					// matisse blue
+$scheme-lightblue: #54A4DE;			// havelock blue
+$scheme-lighterblue: #BBD9EE;		// spindle blue
+$scheme-paleblue: #EBF4FA;			// link water
+$scheme-yelloworange: #FFAB35;	// cool!
+$scheme-gray: #C0C0C0;
+$scheme-darkgray: #666666;
 
-/* Autism awareness ribbon colors */
-/* https://commons.wikimedia.org/wiki/File:Autism_Awareness_Ribbon.png */
-$ribbon-blue: #3B43B5;
-$ribbon-lightblue: #4393C2;
-$ribbon-red: red;
-$ribbon-yellow: #f9f906;
-
-/* Top ten colors, source: http://clrs.cc/ */
+/* Top ten colors used for user icons */
 $geogem-aqua: #7FDBFF;
 $geogem-black: #111111;
 $geogem-blue: #0074D9;
 $geogem-gray: #AAAAAA;
 $geogem-green: #2ECC40;
 $geogem-orange: #FF851B;
-$geogem-pink: #F012BE;   /* or hotpink, #FF69B4 */
+$geogem-pink: #F012BE;   /* or #F012BE ? */
 $geogem-purple: #B10DC9;
-$geogem-red: #FF4136;   /* is red better? */
+$geogem-red: red;   /* is #FF4136 better? */
 $geogem-yellow: #FFDC00;
 
+/* background colors */
 .bg-aqua { background-color: $geogem-aqua; }
 .bg-black { background-color: $geogem-black; }
 .bg-blue { background-color: $geogem-blue; }
@@ -84,6 +87,7 @@ $geogem-yellow: #FFDC00;
 .bg-red { background-color: $geogem-red; }
 .bg-yellow { background-color: $geogem-yellow; }
 
+/* foreground colors */
 .color-aqua { color: $geogem-aqua; }
 .color-black { color: $geogem-black; }
 .color-blue { color: $geogem-blue; }
@@ -95,11 +99,7 @@ $geogem-yellow: #FFDC00;
 .color-red { color: $geogem-red; }
 .color-yellow { color: $geogem-yellow; }
 
-/*********************************************************
-* ICON COLORS
-* Colors i-navy, i-lighttblue, i-red, and i-yellow 
-* are also found in our main color scheme
-*********************************************************/
+/* icon colors */
 .i-aqua { background-color: $geogem-aqua; }
 .i-black { background-color: $geogem-black; }
 .i-blue { background-color: $geogem-blue; }
@@ -111,29 +111,38 @@ $geogem-yellow: #FFDC00;
 .i-red { background-color: $geogem-red; }
 .i-yellow { background-color: $geogem-yellow; }
 
+/*********************************************************
+*  NAVBAR STYLING - use the base color scheme!
+*********************************************************/
+.navbar { background: $scheme-blue; } 		// navbar bg color
+.navbar a { color: white; } 							// navbar text color
+.navbar .brand, .navbar .nav > li > a:hover, .navbar-header > a:hover 
+{
+	color: white;
+	background-color: $scheme-lightblue;		// hover color
+}
 
-.i-navy { background-color:#2458B7; }
-.i-lightblue { background-color:#97EDEC; }
-.i-lavender { background-color: #8E7BB9; }
-.i-plum { background-color: #B23F73; }
-.i-mint { background-color:#5BC2A8; }
-.i-dkorange { background-color:#E77F24; }
-.i-lightgray { background-color: lightgray; }
-// .i-gray { background-color: #787676; }
-// .i-red { background-color: #EC514A; }
-// .i-yellow { background-color: #FFEB65; }
-// .i-orange { background-color:#F8BD28; }
-// .i-green { background-color:#8BC04F; }
-// .i-pink { background-color:#E889B9; }
-// .i-aqua { background-color:#50C0E8; }
-// .i-black { background-color: black; }
-// .i-blue { background-color: $ribbon-blue; }
+/*********************************************************
+*  LOGIN STYLING - use the basic color scheme!
+*********************************************************/
+$scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 
+.login-row { margin-top: 7%; }
 
-.i-ribbon-blue { background-color: $ribbon-blue; }
-.i-ribbon-lightblue { background-color: $ribbon-lightblue; }
-.i-ribbon-red { background-color: $ribbon-red; }
-.i-ribbon-yellow { background-color: $ribbon-yellow; }
+.login-col {
+	background-color: $scheme-blue-seethru;
+	border-radius: 10px;
+	border: 1px solid $scheme-gray;
+	&:hover { box-shadow: 0 0 16px $scheme-gray; }
+}
+
+.login-header-text {
+	font-family: "Rubik", sans-serif;
+	font-size: 3.0em;
+	text-align: center;
+	padding-right: 20px;
+	color: #444444;
+}
 
 
 /*********************************************************
@@ -148,17 +157,6 @@ $geogem-yellow: #FFDC00;
 
 .page-header .h1 { padding-left: 100px; }
 .geogem-page-header { margin-bottom: 40px; }
-
-/*********************************************************
-*  NAVBAR STYLING
-*********************************************************/
-.navbar { background: $navbar-blue; }
-.navbar a { color:white; }
-.navbar .brand, .navbar .nav > li > a:hover, .navbar-header > a:hover 
-{
-	color:white;
-	background-color: $navbar-lightblue;
-}
 
 /*********************************************************
 	ICON STYLING
@@ -230,23 +228,23 @@ $geogem-yellow: #FFDC00;
 /* Source: https://en.wikipedia.org/wiki/Shades_of_gray */
 .action-icon-gray {
 	background: gray;
-	&:hover { box-shadow: 0 0 16px $ribbon-lightblue; }
+	&:hover { box-shadow: 0 0 16px $geogem-aqua; }
 }
 .action-icon-dimgray {
 	background: dimgray;
-	&:hover { box-shadow: 0 0 16px $ribbon-red; }
+	&:hover { box-shadow: 0 0 16px $geogem-red; }
 }
 .action-icon-lightslategray {
 	background: lightslategray;
-	&:hover { box-shadow: 0 0 16px $ribbon-blue; }
+	&:hover { box-shadow: 0 0 16px $geogem-blue; }
 }
 .action-icon-darkslategray {
 	background: darkslategray;
-	&:hover { box-shadow: 0 0 16px $ribbon-yellow; }
+	&:hover { box-shadow: 0 0 16px $geogem-yellow; }
 }
 .action-icon-black {
 	background: black;
-	&:hover { box-shadow: 0 0 16px $ribbon-lightblue; }
+	&:hover { box-shadow: 0 0 16px $geogem-aqua; }
 }
 .action-icon-neutral:hover {
 	box-shadow: 0 0 16px gray;
@@ -327,13 +325,13 @@ $geogem-yellow: #FFDC00;
 
 .sq-active
 {
-	border-color: old-aqua;
+	border-color: $geogem-aqua;
 	border-style: solid;
 	border-width:3px;
 	
-  -webkit-box-shadow: 0px 0px 7px $old-lightblue;
-  -moz-box-shadow: 0px 0px 7px $old-lightblue;
-  box-shadow: 0px 0px 7px $old-lightblue;
+  -webkit-box-shadow: 0px 0px 7px $geogem-aqua;
+  -moz-box-shadow: 0px 0px 7px $geogem-aqua;
+  box-shadow: 0px 0px 7px $geogem-aqua;
 }
 
 .square h1, .square h2,.square h3, .square h4, .square p
@@ -507,7 +505,7 @@ $geogem-yellow: #FFDC00;
 *  Used for admin screens
 *********************************************************/
 .table-striped > tbody > tr:hover td{
-  background-color: $old-yellow;
+  background-color: $geogem-yellow;
 }
 
 .schools-table {
@@ -524,13 +522,13 @@ $geogem-yellow: #FFDC00;
 }
 
 input[type="radio"]:checked + label {
-    border-color: old-aqua;
+    border-color: $geogem-aqua;
 	border-style: solid;
 	border-width:3px;
     	
-    -webkit-box-shadow: 0px 0px 7px $old-lightblue;
-    -moz-box-shadow: 0px 0px 7px $old-lightblue;
-    box-shadow: 0px 0px 7px $old-lightblue;
+    -webkit-box-shadow: 0px 0px 7px $geogem-aqua;
+    -moz-box-shadow: 0px 0px 7px $geogem-aqua;
+    box-shadow: 0px 0px 7px $geogem-aqua;
 }
 
 .row-offcanvas {
@@ -648,28 +646,6 @@ input[type="radio"]:checked + label {
 }
 
 /*********************************************************
-*  LOGIN STYLING
-*********************************************************/
-
-.login-row {
-	margin-top: 7%;
-}
-
-.login-col {
-	background-color: rgba(36,88,183,0.2);
-	border-radius: 10px;
-	border: 1px solid $navbar-blue;
-}
-
-.login-header-text {
-	font-family: "Rubik", sans-serif;
-	font-size: 3.0em;
-	text-align: center;
-	padding-right: 20px;
-	color: #444444;
-}
-
-/*********************************************************
 *  SESSION SIDEBAR STYLING
 *  W3 Schools Tutorial: How TO - Side Navigation
 *  https://www.w3schools.com/howto/howto_js_sidenav.asp
@@ -707,7 +683,7 @@ input[type="radio"]:checked + label {
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover, .offcanvas a:focus{
-    color: old-aqua;
+    color: $geogem-aqua;
 }
 
 /* Added styling for text */
