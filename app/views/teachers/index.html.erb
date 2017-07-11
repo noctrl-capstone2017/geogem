@@ -42,10 +42,8 @@
 				<!-- Teacher icon section-->
 				<tr data-link=<%= edit_teacher_path(teacher.id) %>>
 					<td>
-						<div class="table-sq i-plum" title="<%= teacher.user_name %>">
-							<div class="table-sq i-<%= teacher.color%>">
-									<i class="fa fa-lg fa-fw fa-<%= teacher.icon%> table-icon"></i>
-							</div>
+						<div class="table-sq i-<%= teacher.color%>" title="<%= teacher.user_name %>">
+							<span class="fa fa-lg fa-fw fa-<%= teacher.icon%> table-icon"></span>
 						</div>
 					</td>
 					<!-- Teacher info section -->
