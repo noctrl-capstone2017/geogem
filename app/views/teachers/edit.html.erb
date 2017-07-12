@@ -28,7 +28,7 @@
 		<div class="col-xs-2 col-xs-offset-1 text-center" title="Change your password">
 			<div class="action-div">
 				<%= link_to '/password' do %>
-					<%= render 'action_icon', icon_color: "action-icon-black", fa_icon: "fa-key" %>
+					<%= render 'action_icon', icon_color: "action-icon-blue", fa_icon: "fa-key" %>
 				<% end %>
 			</div>
 			<%= link_to '/password' do %>Change password<% end %>
@@ -42,7 +42,7 @@
 		<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit teacher's student roster">
 			<div class="action-div">
 				<%= link_to teacher_path(@teacher.id) do %>
-					<%= render 'action_icon', icon_color: "action-icon-lightslategray", fa_icon: "fa-child" %>
+					<%= render 'action_icon', icon_color: "action-icon-yelloworange", fa_icon: "fa-child" %>
 				<% end %>
 			</div>
 			<%= link_to teacher_path(@teacher.id) do %>Student roster<% end %>
@@ -52,7 +52,7 @@
 		<div class="col-xs-2 text-center" title="View/edit teacher's login settings">
 			<div class="action-div">
 				<%= link_to 'login_settings' do %>
-					<%= render 'action_icon', icon_color: "action-icon-darkslategray", fa_icon: "fa-gear" %>
+					<%= render 'action_icon', icon_color: "action-icon-gray", fa_icon: "fa-gear" %>
 				<% end %>
 			</div>
 			<%= link_to 'login_settings' do %>Login settings<% end %>
