@@ -6,38 +6,7 @@
 			:locals => { 	:title => "Super dashboard", 
 										:subtitle => "exercise your GeoGem superpowers, #{ super_teacher.full_name }" } %>
 
-<!-- Super powers icons are first: all schools and super report -->
 <div class="row">
-	<div class="col-xs-5 col-xs-offset-1">
-			<h4>Super powers</h4>
-	</div>
-</div>
-
-<div class="row first-content-row" >
-
-	<!-- All schools action icon -->
-	<div class="col-xs-2 col-xs-offset-2 text-center" title="View/edit schools">
-		<div class="action-div">
-			<%= link_to schools_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-gray", fa_icon: "fa-home" %>
-			<% end %>
-		</div>
-		<%= link_to schools_path do %>All schools<% end %>
-	</div>
-
-	<!-- Super report action icon -->
-	<div class="col-xs-2 text-center" title="GeoGem stats for Super">
-		<div class="action-div">
-			<%= link_to super_report_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-darkslategray", fa_icon: "fa-file-text" %>
-			<% end %>
-		</div>
-		<%= link_to super_report_path do %>Super report<% end %>
-	</div>
-
-</div>   <!-- first row of icons -->
-
-<div class="row first-content-row">
 	<div class="col-xs-5 col-xs-offset-1">
 		<h4>Focus school</h4>
 	</div>
@@ -85,8 +54,6 @@
 	</div>   <!-- col -->
 </div>  <!-- row -->
 
-<br>
-
 <!-- action icons, row 2 -->
 <div class="row action-icon-row" >
 
@@ -94,32 +61,62 @@
 	<div class="col-xs-2 col-xs-offset-2 text-center" title="Backup data of Super focus school">
 		<div class="action-div">
 			<%= link_to school_backup_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-lightslategray", fa_icon: "fa-floppy-o" %>
+				<%= render 'action_icon', icon_color: "action-icon-lightblue", fa_icon: "fa-floppy-o" %>
 			<% end %>
 		</div>
 		<%= link_to school_backup_path do %>Backup school<% end %>
 	</div>
 
-
 	<!-- Suspend school icon -->
 	<div class="col-xs-2 text-center" title="Suspend all teachers at Super focus school">
 		<div class="action-div">
 			<%= link_to school_suspend_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-black", fa_icon: "fa-bomb" %>
+				<%= render 'action_icon', icon_color: "action-icon-darkgray", fa_icon: "fa-bomb" %>
 			<% end %>
 		</div>
 		<%= link_to school_suspend_path do %>Suspend school<% end %>
 	</div>
 
-
 	<!-- Retore school icon -->
 	<div class="col-xs-2 text-center" title="Restore teacher logins at Super focus school">
 		<div class="action-div">
 			<%= link_to school_restore_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-dimgray", fa_icon: "fa-undo" %>
+				<%= render 'action_icon', icon_color: "action-icon-yelloworange", fa_icon: "fa-undo" %>
 			<% end %>
 		</div>
 		<%= link_to school_restore_path do %>Restore school<% end %>
 	</div>
-
+	
 </div>   <!-- 2nd row of icons -->
+
+<!-- Super powers icons are first: all schools and super report -->
+<div class="row">
+	<div class="col-xs-5 col-xs-offset-1">
+		<br>
+		<h4>Super powers</h4>
+	</div>
+</div>
+
+<div class="row first-content-row" >
+
+	<!-- All schools action icon -->
+	<div class="col-xs-2 col-xs-offset-2 text-center" title="View/edit schools">
+		<div class="action-div">
+			<%= link_to schools_path do %>
+				<%= render 'action_icon', icon_color: "action-icon-blue", fa_icon: "fa-home" %>
+			<% end %>
+		</div>
+		<%= link_to schools_path do %>All schools<% end %>
+	</div>
+
+	<!-- Super report action icon -->
+	<div class="col-xs-2 text-center" title="GeoGem stats for Super">
+		<div class="action-div">
+			<%= link_to super_report_path do %>
+				<%= render 'action_icon', icon_color: "action-icon-gray", fa_icon: "fa-file-text" %>
+			<% end %>
+		</div>
+		<%= link_to super_report_path do %>Super report<% end %>
+	</div>
+
+</div>   <!-- first row of icons -->

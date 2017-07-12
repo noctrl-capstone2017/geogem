@@ -25,7 +25,7 @@
 	<div class="col-xs-2 text-center" title="Report basic lists at school, <%= @school.full_name %>">
 		<div class="action-div">
 			<%= link_to admin_report_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-darkslategray", fa_icon: "fa-file-text-o" %>
+				<%= render 'action_icon', icon_color: "action-icon-darkgray", fa_icon: "fa-file-text-o" %>
 			<% end %>
 		</div>
 		<%= link_to admin_report_path do %>Admin report<% end %>
@@ -39,7 +39,7 @@
 	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit all students">
 		<div class="action-div">
 			<%= link_to students_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-dimgray", fa_icon: "fa-child" %>
+				<%= render 'action_icon', icon_color: "action-icon-lightblue", fa_icon: "fa-child" %>
 			<% end %>
 		</div>
 		<%= link_to students_path do %>All Students<% end %>
@@ -49,7 +49,7 @@
 	<div class="col-xs-2 text-center" title="View/edit all teachers">
 		<div class="action-div">
 			<%= link_to teachers_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-lightslategray", fa_icon: "fa-apple" %>
+				<%= render 'action_icon', icon_color: "action-icon-yelloworange", fa_icon: "fa-apple" %>
 			<% end %>
 		</div>
 		<%= link_to teachers_path do %>All Teachers<% end %>
@@ -59,7 +59,7 @@
 	<div class="col-xs-2 text-center" title="View/edit all behavior squares">
 		<div class="action-div">
 			<%= link_to squares_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-black", fa_icon: "fa-square-o" %>
+				<%= render 'action_icon', icon_color: "action-icon-gray", fa_icon: "fa-square-o" %>
 			<% end %>
 		</div>
 		<%= link_to squares_path do %>All Squares<% end %>

@@ -42,7 +42,12 @@ class SchoolsController < ApplicationController
     @school = School.find(params[:id])
     if @school.update(school_params)
       flash[ :success] = "School update successful, #{ @school.full_name }"
-      redirect_to :schools
+      redirect_to admin_path
+      # if is_super?
+      #   redirect_to schools_path
+      # else
+      #  redirect_to admin_path
+      # end
     else
       render :edit
     end

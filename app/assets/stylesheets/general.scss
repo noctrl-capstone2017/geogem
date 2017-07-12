@@ -2,39 +2,28 @@
 @import "bootstrap";
 
 @charset "UTF-8";
-/***********************************************************
-* General CSS Stylesheet Document 
-* Written by: Debra Jensen
-************************************************************/
+
+// Author: Debra Jensen
+
 
 /*********************************************************
-*  TOP-LEVEL STYLING
-*	some of the most important stuff in the system:
-* main font, background image, content divs, etc.
-*********************************************************/
+ * TOP-LEVEL
+ * Some of the most important stuff in the system:
+ * main font choices, bg image, content divs, align, etc.
+ *********************************************************/
 
 @import url('https://fonts.googleapis.com/css?family=Hind|Rubik');
 
-h1, h2, h3, h4, h5, h6
-{
-	font-family: "Rubik", sans-serif;
-}
+h1, h2, h3, h4, h5, h6 { font-family: "Rubik", sans-serif; }
 
-p, a
-{
-	font-family:"Hind", sans-serif;
-}
+p, a { font-family:"Hind", sans-serif; }
 
 // this background image is the GEO in GeoGem. (smile)
-body 
-{
-	background: lightgray url(geometry.png) repeat ; 
-}
+body { background: lightgray url(geometry.png) repeat ; }
 
-// KEY- all content within a white background
-.content-col
-{
-	background-color: rgba(255,255,255,0.8);
+// KEY- all content happens within a white background
+.content-col {
+	background-color: rgba(255,255,255,0.8);		// white, a little transparent
 	border-radius: 10px;
 	padding-bottom: 2%;
 }
@@ -43,18 +32,31 @@ body
 	margin-left: 20px;
 }
 
+// Align two columns or divs, use on a row div
+// Source: http://stackoverflow.com/questions/20547819/vertical-align-with-bootstrap-3
+.vertical-align { display: flex; align-items: center; }
+
+.page-header .h1 { padding-left: 100px; }
+.geogem-page-header { margin-bottom: 40px; }
+
+.first-content-row { padding-top: 20px; }
+.action-icon-row { padding-top: 40px; }
+.action-buttons-row { padding-top: 40px; }
+
+
 /*********************************************************
-* COLORS
-* Variables and css for colors used in GeoGem CSS
-* Two important choices here.
-* 1) Basic color palette for system things like navbar and login is 
-* blue and (pretty) boring, because there's a lot of color in our icons. 
-* Source: http://www.colorcombos.com/color-schemes/7133/ColorCombo7133.html
-* 
-* 2) Top 10 fave colors in U.S. used for all icons: school, student, teacher, 
-* square, action, help, etc. Source: http://clrs.cc/
-*********************************************************/
-/* Basic system color scheme for system things: navbar, login, action icons, etc */
+ * COLORS
+ * Variables and css for colors used in GeoGem CSS
+ * Two important choices here:
+ * 1) Basic color scheme for system things like navbar and login is 
+ * blue and (pretty) boring, because there's a lot of color in our icons. 
+ * Source: http://www.colorcombos.com/color-schemes/7133/ColorCombo7133.html
+ * 
+ * 2) Top 10 fave colors in U.S. used for all icons: school, student, teacher, 
+ * square, action, help, etc. Source: http://clrs.cc/
+ *********************************************************/
+
+// color scheme for system things: navbar, login, action icons, etc
 $scheme-blue: #206BA4;					// matisse blue
 $scheme-lightblue: #54A4DE;			// havelock blue
 $scheme-lighterblue: #BBD9EE;		// spindle blue
@@ -63,19 +65,19 @@ $scheme-yelloworange: #FFAB35;	// cool!
 $scheme-gray: #C0C0C0;
 $scheme-darkgray: #666666;
 
-/* Top ten colors used for user icons */
+// top ten colors used for user icons
 $geogem-aqua: #7FDBFF;
 $geogem-black: #111111;
 $geogem-blue: #0074D9;
 $geogem-gray: #AAAAAA;
 $geogem-green: #2ECC40;
 $geogem-orange: #FF851B;
-$geogem-pink: hotpink;   /* or #F012BE ? */
+$geogem-pink: hotpink;
 $geogem-purple: #B10DC9;
-$geogem-red: red;   /* is #FF4136 better? */
+$geogem-red: red;				// my other choice was #FF4136
 $geogem-yellow: #FFDC00;
 
-/* background colors */
+// background colors
 .bg-aqua { background-color: $geogem-aqua; }
 .bg-black { background-color: $geogem-black; }
 .bg-blue { background-color: $geogem-blue; }
@@ -87,7 +89,7 @@ $geogem-yellow: #FFDC00;
 .bg-red { background-color: $geogem-red; }
 .bg-yellow { background-color: $geogem-yellow; }
 
-/* foreground colors */
+// foreground colors
 .color-aqua { color: $geogem-aqua; }
 .color-black { color: $geogem-black; }
 .color-blue { color: $geogem-blue; }
@@ -99,7 +101,7 @@ $geogem-yellow: #FFDC00;
 .color-red { color: $geogem-red; }
 .color-yellow { color: $geogem-yellow; }
 
-/* icon colors */
+// icon colors
 .i-aqua { background-color: $geogem-aqua; }
 .i-black { background-color: $geogem-black; }
 .i-blue { background-color: $geogem-blue; }
@@ -111,9 +113,10 @@ $geogem-yellow: #FFDC00;
 .i-red { background-color: $geogem-red; }
 .i-yellow { background-color: $geogem-yellow; }
 
+
 /*********************************************************
-*  NAVBAR STYLING - use the base color scheme!
-*********************************************************/
+ *  NAVBAR + LOGIN + LOGOUT - use system color scheme!
+ *********************************************************/
 .navbar { background: $scheme-blue; } 		// navbar bg color
 .navbar a { color: white; } 							// navbar text color
 .navbar .brand, .navbar .nav > li > a:hover, .navbar-header > a:hover 
@@ -122,21 +125,15 @@ $geogem-yellow: #FFDC00;
 	background-color: $scheme-lightblue;		// navbar hover color
 }
 
-
-/*********************************************************
-*  LOGIN STYLING - use the basic color scheme!
-*********************************************************/
 $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 
 .login-row { margin-top: 7%; }
-
 .login-col {
 	background-color: $scheme-blue-seethru;
 	border-radius: 10px;
 	border: 1px solid $scheme-gray;
 	&:hover { box-shadow: 0 0 16px $scheme-gray; }
 }
-
 .login-header-text {
 	font-family: "Rubik", sans-serif;
 	font-size: 3.0em;
@@ -144,27 +141,18 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	padding-right: 20px;
 	color: #444444;
 }
+// custom size for the login submit button, author: Steven R
+.login-button-size { height: 20%; width: 60%; }
+
+.logout-art { padding-top: 2%; }
+.logout-art-text { font-size: 1.4em; padding-top: 20px; }
+
 
 /*********************************************************
-*  ALIGNMENT
-* Handy for aligning two columns or divs. Use on a row div
-* http://stackoverflow.com/questions/20547819/vertical-align-with-bootstrap-3
-*********************************************************/
-.vertical-align {
-    display: flex;
-    align-items: center;
-}
+ * ICONS - Home, Super, Admin, etc
+ *********************************************************/
 
-.page-header .h1 { padding-left: 100px; }
-.geogem-page-header { margin-bottom: 40px; }
-
-/*********************************************************
-	ICON STYLING
-	Icons are organized by page and action: 
-	Home, Action (Super and Admin pages)
-*********************************************************/
-
-/* Home page - student icons */
+// home page has big student icons
 .home-icon {
 	height: 8em;
 	width: 8em;
@@ -177,9 +165,9 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	color: white;
 	border: 4px solid white;
 
-	&:hover {	color: lightgray; }
+	&:hover {	color: lightgray; } 		// hover means icon symbol goes gray
 }
-
+// home icons in 10 GeoGem colors, hover adds glow
 .home-icon-aqua {
 	background: $geogem-aqua;
 	&:hover { box-shadow: 0 0 16px $geogem-aqua; }
@@ -196,6 +184,22 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	background: $geogem-gray;
 	&:hover { box-shadow: 0 0 16px $geogem-aqua; }
 }
+.home-icon-green {
+	background: $geogem-green;
+	&:hover { box-shadow: 0 0 16px $geogem-green; }
+}
+.home-icon-orange {
+	background: $geogem-orange;
+	&:hover { box-shadow: 0 0 16px $geogem-orange; }
+}
+.home-icon-pink {
+	background: $geogem-pink;
+	&:hover { box-shadow: 0 0 16px $geogem-pink; }
+}
+.home-icon-purple {
+	background: $geogem-purple;
+	&:hover { box-shadow: 0 0 16px $geogem-purple; }
+}
 .home-icon-red {
 	background: $geogem-red;
 	&:hover { box-shadow: 0 0 16px $geogem-red; }
@@ -205,7 +209,7 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	&:hover { box-shadow: 0 0 16px $geogem-yellow; }
 }
 
-/* Action icons used in Super and Admin pages */
+// action icons are used in Super, Admin, Teacher and Student pages
 .action-icon-square {
 	height: 96px;
 	width: 96px;
@@ -221,57 +225,90 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	color: white;
 	&:hover { color: lightgray; }
 }
-
 .action-div a:hover { text-decoration: none; }
 
-/* Action icons are shades of gray. */
-/* Source: https://en.wikipedia.org/wiki/Shades_of_gray */
+// each action icons in system color scheme
+.action-icon-blue {
+	background: $scheme-blue;
+	&:hover { box-shadow: 0 0 16px $scheme-blue; }
+}
+.action-icon-lightblue {
+	background: $scheme-lightblue;
+	&:hover { box-shadow: 0 0 16px $scheme-lightblue; }
+}
+.action-icon-lighterblue {
+	background: $scheme-lighterblue;
+	&:hover { box-shadow: 0 0 16px $scheme-lighterblue; }
+}
+.action-icon-paleblue {
+	background: $scheme-paleblue;
+	&:hover { box-shadow: 0 0 16px $scheme-blue; }
+}
+.action-icon-yelloworange {
+	background: $scheme-yelloworange;
+	&:hover { box-shadow: 0 0 16px $scheme-yelloworange; }
+}
 .action-icon-gray {
-	background: gray;
-	&:hover { box-shadow: 0 0 16px $geogem-aqua; }
+	background: $scheme-gray;
+	&:hover { box-shadow: 0 0 16px $scheme-yelloworange; }
 }
-.action-icon-dimgray {
-	background: dimgray;
-	&:hover { box-shadow: 0 0 16px $geogem-red; }
+.action-icon-darkgray {
+	background: $scheme-darkgray;
+	&:hover { box-shadow: 0 0 16px $scheme-lightblue; }
 }
-.action-icon-lightslategray {
-	background: lightslategray;
-	&:hover { box-shadow: 0 0 16px $geogem-blue; }
-}
-.action-icon-darkslategray {
-	background: darkslategray;
-	&:hover { box-shadow: 0 0 16px $geogem-yellow; }
-}
-.action-icon-black {
-	background: black;
-	&:hover { box-shadow: 0 0 16px $geogem-aqua; }
-}
+// this neutral action icon, gets its color from inside the view
 .action-icon-neutral:hover {
 	box-shadow: 0 0 16px gray;
 }
 
+// help icons use the autism awareness ribbon colors
 .help-icon-blue {
 	background: $geogem-blue;
 	&:hover { box-shadow: 0 0 16px $geogem-blue; }
 }
-
 .help-icon-lightblue {
 	background: $geogem-aqua;
 	&:hover { box-shadow: 0 0 16px $geogem-aqua; }
 }
-
 .help-icon-red {
 	background: $geogem-red;
 	&:hover { box-shadow: 0 0 16px $geogem-red; }
 }
-
 .help-icon-yellow {
 	background: $geogem-yellow;
 	&:hover { box-shadow: 0 0 16px $geogem-yellow; }
 }
 
 
-/*Big square used on home and session screen*/
+/*********************************************************
+ *  HELP - help page formatting
+ *********************************************************/
+.help-header { padding-top: 60px; padding-bottom: 20px; }
+.help-qa-letter { font-size: 1.2em; font-weight: bold; color: $scheme-darkgray; }
+.help-answer-para { margin-left: 5%; margin-right: 5%; }
+.help-line { 
+	width: 90%;
+	border-top: 1px dotted $scheme-gray; 
+	padding-bottom: 20px; 
+	margin-right: 100px;
+}
+
+.help-small-icon-square {
+	height: 96px;
+	width: 96px;
+	display: inline;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	border-radius: 4px;
+}
+
+
+/**********************************************/
+/** BILL - Still need to cleanup below here! **/
+/**********************************************/
+
+/* Big square used on home and session screen*/
 .square
 {
 	height: 8em;
@@ -423,10 +460,6 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	border-radius: 10px;
 }
 
-.header-icon {
-	color: white;
-}
-
 /* Action squares appear at the bottom of the page and take user to another page */
 .action-sq {
 	height: 6em;
@@ -442,30 +475,6 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	-moz-transform: scale(1.1);
 	-o-transform:scale(1.1);
 	transform:scale(1.1);
-}
-
-
-.logout-art {
-	padding-top: 2%;
-}
-.logout-art-text {
-	font-size: 1.4em;
-	padding-top: 20px;
-}
-.first-content-row {
-	padding-top: 20px;
-}
-
-/*********************************************************
-*  ACTION ROW SPACING
-*  Spacing and buttons
-*********************************************************/
-
-.action-icon-row {
-	padding-top: 40px;
-}
-.action-buttons-row {
-	padding-top: 40px;
 }
 
 /*********************************************************
@@ -694,12 +703,6 @@ input[type="radio"]:checked + label {
 }
 
 
-/* Custom styling for the submit button on the login page  */
-/* Author Steven Rosyter */
-.custom-submit-width {
-	height: 20%;
-	width: 70%;
-}
 
 /* Styling for form errors that display at the top of forms
 when submitted with errors */
@@ -719,25 +722,3 @@ when submitted with errors */
   }
 }
 
-/*********************************************************
- *  HELP STYLING -used in help page
- *********************************************************/
-.help-header { padding-top: 60px; padding-bottom: 20px; }
-.help-qa-letter { font-size: 1.2em; font-weight: bold; color: $scheme-darkgray; }
-.help-answer-para { margin-left: 5%; margin-right: 5%; }
-.help-line { 
-	width: 90%;
-	border-top: 1px dotted $scheme-gray; 
-	padding-bottom: 20px; 
-	margin-right: 100px;
-}
-
-.help-small-icon-square {
-	height: 96px;
-	width: 96px;
-	display: inline;
-	align-items: center;
-	justify-content: center;
-	color: white;
-	border-radius: 4px;
-}
