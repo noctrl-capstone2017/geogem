@@ -70,7 +70,7 @@ $geogem-blue: #0074D9;
 $geogem-gray: #AAAAAA;
 $geogem-green: #2ECC40;
 $geogem-orange: #FF851B;
-$geogem-pink: #F012BE;   /* or #F012BE ? */
+$geogem-pink: hotpink;   /* or #F012BE ? */
 $geogem-purple: #B10DC9;
 $geogem-red: red;   /* is #FF4136 better? */
 $geogem-yellow: #FFDC00;
@@ -119,8 +119,9 @@ $geogem-yellow: #FFDC00;
 .navbar .brand, .navbar .nav > li > a:hover, .navbar-header > a:hover 
 {
 	color: white;
-	background-color: $scheme-lightblue;		// hover color
+	background-color: $scheme-lightblue;		// navbar hover color
 }
+
 
 /*********************************************************
 *  LOGIN STYLING - use the basic color scheme!
@@ -143,7 +144,6 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	padding-right: 20px;
 	color: #444444;
 }
-
 
 /*********************************************************
 *  ALIGNMENT
@@ -504,8 +504,8 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 *  TABLE STYLING
 *  Used for admin screens
 *********************************************************/
-.table-striped > tbody > tr:hover td{
-  background-color: $geogem-yellow;
+.table-striped > tbody > tr:hover td {
+  background-color: $scheme-paleblue;
 }
 
 .schools-table {
@@ -585,6 +585,7 @@ input[type="radio"]:checked + label {
 	margin-right: 10px;
 	float:left;
 }
+
 /***********************************************************
 * BEHAVIOR SQUARES
 ************************************************************/
@@ -615,7 +616,6 @@ input[type="radio"]:checked + label {
 
 .counter
 {
-
   background-color: Transparent;
   background-repeat:no-repeat;
   border: none;
@@ -623,26 +623,6 @@ input[type="radio"]:checked + label {
   overflow: hidden;
   outline:none;
 
-}
-
-/*Note from Carolyn C- took this from schools.scss*/
-
-/*********************************************************
-*  TEXT STYLING
-*********************************************************/
-.listText span
-{
-	font-size: 1em;
-	color: black;
-}
-
-/*********************************************************
-*  ICON STYLING
-*********************************************************/
-
-.school-icon
-{
-	color: white;
 }
 
 /*********************************************************
@@ -743,9 +723,14 @@ when submitted with errors */
  *  HELP STYLING -used in help page
  *********************************************************/
 .help-header { padding-top: 60px; padding-bottom: 20px; }
-.help-qa-letter { font-size: 1.2em; font-weight: bold; color: gray; }
-.help-line { width: 90%; border-top: 1px dotted lightgray; padding-bottom: 20px; margin-right: 100px;}
+.help-qa-letter { font-size: 1.2em; font-weight: bold; color: $scheme-darkgray; }
 .help-answer-para { margin-left: 5%; margin-right: 5%; }
+.help-line { 
+	width: 90%;
+	border-top: 1px dotted $scheme-gray; 
+	padding-bottom: 20px; 
+	margin-right: 100px;
+}
 
 .help-small-icon-square {
 	height: 96px;

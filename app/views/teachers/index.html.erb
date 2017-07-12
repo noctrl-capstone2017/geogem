@@ -47,14 +47,14 @@
 						</div>
 					</td>
 					<!-- Teacher info section -->
-					<td><p class="listText"><%= teacher.user_name %></p></td>
-					<td><p class="listText"><span><%= teacher.screen_name %></span></p></td>
-					<td><p class="listText"><span><%= teacher.powers %></span></p></td>
+					<td><p><%= teacher.user_name %></p></td>
+					<td><p><span><%= teacher.screen_name %></span></p></td>
+					<td><p><span><%= teacher.powers %></span></p></td>
 
           <!-- Teacher last-login area -->
 					<!-- The reason (suspended) isn't just added afterwards is so that it
 					     stays in the same line. -->
-					<td><p class="listText"><span> 
+					<td><p><span> 
 					<!--Last Login. If the user has never logged in, list Never.-->
 						<% if teacher.last_login.nil? %>
 							Never
@@ -71,7 +71,7 @@
 							<% end %>
 						<% end %>
 					</span></p></td>
-					<td><p class="listText"><span></span></p>
+					<td><p><span></span></p>
 					</td>
 				</tr>
 

@@ -33,8 +33,8 @@
 				 	<span class="fa fa-lg fa-fw fa-<%= students.icon %> table-icon"></span>
 				</div>
 			</td>	
-			<td><p class="listText"><span> <%= students.screen_name %></span> </p></td>
-			<td><p class="listText"><span> <%= students.full_name %></span> </p></td>
+			<td><p><span> <%= students.screen_name %></span> </p></td>
+			<td><p><span> <%= students.full_name %></span> </p></td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -67,10 +67,10 @@
 					  <i class="fa fa-lg fa-fw fa-<%= teacher.icon %> table-icon"></i>  <!--Generate Teacher Icon-->
 				  </div>
 				</td>	
-				<td><p class="listText"><span> <%= teacher.screen_name %></span> </p></td>
-				<td><p class="listText"><span> <%= teacher.full_name %></span> </p></td>
-				<td><p class="listText"><span> <%= teacher.email %></span> </p></td>
-				<td><p class="listText"><span> <%= teacher.last_login %></span> </p></td>
+				<td><p><span> <%= teacher.screen_name %></span> </p></td>
+				<td><p><span> <%= teacher.full_name %></span> </p></td>
+				<td><p><span> <%= teacher.email %></span> </p></td>
+				<td><p><span> <%= teacher.last_login %></span> </p></td>
 			</tr>
 		<% end %>
 	</tbody>
@@ -103,20 +103,20 @@
 						<span class="fa fa-2x fa-fw fa-square-o teacher-icon"></span>
 					</div>
 				</td>	
-				<td><p class="listText"><span> <%= square.screen_name %></span> </p></td>
-				<td><p class="listText"><span> <%= square.full_name %></span> </p></td>
+				<td><p><span> <%= square.screen_name %></span> </p></td>
+				<td><p><span> <%= square.full_name %></span> </p></td>
 
 				<!-- If statement for translating square type int into string KM-->
 				<td>
 					<% if square.tracking_type == 1 %>
-						<p class="listText">Duration</p>
+						<p>Duration</p>
 					<% elsif square.tracking_type == 2 %>
-						<p class="listText">Frequency</p>
+						<p>Frequency</p>
 					<% else %>
-						<p class="listText">Interval</p>
+						<p>Interval</p>
 					<% end %>
 				</td>
-				<td><p class="listText"><span> <%= square.description %></span> </p></td>
+				<td><p><span> <%= square.description %></span> </p></td>
 			</tr>
 		<% end %>
 	</tbody>

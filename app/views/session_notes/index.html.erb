@@ -63,10 +63,10 @@
 	  <%= will_paginate%>
 			<% @session_notes.each do |session_note| %>
 				<tr data-link=<%= edit_session_note_path(session_note.note) %>>
-					<td><p class="listText"><%= session_note.session_id %></p></td>
-					<td><p class="listText"><%= truncate(session_note.note, :length => 80)%></p></td>
-					<td><p class="listText"><%= session_note.created_at %></p></td>
-					<td><p class="listText"><span></span></p></td>
+					<td><p><%= session_note.session_id %></p></td>
+					<td><p><%= truncate(session_note.note, :length => 80)%></p></td>
+					<td><p><%= session_note.created_at %></p></td>
+					<td><p><span></span></p></td>
 				</tr>
 			<% end %>
 		<%= will_paginate %>
