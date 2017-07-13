@@ -20,25 +20,25 @@
 <table class="table table-striped table-hover table-responsive students-table">
 	<thead>
 		<tr>
-			<th>Student Icon</th>
+			<th>Icon</th>
 			<th>Student ID</th>
 			<th>Full Name</th>
 		</tr>
 	</thead>
 	<tbody>
-		<% @students.each do |students| %>
-		<tr data-link="<%= edit_student_path(students.id) %>">
+		<% @students.each do |each_student| %>
+		<tr data-link="<%= edit_student_path(each_student.id) %>">
 			<td>
-				<div class="table-sq i-<%= students.color %>">
-				 	<span class="fa fa-lg fa-fw fa-<%= students.icon %> table-icon"></span>
+				<div class="table-sq <%= icon_color(each_student) %>">
+				 	<span class="fa fa-lg fa-fw <%= fa_icon(each_student) %> table-icon"></span>
 				</div>
 			</td>	
-			<td><p><span> <%= students.screen_name %></span> </p></td>
-			<td><p><span> <%= students.full_name %></span> </p></td>
+			<td><p><span> <%= each_student.screen_name %></span> </p></td>
+			<td><p><span> <%= each_student.full_name %></span> </p></td>
 		</tr>
 		<% end %>
 	</tbody>
-</table>   <!-- end students table -->
+</table>   <!-- students table -->
 
 <br><hr><br>
 
@@ -52,29 +52,29 @@
 <table class="table table-striped table-hover table-responsive teachers-table">
  	<thead>
  		<tr>
- 			<th>Teacher Icon</th>
-			<th>Teacher ID</th>
+ 			<th>Icon</th>
+			<th>ID</th>
 			<th>Full Name</th>
 			<th>Contact Information</th>
 			<th>Last Login</th>
 	</tr>
 	</thead>
 	<tbody>
-		<% @teachers.each do |teacher| %>
-			<tr data-link="<%= edit_teacher_path(teacher.id) %>">
+		<% @teachers.each do |each_teacher| %>
+			<tr data-link="<%= edit_teacher_path(each_teacher.id) %>">
 				<td>
-				  <div class="table-sq i-<%= teacher.color %>">                 <!--Generate Teacher Color-->
-					  <i class="fa fa-lg fa-fw fa-<%= teacher.icon %> table-icon"></i>  <!--Generate Teacher Icon-->
+				  <div class="table-sq <%= icon_color(each_teacher) %>">
+					  <span class="fa fa-lg fa-fw <%= fa_icon(each_teacher) %> table-icon"></span>
 				  </div>
 				</td>	
-				<td><p><span> <%= teacher.screen_name %></span> </p></td>
-				<td><p><span> <%= teacher.full_name %></span> </p></td>
-				<td><p><span> <%= teacher.email %></span> </p></td>
-				<td><p><span> <%= teacher.last_login %></span> </p></td>
+				<td><p><span> <%= each_teacher.screen_name %></span> </p></td>
+				<td><p><span> <%= each_teacher.full_name %></span> </p></td>
+				<td><p><span> <%= each_teacher.email %></span> </p></td>
+				<td><p><span> <%= each_teacher.last_login %></span> </p></td>
 			</tr>
 		<% end %>
 	</tbody>
-</table>   <!-- end teachers table -->
+</table>   <!-- teachers table -->
 
 <br><hr><br>
 
@@ -88,39 +88,37 @@
 <table class="table table-striped table-hover table-responsive teachers-table">
  	<thead>
  		<tr>
- 			<th>Square Icon</th>
-			<th>Square ID</th>
-			<th>Square Name</th>
+ 			<th>Icon</th>
+			<th>ID</th>
 			<th>Type</th>
 			<th>Description</th>
 		</tr>
 	</thead>
 	<tbody>
-		<% @squares.each do |square| %>
-			<tr data-link="<%= edit_square_path(square.id) %>">
+		<% @squares.each do |each_square| %>
+			<tr data-link="<%= edit_square_path(each_square.id) %>">
 				<td>
-					<div class="table-sq i-<%= square.color %>">
+					<div class="table-sq <%= icon_color(each_square) %>">
 						<span class="fa fa-2x fa-fw fa-square-o teacher-icon"></span>
 					</div>
 				</td>	
-				<td><p><span> <%= square.screen_name %></span> </p></td>
-				<td><p><span> <%= square.full_name %></span> </p></td>
+				<td><p><span> <%= each_square.screen_name %></span> </p></td>
 
 				<!-- If statement for translating square type int into string KM-->
 				<td>
-					<% if square.tracking_type == 1 %>
+					<% if each_square.tracking_type == 1 %>
 						<p>Duration</p>
-					<% elsif square.tracking_type == 2 %>
+					<% elsif each_square.tracking_type == 2 %>
 						<p>Frequency</p>
 					<% else %>
 						<p>Interval</p>
 					<% end %>
 				</td>
-				<td><p><span> <%= square.description %></span> </p></td>
+				<td><p><span> <%= each_square.description %></span> </p></td>
 			</tr>
 		<% end %>
 	</tbody>
-</table>   <!-- end square table -->
+</table>   <!-- square table -->
 
 	</div>   <!-- col -->
 </div>   <!-- row -->

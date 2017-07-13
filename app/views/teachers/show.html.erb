@@ -60,8 +60,8 @@
 		<div class="row students-row">
 	<% end %>
 		<div class="col-xs-2 text-center">
-			<div class ="header-sq i-<%= student.color %> center-block">
-				<span class="fa fa-2x fa-fw fa-<%= student.icon %> student-icon "></span>
+			<div class ="header-sq <%= icon_color(student) %> center-block">
+				<span class="fa fa-2x fa-fw <%= fa_icon(student) %> student-icon "></span>
 			</div>
 				<p><span class="student-icon-text"> <%= student.full_name %> </span></p>
 		</div> <!-- col -->

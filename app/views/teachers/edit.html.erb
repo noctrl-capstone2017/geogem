@@ -9,13 +9,13 @@
 <!-- Teacher profile area -->
 <% if is_admin? %>
 	<!--If they are an admin, they have more access.-->
-	<%= render 'layouts/profile_admin_version' %>
+	<%= render 'profile_admin_version' %>
 <% end %>
 
 <% if !is_admin? %>
 	<!--If they aren't an admin, they have less access.-->
 	<!--They can still change stuff on their own page.-->
-	<%= render 'layouts/profile_teacher_version' %>
+	<%= render 'profile_teacher_version' %>
 <% end %>
 
 <!--Action Icons -->
