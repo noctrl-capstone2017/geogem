@@ -6,8 +6,8 @@
     <h2>End Session<small> - session stats for student <%= @student.screen_name%></small></h2>
   </div>
   <div class="col-xs-1">
-    <div class ="header-sq i-<%= @student.color %>">
-      <span class="fa fa-<%= @student.icon %>  fa-2x student-icon "></span>
+    <div class ="header-sq <%= icon_color(@student) %>">
+      <span class="fa <%= fa_icon(@student) %>  fa-2x student-icon "></span>
     </div>
   </div>
 </div>   <!-- page-header -->

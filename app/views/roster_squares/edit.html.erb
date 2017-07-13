@@ -10,10 +10,10 @@
 	<div class="row squares-row first-content-row">
 		<!--Link to possible solution: https://stackoverflow.com/questions/14528919/new-row-every-3-items -->
 		<!-- set the squares for the specific student-->
-	    <%@roster_squares.each do |roster_square, index|%>
+	    <% @roster_squares.each do |roster_square, index|%>
 		    <% if roster_square.student_id == @student.id %>
 		      <% square_name = set_square_name(roster_square) %>
-		    	<% square_color = set_square_color(roster_square) %>
+		      <% square_color = set_square_color(roster_square) %>
 		    	<% square_id = set_square_id(roster_square) %>
 			   	<div class="squares-row col-xs-3">
 					<a href="/squares/<%=square_id%>/edit"><div class="square i-<%= square_color %> text-center">

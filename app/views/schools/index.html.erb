@@ -34,16 +34,17 @@
 
 	<!-- This section lists all schools in the database -->
 	<tbody>
-		<% @schools.each do |school| %>
-			<tr data-link=<%= edit_school_path(school.id) %>>	 	
+		<% @schools.each do |each_school| %>
+			<tr data-link=<%= edit_school_path(each_school.id) %>>	 	
 				<td>
-					<div class="table-sq i-<%= school.color %>" title="school=<%= school.full_name %>">
-						<i class="fa fa-fw fa-2x fa-<%= school.icon %> table-icon"></i>
+					<div class="table-sq <%= icon_color(each_school) %>" 
+													title="school=<%= each_school.full_name %>" >
+						<span class="fa fa-fw fa-2x <%= fa_icon(each_school) %> table-icon"></span>
 					</div>
 				</td>
-				<td> <%= school.screen_name %> </td>
-		 		<td> <%= school.full_name %> </td>
-				<td> <%= truncate school.description, :length => 60 %> </td>
+				<td> <%= each_school.screen_name %> </td>
+		 		<td> <%= each_school.full_name %> </td>
+				<td> <%= truncate each_school.description, :length => 60 %> </td>
 			</tr>
 		<% end %>
 	</tbody>

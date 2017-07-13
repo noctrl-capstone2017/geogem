@@ -13,11 +13,13 @@ module UxHelper
   end
 
   def studentColors
-    [ "aqua", "black", "blue", "gray", "red", "yellow"]
+    allColors
+    # [ "aqua", "black", "blue", "gray", "red", "yellow"]
   end
 
   def teacherColors
-    [ "aqua", "black", "blue", "gray", "pink"]
+    allColors
+    # [ "aqua", "black", "blue", "gray", "pink"]
   end
 
   def squareColors
@@ -40,17 +42,19 @@ module UxHelper
     ["home", "building-o", "university"]
   end
 
+  # returns correct CSS for icon color
+  def icon_color( object)
+    "i-" << object.color
+  end
+
+  # returns Font Awesome css for icon
+  def fa_icon( object)
+    "fa-" << object.icon
+  end
 
   # returns correct CSS home icon tag for a student's color
   def home_icon_color( student)
     "home-icon-" << student.color
   end
-
-  # color string names for selections
-  # BILL - should these be per object: schools, teachers, etc?
-  # def colorNames
-  #   ["red", "orange", "yellow", "green", "mint", "navy", "lightblue", 
-  #         "lavender", "plum", "pink"]
-  # end
 
 end

@@ -38,25 +38,25 @@
 
   <!-- Squares Table Body -->
   <tbody>
-    <% @squares.each do |square| %>
+    <% @squares.each do |each_square| %>
     
 			<!--Make the entire line link--> 
-      <tr data-link="<%= edit_square_path(square) %>">
+      <tr data-link="<%= edit_square_path(each_square) %>">
         
         <!-- Square Color -->
         <td>
-          <div class="table-sq i-<%= square.color %>">
-				    <i class="fa fa-2x  fa-fw fa-square-o table-icon"></i>
+          <div class="table-sq <%= icon_color(each_square) %>">
+				    <i class="fa fa-2x fa-fw fa-square-o table-icon"></i>
 				  </div>
 				</td>
 				
 				<!-- Square Name -->
-        <td><%= square.screen_name %></td>
+        <td><%= each_square.screen_name %></td>
         
         <!-- If statement for translating  square type int into string -->
-        <td><% if square.tracking_type == 1 %>
+        <td><% if each_square.tracking_type == 1 %>
               <p>Duration</p>
-            <% elsif square.tracking_type == 2 %>
+            <% elsif each_square.tracking_type == 2 %>
               <p>Frequency</p>
             <% else %>
               <p>Interval</p>
@@ -64,7 +64,7 @@
         </td>
         
         <!-- Square Description -->
-        <td><%= truncate square.description, :length => 60 %></td>
+        <td><%= truncate each_square.description, :length => 60 %></td>
         
       </tr>
     <% end %>

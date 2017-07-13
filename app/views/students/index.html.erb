@@ -30,7 +30,7 @@
   <!-- Table Header -->
   <thead>
     <tr>
-      <th></th> <!-- blank for student icon -->
+      <th></th>     <!-- blank for student icon -->
       <th>ID</th>
       <th>Name</th>
       <th>Last Session</th>
@@ -39,26 +39,26 @@
 
   <!-- Table Body -->
   <tbody>
-    <% @students.each do |student| %>
+    <% @students.each do |each_student| %>
 
       <!--Make the entire line a link--> 
-      <tr data-link = "<%= edit_student_path(student) %>">
+      <tr data-link = "<%= edit_student_path(each_student) %>">
 
         <!-- Display the students symbol + color comdo --> 
         <td>
-          <div class="table-sq i-<%= student.color %>">
-            <span class="fa fa-lg fa-fw fa-<%= student.icon %> table-icon"></span>
+          <div class="table-sq <%= icon_color(each_student) %>">
+            <span class="fa fa-lg fa-fw <%= fa_icon(each_student) %> table-icon"></span>
 				  </div>
         </td>
         
         <!-- Displays the students screen name -->
-        <td><%= student.screen_name %></td>
+        <td><%= each_student.screen_name %></td>
 
         <!-- Displays the student full name -->
-        <td><%= student.full_name %></td>
+        <td><%= each_student.full_name %></td>
         
         <!-- Displays the students last ran session -->
-        <% this_session = @sessions.where(session_student: student.id).last %>
+        <% this_session = @sessions.where(session_student: each_student.id).last %>
         <% if this_session != nil %>
           <td><%= this_session.end_time %></td>
         <% else %>

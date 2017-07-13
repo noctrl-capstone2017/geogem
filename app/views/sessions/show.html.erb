@@ -25,8 +25,8 @@
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <div class="col-md-12 text-center">
-        <div class ="sq-studSesh i-<%= @student.color %> center-block">
-             <span class="fa fa-<%= @student.icon %> fa-5x student-icon center-block" style="padding-top:20%;"></span>
+        <div class ="sq-studSesh <%= icon_color(@student) %> center-block">
+             <span class="fa <%= fa_icon(@student) %> fa-5x student-icon center-block" style="padding-top:20%;"></span>
         </div>
         <h3><%= @student.full_name %></h3>
         <p id="start_time"></p>
@@ -102,8 +102,8 @@
                         <% end %>
                         <% if square.tracking_type == 1 %>
                         <div class="wrapper duration" name="<%= square.id %>">
-                            <button class="button-start square i-<%= square.color %>" id="button-start1">
-                                <div class="d-sq square i-<%= square.color %> text-center">
+                            <button class="button-start square <%= icon_color(square) %>" id="button-start1">
+                                <div class="d-sq square <%= icon_color(square) %> text-center">
                                     <div class="col-xs-12">
                                             <h4><%= square.screen_name %> </h4>
                                             <p id = "timer"><span id="minutes">00</span>:<span id="seconds">00</span></p>

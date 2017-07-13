@@ -6,7 +6,7 @@
         <h2>Analysis <small> - reports for <%= @student.full_name %> </small></h2><!--Dynamically fills in with school id -->
     </div>
     <div class="col-xs-1 center-block">
-        <div class="header-sq i-<%= @student.color %>" title="Analysis">
+        <div class="header-sq <%= icon_color(@student) %>" title="Analysis">
             <span class="fa fa-line-chart fa-3x teacher-icon"></span>
         </div>
     </div>

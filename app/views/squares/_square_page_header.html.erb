@@ -3,7 +3,8 @@
 		<h2><%=title%><small> - <%=subtitle%></small></h2>
 	</div>
 	<div class="col-xs-1">
-		<div class="header-sq i-<%= @square.color %>" title="behavioral square=<%= @square.screen_name %>" >
+		<div class="header-sq <%= icon_color(@square) %>" 
+								title="behavioral square=<%= @square.screen_name %>" >
 			<span class="fa fa-2x fa-fw fa-square-o page-header-icon"></span>
 		</div>
 	</div>
