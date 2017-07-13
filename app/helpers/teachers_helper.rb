@@ -48,4 +48,17 @@ module TeachersHelper
   def super_teacher
     Teacher.first
   end
+
+  # Returns a "smart" home message based on whether it's the teachers 
+  # first ever login or first time visiting Home page or neither
+  def home_welcome_message( teacher, first_login, first_home)
+    if first_login
+      tmp = "Welcome to Geogem, " 
+    elsif first_home
+      tmp= "Welcome back, "
+    else
+      tmp = "home page, "
+    end
+    tmp << teacher.full_name
+  end
 end

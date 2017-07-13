@@ -53,12 +53,6 @@ class Teacher < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
-  # Remembers a user in the database for use in persistent sessions.
-  def remember
-    self.remember_token = Teacher.new_token
-    update_attribute(:remember_digest, Teacher.digest(remember_token))
-  end
-  
   # Returns true if the given token matches the digest.
   def authenticated?(attribute, token)
     return false if attribute.nil?
@@ -73,6 +67,12 @@ class Teacher < ApplicationRecord
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
+
+  # Remembers a user in the database for use in persistent sessions.
+  # def remember
+  #   self.remember_token = Teacher.new_token
+  #   update_attribute(:remember_digest, Teacher.digest(remember_token))
+  # end
   
   private
 
