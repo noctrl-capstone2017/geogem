@@ -1,4 +1,4 @@
-# Author: Meagan Moore & Steven Royster
+# Authors: Meagan Moore & Steven Royster
 class LoginSessionController < ApplicationController
 
   include LoginSessionHelper
@@ -12,10 +12,7 @@ class LoginSessionController < ApplicationController
 
   # login page
   def new
-    #Edit by Kevin M:
-    #redirects to home page if already logged in
-    #Steven Royster: added the '&& && !current_teacher.suspended == true'
-    if current_teacher && !current_teacher.suspended == true
+    if current_teacher && !current_teacher.suspended
       redirect_to home_path
     end
   end
@@ -23,12 +20,15 @@ class LoginSessionController < ApplicationController
   # logs in the teacher if successful, flashes a danger if invalid log in info
   def create
     teacher = Teacher.find_by(:user_name => params[:login_session][:user_name].downcase)
-    if teacher && teacher.authenticate(params[:login_session][:password]) && !teacher.suspended == true
+    if teacher && teacher.authenticate(params[:login_session][:password]) && !teacher.suspended
       log_in teacher
+      first_ever_login =  ! teacher.last_login
       teacher.update_attribute(:last_login, Time.now)
-     # params[:login_session][:remember_me] == '1' ? remember(teacher) : forget(teacher)
-      redirect_to home_path
-      
+      if first_ever_login
+        redirect_to home_path( :first_login => true)
+      else
+        redirect_to home_path( :first_home => true)
+      end
     else
       if teacher && teacher.suspended == true
         flash.now[:danger] = 'Your account has been suspended'
@@ -38,7 +38,6 @@ class LoginSessionController < ApplicationController
         render 'new'
       end
     end
-    
   end
 
   # logout page
