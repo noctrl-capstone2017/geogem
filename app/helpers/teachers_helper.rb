@@ -51,14 +51,25 @@ module TeachersHelper
 
   # Returns a "smart" home message based on whether it's the teachers 
   # first ever login or first time visiting Home page or neither
-  def home_welcome_message( teacher, first_login, first_home)
-    if first_login
-      tmp = "Welcome to Geogem, " 
-    elsif first_home
-      tmp= "Welcome back, "
+  def home_welcome_message( teacher, first_home)
+    if first_home
+      if teacher.last_login == nil
+        "Welcome to Geogem, " << teacher.full_name
+      else 
+         # construct a nice string for last login: earlier today, yesterday, or a specific date
+        login_date = teacher.last_login.to_date
+        if login_date == Date.today
+          tmp = "earlier today"
+        elsif login_date == Date.yesterday
+          tmp = "yesterday"
+        else
+          tmp = teacher.last_login.strftime('%A %B %d')
+        end
+        "Welcome back, " << teacher.full_name << "... your last login was " << tmp << "."
+      end
     else
-      tmp = "home page, "
+      "home page, " << teacher.full_name
     end
-    tmp << teacher.full_name
   end
+
 end

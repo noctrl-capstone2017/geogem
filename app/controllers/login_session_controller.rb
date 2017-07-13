@@ -22,13 +22,8 @@ class LoginSessionController < ApplicationController
     teacher = Teacher.find_by(:user_name => params[:login_session][:user_name].downcase)
     if teacher && teacher.authenticate(params[:login_session][:password]) && !teacher.suspended
       log_in teacher
-      first_ever_login =  ! teacher.last_login
-      teacher.update_attribute(:last_login, Time.now)
-      if first_ever_login
-        redirect_to home_path( :first_login => true)
-      else
-        redirect_to home_path( :first_home => true)
-      end
+      teacher.update_attribute(:cur_login, Time.now)
+      redirect_to home_path( :first_home => true)
     else
       if teacher && teacher.suspended == true
         flash.now[:danger] = 'Your account has been suspended'
@@ -42,6 +37,10 @@ class LoginSessionController < ApplicationController
 
   # logout page
   def logout
+    # update the last login dates, erase the current session's
+    current_teacher.update_attribute(:last_login, current_teacher.cur_login)
+    current_teacher.update_attribute(:cur_login, nil)
+
     # reset super focus school to Noctrl
     current_teacher.update_attribute(:school_id, 1) if is_super?
     log_out if logged_in?
