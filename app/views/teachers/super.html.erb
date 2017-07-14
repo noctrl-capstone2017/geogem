@@ -38,9 +38,10 @@
 	    		<label class="control-label">School:</label>
 	    	</div>
 	    	<div class="col-xs-7">
-	    		<%= f.select :school_id, @schools.map{|c| [c.full_name, c.id]}, {},
-	    				{ :class => 'form-control', :style => "min-width: 240px;" } %>
-    		</div>
+	    		<%= f.select :school_id, 
+	    					@schools.order('full_name ASC').map{|c| [c.full_name, c.id]}, 
+	    					{}, { :class => 'form-control', :style => "min-width: 240px;" } %>
+				</div>
      	</div>   <!-- form group-->
     </div>   <!-- row -->
 

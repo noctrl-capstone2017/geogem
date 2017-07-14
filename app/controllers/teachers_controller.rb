@@ -1,5 +1,4 @@
-# author: Kevin M, Tommy B
-# admin methods by Dakota B; guards by Meagan Moore
+# authors: Kevin M, Tommy B; admin methods by Dakota B; guards by Meagan Moore
 class TeachersController < ApplicationController
 
   include TeachersHelper

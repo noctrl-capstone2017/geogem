@@ -54,8 +54,9 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="email">Student:</label>
 				<div class="col-sm-4">
-
-						<%= select_tag 'student_id', options_from_collection_for_select(@teacher.students, 'id', 'full_name'), {:required => true} %>
+					<%= select_tag 'student_id', 
+								options_from_collection_for_select(@teacher.students.order( 'full_name ASC'), 'id', 'full_name'), 
+								{:required => true, :class => 'form-control'} %>
 				</div>
 			</div>
 		</div>
