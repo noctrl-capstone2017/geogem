@@ -129,6 +129,7 @@ class RosterSquaresController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_roster_square
       #Sets the edit page to the specified student
+      @roster_squares = RosterSquare.all
       @student = Student.find(params[:id])
     end
 

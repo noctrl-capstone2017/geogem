@@ -64,7 +64,7 @@ Rails.application.routes.draw do
 
 
   resources :roster_students
-  resources :roster_squares
+  resources :roster_squares, only: [:edit, :index]
   resources :session_notes 
   resources :squares
   resources :schools

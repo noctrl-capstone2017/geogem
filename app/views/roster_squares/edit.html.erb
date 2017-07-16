@@ -6,31 +6,59 @@
 			:locals => { 	:title => "Student squares", 
 										:subtitle => "view/edit behavior squares for student #{ @student.full_name }"} %>
 
-	<!-- student behavior Squares -->
-	<div class="row squares-row first-content-row">
-		<!--Link to possible solution: https://stackoverflow.com/questions/14528919/new-row-every-3-items -->
-		<!-- set the squares for the specific student-->
-	    <% @roster_squares.each do |roster_square, index|%>
-		    <% if roster_square.student_id == @student.id %>
-		      <% square_name = set_square_name(roster_square) %>
-		      <% square_color = set_square_color(roster_square) %>
-		    	<% square_id = set_square_id(roster_square) %>
-			   	<div class="squares-row col-xs-3">
-					<a href="/squares/<%=square_id%>/edit"><div class="square i-<%= square_color %> text-center">
+<!-- show student behavior Squares -->
+<div class="row squares-row first-content-row">
+	<!--Link to possible solution: https://stackoverflow.com/questions/14528919/new-row-every-3-items -->
+	<!-- set the squares for the specific student-->
+  <% @roster_squares.each do |roster_square, index|%>
+    <% if roster_square.student_id == @student.id %>
+      <% square_name = set_square_name(roster_square) %>
+      <% square_color = set_square_color(roster_square) %>
+    	<% square_id = set_square_id(roster_square) %>
+	   	<div class="squares-row col-xs-3">
+				<a href="/squares/<%=square_id%>/edit">
+					<div class="square i-<%= square_color %> text-center">
 						<div class="col-xs-12">
 							<p><span><h4><%=square_name%></h4></span></p>		   		
 						</div>
-					</div><!--End Square--></a>
-				</div><!--End Col -->
-			<%end%>
+					</div>   <!-- square-->
+				</a>
+			</div>   <!-- col -->
 		<%end%>
-	</div><!--End Row -->
+	<%end%>
+</div>   <!-- row -->
 
-<!-- Calls the edit from which is the add squares select and the submit button-->
-<%= render 'form', roster_square: @roster_square %>
 
-<!--Form for delete roster square-->
-<form>			<!-- remove square row-->
+<!-- form for add square row-->
+<%= form_for(@roster_square) do |f| %>
+	<div class="row vertical-align add-rm-squares-row">
+		<div class="col-xs-1 col-xs-offset-1 text-right">
+			<span class="fa fa-plus" style="color: green;"></span>
+		</div>
+		<div class="col-xs-2 text-left">
+			<label for="addSquare"><h4>Add Square: </h4></label>
+		</div>
+		<div class="form-group col-xs-2">
+	  	<!-- Loops through checking which squares the student has in the roster of squares-->
+			<% @school_squares.each do |square| %>
+			     <% isSquare = is_student_square(square) %>
+	  	<%end%>
+			 <!-- Populates drop down for add box-->
+	  	 <%= f.select :square_id, 
+	  	 			options_for_select(@not_student_squares.map {|squares| ["#{squares.screen_name } - #{squares.full_name }", squares.id, ]}), 
+	  	 			{}, { class: "form-control", id: "addSquare" } %>
+	    <!-- This the id for the student it's just hidden-->
+	    <%= f.hidden_field :student_id, :value => @student.id%>
+		</div>
+		<div class="col-xs-2 text-center">
+		   <%= button_tag(type: 'submit', class: "btn btn-success", id: "addStudBtn") do %> <i class="fa fa-plus icon-white"></i> <% end %>
+		</div>
+	</div>   <!-- row -->
+<% end %>   <!-- add square form -->
+
+
+<!-- form for delete roster square-->
+<form>
 	<div class="row vertical-align add-rm-squares-row">
 		<div class="col-xs-1 col-xs-offset-1 text-right">
 			<span class="fa fa-minus" style="color: red;"></span>
@@ -40,11 +68,13 @@
 		</div>
 		<div class="form-group col-xs-2">
 			<!--Populates the drop down box-->
-			<%= select_tag 'remove_square_id', options_for_select(@student_squares.map {|student_square| ["#{set_square_name(student_square)} - #{set_square_desc(student_square) }", student_square.id] }), class: "form-control", id: "removeSquare"%>
+			<%= select_tag 'remove_square_id', 
+						options_for_select(@student_squares.map {|student_square| ["#{set_square_name(student_square)} - #{set_square_desc(student_square) }", student_square.id] }), 
+						class: "form-control", id: "removeSquare"%>
 		</div>
 		<div class="col-xs-2 text-center">
 			<!--Creates the button for the delete drop down box-->
 			<%= button_tag(type: 'submit', class: "btn btn-danger", id: "addStudBtn", name: "remove_square") do %> <i class="fa fa-minus icon-white"></i> <% end %>
 		</div>
-	</div><!--End row -->
-</form>
+	</div>   <!-- row -->
+</form>   <!-- rm square form -->
