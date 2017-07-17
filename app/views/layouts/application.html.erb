@@ -6,8 +6,7 @@
 		<%= favicon_link_tag %>
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> 
-		<script src="https://use.fontawesome.com/6ac119a099.js"></script>	
+		<%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
 		<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js", "chartkick" %>
 		<%= render 'layouts/shim' %> 
 	</head>
@@ -17,12 +16,11 @@
 
 		<!-- begin contain and render flashes, if any -->
 		<% if not @special_navbar_and_layout %>
+
 <div class="container">
 	<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
-<% flash.each do |message_type, message| %>
-	<br>
-	<div class="alert alert-<%= message_type %>"><%= message %></div>
-<% end %>
+		<%= render 'layouts/flash' %>
+
 		<% end %>
 
 		<%= yield %>
