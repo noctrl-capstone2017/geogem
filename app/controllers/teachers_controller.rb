@@ -138,6 +138,10 @@ class TeachersController < ApplicationController
     params[:id] = @teacher.id
   end
 
+  def profile
+    @teacher = current_teacher
+  end
+
   #author: Matthew O & Alex P
   #home page for teachers, display top 8 most used students, route to anaylze or new session
   def home

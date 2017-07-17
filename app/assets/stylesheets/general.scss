@@ -5,7 +5,6 @@
 
 // Author: Debra Jensen
 
-
 /*********************************************************
  * TOP-LEVEL
  * Some of the most important stuff in the system:
@@ -40,9 +39,11 @@ body { background: lightgray url(geometry.png) repeat ; }
 .geogem-page-header { margin-bottom: 40px; }
 
 .first-content-row { padding-top: 20px; }
+.student-icon-row { padding-top: 40px; }
 .action-icon-row { padding-top: 40px; }
 .action-buttons-row { padding-top: 40px; }
 
+.popover { max-width: 600px; } 		// control tooltip popover width
 
 /*********************************************************
  * COLORS
@@ -64,6 +65,8 @@ $scheme-paleblue: #EBF4FA;			// link water
 $scheme-yelloworange: #FFAB35;	// cool!
 $scheme-gray: #C0C0C0;
 $scheme-darkgray: #666666;
+
+.color-scheme-lightblue { color: $scheme-lightblue;}
 
 // top ten colors used for user icons
 $geogem-aqua: #7FDBFF;
