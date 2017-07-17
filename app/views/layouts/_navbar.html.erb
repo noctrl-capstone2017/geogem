@@ -28,7 +28,7 @@
 				<% end %>
 
 				<!--Check login_session_helper for more on current_teacher! Very handy. -KM-->
-				<li><%= link_to edit_teacher_path(current_teacher.id) do %><span class="fa fa-user-circle fa-fw"></span>Profile<% end %></li>
+				<li><%= link_to profile_path do %><span class="fa fa-user-circle fa-fw"></span>Profile<% end %></li>
 
 				<li><%= link_to logout_path  do %><span class="fa fa-sign-out fa-fw"></span>Logout<% end %></li>
 			</ul>

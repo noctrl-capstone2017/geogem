@@ -16,18 +16,42 @@
 		    var button = document.getElementById("student" + $(this).val());
 		     $(button).trigger('click');
 		});
+		// popover tooltip
+		$('[data-toggle="popover"]').popover({
+          container: '#popover-here',
+          content: $('#popover').html(),
+          html: true
+			})
 	});
 </script>
 
+<div id="popover-here" class="row">
+	<div class="col-xs-6 col-xs-offset-1">
+		<p style="font-size: 1.4em;">
+			Select a student and GO! &nbsp; 
+			<span class="fa fa-fw fa-lg fa-question-circle color-scheme-lightblue"
+					data-toggle="popover" data-trigger="hover" title="Student. GO!"></span>
+		</p>
+	</div>
+</div>
+
+<!-- popover tooltip is from Bootstrap; www.w3schools.com/bootstrap/bootstrap_popover.asp -->
+<div id="popover" style="display:none;">
+	<h4>Icons - <small>students you've worked with most recently.</small></h4>
+	<h4>All students - <small>the spinner below the icons lists all students.</small></h4>
+	<h4>Go! - <small>select a student and GO to begin a session or analyze past results.</small></h4>
+</div>
+
+
 <!--Student Roster Area -->
-<div id="student-roster"> 
+<div class="student-icon-row"> 
 	<!--Student display area: shows the last 8 students teacher worked with -->
 	<% @top_students.each_with_index do |student, index| %>
 		<% if index == 0 || index == 4 %>
-			<div class="row students-row">
+			<div class="row students-row col-xs-offset-1">
 		<% end %>
 
-		<div class="col-xs-3 text-center">
+		<div class="col-xs-2 text-center">
 			<input name="student_roster" id="student<%= student.id %>" value="student<%= student.id %>" style="display:none;" type="radio"/>
 			<label for="student<%= student.id %>">
 				<div class="image-radio" id="<%= student.id %>">
