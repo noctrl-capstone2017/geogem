@@ -29,29 +29,12 @@
 	</div>
 </div>
 
-<!-- Teacher screen_name field -->
-<div class="row form-row">
-	<div class="col-xs-1 col-xs-offset-1"><h4>Teacher ID: </h4></div>
-	<div class="col-xs-4 col-xs-offset-1">
-		<%= f.text_field :screen_name, class: 'form-control', :readonly => true %>
-	</div>
-</div>  
-
 <!-- Teacher Email -->
 <div class="row form-row">
 	<div class="col-sm-offset-1 col-sm-2"><h4>Email: </h4></div>
 	<div class="col-sm-4 col-sm-offset-0">
 		<%= f.email_field :email, class: 'form-control', id: 'email' %>
 	</div>
-</div>
-
-<!-- Teacher Admin -->
-<div class="row form-row vertical-align">
-	<div class="col-sm-offset-1 col-sm-2"><h4>Access: </h4></div>
-    <div class="col-sm-4 col-sm-offset-0">
-			<%= f.select :powers, ["SessionOnly", "Teacher", "Admin"], 
-			class: 'form-control'%>
-		</div>
 </div>
 
 <!-- a little extra space after name/email -->
@@ -70,14 +53,6 @@
 		<%= f.select :icon, teacherIcons.map {|icon| [icon.titleize, icon]}, {}, {class: 'form-control'} %>
 	</div>
 </div>
-
-<!-- Teacher description field -->
-<div class="row form-row">
-	<div class="col-sm-offset-1 col-sm-2"><h4>Description: </h4></div>
-	<div class="col-sm-6 col-sm-offset-0">
-		<%= f.text_field :description, class: 'form-control', id: 'Description' %>
-	</div>
-</div>  
 
 <div class="row form-row">
 	<div class="col-sm-1 col-sm-offset-1"><br></div>

@@ -2,47 +2,51 @@
 # Helpers related to UX colors and CSS 
 module UxHelper
   
-  # top 10 colors
+  # color palette is top 10 colors at www.thetoptens.com/top-ten-favorite-colors
   def allColors
     [ "aqua", "black", "blue", "gray", "green", 
         "orange", "pink", "purple", "red", "yellow" ]
   end
 
+  # schools color palette
   def schoolColors
     allColors
   end
 
+  # students color palette
   def studentColors
     allColors
-    # [ "aqua", "black", "blue", "gray", "red", "yellow"]
   end
 
+  # teachers color palette
   def teacherColors
     allColors
-    # [ "aqua", "black", "blue", "gray", "pink"]
   end
 
+  # squares color palette
   def squareColors
     allColors
   end
 
-  # student icon string names for selections, same as the fa CSS class names
+  # all icon names below MUST match Font Awesome icons: fa-<icon_name>
+
+  # student icon name choices
   def studentIcons
     ["bug", "car", "puzzle-piece", "flash", "futbol-o", "gamepad",
               "heart", "leaf","paper-plane","paw","star", "graduation-cap"]
   end
 
-  # teacher icon string names for selections, same as the fa CSS class names
+  # teacher icon name choices
   def teacherIcons
     ["apple", "book", "pencil", "calculator"]
   end
 
-  # school icon string names for selections, same as the fa CSS class names
+  # school icon name choices
   def schoolIcons
     ["home", "building-o", "university"]
   end
 
-  # returns correct CSS for icon color
+  # returns correct CSS for icon color as defined in our general.css
   def icon_color( object)
     "i-" << object.color
   end
@@ -52,7 +56,7 @@ module UxHelper
     "fa-" << object.icon
   end
 
-  # returns correct CSS home icon tag for a student's color
+  # returns correct CSS home icon tag for a student, as defined in general.css
   def home_icon_color( student)
     "home-icon-" << student.color
   end

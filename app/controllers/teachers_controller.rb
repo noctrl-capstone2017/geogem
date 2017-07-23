@@ -6,8 +6,9 @@ class TeachersController < ApplicationController
   before_action :is_suspended
   before_action :set_teacher, only: [:show, :edit, :update]
   before_action :same_school, only: [:show, :edit, :update]
-  before_action :is_admin, only: [:admin, :admin_report, :index, :new, :create, :login_settings, :show]
+  before_action :is_admin, only: [:admin, :admin_report, :index, :new, :create, :login_settings]
   before_action :is_super, only: [:super, :update_super_focus, :super_report]
+  
 
   # GET /teachers
   # Show all teachers. Sets up pagination in an ascending order by their screen_name.
@@ -79,6 +80,82 @@ class TeachersController < ApplicationController
     end
   end
 
+  # GET /profile
+  # show current teacher profile
+  def profile
+    @teacher = current_teacher
+    params[:id] = @teacher.id
+  end
+
+  # PATCH /profile
+  # edit current teacher's profile
+  def change_profile
+    @teacher = current_teacher
+    if @teacher.update(teacher_params)
+      flash[ :success] = "Profile update successful"
+      redirect_to profile_path
+    else
+      render :profile
+    end
+  end
+
+  # GET /password
+  # show page for current teacher to change his/her password
+  # Source: stackoverflow.com/questions/25490308/ruby-on-rails-two-different-edit-pages-and-forms-how-to for help
+  def password
+    @teacher = current_teacher
+  end
+
+  # PATCH /password
+  # changes current teacher's password, flashes used for error checking/notification
+  # Note: the form in the view requires  
+  # Used http://stackoverflow.com/questions/25490308/ruby-on-rails-two-different-edit-pages-and-forms-how-to for help
+  def change_password
+    @teacher = current_teacher
+
+    # case 1 - verify current password
+    my_params = password_params
+    if (! @teacher.authenticate( my_params[:current_password]))
+      flash[:danger] = "Incorrect password entered"
+      redirect_to password_path
+
+    # case 2 - new password and confirmation must match
+    elsif my_params[:password] != my_params[:password_confirmation]
+      flash[:danger] = "New password and confirmation don't match"
+      redirect_to password_path
+
+    # case 3 - update new password, error if this fails
+    else
+      @teacher.password = my_params[:password]
+      if @teacher.save
+        flash[ :success] = "Password change successful"
+        redirect_to profile_path
+      else
+        render 'password'     # saving new password failed
+      end
+    end
+
+    # teacher = current_teacher
+    # if teacher.authenticate(params[:teacher][:current_password])
+    #   if params[:teacher][:password] == params[:teacher][:password_confirmation]
+    #     teacher.password = params[:teacher][:password]
+    #     if teacher.save
+    #       flash[:success] = "Password change successful"
+    #       redirect_to password_path
+    #     else
+    #       render :password
+    #     end
+    #   else
+    #     flash[:error] = "New password and confirmation don't match."
+    #     redirect_to password_path
+    #   end
+    # else
+    #   flash[:error] = "Incorrect password"
+    #   redirect_to password_path
+    # end
+  end
+
+
   # GET /teachers/1/edit
   # If the user viewing a profile isn't an admin, then it shows them their own
   # profile instead.
@@ -96,20 +173,20 @@ class TeachersController < ApplicationController
   # Similarly, if suspended is in the params, then it changes their success or
   # error redirection.
   def update      
-    if params[:teacher][:current_password]
-      change_password
-    elsif params[:teacher][:suspended]
-      change_login_settings
-    else
-      if @teacher.update(teacher_params)
-        flash[ :success] = "Teacher update successful, #{@teacher.full_name}"
-        redirect_to edit_teacher_path(@teacher.id)
-      else
-        render :edit
-      end
-    end
+    # if params[:teacher][:current_password]
+    #   change_password
+    # elsif params[:teacher][:suspended]
+    #   change_login_settings
+    # else
+      # if @teacher.update(teacher_params)
+      #   flash[ :success] = "Profile update successful"
+      #   redirect_to profile_path
+      # else
+      #   redirect_to 
+      # end
+    # end
+    change_profile
   end
-
 
   # GET /admin
   # This prepares the admin dashboard.
@@ -129,18 +206,6 @@ class TeachersController < ApplicationController
     @squares = Square.where(school_id: current_teacher.school_id).order('full_name ASC')
   end
 
-  # GET /teachers/password
-  # This prepares the password change page. It will always show the current user's,
-  # even if they try to access it with another ID via /teachers/id/edit_password.
-  # Used http://stackoverflow.com/questions/25490308/ruby-on-rails-two-different-edit-pages-and-forms-how-to for help
-  def edit_password
-    @teacher = current_teacher
-    params[:id] = @teacher.id
-  end
-
-  def profile
-    @teacher = current_teacher
-  end
 
   #author: Matthew O & Alex P
   #home page for teachers, display top 8 most used students, route to anaylze or new session
@@ -189,24 +254,7 @@ class TeachersController < ApplicationController
     end
   end
 
-  # This method changes the Teacher's password and displays appropriate flashes.
-  # Used http://stackoverflow.com/questions/25490308/ruby-on-rails-two-different-edit-pages-and-forms-how-to for help
-  # for method layout.
-  def change_password
-    teacher = current_teacher
-    if teacher.authenticate(params[:teacher][:current_password])
-      if params[:teacher][:password] == params[:teacher][:password_confirmation]
-        teacher.password = params[:teacher][:password]
-        if teacher.save!
-          redirect_to edit_teacher_path(teacher), :flash => { :notice => "Password changed." }
-        end
-      else
-        redirect_to edit_password_teacher_path, :flash => { :error => "New password and confirmation didn't match." }
-      end
-    else
-      redirect_to edit_password_teacher_path, :flash => { :error => "Incorrect password." }
-    end
-  end
+
 
   # prepares variables for the super view
   def super
@@ -229,7 +277,7 @@ class TeachersController < ApplicationController
     def set_teacher
       @teacher = Teacher.find(params[:id])
     end
-    
+
     def set_school
       @school = School.find(current_teacher.school_id)
     end
@@ -239,6 +287,10 @@ class TeachersController < ApplicationController
       params.require(:teacher).permit(:user_name, :last_login,
       :full_name, :screen_name, :icon, :color, :email, :description, :powers, 
       :school_id, :password, :password_confirmation, :suspended, :current_password, :hiddenVal) #add hidden field to permited
+    end
+    
+    def password_params
+      params.require(:teacher).permit( :current_password, :password, :password_confirmation)
     end
 
     def super_params

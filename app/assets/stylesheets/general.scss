@@ -212,6 +212,30 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	&:hover { box-shadow: 0 0 16px $geogem-yellow; }
 }
 
+// action buttons replace action icons
+.action-div a:hover, a:focus { text-decoration: none; }
+
+.action-rectangle {
+	height: 3em;
+	width: 90%;
+
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+	text-align: center;
+
+	border-radius: 16px;
+	border: 4px solid white;
+
+	font-size: 1.2em;
+	color: white;
+	padding: 0 10px;
+	
+	white-space: nowrap;
+	overflow: hidden;
+}
+
 // action icons are used in Super, Admin, Teacher and Student pages
 .action-icon-square {
 	height: 96px;
@@ -228,7 +252,7 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	color: white;
 	&:hover { color: lightgray; }
 }
-.action-div a:hover { text-decoration: none; }
+
 
 // each action icons in system color scheme
 .action-icon-blue {
@@ -251,13 +275,13 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	background: $scheme-yelloworange;
 	&:hover { box-shadow: 0 0 16px $scheme-yelloworange; }
 }
-.action-icon-gray {
+.action-gray, .action-icon-gray {
 	background: $scheme-gray;
-	&:hover { box-shadow: 0 0 16px $scheme-yelloworange; }
+	&:hover { color: $scheme-yelloworange; box-shadow: 0 0 16px $scheme-yelloworange; }
 }
-.action-icon-darkgray {
+.action-dark-gray, .action-icon-darkgray {
 	background: $scheme-darkgray;
-	&:hover { box-shadow: 0 0 16px $scheme-lightblue; }
+	&:hover { color: $scheme-lightblue; box-shadow: 0 0 16px $scheme-lightblue; }
 }
 // this neutral action icon, gets its color from inside the view
 .action-icon-neutral:hover {
@@ -455,8 +479,8 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 /* Used for teacher profile icon  and smaller student icons */
 .header-sq
 {
-	height: 3.5em;
-	width: 3.5em;
+	height: 3em;
+	width: 3em;
 	display: flex;
 	align-items: center;
 	justify-content: center;
