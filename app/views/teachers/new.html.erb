@@ -8,22 +8,11 @@
 
 <!-- Teacher profile area -->
 <%= form_for(@teacher) do |f| %>
-  <% if @teacher.errors.any? %>
-    <div id="error_explanation">
-      <div class="alert alert-danger">
-      <%= pluralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved:
-      </div>
-      <ul>
-      <% @teacher.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
+	<%= render 'error_messages', object: f.object %>
+
 	<!-- school_id fetched from admin -->
 	<%= f.hidden_field :school_id, :value => current_teacher.school_id %>
-	
+
 	<!-- Teacher ID -->
 	<div class="row form-row">
 		<div class="col-sm-2 col-sm-offset-1"><h4>Username: </h4></div>
@@ -31,7 +20,7 @@
 			<%= f.text_field :user_name, class: 'form-control', id: 'teacherID' %>
 		</div>
 	</div>
-	
+
 	<!-- Teacher name field -->
 	<div class="row form-row">
 	<div class="col-xs-1 col-xs-offset-1"><h4>Name: </h4></div>
@@ -39,7 +28,7 @@
 			<%= f.text_field :full_name, class: 'form-control', id: 'teacherName' %>
 		</div>
 	</div>  
-	
+
   <!-- Teacher screen_name field -->
 	<div class="row form-row">
 	<div class="col-xs-1 col-xs-offset-1"><h4>Teacher ID: </h4></div>
@@ -47,7 +36,7 @@
 			<%= f.text_field :screen_name, class: 'form-control'%>
 		</div>
 	</div>  
-	
+
 	<!-- Teacher Email -->
 	<div class="row form-row">
 		<div class="col-sm-offset-1 col-sm-2"><h4>Email: </h4></div>

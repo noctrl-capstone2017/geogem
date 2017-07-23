@@ -3,24 +3,87 @@
 
 <!-- page header -->
 <%= render partial: 'teacher_page_header', 
-			:locals => { 	:title => "Teacher profile", 
+				:locals => { :title => "Teacher profile", 
 										:subtitle => "view/edit teacher #{ @teacher.full_name }"} %>
 
-<!-- Teacher profile area -->
-<% if is_admin? %>
-	<!--If they are an admin, they have more access.-->
-	<%= render 'profile_admin_version' %>
-<% end %>
+<%= form_for(@teacher) do |f| %>
+<%= render 'error_messages', object: f.object %>
 
-<% if !is_admin? %>
-	<!--If they aren't an admin, they have less access.-->
-	<!--They can still change stuff on their own page.-->
-	<%= render 'profile_teacher_version' %>
+<!-- Teacher ID -->
+<div class="row form-row">
+	<div class="col-xs-2 col-xs-offset-1"><h4>Username: </h4></div>
+	<div class="col-xs-2">
+		<%= f.text_field :user_name, class: 'form-control', id: 'teacherID', :readonly => true %>
+	</div>
+</div>
+
+<!-- Teacher name field -->
+<div class="row form-row">
+	<div class="col-xs-1 col-xs-offset-1"><h4>Name: </h4></div>
+	<div class="col-xs-4 col-xs-offset-1">
+		<%= f.text_field :full_name, class: 'form-control', id: 'teacherName', :readonly => true %>
+	</div>
+</div>
+
+<!-- Teacher Email -->
+<div class="row form-row">
+	<div class="col-xs-2 col-xs-offset-1"><h4>Email: </h4></div>
+	<div class="col-xs-4">
+		<%= f.email_field :email, class: 'form-control', id: 'email' %>
+	</div>
+</div>
+
+<!-- Teacher Email -->
+<div class="row form-row">
+	<div class="col-xs-2 col-xs-offset-1"><h4>Teacher icon</h4></div>
+</div>
+
+
+<div class="row form-row vertical-align">
+	<!-- color and icon spinners in the 1st column -->
+	<div class="col-xs-4 col-xs-offset-3">
+		<div class="row">
+			<div class="col-xs-3"><h4>Color: </h4></div>
+			<div class="col-xs-6 col-xs-offset-1">
+				<%= f.select :color, teacherColors.map {|color| [color.titleize, color]}, 
+										{}, {class: 'form-control'} %>
+			</div>
+		</div>   <!-- row -->
+		<div class="row">
+			<div class="col-xs-3"><h4>Icon: </h4></div>
+			<div class="col-xs-6 col-xs-offset-1">
+				<%= f.select :icon, teacherIcons.map {|icon| [icon.titleize, icon]}, 
+								{}, {class: 'form-control'} %>
+			</div>
+		</div>   <!-- row -->
+	</div>   <!-- form selects col -->
+	<!-- sample teacher icon in the 2nd column; it's interactive! -->
+	<div class="col-xs-5">
+		<div class="col-xs-2">
+			<div id="sample-teacher-color" class="header-sq <%= icon_color(@teacher) %>" 
+								title="teacher=<%= @teacher.full_name %>" >
+				<span id="sample-teacher-icon" class="fa fa-2x fa-fw <%= fa_icon(@teacher) %> 
+								page-header-icon"></span>
+			</div>
+		</div>
+	</div>   <!-- sample icon col -->
+</div>   <!-- color+icon row -->
+
+<!-- OK/Cancel buttons -->
+<div class="row action-buttons-row">
+	<div class="col-xs-6 col-xs-offset-1 "> 
+	  <%= button_tag(type: 'submit', class: "btn btn-success") do %>  
+	  	Save Changes 
+	  <% end %>
+	  &emsp; &emsp; &emsp;
+		<%= link_to "Cancel", home_path, :class => "btn btn-danger" %>
+	</div>
+</div>
 <% end %>
 
 <!--Action Icons -->
 <!--Figured out span link_to from http://stackoverflow.com/questions/7563911/adding-span-tag-in-rails-link-to -->
-<div class="row action-icon-row" style="margin-top: 40px;">
+<div class="row action-icon-row">
 
 	<!--If the teacher viewing the page 'owns' the page, show them this option-->
 	<% if @teacher.id == current_teacher.id %>
@@ -34,29 +97,39 @@
 			<%= link_to '/password' do %>Change password<% end %>
 		</div>
 	<% end %>
-	
-	<!--If the teacher viewing the page is an admin, show them this option.-->
-	<% if is_admin? %>
-	
-		<!-- Student roster icon -->
-		<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit teacher's student roster">
-			<div class="action-div">
-				<%= link_to teacher_path(@teacher.id) do %>
-					<%= render 'action_icon', icon_color: "action-icon-yelloworange", fa_icon: "fa-child" %>
-				<% end %>
-			</div>
-			<%= link_to teacher_path(@teacher.id) do %>Student roster<% end %>
-		</div>
-	
-		<!-- Login settings icon -->
-		<div class="col-xs-2 text-center" title="View/edit teacher's login settings">
-			<div class="action-div">
-				<%= link_to 'login_settings' do %>
-					<%= render 'action_icon', icon_color: "action-icon-gray", fa_icon: "fa-gear" %>
-				<% end %>
-			</div>
-			<%= link_to 'login_settings' do %>Login settings<% end %>
-		</div>
-	<% end %>
 
 </div>   <!-- row -->
+
+<!-- 
+	Javascript below is specifically for this Teacher Profile page.
+	It makes the sample teacher icon change interactively with color or icon spinner.
+	CSS ID's make this (spaghetti code) work: 
+		#teacher_color - the Rails-created ID for the color spinner
+		#teacher_icon - the Rails-created ID for the icon spinner
+		#sample-teacher-color - div where sample icon color is set
+		#sample-teacher-icon - div where sample FA icon is set
+-->
+<script>
+	$(document).ready(function() {
+		$('#teacher_color').change(function(){
+			setColor();
+		});
+		$('#teacher_icon').change(function(){
+			setIcon();
+		});
+	});
+
+	function setColor() {
+		var color =  $('#teacher_color').find('option:selected').attr('value');
+		$('#sample-teacher-color').removeClass();
+		$('#sample-teacher-color').addClass('header-sq');
+		$('#sample-teacher-color').addClass('i-' + color);
+	}
+	function setIcon() {
+		var icon =  $('#teacher_icon').find('option:selected').attr('value');
+		$('#sample-teacher-icon').removeClass();
+		$('#sample-teacher-icon').addClass('fa fa-2x fa-fw');
+		$('#sample-teacher-icon').addClass('fa-' + icon);
+		$('#sample-teacher-icon').addClass('page-header-icon');
+	}
+</script>

@@ -1,23 +1,12 @@
 <!--This is the teacher version of the profile view. They can't change too much,
   but just enough.-->
 <%= form_for(@teacher) do |f| %>
-  <% if @teacher.errors.any? %>
-    <div id="error_explanation">
-      <div class="alert alert-danger">
-      <%= pluralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved:
-      </div>
-      <ul>
-      <% @teacher.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= render 'error_messages', object: f.object %>
 
 <!-- Teacher ID -->
 <div class="row form-row">
-	<div class="col-sm-2 col-sm-offset-1"><h4>Username: </h4></div>
-	<div class="col-sm-2">
+	<div class="col-xs-2 col-xs-offset-1"><h4>Username: </h4></div>
+	<div class="col-xs-2">
 		<%= f.text_field :user_name, class: 'form-control', id: 'teacherID', :readonly => true %>
 	</div>
 </div>
@@ -28,77 +17,94 @@
 	<div class="col-xs-4 col-xs-offset-1">
 		<%= f.text_field :full_name, class: 'form-control', id: 'teacherName', :readonly => true %>
 	</div>
-</div>   
-
-<!-- Teacher screen_name field -->
-<div class="row form-row">
-	<div class="col-xs-1 col-xs-offset-1"><h4>Teacher ID: </h4></div>
-	<div class="col-xs-4 col-xs-offset-1">
-		<%= f.text_field :screen_name, class: 'form-control', :readonly => true %>
-	</div>
-</div>  
+</div>
 
 <!-- Teacher Email -->
 <div class="row form-row">
-	<div class="col-sm-offset-1 col-sm-2"><h4>Email: </h4></div>
-	<div class="col-sm-4 col-sm-offset-0">
+	<div class="col-xs-2 col-xs-offset-1"><h4>Email: </h4></div>
+	<div class="col-xs-4">
 		<%= f.email_field :email, class: 'form-control', id: 'email' %>
 	</div>
 </div>
 
-<!-- Teacher Admin -->
+<!-- Teacher Email -->
+<div class="row form-row">
+	<div class="col-xs-2 col-xs-offset-1"><h4>Teacher icon</h4></div>
+</div>
+
+
 <div class="row form-row vertical-align">
-	<div class="col-sm-offset-1 col-sm-2"><h4>Access: </h4></div>
-    <div class="col-sm-4 col-sm-offset-0">
-			<h4> <%= @teacher.powers %> </h4>
+	<!-- color and icon spinners in the 1st column -->
+	<div class="col-xs-4 col-xs-offset-3">
+		<div class="row">
+			<div class="col-xs-3"><h4>Color: </h4></div>
+			<div class="col-xs-6 col-xs-offset-1">
+				<%= f.select :color, teacherColors.map {|color| [color.titleize, color]}, 
+										{}, {class: 'form-control'} %>
+			</div>
+		</div>   <!-- row -->
+		<div class="row">
+			<div class="col-xs-3"><h4>Icon: </h4></div>
+			<div class="col-xs-6 col-xs-offset-1">
+				<%= f.select :icon, teacherIcons.map {|icon| [icon.titleize, icon]}, 
+								{}, {class: 'form-control'} %>
+			</div>
+		</div>   <!-- row -->
+	</div>   <!-- form selects col -->
+	<!-- sample teacher icon in the 2nd column; it's interactive! -->
+	<div class="col-xs-5">
+		<div class="col-xs-2">
+			<div id="sample-teacher-color" class="header-sq <%= icon_color(@teacher) %>" 
+								title="teacher=<%= @teacher.full_name %>" >
+				<span id="sample-teacher-icon" class="fa fa-2x fa-fw <%= fa_icon(@teacher) %> 
+								page-header-icon"></span>
+			</div>
 		</div>
-</div>
+	</div>   <!-- sample icon col -->
+</div>   <!-- color+icon row -->
 
-<!--Unfortunately, there's no 'readonly' form of select, so we're doing it 
-    this way--with a hidden field!
-    This is totally unsafe, by the way. We're only doing it this way because
-    we trust our users... right?-->
-<%= f.hidden_field :powers, :value => @teacher.powers %>
-
-<!-- a little extra space after name/email -->
-<div class="form-spacer">	&nbsp;</div>
-
-<div class="row form-row vertical-align">
-	<div class="col-sm-offset-1 col-sm-2"><h4>Color: </h4></div>
-	<div class="col-sm-4 col-sm-offset-0">
-		<%= f.select :color, teacherColors.map {|color| [color.titleize, color]}, {}, {class: 'form-control'} %>
-	</div>
-</div>
-
-<!-- teacher icon field -->
-<div class="row form-row">
-	<div class="col-xs-1 col-xs-offset-1"><h4>Icon: </h4></div>
-	<div class="col-xs-4 col-xs-offset-1">
-		<%= f.select :icon, teacherIcons.map {|icon| [icon.titleize, icon]}, {}, {class: 'form-control'} %>
-	</div>
-</div>
-
-<!-- Teacher description area -->
-<div class="row form-row">
-	<div class="col-sm-offset-1 col-sm-2"><h4>Description: </h4></div>
-	<div class="col-sm-6 col-sm-offset-0">
-		<%= f.text_field :description, class: 'form-control', id: 'Description' %>
-	</div>
-</div>  
-
-<div class="row form-row">
-	<div class="col-sm-1 col-sm-offset-1"><br></div>
-</div>
-
-<!-- Button area -->
+<!-- OK/Cancel buttons -->
 <div class="row action-buttons-row">
-	<div class="col-sm-1 col-sm-offset-1"> 
+	<div class="col-xs-6 col-xs-offset-1 text-center"> 
 	  <%= button_tag(type: 'submit', class: "btn btn-success") do %>  
 	  	Save Changes 
 	  <% end %>
-	</div>
-	<div class="col-sm-1 col-sm-offset-1"> 
+		&nbsp; &nbsp; &nbsp; 
 		<%= link_to "Cancel", home_path, :class => "btn btn-danger" %>
 	</div>
 </div>
 <% end %>
+
+<!-- 
+	Javascript below is specifically for this Teacher Profile page.
+	It makes the sample teacher icon change interactively with color or icon spinner.
+	CSS ID's make this (spaghetti code) work: 
+		#teacher_color - the Rails-created ID for the color spinner
+		#teacher_icon - the Rails-created ID for the icon spinner
+		#sample-teacher-color - div where sample icon color is set
+		#sample-teacher-icon - div where sample FA icon is set
+-->
+<script>
+	$(document).ready(function() {
+		$('#teacher_color').change(function(){
+			setColor();
+		});
+		$('#teacher_icon').change(function(){
+			setIcon();
+		});
+	});
+
+	function setColor() {
+		var color =  $('#teacher_color').find('option:selected').attr('value');
+		$('#sample-teacher-color').removeClass();
+		$('#sample-teacher-color').addClass('header-sq');
+		$('#sample-teacher-color').addClass('i-' + color);
+	}
+	function setIcon() {
+		var icon =  $('#teacher_icon').find('option:selected').attr('value');
+		$('#sample-teacher-icon').removeClass();
+		$('#sample-teacher-icon').addClass('fa fa-2x fa-fw');
+		$('#sample-teacher-icon').addClass('fa-' + icon);
+		$('#sample-teacher-icon').addClass('page-header-icon');
+	}
+</script>

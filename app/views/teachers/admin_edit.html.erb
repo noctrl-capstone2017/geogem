@@ -1,0 +1,62 @@
+<!--Authors: Kevin M, Tommy B (add changing password implementation) -->
+<% provide(:title, "Teacher profile") %>
+
+<!-- page header -->
+<%= render partial: 'teacher_page_header', 
+				:locals => { :title => "Teacher profile", 
+										:subtitle => "view/edit teacher #{ @teacher.full_name }"} %>
+
+<!-- Teacher profile area -->
+<% if is_admin? %>
+	<!--If they are an admin, they have more access.-->
+	<%= render 'profile_admin_version' %>
+<% end %>
+
+<% if !is_admin? %>
+	<!--If they aren't an admin, they have less access.-->
+	<!--They can still change stuff on their own page.-->
+	<%= render 'profile_teacher_version' %>
+<% end %>
+
+<!--Action Icons -->
+<!--Figured out span link_to from http://stackoverflow.com/questions/7563911/adding-span-tag-in-rails-link-to -->
+<div class="row action-icon-row" style="margin-top: 40px;">
+
+	<!--If the teacher viewing the page 'owns' the page, show them this option-->
+	<% if @teacher.id == current_teacher.id %>
+		<!-- Change password -->
+		<div class="col-xs-2 col-xs-offset-1 text-center" title="Change your password">
+			<div class="action-div">
+				<%= link_to '/password' do %>
+					<%= render 'action_icon', icon_color: "action-icon-blue", fa_icon: "fa-key" %>
+				<% end %>
+			</div>
+			<%= link_to '/password' do %>Change password<% end %>
+		</div>
+	<% end %>
+	
+	<!--If the teacher viewing the page is an admin, show them this option.-->
+	<% if is_admin? %>
+	
+		<!-- Student roster icon -->
+		<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit teacher's student roster">
+			<div class="action-div">
+				<%= link_to teacher_path(@teacher.id) do %>
+					<%= render 'action_icon', icon_color: "action-icon-yelloworange", fa_icon: "fa-child" %>
+				<% end %>
+			</div>
+			<%= link_to teacher_path(@teacher.id) do %>Student roster<% end %>
+		</div>
+	
+		<!-- Login settings icon -->
+		<div class="col-xs-2 text-center" title="View/edit teacher's login settings">
+			<div class="action-div">
+				<%= link_to 'login_settings' do %>
+					<%= render 'action_icon', icon_color: "action-icon-gray", fa_icon: "fa-gear" %>
+				<% end %>
+			</div>
+			<%= link_to 'login_settings' do %>Login settings<% end %>
+		</div>
+	<% end %>
+
+</div>   <!-- row -->
