@@ -29,14 +29,14 @@ Teacher.create!(user_name: "profbill",
                 color: "aqua",
                 email: "wtktrieger@noctrl.edu",
                 description: "Super user",
-                powers: "Admin",
+                admin: true,
                 school_id: 1)
 
 case Rails.env
 
 when "development"
 
-# Seed teacher=teacher, powers are Teacher level
+# Seed teacher=teacher, not an admin
 Teacher.create!(user_name: "teacher",
                 password: "password",
                 password_confirmation: "password",
@@ -47,10 +47,9 @@ Teacher.create!(user_name: "teacher",
                 color: "green",
                 email: "teacher@noctrl.edu",
                 description: "General teacher login",
-                powers: "Teacher",
                 school_id: 1)
                 
-# Seed teacher=admin, powers are Admin level
+# Seed teacher=admin, Cranky is an admin
 Teacher.create!(user_name: "admin",
                 password: "password",
                 password_confirmation: "password",
@@ -61,7 +60,7 @@ Teacher.create!(user_name: "admin",
                 color: "green",
                 email: "admin@noctrl.edu",
                 description: "General admin login",
-                powers: "Admin",
+                admin: true,
                 school_id: 1)
 
 # Seed with 30 fakes Students that all goto Noctrl
@@ -248,7 +247,6 @@ Teacher.create!(user_name: "TEST_teacher1",
                 color: "green",
                 email: "teacher@soctrl.edu",
                 description: "General teacher login",
-                powers: "Teacher",
                 school_id: 32)
                 
 Teacher.create!(user_name: "TEST_teacher2",
@@ -261,7 +259,6 @@ Teacher.create!(user_name: "TEST_teacher2",
                 color: "green",
                 email: "teacher@soctrl.edu",
                 description: "General teacher login",
-                powers: "Teacher",
                 school_id: 32)
 
 Teacher.create!(user_name: "TEST_teacherSus",
@@ -274,7 +271,6 @@ Teacher.create!(user_name: "TEST_teacherSus",
                 color: "green",
                 email: "teacherz@soctrl.edu",
                 description: "General teacher login",
-                powers: "Teacher",
                 school_id: 32,
                 suspended: true)
 
@@ -303,6 +299,6 @@ Teacher.create!(user_name: "TEST_teacherSus",
 #                 color: "aqua",
 #                 email: "wtktriger@noctrl.edu",
 #                 description: "Super user",
-#                 powers: "Admin",
+#                 admin: true, 
 #                 school_id: 1)
 end

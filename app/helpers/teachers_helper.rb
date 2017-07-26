@@ -2,16 +2,16 @@
 # Mostly contains methods for checking permissions
 module TeachersHelper
 
-  # Returns true if current teacher has Admin powers
+  # Returns true if current teacher is an Admin
   def is_admin?
-    current_teacher && current_teacher.powers == "Admin"
+    current_teacher && current_teacher.admin
   end
 
-  # Returns true if current teacher has Admin powers
+  # Returns true if current teacher is an Admin
   # If not Admin, then flash error and redirect to home
   def is_admin
     if !is_admin?
-      flash[:danger] = "Unauthorized. You are not an administrator"
+      flash[:danger] = "Unauthorized. You are not an admin"
       redirect_to home_path
     end
   end
@@ -72,4 +72,14 @@ module TeachersHelper
     end
   end
 
+  # show teacher powers (admin of not) in a view, nicely
+  def show_powers(teacher, just_teacher_text = "")
+    if teacher == super_teacher
+      "Super!"
+    elsif teacher.admin
+      "Admin"
+    else
+      just_teacher_text
+    end
+  end
 end

@@ -1,0 +1,100 @@
+<% provide(:title, "Login Settings") %>
+
+<!-- page header -->
+<%= render partial: 'teacher_page_header', 
+			:locals => { 	:title => "Login Settings", 
+										:subtitle => "Admin page 2, change login settings of #{ @teacher.full_name }"} %>
+
+<!--Edit Login Settings form -->
+<%= form_for(@teacher) do |f| %>
+	<%= render 'error_messages', object: f.object %>
+
+ 	<!-- username -->
+ 	<div class="row form-row">
+		<div class="col-xs-3 col-xs-offset-1"><h4>Username: </h4></div>
+		<div class="col-xs-3">
+			<%= f.text_field :user_name, :readonly => true, class: 'form-control' %>
+		</div>
+	</div>
+
+	<!-- teacher name -->
+	<div class="row form-row">
+ 		<div class="col-xs-3 col-xs-offset-1"><h4>Name: </h4></div>
+		<div class="col-xs-4">
+			<%= f.text_field :full_name, :readonly => true, class: 'form-control' %>
+		</div>
+	</div>   <!-- row -->
+
+	<hr width="60%">
+
+	<!-- Teacher login suspended? -->
+	<div class="row form-row">
+		<div class="col-xs-3 col-xs-offset-1"><h4>Login status: </h4></div>
+		<div class="col-xs-3 checkbox">
+			<%= f.label :suspended do %>
+				<%= f.check_box :suspended, { }, "true", "false" %>Suspended
+			<% end %>
+		</div>
+	</div>
+
+	<!-- OK, Cancel buttons -->
+	<div class="row form-row" style="padding-top: 20px"> 
+		<div class="col-xs-6 col-xs-offset-1 text-center">
+			<%= button_tag(type: 'submit', class: "btn btn-success") do %>  
+  			Change Login Status 
+  		<% end %>
+			&nbsp; &nbsp; &nbsp;
+			<%= link_to 'Cancel', teachers_path, 
+						:class => "btn btn-danger", :title => "Back to All Teachers page" %>
+		</div>
+	</div>
+
+<% end %>
+
+<!-- a little extra space after name/email -->
+<div class="form-spacer">	&nbsp;</div>
+<hr width="60%">
+
+<!-- Change Password form -->
+<%= form_for(@teacher) do |f| %>
+
+	<!-- new password -->
+  <div class="row form-row">
+	  <label class="col-xs-3 col-xs-offset-1" for="newPass"><h4>New Password:</h4></label>
+		<div class="col-xs-3"> 
+		  <%= f.password_field :password, required: true, class: 'form-control' %>
+		</div>
+  </div>
+		
+	<!-- confirm new password -->
+  <div class="row form-row">
+	  <label class="col-xs-3 col-xs-offset-1" for="confPass"><h4>Confirm New Password:</h4></label>
+		<div class="col-xs-3"> 
+		  <%= f.password_field :password_confirmation, required: true, class: 'form-control' %>
+		</div>
+  </div>
+		
+	<!-- OK, Cancel buttons -->
+	<div class="row form-row" style="padding-top: 20px"> 
+		<div class="col-xs-6 col-xs-offset-1 text-center">
+			<%= button_tag(type: 'submit', class: "btn btn-success") do %>Change Password <%end%>
+			&nbsp; &nbsp; &nbsp;
+			<%= link_to "Cancel", teachers_path, 
+						:class => "btn btn-danger", :title => "Back to All Teachers page" %>
+		</div>
+	</div>
+
+<% end %>   <!-- change password form-->
+
+<div class="form-spacer">	&nbsp;</div>
+<hr style="width:80%; padding-top: 10px;">
+
+<!-- action button to Teacher Access page -->
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+		<h4>Admin page 3... define teacher access to students: &nbsp; &nbsp; &nbsp;
+			<%= link_to "Teacher Access...", 'edit3', 
+						:class => "btn btn-lg btn-primary", :title => "Teacher Access page" %>
+		</h4>
+	</div>
+</row>

@@ -11,22 +11,22 @@ Rails.application.routes.draw do
   get     'help',             to: 'static_pages#help'
 
   # core teacher pages: home, profile, password 
-  get     'home',            to: 'teachers#home'
-  get     'profile',         to: 'teachers#profile'
-  patch   'profile',         to: 'teachers#change_profile'
-  get     'password',        to: 'teachers#password'
-  patch    'password',        to: 'teachers#change_password'
+  get     'home',             to: 'teachers#home'
+  get     'profile',          to: 'teachers#profile'
+  patch   'profile',          to: 'teachers#change_profile'
+  get     'password',         to: 'teachers#password'
+  patch   'password',         to: 'teachers#change_password'
 
   # admin routes
-  get     '/admin_report',    to: 'teachers#admin_report' 
-  get     '/super_report',    to: 'teachers#super_report'
-  get     '/admin',           to: 'teachers#admin'
+  get     'admin',            to: 'teachers#admin'
+  get     'admin_report',     to: 'teachers#admin_report'
 
-  get     'teachers/:id/login_settings',  to: 'teachers#login_settings'
+
 
   # super and school routes for super user only
   get     '/super',           to: 'teachers#super'
   patch   '/super',           to: 'teachers#update_super_focus'
+  get     '/super_report',    to: 'teachers#super_report'
 
   get     '/school_backup',   to: 'schools#backup'
   patch   '/school_backup',  to: 'schools#do_backup'
@@ -46,13 +46,20 @@ Rails.application.routes.draw do
   #route to end session page
   post    'sessions/:id/end_session', to: 'sessions#end_session', as: :end_session
 
+  # get   'teachers/:id/edit2',  to: 'teachers#edit2'
+  # patch 'teachers/:id/edit2',  to: 'teachers#update2'
+
   # REST-ful resources
-  resources :teachers
   resources :roster_students
   resources :roster_squares
   resources :session_notes 
   resources :squares
   resources :schools
+  resources :teachers do
+    member do
+      get :edit2, :edit3
+    end
+  end
 
   #allow for custom controller function
   resources :sessions do

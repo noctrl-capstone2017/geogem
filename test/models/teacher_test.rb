@@ -16,7 +16,7 @@ class TeacherTest < ActiveSupport::TestCase
                 color: "red",
                 email: "wtktriger@noctrl.edu",
                 description: "Super user",
-                powers: "Admin",
+                admin: true,
                 school_id: 1)
   end
   
@@ -36,13 +36,7 @@ class TeacherTest < ActiveSupport::TestCase
     @teacher.full_name = ""
     assert_not @teacher.valid?
   end
-  
-  # Remove screen_name and test
-  test "screen_name should be present" do
-    @teacher.screen_name = ""
-    assert_not @teacher.valid?
-  end
-  
+
   # Remove icon and test
   test "icon should be present" do
     @teacher.icon = ""
@@ -67,12 +61,6 @@ class TeacherTest < ActiveSupport::TestCase
     assert @teacher.valid?
   end
   
-  # Remove powers and test
-  test "powers should be present" do
-    @teacher.powers = ""
-    assert_not @teacher.valid?
-  end
-  
   # Remove school_id and test
   test "school_id should be present" do
     @teacher.school_id = ""
@@ -91,16 +79,10 @@ class TeacherTest < ActiveSupport::TestCase
     assert_not @teacher.valid?
   end
   
-  # Test length of screen_name
-  test "screen_name should not be too long" do
-    @teacher.screen_name = "a" * 76
-    assert_not @teacher.valid?
-  end
-  
-  # Test that every screen_name is unique
-  test "screen_name should be unique" do
+  # Test that every user_name is unique
+  test "user_name should be unique" do
     duplicate_user = @teacher.dup
-    duplicate_user.screen_name = @teacher.screen_name.upcase
+    duplicate_user.user_name = @teacher.user_name.upcase
     @teacher.save
     assert_not duplicate_user.valid?
   end

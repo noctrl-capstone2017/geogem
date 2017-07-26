@@ -6,7 +6,7 @@ class TeachersController < ApplicationController
   before_action :is_suspended
   before_action :set_teacher, only: [:show, :edit, :update]
   before_action :same_school, only: [:show, :edit, :update]
-  before_action :is_admin, only: [:admin, :admin_report, :index, :new, :create, :login_settings]
+  before_action :is_admin, only: [:edit, :update, :admin, :admin_report, :index, :new, :create, :login_settings]
   before_action :is_super, only: [:super, :update_super_focus, :super_report]
   
 
@@ -17,45 +17,6 @@ class TeachersController < ApplicationController
     @school = School.find(@current_teacher.school_id)
     @teachers = Teacher.where(school_id: @current_teacher.school_id).paginate(page: params[:page], :per_page => 10)
     @teachers = @teachers.order('screen_name ASC')
-  end
-
-  # GET /teachers/1
-  # View for a teacher. It sets up pagination similarly to the teacher index.
-  def show
-    @teacher = Teacher.find(params[:id])
-    @students = @teacher.students.order('full_name ASC')
-    @students_at_school = Student.where(school_id: @teacher.school_id).order('full_name ASC')
-    @students_not_in_roster = Student.where(school_id: @teacher.school_id).where.not(id: @teacher.students).order('full_name ASC')
-
-    #Whenever this page is visited, it updates the roster for the admin.
-    if @teacher.powers == "Admin"
-
-      #https://stackoverflow.com/questions/3343861/how-do-i-check-to-see-if-my-array-includes-an-object
-      @students_at_school.each do |student|
-        unless @students.include?(student)
-          @teacher.students << Student.find(student.id)
-        end
-      end
-    
-      @students = @students_at_school
-      @students_not_in_roster = []
-    end
-
-    #Admins always have every student, so they can't add or remove from any admins.
-    if params[:add_student]
-        if params[:add_student_id] != nil
-          if @teacher.powers != "Admin"
-            @teacher.students << Student.find(params[:add_student_id])
-          end
-        end
-
-    elsif params[:remove_student]
-      if params[:remove_student_id] != nil
-        if @teacher.powers != "Admin"
-          @teacher.students.delete(Student.find(params[:remove_student_id]))
-        end
-      end
-    end
   end
 
   # GET /teachers/new
@@ -81,7 +42,7 @@ class TeachersController < ApplicationController
   end
 
   # GET /profile
-  # show current teacher profile
+  # show profile of the current teacher
   def profile
     @teacher = current_teacher
     params[:id] = @teacher.id
@@ -107,9 +68,7 @@ class TeachersController < ApplicationController
   end
 
   # PATCH /password
-  # changes current teacher's password, flashes used for error checking/notification
-  # Note: the form in the view requires  
-  # Used http://stackoverflow.com/questions/25490308/ruby-on-rails-two-different-edit-pages-and-forms-how-to for help
+  # change current teacher's password
   def change_password
     @teacher = current_teacher
 
@@ -134,59 +93,111 @@ class TeachersController < ApplicationController
         render 'password'     # saving new password failed
       end
     end
+  end
 
-    # teacher = current_teacher
-    # if teacher.authenticate(params[:teacher][:current_password])
-    #   if params[:teacher][:password] == params[:teacher][:password_confirmation]
-    #     teacher.password = params[:teacher][:password]
-    #     if teacher.save
-    #       flash[:success] = "Password change successful"
-    #       redirect_to password_path
-    #     else
-    #       render :password
-    #     end
-    #   else
-    #     flash[:error] = "New password and confirmation don't match."
-    #     redirect_to password_path
-    #   end
-    # else
-    #   flash[:error] = "Incorrect password"
-    #   redirect_to password_path
-    # end
+  # GET /teachers/1/edit
+  # admin page 1 - edit teacher profile
+  def edit
+    @teacher = Teacher.find(params[:id])
+  end
+
+  # GET /teachers/id/edit2
+  # admin page 2 - change login settings
+  def edit2
+    @teacher = Teacher.find(params[:id])
+  end
+
+  # GET /teachers/id/edit3
+  # admin page 3 - define teacher access to student analysis
+  def edit3
+    @teacher = Teacher.find(params[:id])
   end
 
 
-  # GET /teachers/1/edit
-  # If the user viewing a profile isn't an admin, then it shows them their own
-  # profile instead.
-  def edit
-    if !is_admin?
-      @teacher = @current_teacher
-      params[:id] = @teacher.id
+  # PUT /teachers/1
+  # Admin updates a teacher here for all 3 edit pages.
+  # Attributes in params[] are used to appropriately mux the updating
+  def update
+    if params[:teacher][:email]
+      update1_profile
+    elsif params[:teacher][:suspended]
+      update2_login_settings
+    elsif params[:teacher][:password]
+      update2_password
+    else
+        redirect_to home_path
     end
   end
 
-  # PATCH/PUT /teachers/1
-  # This updates a teacher. If current_password is in the params, then they're
-  # trying to change their password, so it redirects the put to change_password.
-  #
-  # Similarly, if suspended is in the params, then it changes their success or
-  # error redirection.
-  def update      
-    # if params[:teacher][:current_password]
-    #   change_password
-    # elsif params[:teacher][:suspended]
-    #   change_login_settings
-    # else
-      # if @teacher.update(teacher_params)
-      #   flash[ :success] = "Profile update successful"
-      #   redirect_to profile_path
-      # else
-      #   redirect_to 
-      # end
-    # end
-    change_profile
+  # update admin page 1 - teacher profile attributes 
+  def update1_profile
+    if @teacher.update(edit_profile_params)
+      flash[ :success] = "Profile update successful"
+      redirect_to edit_teacher_path(@teacher)
+    else
+      render 'edit'
+    end
   end
+
+  # update admin page 2a - teacher login settings (suspended flag)
+  def update2_login_settings
+    if @teacher.update(edit_login_settings_params)
+      flash[ :success] = "Login status change successful"
+      redirect_to edit2_teacher_path(@teacher)
+    else
+      render 'edit2'
+    end
+  end
+
+  # update admin page 2b - change teacher password 
+  def update2_password
+    if @teacher.update(edit_password_params)
+      flash[ :success] = "Password change successful"
+      redirect_to edit2_teacher_path(@teacher)
+    else
+      render 'edit2'
+    end
+  end
+
+  # GET /teachers/1
+  # View for a teacher. It sets up pagination similarly to the teacher index.
+  def show
+    @teacher = Teacher.find(params[:id])
+    @students = @teacher.students.order('full_name ASC')
+    @students_at_school = Student.where(school_id: @teacher.school_id).order('full_name ASC')
+    @students_not_in_roster = Student.where(school_id: @teacher.school_id).where.not(id: @teacher.students).order('full_name ASC')
+
+    #Whenever this page is visited, it updates the roster for the admin.
+    if @teacher.admin
+
+      #https://stackoverflow.com/questions/3343861/how-do-i-check-to-see-if-my-array-includes-an-object
+      @students_at_school.each do |student|
+        unless @students.include?(student)
+          @teacher.students << Student.find(student.id)
+        end
+      end
+    
+      @students = @students_at_school
+      @students_not_in_roster = []
+    end
+
+    #Admins always have every student, so they can't add or remove from any admins.
+    if params[:add_student]
+        if params[:add_student_id] != nil
+          if @teacher.admin
+            @teacher.students << Student.find(params[:add_student_id])
+          end
+        end
+
+    elsif params[:remove_student]
+      if params[:remove_student_id] != nil
+        if ! @teacher.admin
+          @teacher.students.delete(Student.find(params[:remove_student_id]))
+        end
+      end
+    end
+  end
+
 
   # GET /admin
   # This prepares the admin dashboard.
@@ -237,24 +248,6 @@ class TeachersController < ApplicationController
   end
 
 
-  # GET /teachers/id/login_settings
-  def login_settings
-    @teacher = Teacher.find(params[:id])
-  end
-
-  # This method displays flashes for updates to login settings. It's virtually
-  # identical to update, but it redirects to a different location with a different
-  # flash.
-  def change_login_settings
-    if @teacher.update(teacher_params)
-      flash[ :success] = "Login settings for this teacher were successully updated."
-      redirect_to edit_teacher_path(@teacher.id)
-    else
-      render :login_settings
-    end
-  end
-
-
 
   # prepares variables for the super view
   def super
@@ -284,11 +277,23 @@ class TeachersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
-      params.require(:teacher).permit(:user_name, :last_login,
-      :full_name, :screen_name, :icon, :color, :email, :description, :powers, 
-      :school_id, :password, :password_confirmation, :suspended, :current_password, :hiddenVal) #add hidden field to permited
+      params.require( :teacher).permit( :user_name, :full_name, :email, :admin,
+          :password, :password_confirmation, :color, :icon, 
+          :school_id, :suspended)
     end
-    
+
+    def edit_profile_params
+      params.require(:teacher).permit( :user_name, :full_name, :email, :admin, :color, :icon)
+    end
+
+    def edit_login_settings_params
+      params.require(:teacher).permit( :suspended, :password, :password_confirmation)
+    end
+
+    def edit_password_params
+      params.require(:teacher).permit( :password, :password_confirmation)
+    end
+
     def password_params
       params.require(:teacher).permit( :current_password, :password, :password_confirmation)
     end

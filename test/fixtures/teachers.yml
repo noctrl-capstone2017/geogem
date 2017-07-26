@@ -11,7 +11,7 @@ one:
   color: red
   email: wtktriger@noctrl.edu
   description: Super user
-  powers: Admin
+  admin: true
   school_id: 1 #Changed By: Michael Lotien, we no longer support a school 0
   id: 1 #DJ added, is necessary to include id fields to fix tests
 
@@ -25,7 +25,7 @@ two:
   color: red
   email: MyString2@mystring.com
   description: MyText
-  powers: Admin
+  admin: true
   school_id: 1
   id: 2 #DJ added, is necessary to include id fields to fix tests
 

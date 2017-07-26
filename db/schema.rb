@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713201404) do
+ActiveRecord::Schema.define(version: 20170725200814) do
 
   create_table "roster_squares", force: :cascade do |t|
     t.integer  "square_id"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20170713201404) do
     t.datetime "updated_at",                      null: false
     t.boolean  "suspended",       default: false, null: false
     t.datetime "cur_login"
+    t.boolean  "admin",           default: false
   end
 
 end
