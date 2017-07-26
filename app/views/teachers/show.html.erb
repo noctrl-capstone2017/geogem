@@ -11,7 +11,7 @@
 	<div class="col-sm-10 col-sm-offset-1">
 
 		<!-- Can only edit roster if the user is not an admin. -->
-		<% if !(@teacher.powers == "Admin") %>
+		<% if !(@teacher.admin) %>
 			<form>
 			<!--Add/Remove Ctrls -->
 			<div class="row form-row vertical-align">
@@ -41,7 +41,7 @@
 		<% end %>
 		
 		<!-- If they are an admin, they will always have all students. -->
-		<% if @teacher.powers == "Admin" %>
+		<% if @teacher.admin %>
 			<h4>Attention: The rosters of admins are not editable. Admins always have all students in their roster.</h4>
 		<% end %>
 		

@@ -1,0 +1,56 @@
+<% provide(:title, "Teacher Access") %>
+
+<!-- page header -->
+<%= render partial: 'teacher_page_header', 
+			:locals => { 	:title => "Teacher Access", 
+										:subtitle => "Admin page 3, edit student access of #{ @teacher.full_name }"} %>
+
+<!--Edit Login Settings form -->
+<%= form_for(@teacher) do |f| %>
+	<%= render 'error_messages', object: f.object %>
+
+ 	<!-- username -->
+ 	<div class="row form-row">
+		<div class="col-xs-3 col-xs-offset-1"><h4>Username: </h4></div>
+		<div class="col-xs-3">
+			<%= f.text_field :user_name, :readonly => true, class: 'form-control' %>
+		</div>
+	</div>
+
+	<!-- teacher name -->
+	<div class="row form-row">
+ 		<div class="col-xs-3 col-xs-offset-1"><h4>Name: </h4></div>
+		<div class="col-xs-4">
+			<%= f.text_field :full_name, :readonly => true, class: 'form-control' %>
+		</div>
+	</div>   <!-- row -->
+
+	<hr width="60%">
+
+	<!-- OK, Cancel buttons -->
+	<div class="row form-row" style="padding-top: 20px"> 
+		<div class="col-xs-6 col-xs-offset-1 text-center">
+			<%= button_tag(type: 'submit', class: "btn btn-success") do %>  
+  			Change Teacher Access 
+  		<% end %>
+			&nbsp; &nbsp; &nbsp;
+			<%= link_to 'Cancel', teachers_path, 
+						:class => "btn btn-danger", :title => "Back to All Teachers page" %>
+		</div>
+	</div>
+
+<% end %>
+
+<!-- a little extra space after name/email -->
+<div class="form-spacer">	&nbsp;</div>
+<hr width="60%">
+
+<!-- done button... back to All Teachers page -->
+<div class="row form-row">
+	<div class="col-xs-10 col-xs-offset-1">
+		<h4>Admin pages DONE... back to All Teachers page: &nbsp; &nbsp; &nbsp;
+		<%= link_to 'All Teachers', teachers_path, 
+						:class => "btn btn-lg btn-primary", :title => "Back to All Teachers page" %>
+		</h4>
+	</div>
+</row>
