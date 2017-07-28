@@ -14,8 +14,8 @@ class StudentsController < ApplicationController
     # Admin only, list just that schools students
     @students = Student.where(school_id: current_teacher.school_id)
     
-    # Paginate those students and order by screen_name
-    @students = @students.order('screen_name ASC')
+    # Paginate those students and order by full_name
+    @students = @students.order('full_name ASC')
     @students = @students.paginate(page: params[:page], :per_page => 10)
     
     # Make a @sessions list for each student in the @studens list
@@ -31,6 +31,8 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
+    @student.color = "aqua"
+    @student.icon = "bug"
   end
 
   # GET /students/1/edit
@@ -115,12 +117,12 @@ class StudentsController < ApplicationController
   end
 
   private
-  
+
     # Use callbacks to share common setup or constraints between actions.
     def set_student
       @student = Student.find(params[:id])
     end
-    
+
     # Used for getting the school values for the logged in teacher 
     def set_school
       @school = School.find(current_teacher.school_id)
@@ -129,9 +131,10 @@ class StudentsController < ApplicationController
       @full_name = @school.full_name
       @icon = @school.icon
     end
-    
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:full_name, :screen_name, :icon, :color,:contact_info, :description, :session_interval, :school_id)
+      params.require(:student).permit(:full_name, :icon, :color, 
+            :session_interval, :contact_info,  :school_id)
     end
 end

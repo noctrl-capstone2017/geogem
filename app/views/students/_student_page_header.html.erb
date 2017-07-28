@@ -3,8 +3,9 @@
 		<h2><%=title%><small> - <%=subtitle%></small></h2>
 	</div>
 	<div class="col-xs-1">
-		<div class="header-sq <%= icon_color(@student) %>" title="student=<%= @student.full_name %>" >
-			<span class="fa fa-2x fa-fw <%= fa_icon(@student) %> page-header-icon"></span>
+		<div class="student-page-header-icon <%= icon_color(@student) %>" 
+					title="student=<%= @student.full_name %>" >
+			<span class="fa fa-2x fa-fw <%= fa_icon(@student) %>"></span>
 		</div>
 	</div>
 </div>   <!-- page-header -->

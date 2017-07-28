@@ -21,20 +21,20 @@
 	<thead>
 		<tr>
 			<th>Icon</th>
-			<th>Student ID</th>
-			<th>Full Name</th>
+			<th>Student Name</th>
+			<th>Info</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @students.each do |each_student| %>
 		<tr data-link="<%= edit_student_path(each_student.id) %>">
 			<td>
-				<div class="table-sq <%= icon_color(each_student) %>">
-				 	<span class="fa fa-lg fa-fw <%= fa_icon(each_student) %> table-icon"></span>
+				<div class="student-table-icon <%= icon_color(each_student) %>">
+				 	<span class="fa fa-lg fa-fw <%= fa_icon(each_student) %>"></span>
 				</div>
 			</td>	
-			<td><p><span> <%= each_student.screen_name %></span> </p></td>
-			<td><p><span> <%= each_student.full_name %></span> </p></td>
+			<td><p> <%= ux_student_name( each_student, 40) %> </p></td>
+			<td><p> <%= truncate( each_student.contact_info, :length => 40) %> </p></td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -53,24 +53,22 @@
  	<thead>
  		<tr>
  			<th>Icon</th>
-			<th>ID</th>
-			<th>Full Name</th>
-			<th>Contact Information</th>
-			<th>Last Login</th>
-	</tr>
+			<th>Teacher Name</th>
+			<th>Login Username</th>
+			<th>Email</th>
+		</tr>
 	</thead>
 	<tbody>
 		<% @teachers.each do |each_teacher| %>
 			<tr data-link="<%= edit_teacher_path(each_teacher.id) %>">
 				<td>
-				  <div class="table-sq <%= icon_color(each_teacher) %>">
-					  <span class="fa fa-lg fa-fw <%= fa_icon(each_teacher) %> table-icon"></span>
+				  <div class="teacher-table-icon <%= icon_color(each_teacher) %>">
+					  <span class="fa fa-lg fa-fw <%= fa_icon(each_teacher) %>"></span>
 				  </div>
 				</td>	
-				<td><p><span> <%= each_teacher.screen_name %></span> </p></td>
-				<td><p><span> <%= each_teacher.full_name %></span> </p></td>
-				<td><p><span> <%= each_teacher.email %></span> </p></td>
-				<td><p><span> <%= each_teacher.last_login %></span> </p></td>
+				<td><p> <%= ux_teacher_name(each_teacher) %> </p></td>
+				<td><p> <%= each_teacher.user_name %> </p></td>
+				<td><p> <%= each_teacher.email %> </p></td>
 			</tr>
 		<% end %>
 	</tbody>
@@ -98,23 +96,17 @@
 		<% @squares.each do |each_square| %>
 			<tr data-link="<%= edit_square_path(each_square.id) %>">
 				<td>
-					<div class="table-sq <%= icon_color(each_square) %>">
-						<span class="fa fa-2x fa-fw fa-square-o teacher-icon"></span>
-					</div>
+					<div class="bsquare-table-icon <%= icon_color(each_square) %>">
+            <h4><%= each_square.screen_name %></h4>
+            <span class="fa fa-fw fa-lg %>"></span>
+				  </div>
 				</td>	
+
 				<td><p><span> <%= each_square.screen_name %></span> </p></td>
 
-				<!-- If statement for translating square type int into string KM-->
-				<td>
-					<% if each_square.tracking_type == 1 %>
-						<p>Duration</p>
-					<% elsif each_square.tracking_type == 2 %>
-						<p>Frequency</p>
-					<% else %>
-						<p>Interval</p>
-					<% end %>
-				</td>
-				<td><p><span> <%= each_square.description %></span> </p></td>
+				<td><p> <%= ux_square_tracking_type( each_square) %> </p></td>
+
+				<td><p> <%= truncate( each_square.description, :length => 40) %> </p></td>
 			</tr>
 		<% end %>
 	</tbody>

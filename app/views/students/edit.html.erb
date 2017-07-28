@@ -6,16 +6,16 @@
 			:locals => { 	:title => "Student profile", 
 										:subtitle => "view/edit student #{ @student.full_name }"} %>
 
-<%= render 'form', student: @student, isNew: false %> <!--Renders my form partial-->
+<%= render 'form', student: @student, isEdit: true %>
 
-<!-- Student squares action icon after the student info/form -->
-<div class="row action-icon-row">
-	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit squares for student">
-		<div class="action-div">
-			<%= link_to edit_roster_square_path(@student) do %>
-				<%= render 'action_icon', icon_color: "action-icon-gray", fa_icon: "fa-square-o" %>
-			<% end %>
-		</div>
-		<%= link_to edit_roster_square_path(@student) do %>View Squares<% end %>
-	</div>   <!-- col -->
-</div>   <!-- row -->
+<hr style="width:80%; padding-top: 10px;">
+
+<!-- action button to Login Settings page -->
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+		<h4>Assign default behavior squares for student: &nbsp; &nbsp; &nbsp;
+			<%= link_to "Assign squares...", edit_roster_square_path(@student), 
+						:class => "btn btn-lg btn-primary", :title => "Assign default behavior squares" %>
+		</h4>
+	</div>
+</row>

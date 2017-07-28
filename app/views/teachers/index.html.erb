@@ -29,7 +29,7 @@
 	<thead>
 		<tr>
 			<th class="col-xs-1">Icon</th>
-			<th>Username</th>
+
 			<th>Teacher Name</th>
 			<th>Powers</th>
 			<th>Last Login</th>
@@ -39,39 +39,18 @@
 	<tbody>
 			<% @teachers.each do |teacher| %>
 				<tr data-link=<%= edit_teacher_path(teacher.id) %>>
-					<!-- Teacher icon section-->
+					<!-- teacher icon -->
 					<td>
 						<div class="teacher-table-icon <%= icon_color(teacher) %>" title="teacher=<%= teacher.user_name %>">
 							<span class="fa fa-lg fa-fw <%= fa_icon(teacher) %> "></span>
 						</div>
 					</td>
-					<!-- Teacher info section -->
-					<td><p><%= teacher.user_name %></p></td>
-					<td><p><span><%= teacher.full_name %></span></p></td>
-					<td><p><span><%= show_powers(teacher) %></span></p></td>
 
-          <!-- Teacher last-login area -->
-					<!-- The reason (suspended) isn't just added afterwards is so that it
-					     stays in the same line. -->
-					<td><p><span> 
-					<!--Last Login. If the user has never logged in, list Never.-->
-						<% if teacher.last_login.nil? %>
-							Never
-							<% if teacher.suspended? %>
-								<small>(Suspended)</small>
-							<% end %>
-						<!--If the teacher has logged in but is suspended, indicate that.-->
-						<% else %>
-							<% if teacher.suspended? %>
-								<%= time_ago_in_words(teacher.last_login) %> 
-								<small>(Suspended)</small>
-							<% else %>
-								<%= time_ago_in_words(teacher.last_login) %>
-							<% end %>
-						<% end %>
-					</span></p></td>
-					<td><p><span></span></p>
-					</td>
+					<td><p> <%= ux_teacher_name(teacher, 40) %> </p></td>
+
+					<td><p> <%= ux_teacher_powers(teacher) %> </p></td>
+
+					<td><p> <%= ux_teacher_last_login( teacher) %> </p></td> 
 				</tr>
 
 			<% end %>
