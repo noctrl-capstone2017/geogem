@@ -29,7 +29,7 @@
 	<thead>
 		<tr>
 			<th class="col-xs-1">Icon</th>
-			<th>ID</th>
+			<th>Username</th>
 			<th>Teacher Name</th>
 			<th>Powers</th>
 			<th>Last Login</th>
@@ -41,8 +41,8 @@
 				<tr data-link=<%= edit_teacher_path(teacher.id) %>>
 					<!-- Teacher icon section-->
 					<td>
-						<div class="table-sq <%= icon_color(teacher) %>" title="teacher=<%= teacher.user_name %>">
-							<span class="fa fa-lg fa-fw <%= fa_icon(teacher) %> table-icon"></span>
+						<div class="teacher-table-icon <%= icon_color(teacher) %>" title="teacher=<%= teacher.user_name %>">
+							<span class="fa fa-lg fa-fw <%= fa_icon(teacher) %> "></span>
 						</div>
 					</td>
 					<!-- Teacher info section -->

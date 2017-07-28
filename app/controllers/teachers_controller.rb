@@ -25,6 +25,8 @@ class TeachersController < ApplicationController
     @current_teacher = current_teacher
     @school = School.find(@current_teacher.school_id)
     @teacher = Teacher.new
+    @teacher.color = "aqua"
+    @teacher.icon = "apple"
   end
 
   # POST /teachers/new

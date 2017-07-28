@@ -28,6 +28,8 @@ class SquaresController < ApplicationController
   # GET /squares/new
   def new
     @square = Square.new
+    @square.color = "aqua"
+    @square.tracking_type = 2
   end
 
   # GET /squares/1/edit

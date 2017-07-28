@@ -46,14 +46,27 @@ module UxHelper
     ["home", "building-o", "university"]
   end
 
-  # returns correct CSS for icon color as defined in our general.css
+  # returns icon color CSS for object, as defined in general.css
   def icon_color( object)
     "i-" << object.color
+  end
+
+  # returns glow color CSS for object, as defined in general.css
+  def glow_color( object)
+    return "glow-" << object.color
   end
 
   # returns Font Awesome css for icon
   def fa_icon( object)
     "fa-" << object.icon
+  end
+
+  def fa_bsquare_icon( square)
+    if square.tracking_type == 1
+      "fa-clock-o"
+    else
+      ""
+    end
   end
 
   # returns correct CSS home icon tag for a student, as defined in general.css

@@ -116,6 +116,28 @@ $geogem-yellow: #FFDC00;
 .i-red { background-color: $geogem-red; }
 .i-yellow { background-color: $geogem-yellow; }
 
+// glow colors... their border glows on hover
+.glow-aqua { color: white; background: $geogem-aqua; 
+	&:hover { color: lightgray; box-shadow: 0 0 16px $geogem-aqua; } }
+.glow-black { color: white; background: $geogem-black; 
+	&:hover { color: lightgray; box-shadow: 0 0 16px $geogem-red; } }
+.glow-blue { color: white; background: $geogem-blue; 
+	&:hover { color: lightgray; box-shadow: 0 0 16px $geogem-blue; } }
+.glow-gray { color: white; background: $geogem-gray; 
+	&:hover { color: lightgray; box-shadow: 0 0 16px $geogem-aqua; } }
+.glow-green { color: white; background: $geogem-green; 
+	&:hover { color: lightgray; box-shadow: 0 0 16px $geogem-green; } }
+.glow-orange { color: white; background: $geogem-orange; 
+	&:hover { color: lightgray; box-shadow: 0 0 16px $geogem-orange; } }
+.glow-pink { color: white; background: $geogem-pink; 
+	&:hover { color: lightgray; box-shadow: 0 0 16px $geogem-pink; } }
+.glow-purple { color: white; background: $geogem-purple; 
+	&:hover { color: lightgray; box-shadow: 0 0 16px $geogem-purple; } }
+.glow-red { color: white; background: $geogem-red; 
+	&:hover { color: lightgray; box-shadow: 0 0 16px $geogem-red; } }
+.glow-yellow { color: white; background: $geogem-yellow; 
+	&:hover { color: lightgray; box-shadow: 0 0 16px $geogem-yellow; } }
+
 
 /*********************************************************
  *  NAVBAR + LOGIN + LOGOUT - use system color scheme!
@@ -306,6 +328,73 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	&:hover { box-shadow: 0 0 16px $geogem-yellow; }
 }
 
+// behavior square icon, text in the middle
+.bsquare-icon {
+	height: 6em;
+	width: 6em;
+	text-align: center;		// center icon text vertically and horizontally
+	vertical-align: middle;
+	border: 2px solid white;
+	color: white;
+	h3 { font-family: "Courier New", serif; }
+}
+
+// behavior square icon, in a page header
+.bsquare-page-header-icon {
+	height: 4em;
+	width: 4em;
+	text-align: center;		// center icon text vertically and horizontally
+	vertical-align: middle;
+	border: 2px solid white;
+	color: white;
+	h3 { font-family: "Courier New", serif; font-size: 0.8em; }
+}
+
+// behavior square icon, in a table, example: All Squares page
+.bsquare-table-icon {
+	height: 3em;
+	width: 3em;
+	text-align: center;		// center icon text vertically and horizontally
+	vertical-align: middle;
+	border: 2px solid transparent;		// transparent border for spacing
+	color: white;
+	h4 { font-family: "Courier New", serif; font-size: 0.8em; }
+}
+
+// teacher icon, FA glyph in the middle
+.teacher-icon {
+	height: 6em;
+	width: 6em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;		// center icon text vertically and horizontally
+	vertical-align: middle;
+	border-radius: 16px;
+	border: 2px solid white;
+	color: white;
+}
+// teacher icon, small version used in a table
+.teacher-table-icon
+{
+	height: 3em;
+	width: 3em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 12px;
+	color: white;
+}
+// teacher icon used in the page header
+.teacher-page-header-icon {
+	height: 3em;
+	width: 3em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 12px;
+	color: white;
+}
 
 /*********************************************************
  *  HELP - help page formatting
