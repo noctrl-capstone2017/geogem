@@ -67,9 +67,10 @@ Teacher.create!(user_name: "admin",
 30.times do |n|
   first_name  = Faker::Name.first_name
   last_name = Faker::Name.last_name
+  contact = Faker::Lorem.paragraph()
   Student.create!(  screen_name: first_name.downcase[0] + last_name.downcase,
-                    contact_info: "student contact info",
-                    description: "student description",
+                    contact_info: contact,
+                    description: "A seed student",
                     icon: studentIcons.sample,
                     color: studentColors.sample,
                     session_interval: 15,
@@ -97,9 +98,10 @@ end
 2.times do |n|
   first_name  = Faker::Name.first_name
   last_name = Faker::Name.last_name
+  contact = Faker::Lorem.paragraph()
   Student.create!(  screen_name: first_name.downcase[0] + last_name.downcase,
-                    contact_info: "student contact info",
-                    description: "A seed student created by faker",
+                    contact_info: contact,
+                    description: "A seed student",
                     icon: "bicycle",
                     color: "lightblue",
                     session_interval: 15,
@@ -111,10 +113,11 @@ end
 # tracking_type: 1 is duration, 2 is frequency, 3 is interval
 10.times do |n|
   name  = Faker::Lorem.word + " " + Faker::Lorem.word
+  desc = Faker::Lorem.paragraph()
   Square.create!(full_name: name,
                  screen_name: "S#{n+1}",
                  tracking_type: (n%3)+1,    #1, 2, or 3 NEED TO CHANGE THIS FOR ENUM CLASS
-                 description: name,
+                 description: desc,
                  color: squareColors.sample,
                  school_id: 1)
 end

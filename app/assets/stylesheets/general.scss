@@ -362,7 +362,7 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 }
 
 // teacher icon, FA glyph in the middle
-.teacher-icon {
+.teacher-icon, .student-icon {
 	height: 6em;
 	width: 6em;
 	display: flex;
@@ -375,7 +375,7 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	color: white;
 }
 // teacher icon, small version used in a table
-.teacher-table-icon
+.teacher-table-icon, .student-table-icon 
 {
 	height: 3em;
 	width: 3em;
@@ -386,7 +386,7 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	color: white;
 }
 // teacher icon used in the page header
-.teacher-page-header-icon {
+.teacher-page-header-icon, .student-page-header-icon {
 	height: 3em;
 	width: 3em;
 	display: flex;

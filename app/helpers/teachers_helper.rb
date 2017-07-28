@@ -49,9 +49,9 @@ module TeachersHelper
     Teacher.first
   end
 
-  # Returns a "smart" home message based on whether it's the teachers 
+  # Returns a "fancy" home message based on whether it's the teachers 
   # first ever login or first time visiting Home page or neither
-  def home_welcome_message( teacher, first_home)
+  def ux_fancy_home_welcome( teacher, first_home)
     if first_home
       if teacher.last_login == nil
         "Welcome to Geogem, " << teacher.full_name
@@ -72,8 +72,13 @@ module TeachersHelper
     end
   end
 
-  # show teacher powers (admin of not) in a view, nicely
-  def show_powers(teacher, just_teacher_text = "")
+  # return ux string for teacher name
+  def ux_teacher_name( teacher, num_chars=20)
+    num_chars > 0 ? teacher.full_name.truncate( num_chars) : teacher.full_name
+  end
+
+  # return ux string for teacher powers (admin of not)
+  def ux_teacher_powers(teacher, just_teacher_text = "")
     if teacher == super_teacher
       "Super!"
     elsif teacher.admin
@@ -82,4 +87,14 @@ module TeachersHelper
       just_teacher_text
     end
   end
+
+  # return ux string for the teacher's last login date  
+  def ux_teacher_last_login( teacher)
+    str = teacher.last_login ? time_ago_in_words( teacher.last_login) : "Never"
+    if teacher.suspended?
+      str = str << " (suspended)"
+    end
+    str
+  end
+
 end

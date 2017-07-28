@@ -31,8 +31,9 @@
   <thead>
     <tr>
       <th></th>     <!-- blank for student icon -->
-      <th>ID</th>
+      <!--<th>ID</th>-->
       <th>Name</th>
+      <th>Num Sessions</th>
       <th>Last Session</th>
     </tr>
   </thead>
@@ -44,26 +45,18 @@
       <!--Make the entire line a link--> 
       <tr data-link = "<%= edit_student_path(each_student) %>">
 
-        <!-- Display the students symbol + color comdo --> 
+        <!-- student icon --> 
         <td>
-          <div class="table-sq <%= icon_color(each_student) %>">
-            <span class="fa fa-lg fa-fw <%= fa_icon(each_student) %> table-icon"></span>
+          <div class="student-table-icon <%= icon_color(each_student) %>">
+            <span class="fa fa-lg fa-fw <%= fa_icon(each_student) %>"></span>
 				  </div>
         </td>
-        
-        <!-- Displays the students screen name -->
-        <td><%= each_student.screen_name %></td>
 
-        <!-- Displays the student full name -->
-        <td><%= each_student.full_name %></td>
-        
-        <!-- Displays the students last ran session -->
-        <% this_session = @sessions.where(session_student: each_student.id).last %>
-        <% if this_session != nil %>
-          <td><%= this_session.end_time %></td>
-        <% else %>
-          <td>No previous sessions</td>
-        <% end %>
+        <td><%= ux_student_name(each_student, 40) %></td>
+
+        <td><%= ux_num_sessions(@sessions, each_student) %></td>
+
+        <td><%= ux_last_session_date(@sessions, each_student) %></td>
 
       </tr>
     <% end %>
