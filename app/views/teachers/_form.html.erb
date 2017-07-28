@@ -1,27 +1,33 @@
-<!--Authors: Kevin M, Tommy B (add changing password implementation) -->
-<% provide(:title, "Profile") %>
+<!-- form used for new and edit teacher -->
+<!-- local var isNew is true if called by New Teacher page -->
 
-<!-- page header -->
-<%= render partial: 'teacher_page_header', 
-			:locals => { 	:title => "Profile", 
-										:subtitle => "view/edit your teacher profile; change your password"} %>
-
-<%= form_for(@teacher, url: profile_path) do |f| %>
+<%= form_for(teacher) do |f| %>
 	<%= render 'error_messages', object: f.object %>
 
-	<!-- username -->
+	<!-- school_id fetched from admin -->
+	<%= f.hidden_field :school_id, :value => current_teacher.school_id %>
+
+	<!-- username for login -->
 	<div class="row form-row">
 		<div class="col-xs-2 col-xs-offset-1"><h4>Username: </h4></div>
 		<div class="col-xs-4">
-			<%= f.text_field :user_name, :readonly => true, class: 'form-control' %>
+		  <% if local_assigns[:isNew] %>
+			  <%= f.text_field :user_name, required: true, class: 'form-control' %>
+			<% else %>
+        <%= f.text_field :user_name, :readonly => true, class: 'form-control' %>
+			<% end %>
 		</div>
 	</div>
 
-	<!-- teacher name -->
+	<!-- name -->
 	<div class="row form-row">
-		<div class="col-xs-1 col-xs-offset-1"><h4>Name: </h4></div>
-		<div class="col-xs-4 col-xs-offset-1">
-			<%= f.text_field :full_name, :readonly => true, class: 'form-control' %>
+		<div class="col-xs-2 col-xs-offset-1"><h4>Name: </h4></div>
+		<div class="col-xs-4">
+  	  <% if local_assigns[:isNew] %>
+			  <%= f.text_field :full_name, required: true, class: 'form-control' %>
+			<% else %>
+  			<%= f.text_field :full_name, :readonly => true, class: 'form-control' %>
+			<% end %>
 		</div>
 	</div>
 
@@ -30,6 +36,16 @@
 		<div class="col-xs-2 col-xs-offset-1"><h4>Email: </h4></div>
 		<div class="col-xs-4">
 			<%= f.email_field :email, required: true, class: 'form-control' %>
+		</div>
+	</div>
+
+	<!-- powers: is teacher an admin? -->
+	<div class="row form-row">
+		<div class="col-xs-2 col-xs-offset-1"><h4>Powers: </h4></div>
+		<div class="col-xs-2 checkbox">
+			<%= f.label :admin do %>
+				<%= f.check_box :admin, { :class=> 'form-check' }, "true", "false" %>Admin
+			<% end %>
 		</div>
 	</div>
 
@@ -58,40 +74,52 @@
 		</div>   <!-- form selects col -->
 
 		<!-- sample teacher icon in the 2nd column; it's interactive! -->
-		<div class="col-xs-5">
+		<div class="col-xs-4">
 			<div class="col-xs-2">
-				<div id="sample-teacher-color" class="teacher-icon <%= icon_color(@teacher) %>" 
-									title="teacher=<%= @teacher.full_name %>" >
-					<span id="sample-teacher-icon" class="fa fa-3x fa-fw <%= fa_icon(@teacher) %> "></span>
+				<div id="sample-teacher-color" class="teacher-icon <%= icon_color(teacher) %>" 
+									title="teacher=<%= teacher.full_name %>" >
+					<span id="sample-teacher-icon" class="fa fa-3x fa-fw <%= fa_icon(teacher) %> "></span>
 				</div>
-
 			</div>
 		</div>   <!-- sample icon col -->
 	</div>   <!-- color+icon row -->
-	
-	<!-- OK/Cancel buttons -->
+
+<% if local_assigns[:isNew] %>
+	<!-- form spacer after password -->
+	<div class="form-spacer">	&nbsp;</div>
+
+	<!-- password -->
+	<div class="row form-row">
+		<div class="col-sm-offset-1 col-sm-2"><h4>Password: </h4></div>
+		<div class="col-sm-4 col-sm-offset-0">
+			<%= f.password_field :password, required: true, class: 'form-control'%>
+		</div>
+	</div>
+
+	<!-- confirm password -->
+	<div class="row form-row">
+		<div class="col-sm-offset-1 col-sm-2"><h4>Confirm Password: </h4></div>
+		<div class="col-sm-4 col-sm-offset-0">
+			<%= f.password_field :password_confirmation, required: true, class: 'form-control'%>
+		</div>
+	</div>
+<% end %>
+
+  <!-- OK/Cancel buttons -->
 	<div class="row form-row  action-buttons-row">
 		<div class="col-xs-6 col-xs-offset-1 text-center">
-		  <%= button_tag(type: 'submit', class: "btn btn-success") do %>Change Profile<% end %>
+		  <% if local_assigns[:isNew] %>
+		    <%= button_tag(type: 'submit', class: "btn btn-success") do %>Add New Teacher<% end %>
+		  <% else %>
+        <%= button_tag(type: 'submit', class: "btn btn-success") do %>Change Profile<% end %>
+		  <% end %>
 		  &emsp; &emsp; &emsp;
-			<%= link_to "Cancel", home_path, 
-						:class => "btn btn-danger", :title => "back to Home page" %>
+		  <%= link_to "Cancel", teachers_path, :class => "btn btn-danger", 
+		        :title => "Back to All Teachers page" %>
 		</div>
 	</div>
 
 <% end %>
-
-<hr style="width:80%; padding-top: 10px;">
-
-<!-- action button to Login Settings page -->
-<div class="row">
-	<div class="col-xs-10 col-xs-offset-1">
-		<h4>Continue here to change your password: &nbsp; &nbsp; &nbsp;
-			<%= link_to "Change Password...", 'password', 
-						:class => "btn btn-lg btn-primary", :title => "Change Password page" %>
-		</h4>
-	</div>
-</row>
 
 
 <!-- 

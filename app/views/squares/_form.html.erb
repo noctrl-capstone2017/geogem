@@ -1,75 +1,70 @@
 <!-- authors: Ricky Perez & Michael Loptien -->
 <!-- renders the forms for edit and new squares -->
 
-<!-- Error Catching -->
 <%= form_for(square) do |f| %>
-  <% if square.errors.any? %>
-    <div id="error_explanation">
-      <div class="alert alert-danger">
-        The Form Contains <%= pluralize(square.errors.count, "error") %>
-      </div>
-      <ul>
-      <% square.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'error_messages', object: f.object %>
 
-<!-- Show ID field -->
+  <!-- ID field -->
   <div class="row form-row">
-  	<div class="col-sm-1 col-sm-offset-1">
+  	<div class="col-xs-2 col-xs-offset-1">
   		<h4> ID:</h4>
   	</div> 
-  	<div class="col-sm-1">
-      <%= f.text_field :screen_name, class: "form-control" %>
+  	<div class="col-xs-2">
+      <%= f.text_field :screen_name, required: true, class: "form-control",
+            onKeyup: "trackName(this.value)" %>
   	</div>
   </div>
 
-<!-- Show Type Field -->
+  <!-- type field -->
   <div class="row form-row">
-  	<div class="col-sm-1 col-sm-offset-1">
+  	<div class="col-xs-2 col-xs-offset-1">
   		<h4>Type: </h4>
   	</div>
-  	
-  	<!-- Renders a select box with the int value of Type masked with the name -->
-  	<div class="col-md-offset-0 col-sm-offset-0 col-sm-2">
+
+  	<!-- select box with the int value of Type masked with the name -->
+  	<div class="col-xs-3">
       <%= f.select :tracking_type,[['Duration',1],['Frequency',2],['Interval',3]], 
-            {}, {class: 'form-control'}%>
+            {}, {class: 'form-control'} %>
   	</div>
   </div>
 
-<!-- Show Square Color Field -->
+  <!-- color field and interactive sample square -->
   <div class="row form-row">
-		<div class="col-xs-1 col-xs-offset-1">
+		<div class="col-xs-2 col-xs-offset-1">
 		  <h4>Color: </h4>
 		</div>
-		<div class="col-xs-4 col-xs-offset-1">
+		<div class="col-xs-3">
       <%= f.select :color, squareColors.map {|color| [color.titleize, color]}, 
                 {}, {class: 'form-control'} %>
 		</div>
+
+		<div class="col-xs-2 col-xs-offset-1">
+      <div id="sample-square-color" class="bsquare-icon <%= icon_color(square) %> text-center" >
+  			<h3 id="sample-square-name"><%= square.screen_name %></h3>
+		    <span id="sample-square-icon" class="fa fa-fw fa-lg <%= fa_bsquare_icon(square) %>"></span>
+  		</div>   <!-- behavior-square -->
+    </div>
 	</div>
 
   <div class="" form-spacer="">	&nbsp;</div>
 	
-<!-- Square Description field -->
+  <!-- description field -->
 	<div class="row form-row">
-		<div class="col-sm-2 col-sm-offset-1">
+		<div class="col-xs-2 col-xs-offset-1">
 			<h4>Description:</h4>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 		  <%= f.text_area :description, class:"form-control" %>	
 		</div>
 	</div>   <!-- form-row -->
 
-<!-- Hidden field for school id, set via logged in teachers school id -->
+  <!-- hidden field for school id, set to current teacher's school -->
   <% if local_assigns[:isNew] %>
     <%= f.hidden_field :school_id, :value => current_teacher.school_id%>
   <% end %>
 
-<!-- This area displays the save and cancel buttons
- It uses an If statment to test a passed in value "isNew"
- to determine which button text will show -->
+  <!-- OK/cancel buttons. -->
+  <!-- It uses an if statment to determine button text: Add new or Save changes -->
   <div class="row action-buttons-row">
 	  <div class="col-xs-6 col-xs-offset-1 text-center"> 
       <% if local_assigns[:isNew] %>
@@ -82,3 +77,45 @@
     </div>
   </div>
 <% end %>
+
+
+<!-- 
+	Javascript below is specifically for this Squares page.
+	It makes the sample teacher icon change interactively with color or icon spinner.
+	CSS ID's make this (spaghetti code) work: 
+		#square_color - the Rails-created ID for the color spinner
+		#square_tracking_tpye - the Rails-created ID for the tracking type checkbox
+		#sample-square-color - div where sample icon color is set
+		#sample-square-icon - div where icon is set based on tracking type
+-->
+<script>
+	$(document).ready(function() {
+		$('#square_color').change(function() {
+			setColor();
+		});
+		$('#square_tracking_type').change(function() {
+			setIcon();
+		});
+	});
+
+	function setColor() {
+		var color =  $('#square_color').find('option:selected').attr('value');
+		$('#sample-square-color').removeClass();
+		$('#sample-square-color').addClass('bsquare-icon');
+		$('#sample-square-color').addClass('i-' + color);
+		$('#sample-square-color').addClass('text-center');
+	}
+	function setIcon() {
+		var icon =  $('#square_tracking_type').find('option:selected').attr('value');
+		$('#sample-square-icon').removeClass();
+		$('#sample-square-icon').addClass('fa fa-fw fa-lg');
+		if( icon == 1) { 
+		  $('#sample-square-icon').addClass('fa-clock-o');
+		}
+	}
+  function trackName( value) {
+    //var name = document.getElementById("square_screen_name").value;
+	  //var name =  $('#square_screen_name').find('option:selected').attr('value');
+  	$("#sample-square-color h3").html(value);
+	}	
+</script>
