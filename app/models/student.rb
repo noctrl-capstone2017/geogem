@@ -1,9 +1,7 @@
-# Authors: Ricky Perez & Michael Loptien
-
+# Authors: Ricky P & Michael L
 class Student < ApplicationRecord
     # Ensures that none of the fields are empty
     validates :full_name, presence: true
-    # validates :screen_name, presence: true
     validates :color, presence: true
     validates :icon, presence: true
     validates :session_interval, presence: true
@@ -19,4 +17,7 @@ class Student < ApplicationRecord
                                      foreign_key: "student_id",
                                      dependent:   :destroy
     has_many :squares, through: :active_relationships, source: :square
+    
+    # depricated
+    # validates :screen_name, presence: true
 end

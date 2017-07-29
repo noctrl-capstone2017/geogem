@@ -1,5 +1,4 @@
-# Author: Kevin M, Tommy B
-
+# Authors: Kevin M, Tommy B
 class Teacher < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token, :current_password
   before_save   :downcase_email, :super_check
@@ -18,7 +17,6 @@ class Teacher < ApplicationRecord
   validates :user_name,  presence: true, length: { maximum: 75 },
                          uniqueness: { case_sensitive: false },  
                          format: { with: VALID_USER_NAME_REGEX }
-                         
   validates :full_name, presence: true, length: { maximum: 75 }
   
   validates :icon,  presence: true
@@ -42,9 +40,9 @@ class Teacher < ApplicationRecord
 
   ### METHODS ###
   # Returns a random token.
-  def Teacher.new_token
-    SecureRandom.urlsafe_base64
-  end
+  # def Teacher.new_token
+  #   SecureRandom.urlsafe_base64
+  # end
 
   # Returns true if the given token matches the digest.
   def authenticated?(attribute, token)
@@ -60,7 +58,7 @@ class Teacher < ApplicationRecord
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
-  
+
   private
 
     # Converts email to all lower-case.

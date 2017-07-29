@@ -25,14 +25,6 @@
 		</div>
 	</div>
 
-	<!-- email -->
-	<div class="row form-row">
-		<div class="col-xs-2 col-xs-offset-1"><h4>Email: </h4></div>
-		<div class="col-xs-4">
-			<%= f.email_field :email, required: true, class: 'form-control' %>
-		</div>
-	</div>
-
 	<!-- teacher icon includes color, icon choice, and interactive sample -->
 	<div class="row">
 		<div class="col-xs-2 col-xs-offset-1"><h4>Teacher Icon:</h4></div>
@@ -68,7 +60,25 @@
 			</div>
 		</div>   <!-- sample icon col -->
 	</div>   <!-- color+icon row -->
-	
+
+	<div class="form-spacer">	&nbsp;</div>
+
+	<!-- email -->
+	<div class="row form-row">
+		<div class="col-xs-2 col-xs-offset-1"><h4>Email: </h4></div>
+		<div class="col-xs-4">
+			<%= f.email_field :email, required: true, class: 'form-control' %>
+		</div>
+	</div>
+
+	<!-- extra teacher info (optional) -->  
+	<div class="row form-row">
+		<div class="col-xs-2 col-xs-offset-1"><h4>Teacher Info: <br><small>(optional)</small></h4></div>
+		<div class="col-xs-6">
+			<%= f.text_area :description, class: "form-control info-textarea" %>
+		</div>
+	</div>
+
 	<!-- OK/Cancel buttons -->
 	<div class="row form-row  action-buttons-row">
 		<div class="col-xs-6 col-xs-offset-1 text-center">
@@ -81,7 +91,7 @@
 
 <% end %>
 
-<hr style="width:80%; padding-top: 10px;">
+<hr class="form-spacer-line">
 
 <!-- action button to Login Settings page -->
 <div class="row">

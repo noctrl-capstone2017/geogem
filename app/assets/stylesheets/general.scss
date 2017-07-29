@@ -41,9 +41,12 @@ body { background: lightgray url(geometry.png) repeat ; }
 .first-content-row { padding-top: 20px; }
 .student-icon-row { padding-top: 40px; }
 .action-icon-row { padding-top: 40px; }
-.action-buttons-row { padding-top: 40px; }
+.action-buttons-row { padding-top: 40px; padding-bottom: 20px; }
 
 .popover { max-width: 600px; } 		// control tooltip popover width
+
+.info-textarea { resize: both; } 	// turn resize ON for info text areas
+
 
 /*********************************************************
  * COLORS
@@ -362,7 +365,7 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 }
 
 // teacher icon, FA glyph in the middle
-.teacher-icon, .student-icon {
+.teacher-icon, .student-icon, .school-icon {
 	height: 6em;
 	width: 6em;
 	display: flex;
@@ -375,8 +378,7 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	color: white;
 }
 // teacher icon, small version used in a table
-.teacher-table-icon, .student-table-icon 
-{
+.teacher-table-icon, .student-table-icon, .school-table-icon {
 	height: 3em;
 	width: 3em;
 	display: flex;
@@ -386,7 +388,7 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	color: white;
 }
 // teacher icon used in the page header
-.teacher-page-header-icon, .student-page-header-icon {
+.teacher-page-header-icon, .student-page-header-icon, .school-page-header-icon, .page-header-icon {
 	height: 3em;
 	width: 3em;
 	display: flex;
@@ -548,11 +550,6 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	}
 }
 
-.page-header-icon { color: white; }
-.student-icon { color: white; }
-.teacher-icon { color: white; }
-.icon-white {	color: white; }
-
 /*This fixes the weird ruby buttons by doing the width and a 0 top margin*/
 /*The margin fixes in-line problems. Variations may be necessary due to variable lengths*/
 .btnFix
@@ -565,16 +562,7 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 *  PROF BILL is STYLIN'
 *  merge these into proper categories after the demo?
 *********************************************************/
-/* Used for teacher profile icon  and smaller student icons */
-.header-sq
-{
-	height: 3em;
-	width: 3em;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 10px;
-}
+
 
 /* Action squares appear at the bottom of the page and take user to another page */
 .action-sq {
@@ -597,33 +585,12 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 *  FORM SPACING
 *  Spacing 
 *********************************************************/
-.form-row {
-	padding-bottom: 5px;
-}
-.form-spacer-20 {
-	padding-top: 20px;
-}
-.table-sq
-{
-	height: 3em;
-	width: 3em;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 10px;
-}
+.form-row { padding-bottom: 5px; }
+.form-spacer { padding-top: 20px; }
+.form-spacer-line { width: 60%; padding-top: 20px; }
 
-.table-icon
-{
-	font-size: 4em;
-	color: white;
-}
-.squares-row {
-	padding: 20px;
-}
-.add-rm-squares-row {
-	padding-bottom: 20px;
-}
+.squares-row { padding: 20px; }
+.add-rm-squares-row { padding-bottom: 20px; }
 
 /*********************************************************
 *  TABLE STYLING
