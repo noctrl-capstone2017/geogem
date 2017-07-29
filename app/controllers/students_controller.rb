@@ -1,8 +1,8 @@
 # Authors: Ricky Perez & Michael Loptien
 
 class StudentsController < ApplicationController
-
   include TeachersHelper
+  include UxHelper
 
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   before_action :set_school   #set up the school info for the logged in teacher
@@ -31,8 +31,8 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
-    @student.color = "aqua"
-    @student.icon = "bug"
+    @student.color = studentColors.first
+    @student.icon = studentIcons.first
   end
 
   # GET /students/1/edit

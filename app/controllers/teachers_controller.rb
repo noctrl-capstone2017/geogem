@@ -1,7 +1,7 @@
 # authors: Kevin M, Tommy B; admin methods by Dakota B; guards by Meagan Moore
 class TeachersController < ApplicationController
-
   include TeachersHelper
+  include UxHelper
 
   before_action :is_suspended
   before_action :set_teacher, only: [:show, :edit, :update]
@@ -25,8 +25,8 @@ class TeachersController < ApplicationController
     @current_teacher = current_teacher
     @school = School.find(@current_teacher.school_id)
     @teacher = Teacher.new
-    @teacher.color = "aqua"
-    @teacher.icon = "apple"
+    @teacher.color = teacherColors.first
+    @teacher.icon = teacherIcons.first
   end
 
   # POST /teachers/new
@@ -280,12 +280,13 @@ class TeachersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
       params.require( :teacher).permit( :user_name, :full_name, :email, :admin,
-          :password, :password_confirmation, :color, :icon, 
+          :password, :password_confirmation, :color, :icon, :description,
           :school_id, :suspended)
     end
 
     def edit_profile_params
-      params.require(:teacher).permit( :user_name, :full_name, :email, :admin, :color, :icon)
+      params.require(:teacher).permit( :user_name, :full_name, :email, :admin, 
+            :color, :icon, :description)
     end
 
     def edit_login_settings_params

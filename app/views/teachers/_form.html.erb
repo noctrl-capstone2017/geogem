@@ -1,5 +1,5 @@
-<!-- form used for new and edit teacher -->
-<!-- local var isNew is true if called by New Teacher page -->
+<!-- authors: Ricky P & Michael L -->
+<!-- new/edit students form partial -->
 
 <%= form_for(teacher) do |f| %>
 	<%= render 'error_messages', object: f.object %>
@@ -9,7 +9,7 @@
 
 	<!-- username for login -->
 	<div class="row form-row">
-		<div class="col-xs-2 col-xs-offset-1"><h4>Username: </h4></div>
+		<div class="col-xs-2 col-xs-offset-1"><h4>Login Username: </h4></div>
 		<div class="col-xs-4">
 		  <% if local_assigns[:isNew] %>
 			  <%= f.text_field :user_name, required: true, class: 'form-control' %>
@@ -19,6 +19,27 @@
 		</div>
 	</div>
 
+<% if local_assigns[:isNew] %>
+	<!-- password -->
+	<div class="row form-row">
+		<div class="col-sm-offset-1 col-sm-2"><h4>Password: </h4></div>
+		<div class="col-sm-4 col-sm-offset-0">
+			<%= f.password_field :password, required: true, class: 'form-control'%>
+		</div>
+	</div>
+
+	<!-- confirm password -->
+	<div class="row form-row">
+		<div class="col-sm-offset-1 col-sm-2"><h4>Confirm Password: </h4></div>
+		<div class="col-sm-4 col-sm-offset-0">
+			<%= f.password_field :password_confirmation, required: true, class: 'form-control'%>
+		</div>
+	</div>
+
+	<hr class="form-spacer-line">
+
+<% end %>
+
 	<!-- name -->
 	<div class="row form-row">
 		<div class="col-xs-2 col-xs-offset-1"><h4>Name: </h4></div>
@@ -27,24 +48,6 @@
 			  <%= f.text_field :full_name, required: true, class: 'form-control' %>
 			<% else %>
   			<%= f.text_field :full_name, :readonly => true, class: 'form-control' %>
-			<% end %>
-		</div>
-	</div>
-
-	<!-- email -->
-	<div class="row form-row">
-		<div class="col-xs-2 col-xs-offset-1"><h4>Email: </h4></div>
-		<div class="col-xs-4">
-			<%= f.email_field :email, required: true, class: 'form-control' %>
-		</div>
-	</div>
-
-	<!-- powers: is teacher an admin? -->
-	<div class="row form-row">
-		<div class="col-xs-2 col-xs-offset-1"><h4>Powers: </h4></div>
-		<div class="col-xs-2 checkbox">
-			<%= f.label :admin do %>
-				<%= f.check_box :admin, { :class=> 'form-check' }, "true", "false" %>Admin
 			<% end %>
 		</div>
 	</div>
@@ -84,29 +87,35 @@
 		</div>   <!-- sample icon col -->
 	</div>   <!-- color+icon row -->
 
-<% if local_assigns[:isNew] %>
-	<!-- form spacer after password -->
-	<div class="form-spacer">	&nbsp;</div>
-
-	<!-- password -->
+	<div class="form-spacer"></div>
+	<!-- powers: is teacher an admin? -->
 	<div class="row form-row">
-		<div class="col-sm-offset-1 col-sm-2"><h4>Password: </h4></div>
-		<div class="col-sm-4 col-sm-offset-0">
-			<%= f.password_field :password, required: true, class: 'form-control'%>
+		<div class="col-xs-2 col-xs-offset-1"><h4>Powers: </h4></div>
+		<div class="col-xs-2 checkbox">
+			<%= f.label :admin do %>
+				<%= f.check_box :admin, { :class=> 'form-check' }, "true", "false" %>Admin
+			<% end %>
 		</div>
 	</div>
 
-	<!-- confirm password -->
+	<!-- email -->
 	<div class="row form-row">
-		<div class="col-sm-offset-1 col-sm-2"><h4>Confirm Password: </h4></div>
-		<div class="col-sm-4 col-sm-offset-0">
-			<%= f.password_field :password_confirmation, required: true, class: 'form-control'%>
+		<div class="col-xs-2 col-xs-offset-1"><h4>Email: </h4></div>
+		<div class="col-xs-4">
+			<%= f.email_field :email, required: true, class: 'form-control' %>
 		</div>
 	</div>
-<% end %>
+
+	<!-- extra teacher info (optional) -->  
+	<div class="row form-row">
+		<div class="col-xs-2 col-xs-offset-1"><h4>Teacher Info: <br><small>(optional)</small></h4></div>
+		<div class="col-xs-6">
+			<%= f.text_area :description, class: "form-control info-textarea" %>
+		</div>
+	</div>
 
   <!-- OK/Cancel buttons -->
-	<div class="row form-row  action-buttons-row">
+	<div class="row form-row action-buttons-row">
 		<div class="col-xs-6 col-xs-offset-1 text-center">
 		  <% if local_assigns[:isNew] %>
 		    <%= button_tag(type: 'submit', class: "btn btn-success") do %>Add New Teacher<% end %>

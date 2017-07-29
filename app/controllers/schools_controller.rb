@@ -1,8 +1,9 @@
 # Authors: Dakota B, Robert H
 
 class SchoolsController < ApplicationController
-  include TeachersHelper
   include LoginSessionHelper
+  include TeachersHelper
+  include UxHelper
 
   before_action :set_school, only: [:show, :edit, :update]
   before_action :is_super, only: [:suspend, :backup, :restore, :index]
@@ -19,6 +20,8 @@ class SchoolsController < ApplicationController
   # GET /schools/new - setup creation of a new school
   def new
     @school = School.new
+    @school.color = schoolColors.first
+    @school.icon = schoolIcons.first
   end
 
   # PUT schools/new - create the school with error-checking
@@ -123,8 +126,8 @@ class SchoolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def school_params
-      params.require(:school).permit(:full_name, :screen_name, :icon, :color, 
-                        :email, :website, :description)
+      params.require(:school).permit(:full_name, :icon, :color, 
+            :email, :website, :description)
     end
 
     #Require a teacher to be suspended
