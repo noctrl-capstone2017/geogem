@@ -73,7 +73,10 @@
 <!-- All students who are assigned to teacher will populate here -->
 <!-- horizontal form help from:	www.w3schools.com/bootstrap/bootstrap_forms.asp -->
 <div class="row">
-	<form class="form-horizontal text-center action-buttons-row">
+	<%= form_for(@teacher, url: home_path) do |f| %>
+		<%= render 'error_messages', object: f.object %>
+
+		<!--<form class="form-horizontal text-center action-buttons-row">-->
 		<div class="col-sm-offset-3">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="email">Student:</label>
@@ -96,5 +99,5 @@
 				<% end %>
 			</div>
 		</div>
-	</form>
+	<% end %>
 </div>   <!-- row -->

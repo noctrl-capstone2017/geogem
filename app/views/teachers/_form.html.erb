@@ -120,7 +120,7 @@
 		  <% if local_assigns[:isNew] %>
 		    <%= button_tag(type: 'submit', class: "btn btn-success") do %>Add New Teacher<% end %>
 		  <% else %>
-        <%= button_tag(type: 'submit', class: "btn btn-success") do %>Change Profile<% end %>
+        <%= button_tag(type: 'submit', class: "btn btn-success", name: 'edit1') do %>Change Profile<% end %>
 		  <% end %>
 		  &emsp; &emsp; &emsp;
 		  <%= link_to "Cancel", teachers_path, :class => "btn btn-danger", 

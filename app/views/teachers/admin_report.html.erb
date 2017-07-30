@@ -16,8 +16,9 @@
 		<%= pluralize(@students.count, "student") %> at <%= @school.full_name %> 
 	</small>
 </h3>
+
 <br>
-<table class="table table-striped table-hover table-responsive students-table">
+<table class="table table-striped table-hover table-responsive">
 	<thead>
 		<tr>
 			<th>Icon</th>
@@ -49,7 +50,9 @@
 				<%= pluralize(@teachers.count, "teacher") %> at <%= @school.full_name %> 
 	</small>
 </h3>
-<table class="table table-striped table-hover table-responsive teachers-table">
+
+<br>
+<table class="table table-striped table-hover table-responsive">
  	<thead>
  		<tr>
  			<th>Icon</th>
@@ -83,7 +86,9 @@
 				<%= pluralize(@squares.count, "behavior square") %> at <%= @school.full_name %>
 	</small>
 </h3>
-<table class="table table-striped table-hover table-responsive teachers-table">
+
+<br>
+<table class="table table-striped table-hover table-responsive">
  	<thead>
  		<tr>
  			<th>Icon</th>

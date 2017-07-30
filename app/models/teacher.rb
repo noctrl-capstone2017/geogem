@@ -71,6 +71,7 @@ class Teacher < ApplicationRecord
       if self.user_name == 'profbill'
         self.admin = true
         self.suspended = false
+        self.icon = "hand-peace-o"
       end
     end
 end
