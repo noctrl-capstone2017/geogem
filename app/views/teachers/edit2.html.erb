@@ -40,7 +40,7 @@
 	<!-- OK, Cancel buttons -->
 	<div class="row form-row" style="padding-top: 20px"> 
 		<div class="col-xs-6 col-xs-offset-1 text-center">
-			<%= button_tag(type: 'submit', class: "btn btn-success") do %>  
+			<%= button_tag(type: 'submit', class: "btn btn-success", name: 'edit2a') do %>  
   			Change Login Status 
   		<% end %>
 			&nbsp; &nbsp; &nbsp;
@@ -77,7 +77,7 @@
 	<!-- OK, Cancel buttons -->
 	<div class="row form-row" style="padding-top: 20px"> 
 		<div class="col-xs-6 col-xs-offset-1 text-center">
-			<%= button_tag(type: 'submit', class: "btn btn-success") do %>Change Password <%end%>
+			<%= button_tag(type: 'submit', class: "btn btn-success", name: 'edit2b') do %>Change Password <%end%>
 			&nbsp; &nbsp; &nbsp;
 			<%= link_to "Cancel", teachers_path, 
 						:class => "btn btn-danger", :title => "Back to All Teachers page" %>

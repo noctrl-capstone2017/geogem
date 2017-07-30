@@ -7,7 +7,7 @@
 										:subtitle => "view/manage all students at #{ @school.full_name }"} %>
 
 <!-- Start with student info and the New Student button -->
-<div class="row first-content-row">
+<div class="row">
 	<div class="col-xs-5 col-xs-offset-1">
 	  <h4>
 	    There <%= @students.count == 1 ? 'is' : 'are' %> <%= pluralize(@students.count, "student") %> 
@@ -22,10 +22,11 @@
 </div>
 
 <!-- Start of Table -->
-<div class="row">
+<br>
+<div class="row first-content-row">
   <div class="col-xs-10 col-xs-offset-1">
 
-<table class="table table-striped table-hover table-responsive schools-table">
+<table class="table table-striped table-hover table-responsive">
 
   <!-- Table Header -->
   <thead>

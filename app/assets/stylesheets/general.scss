@@ -3,13 +3,13 @@
 
 @charset "UTF-8";
 
-// Author: Debra Jensen
+/* Authors: Debra Jensen, Carolyn C, many */
 
 /*********************************************************
- * TOP-LEVEL
- * Some of the most important stuff in the system:
- * main font choices, bg image, content divs, align, etc.
- *********************************************************/
+	1. TOP-LEVEL
+	Some of the most important stuff in the system:
+	font, layout, bg image, divs, align, etc.
+*********************************************************/
 
 @import url('https://fonts.googleapis.com/css?family=Hind|Rubik');
 
@@ -35,30 +35,19 @@ body { background: lightgray url(geometry.png) repeat ; }
 // Source: http://stackoverflow.com/questions/20547819/vertical-align-with-bootstrap-3
 .vertical-align { display: flex; align-items: center; }
 
-.page-header .h1 { padding-left: 100px; }
-.geogem-page-header { margin-bottom: 40px; }
-
-.first-content-row { padding-top: 20px; }
-.student-icon-row { padding-top: 40px; }
-.action-icon-row { padding-top: 40px; }
-.action-buttons-row { padding-top: 40px; padding-bottom: 20px; }
-
-.popover { max-width: 600px; } 		// control tooltip popover width
-
-.info-textarea { resize: both; } 	// turn resize ON for info text areas
-
-
 /*********************************************************
- * COLORS
- * Variables and css for colors used in GeoGem CSS
- * Two important choices here:
- * 1) Basic color scheme for system things like navbar and login is 
- * blue and (pretty) boring, because there's a lot of color in our icons. 
- * Source: http://www.colorcombos.com/color-schemes/7133/ColorCombo7133.html
- * 
- * 2) Top 10 fave colors in U.S. used for all icons: school, student, teacher, 
- * square, action, help, etc. Source: http://clrs.cc/
- *********************************************************/
+	2. COLORS
+	Colors used GeoGem CSS. This has to appear at the top of this file
+	because they are used below.
+
+	Two important choices here:
+		1) Basic color scheme for system things like navbar and login is 
+		blue and (pretty) boring, because there's a lot of color in our icons. 
+		Source: http://www.colorcombos.com/color-schemes/7133/ColorCombo7133.html
+
+		2) Top 10 fave colors in U.S. used for all icons. 
+		Source: http://clrs.cc/
+*********************************************************/
 
 // color scheme for system things: navbar, login, action icons, etc
 $scheme-blue: #206BA4;					// matisse blue
@@ -141,12 +130,58 @@ $geogem-yellow: #FFDC00;
 .glow-yellow { color: white; background: $geogem-yellow; 
 	&:hover { color: lightgray; box-shadow: 0 0 16px $geogem-yellow; } }
 
+/*********************************************************
+	3. SMALLER STUFF
+	Minor/misc CSS for spacing, forms, etc
+*********************************************************/
+
+.page-header .h1 { padding-left: 100px; }
+.geogem-page-header { margin-bottom: 40px; }
+
+.first-content-row { padding-top: 20px; }
+.student-icon-row { padding-top: 40px; }
+.action-icon-row { padding-top: 40px; }
+.action-buttons-row { padding-top: 40px; padding-bottom: 20px; }
+
+.popover { max-width: 600px; } 		// control tooltip popover width
+
+.info-textarea { resize: both; } 	// turn resize ON for info text areas
+
+// form formatting
+.form-row { padding-bottom: 5px; }
+.form-spacer { padding-top: 20px; }
+.form-spacer-line { width: 60%; padding-top: 20px; }
+
+.squares-row { padding: 20px; }
+.add-rm-squares-row { padding-bottom: 20px; }
+
+// table formatting
+.table-striped > tbody > tr:hover td {
+  background-color: $scheme-paleblue;
+}
+
+// Styling for form errors that display at the top of forms, Michael Loptien
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
 
 /*********************************************************
- *  NAVBAR + LOGIN + LOGOUT - use system color scheme!
- *********************************************************/
+	4. NAVBAR + LOGIN + LOGOUT
+	Use system color scheme!
+*********************************************************/
 .navbar { background: $scheme-blue; } 		// navbar bg color
 .navbar a { color: white; } 							// navbar text color
+
 .navbar .brand, .navbar .nav > li > a:hover, .navbar-header > a:hover 
 {
 	color: white;
@@ -175,10 +210,11 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 .logout-art { padding-top: 2%; }
 .logout-art-text { font-size: 1.4em; padding-top: 20px; }
 
-
 /*********************************************************
- * ICONS - Home, Super, Admin, etc
- *********************************************************/
+	5. ICONS
+	Lots of different icons with colors and sizing and such. 
+	Because this is a major idiom in GeoGem.
+*********************************************************/
 
 // home page has big student icons
 .home-icon {
@@ -277,7 +313,6 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	color: white;
 	&:hover { color: lightgray; }
 }
-
 
 // each action icons in system color scheme
 .action-icon-blue {
@@ -399,8 +434,9 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 }
 
 /*********************************************************
- *  HELP - help page formatting
- *********************************************************/
+	6. HELP
+	Help page does some unique stuff
+*********************************************************/
 .help-header { padding-top: 60px; padding-bottom: 20px; }
 .help-qa-letter { font-size: 1.2em; font-weight: bold; color: $scheme-darkgray; }
 .help-answer-para { margin-left: 5%; margin-right: 5%; }
@@ -421,10 +457,38 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	border-radius: 4px;
 }
 
+/*********************************************************
+	7. ABOUT
+	About page does some unique stuff
+*********************************************************/
+/* Bigger squares for about page */
+.sq-about
+{
+	height: 10em;
+	width: 10em;
+	display: flex;
+	background-size: cover; /*For the pictures in the div*/
+	flex-flow:column;
+	align-items: center;
+	justify-content: center;
+	border-radius: 30px;
+	
+	transition: all .2s ease-in-out;
+}
+.sq-about:hover
+{
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-o-transform:scale(1.1);
+	transform:scale(1.1);
+}
+
+
 
 /**********************************************/
 /** BILL - Still need to cleanup below here! **/
 /**********************************************/
+
 
 /* Big square used on home and session screen*/
 .square
@@ -447,27 +511,7 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	transform:scale(1.1);
 }
 
-/* Bigger squares for about page */
-.sq-about
-{
-	height: 10em;
-	width: 10em;
-	display: flex;
-	background-size: cover; /*For the pictures in the div*/
-	flex-flow:column;
-	align-items: center;
-	justify-content: center;
-	border-radius: 30px;
-	
-	transition: all .2s ease-in-out;
-}
-.sq-about:hover
-{
-	-webkit-transform: scale(1.1);
-	-moz-transform: scale(1.1);
-	-o-transform:scale(1.1);
-	transform:scale(1.1);
-}
+
 
 /*Special square used by session screen*/
 .sq-studSesh
@@ -579,32 +623,6 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	-moz-transform: scale(1.1);
 	-o-transform:scale(1.1);
 	transform:scale(1.1);
-}
-
-/*********************************************************
-*  FORM SPACING
-*  Spacing 
-*********************************************************/
-.form-row { padding-bottom: 5px; }
-.form-spacer { padding-top: 20px; }
-.form-spacer-line { width: 60%; padding-top: 20px; }
-
-.squares-row { padding: 20px; }
-.add-rm-squares-row { padding-bottom: 20px; }
-
-/*********************************************************
-*  TABLE STYLING
-*  Used for admin screens
-*********************************************************/
-.table-striped > tbody > tr:hover td {
-  background-color: $scheme-paleblue;
-}
-
-.schools-table {
-	margin-top: 40px;
-}
-.teachers-table {
-	margin-top: 40px;
 }
 
 /* Note from Carolyn C- moved from teachers.scss */
@@ -784,24 +802,3 @@ input[type="radio"]:checked + label {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
-
-
-
-/* Styling for form errors that display at the top of forms
-when submitted with errors */
-// Author Michael Loptien
-#error_explanation {
-  color: red;
-  ul {
-    color: red;
-    margin: 0 0 30px 0;
-  }
-}
-
-.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    color: $state-danger-text;
-  }
-}
-

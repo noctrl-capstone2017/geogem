@@ -32,13 +32,17 @@ module UxHelper
 
   # student icon name choices
   def studentIcons
-    ["bug", "car", "puzzle-piece", "flash", "futbol-o", "gamepad",
-              "heart", "leaf","paper-plane","paw","star", "graduation-cap"]
+    ["bug", "car", "flash", "futbol-o", "gamepad", "graduation-cap", 
+          "heart", "leaf", "paper-plane", "paw", "puzzle-piece", "star"]
   end
 
   # teacher icon name choices
   def teacherIcons
-    ["apple", "book", "pencil", "calculator"]
+    icons = ["apple", "book", "calculator", "pencil"]
+    if is_super?
+      icons << "hand-peace-o"     # super only - peace and victory
+    end
+    icons
   end
 
   # school icon name choices

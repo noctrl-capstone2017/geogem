@@ -9,14 +9,13 @@ class TeachersController < ApplicationController
   before_action :is_admin, only: [:edit, :update, :admin, :admin_report, :index, :new, :create, :login_settings]
   before_action :is_super, only: [:super, :update_super_focus, :super_report]
   
-
   # GET /teachers
   # Show all teachers. Sets up pagination in an ascending order by their screen_name.
   def index
     @current_teacher = current_teacher
     @school = School.find(@current_teacher.school_id)
     @teachers = Teacher.where(school_id: @current_teacher.school_id).paginate(page: params[:page], :per_page => 10)
-    @teachers = @teachers.order('screen_name ASC')
+    @teachers = @teachers.order('full_name ASC')
   end
 
   # GET /teachers/new
@@ -43,60 +42,6 @@ class TeachersController < ApplicationController
     end
   end
 
-  # GET /profile
-  # show profile of the current teacher
-  def profile
-    @teacher = current_teacher
-    params[:id] = @teacher.id
-  end
-
-  # PATCH /profile
-  # edit current teacher's profile
-  def change_profile
-    @teacher = current_teacher
-    if @teacher.update(teacher_params)
-      flash[ :success] = "Profile update successful"
-      redirect_to profile_path
-    else
-      render :profile
-    end
-  end
-
-  # GET /password
-  # show page for current teacher to change his/her password
-  # Source: stackoverflow.com/questions/25490308/ruby-on-rails-two-different-edit-pages-and-forms-how-to for help
-  def password
-    @teacher = current_teacher
-  end
-
-  # PATCH /password
-  # change current teacher's password
-  def change_password
-    @teacher = current_teacher
-
-    # case 1 - verify current password
-    my_params = password_params
-    if (! @teacher.authenticate( my_params[:current_password]))
-      flash[:danger] = "Incorrect password entered"
-      redirect_to password_path
-
-    # case 2 - new password and confirmation must match
-    elsif my_params[:password] != my_params[:password_confirmation]
-      flash[:danger] = "New password and confirmation don't match"
-      redirect_to password_path
-
-    # case 3 - update new password, error if this fails
-    else
-      @teacher.password = my_params[:password]
-      if @teacher.save
-        flash[ :success] = "Password change successful"
-        redirect_to profile_path
-      else
-        render 'password'     # saving new password failed
-      end
-    end
-  end
-
   # GET /teachers/1/edit
   # admin page 1 - edit teacher profile
   def edit
@@ -115,19 +60,18 @@ class TeachersController < ApplicationController
     @teacher = Teacher.find(params[:id])
   end
 
-
-  # PUT /teachers/1
+  # POST /teachers/1
   # Admin updates a teacher here for all 3 edit pages.
-  # Attributes in params[] are used to appropriately mux the updating
+  # Attributes in params[] are used to mux the updating to the correct methods
   def update
-    if params[:teacher][:email]
+    if params[:edit1]
       update1_profile
-    elsif params[:teacher][:suspended]
+    elsif params[:edit2a]
       update2_login_settings
-    elsif params[:teacher][:password]
+    elsif params[:edit2b]
       update2_password
     else
-        redirect_to home_path
+      redirect_to home_path
     end
   end
 
@@ -160,6 +104,130 @@ class TeachersController < ApplicationController
       render 'edit2'
     end
   end
+
+  # GET /profile
+  # show profile of the current teacher
+  def profile
+    @teacher = current_teacher
+    params[:id] = @teacher.id
+  end
+
+  # PATCH /profile
+  # edit current teacher's profile
+  def update_profile
+    @teacher = current_teacher
+    if @teacher.update(teacher_params)
+      flash[ :success] = "Profile update successful"
+      redirect_to profile_path
+    else
+      render :profile
+    end
+  end
+
+  # GET /password
+  # show page for current teacher to change his/her password
+  # Source: stackoverflow.com/questions/25490308/ruby-on-rails-two-different-edit-pages-and-forms-how-to for help
+  def password
+    @teacher = current_teacher
+  end
+
+  # PATCH /password
+  # change current teacher's password
+  def update_password
+    @teacher = current_teacher
+
+    # case 1 - verify current password
+    my_params = password_params
+    if (! @teacher.authenticate( my_params[:current_password]))
+      flash[:danger] = "Incorrect password entered"
+      redirect_to password_path
+
+    # case 2 - new password and confirmation must match
+    elsif my_params[:password] != my_params[:password_confirmation]
+      flash[:danger] = "New password and confirmation don't match"
+      redirect_to password_path
+
+    # case 3 - update new password, error if this fails
+    else
+      @teacher.password = my_params[:password]
+      if @teacher.save
+        flash[ :success] = "Password change successful"
+        redirect_to profile_path
+      else
+        render 'password'     # saving new password failed
+      end
+    end
+  end
+
+  #author: Matthew O & Alex P
+  #home page for teachers, display top 8 most used students, route to anaylze or new session
+  def home
+    @teacher = current_teacher
+    @first_login = params[:first_login] != nil
+    @first_home = params[:first_home] != nil
+    @top_students = Student.where(id: Session.where(session_teacher: @teacher.id).group('session_student').order('count(*)').select('session_student').limit(8))
+  end
+
+  # PATCH /home
+  # update home means: 1) start a session, 2) ...
+  def update_home
+    @teacher = current_teacher
+    if params[:start_session]
+      @student = Student.find(params[:student_id])
+      if(@student.squares.size == 0)
+        flash[ :danger] = "Cannot start session; student #{@student.full_name} has no behavior squares"
+        redirect_to home_path
+      else
+        @session = Session.new
+        @session.session_teacher = @teacher.id
+        @session.session_student = params[:student_id]
+        if @session.save
+          flash[ :success] = "Session was successfully created."
+          redirect_to @session
+        else
+          render :new
+        end
+      end
+    elsif params[:analyze]
+        redirect_to analysis_student_path(params[:student_id])
+    end
+  end
+
+  # GET /admin
+  # This prepares the admin dashboard.
+  def admin
+    @teacher = current_teacher
+    @school = School.find(current_teacher.school_id)
+  end 
+
+  # GET /admin_report
+  #This method prepares the admin_report view.
+  def admin_report
+    @current_teacher = current_teacher
+    @school = School.find(@current_teacher.school_id)
+    @students = Student.where(school_id: current_teacher.school_id).order('full_name ASC')
+    @teachers = Teacher.where(school_id: current_teacher.school_id).order('full_name ASC')
+    @squares = Square.where(school_id: current_teacher.school_id).order('full_name ASC')
+  end
+
+  # GET /super
+  # prepares variables for the super view
+  def super
+    @teacher = Teacher.first
+    @schools = School.all
+    @school =  School.find(Teacher.first.school_id)
+  end
+
+  # PATCH /super
+  # updates the focus school of the super user
+  def update_super_focus
+    @teacher = Teacher.first
+    if ! @teacher.update(super_params)
+      flash[:danger] = "Error changing Super focus school"
+    end
+    redirect_to super_path
+  end
+
 
   # GET /teachers/1
   # View for a teacher. It sets up pagination similarly to the teacher index.
@@ -200,73 +268,6 @@ class TeachersController < ApplicationController
     end
   end
 
-
-  # GET /admin
-  # This prepares the admin dashboard.
-  def admin
-    @teacher = current_teacher
-    @school = School.find(current_teacher.school_id)
-  end 
-  
-
-  # GET /admin_report
-  #This method prepares the admin_report view.
-  def admin_report
-    @current_teacher = current_teacher
-    @school = School.find(@current_teacher.school_id)
-    @students = Student.where(school_id: current_teacher.school_id).order('full_name ASC')
-    @teachers = Teacher.where(school_id: current_teacher.school_id).order('full_name ASC')
-    @squares = Square.where(school_id: current_teacher.school_id).order('full_name ASC')
-  end
-
-
-  #author: Matthew O & Alex P
-  #home page for teachers, display top 8 most used students, route to anaylze or new session
-  def home
-    @teacher = current_teacher
-    @first_login = params[:first_login] != nil
-    @first_home = params[:first_home] != nil
-
-    @top_students = Student.where(id: Session.where(session_teacher: @teacher.id).group('session_student').order('count(*)').select('session_student').limit(8))
-    if params[:start_session]
-      @student = Student.find(params[:student_id])
-      if(@student.squares.size == 0)
-        flash[ :danger] = "Cannot start session; student #{@student.full_name} has no behavior squares"
-        redirect_to home_path
-      else
-        @session = Session.new
-        @session.session_teacher = @teacher.id
-        @session.session_student = params[:student_id]
-        if @session.save
-          flash[ :success] = "Session was successfully created."
-          redirect_to @session
-        else
-          render :new
-        end
-      end
-    elsif params[:analyze]
-        redirect_to analysis_student_path(params[:student_id])
-    end
-  end
-
-
-
-  # prepares variables for the super view
-  def super
-    @teacher = Teacher.first
-    @schools = School.all
-    @school =  School.find(Teacher.first.school_id)
-  end
-
-  # updates the focus school of the super user
-  def update_super_focus
-    @teacher = Teacher.first
-    if ! @teacher.update(super_params)
-      flash[:danger] = "Error changing Super focus school"
-    end
-    redirect_to super_path
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_teacher
@@ -305,7 +306,7 @@ class TeachersController < ApplicationController
       params.require(:teacher).permit(:school_id)
     end
 
-    #Can only access teachers and info from the same school
+    # can only access teachers and info from the same school
     def same_school
       if current_teacher.school_id != Teacher.find(params[:id]).school_id
         redirect_to home_path, :flash => { :notice => "You can't access other schools." }
