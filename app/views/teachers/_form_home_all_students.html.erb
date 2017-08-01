@@ -1,0 +1,29 @@
+<!-- This form handles selection a student from the all students spinner. -->
+<%= form_for(@teacher, url: home_path) do |f| %>
+
+<div class="row form-row" style="padding-top: 40px">
+	<br>
+	<div class="form-group">
+		<div class="col-xs-2 col-xs-offset-2">
+			<label class="control-label" for="email"><h4>All students: </h4></label>
+		</div>
+		<div class="col-xs-4">
+			<%= select_tag 'student_id', 
+						options_from_collection_for_select(@all_students.order( 'full_name ASC'), 'id', 'full_name'), 
+						{:required => true, :class => 'form-control'} %>
+		</div>
+	</div>   <!-- form-group -->
+	<br><br>
+</div>   <!-- row -->
+
+<!-- Goto Student button -->
+<div class="row form-group" style="padding-top: 20px" > 
+	<div class="col-xs-2 col-xs-offset-2 text-center">
+		<%= button_tag(type: 'submit', class: "btn btn-lg btn-primary", name: 'go_student') do %>
+			<%= image_tag("logos/smallgem.png", :alt => "GeoGem logo", :width => 32) %>
+			 &nbsp; Goto student
+		<% end %>
+	</div>   <!-- col -->
+</div>   <!-- row -->
+
+<% end %>

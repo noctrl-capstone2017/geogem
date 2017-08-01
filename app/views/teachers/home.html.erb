@@ -4,6 +4,25 @@
 <!-- page header -->
 <%= render partial: 'home_page_header', :locals => { 	:title => "Home" } %>
 
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+		<h4>Select a student you'd like to work with. And GO!</h4>
+	</div>
+</div>
+
+<!-- Things got too BIG, so home into into 3 separate partials -->
+
+<!-- form to switch between all/your student views -->
+<%= render 'form_home_views' %>
+
+<!-- two choices: select one of your students, or select from all students -->
+<% if @view_all %>
+	<%= render 'form_home_all_students' %>
+<% else %>
+	<%= render 'form_home_your_students' %>
+<% end %>
+
+
 <!-- Control the selection and unselection of the student roster -->
 <script>
 	$(document).ready(function() {
@@ -24,80 +43,3 @@
 			})
 	});
 </script>
-
-<div id="popover-here" class="row">
-	<div class="col-xs-6 col-xs-offset-1">
-		<p style="font-size: 1.4em;">
-			Select a student and GO! &nbsp; 
-			<span class="fa fa-fw fa-lg fa-question-circle color-scheme-lightblue"
-					data-toggle="popover" data-trigger="hover" title="Student. GO!"></span>
-		</p>
-	</div>
-</div>
-
-<!-- popover tooltip is from Bootstrap; www.w3schools.com/bootstrap/bootstrap_popover.asp -->
-<div id="popover" style="display:none;">
-	<h4>Icons - <small>students you've worked with most recently.</small></h4>
-	<h4>All students - <small>the spinner below the icons lists all students.</small></h4>
-	<h4>Go! - <small>select a student and GO to begin a session or analyze past results.</small></h4>
-</div>
-
-
-<!--Student Roster Area -->
-<div class="student-icon-row"> 
-	<!--Student display area: shows the last 8 students teacher worked with -->
-	<% @top_students.each_with_index do |student, index| %>
-		<% if index == 0 || index == 4 %>
-			<div class="row students-row col-xs-offset-1">
-		<% end %>
-
-		<div class="col-xs-2 text-center">
-			<input name="student_roster" id="student<%= student.id %>" value="student<%= student.id %>" style="display:none;" type="radio"/>
-			<label for="student<%= student.id %>">
-				<div class="image-radio" id="<%= student.id %>">
-					<div class ="home-icon <%= home_icon_color(student) %> center-block">
-						<span class="fa fa-fw fa-4x fa-<%= student.icon %>"></span>
-					</div>
-				</div>
-			</label>
-      <p><span class="student-icon-text" id="<%= student.id %>"><%= student.full_name%></span></p>
-		</div>    <!-- col -->
-
-    <% if index == 3 || index == 7 || index == (@top_students.size-1) %>
-    	</div>   <!-- row -->
-    <% end %>
-  <% end %>
-</div> <!--End Student Roster -->
-
-<!-- Search Form should populate with student name on selection -->
-<!-- All students who are assigned to teacher will populate here -->
-<!-- horizontal form help from:	www.w3schools.com/bootstrap/bootstrap_forms.asp -->
-<div class="row">
-	<%= form_for(@teacher, url: home_path) do |f| %>
-		<%= render 'error_messages', object: f.object %>
-
-		<!--<form class="form-horizontal text-center action-buttons-row">-->
-		<div class="col-sm-offset-3">
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="email">Student:</label>
-				<div class="col-sm-4">
-					<%= select_tag 'student_id', 
-								options_from_collection_for_select(@teacher.students.order( 'full_name ASC'), 'id', 'full_name'), 
-								{:required => true, :class => 'form-control'} %>
-				</div>
-			</div>
-		</div>
-		<div class="form-group"> 
-			<div class="col-xs-3 text-center col-xs-offset-3">
-				<%= button_tag(type: 'submit', class: "btn btn-lg btn-primary", name: 'start_session') do %>
-					<i class="fa fa-clock-o"></i>  Start Session
-				<% end %>
-			</div>
-			<div class="col-xs-3 text-center">
-				<%= button_tag(type: 'submit', class: "btn btn-lg btn-success", name: 'analyze') do %>
-					<i class="fa fa-line-chart"></i> Analyze Sessions
-				<% end %>
-			</div>
-		</div>
-	<% end %>
-</div>   <!-- row -->

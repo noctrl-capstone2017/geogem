@@ -54,7 +54,7 @@ module TeachersHelper
   def ux_fancy_home_welcome( teacher, first_home)
     if first_home
       if teacher.last_login == nil
-        "Welcome to Geogem, " << teacher.full_name
+        msg = "Welcome to Geogem, " << teacher.full_name
       else 
          # construct a nice string for last login: earlier today, yesterday, or a specific date
         login_date = teacher.last_login.to_date
@@ -65,11 +65,12 @@ module TeachersHelper
         else
           tmp = teacher.last_login.strftime('%A %B %d')
         end
-        "Welcome back, " << teacher.full_name << "... your last login was " << tmp << "."
+        msg = "Welcome back, " << teacher.full_name << "... your last login was " << tmp << "."
       end
     else
-      "home page, " << teacher.full_name
+      msg = "home page, " << teacher.full_name
     end
+    msg
   end
 
   # return ux string for teacher name
