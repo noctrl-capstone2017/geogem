@@ -1,0 +1,49 @@
+<!-- This form catches the view switches between your students and all. -->
+<!-- I pulled this out because the home page was getting BIG/complex. -->
+
+<div id="popover-here" class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+
+<%= form_for(@teacher, url: home_path) do |f| %>
+	<%= render 'error_messages', object: f.object %>
+
+<h4>Viewing choice: &nbsp
+
+	<% if @view_all %>
+		<!-- view_all true: enable view_your button, disable view_all button -->
+		<%= button_tag(type: 'submit', class: "btn btn-link home-view-button", 
+					title: "List students you've worked with before" ) do %>
+			Your students
+		<% end %>
+		<%= button_tag(type: 'submit', class: "btn btn-link disabled home-view-button", 
+					title: "List all students at your school", 
+					disabled: true ) do %>
+			All students
+		<% end %>
+	<% else %>
+		<!-- view_all true: disable view_your button, enable view_all button -->
+		<%= button_tag(type: 'submit', class: "btn btn-link disabled home-view-button", 
+					title: "List students you've worked with before", 
+					disabled: true ) do %>
+			Your students
+		<% end %>
+		<%= button_tag(type: 'submit', class: "btn btn-link home-view-button", 
+					title: "List all students at your school",
+					name: 'view_all' ) do %>
+			All students
+		<% end %>
+	<% end %>
+	&nbsp; &nbsp; 
+	<span class="fa fa-fw fa-lg fa-question-circle color-scheme-lightblue"
+		data-toggle="popover" data-trigger="hover" title="Viewing choice"></span>
+</h4>
+<% end %>   <!-- view all/your students form -->
+
+	</div>   <!-- col -->
+</div>   <!-- row -->
+
+<!-- popover tooltip is from Bootstrap; www.w3schools.com/bootstrap/bootstrap_popover.asp -->
+<div id="popover" style="display:none;">
+	<h4>Your students - <small>view students you've worked with before</small></h4>
+	<h4>All students - <small>view all students at your school</small></h4>
+</div>

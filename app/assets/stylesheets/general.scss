@@ -136,10 +136,10 @@ $geogem-yellow: #FFDC00;
 *********************************************************/
 
 .page-header .h1 { padding-left: 100px; }
-.geogem-page-header { margin-bottom: 40px; }
+.geogem-page-header { margin-bottom: 20px; }
 
 .first-content-row { padding-top: 20px; }
-.student-icon-row { padding-top: 40px; }
+.student-icon-row { padding-top: 20px; }
 .action-icon-row { padding-top: 40px; }
 .action-buttons-row { padding-top: 40px; padding-bottom: 20px; }
 
@@ -173,6 +173,14 @@ $geogem-yellow: #FFDC00;
   .form-control {
     color: $state-danger-text;
   }
+}
+
+.home-view-button { font-size: 1.0em; }
+.home-view-button:disabled {
+	background-color: #C0C0C0 !important;
+	color: black !important;
+	font-weight: bold;
+	border-radius: 8px;
 }
 
 /*********************************************************
