@@ -1,9 +1,15 @@
 <!-- This form handles selection a student from the your students radio icons. -->
-<%= form_for(@teacher, url: home_path) do |f| %>
 
+<style>
+/* radio button css - select one */
+input[type="radio"]:checked + label { box-shadow: 0 0 24px black; }
+.student-radio input[type="radio"] { 	display: none;  }
+</style>
+
+<%= form_for(@teacher, url: home_path) do |f| %>
 	<!--View: your students; a grid of student icons -->
-	<div class="row student-icon-row"> 
-		<% if @top_students.count == 0 %>
+	<% if @top_students.count == 0 %>
+		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2" style="padding: 20px 0 60px 0;">
 				<h4>
 					<i>Sorry &mdash; It looks like you haven't worked with any students yet.
@@ -11,37 +17,45 @@
 					Try selecting "All students" above to get started. </i>
 				</h4>
 			</div>
-		<% else %>
-			<!--Student display area: shows the last 8 students teacher worked with -->
-			<% @top_students.each_with_index do |student, index| %>
-				<% if index == 0 || index == 4 %>
-					<div class="row students-row col-xs-offset-2">
-				<% end %>
-	
-				<div class="col-xs-2 text-center">
-					<input name="student_roster" id="student<%= student.id %>" value="student<%= student.id %>" style="display:none;" type="radio"/>
-					<label for="student<%= student.id %>">
-						<div class="image-radio" id="<%= student.id %>">
-							<div class ="home-icon <%= home_icon_color(student) %> center-block">
-								<span class="fa fa-fw fa-4x fa-<%= student.icon %>"></span>
-							</div>
-						</div>
-					</label>
-		      <p><span class="student-icon-text" id="<%= student.id %>"><%= student.full_name%></span></p>
+		</div>   <!-- row -->
+	<% else %>
+		<!--Student display area: shows the last 8 students teacher worked with -->
+		<% @top_students.each_with_index do |student, index| %>
+			<% if index == 0 || index == 4 %>
+				<div class="row student-radio col-xs-offset-0" style="padding-top: 20px">
+			<% end %>
 
-				</div>    <!-- col -->
-	
-		    <% if index == 3 || index == 7 || index == (@top_students.size-1) %>
-		    	</div>   <!-- row -->
-		    <% end %>
-		  <% end %>
-		</div>   <!-- student icons row(s) -->
-	<% end %>
+			<div class="col-xs-3 text-center">
+				<input name="student_roster" id="student<%= student.id %>" 
+							value="student<%= student.id %>"  type="radio" class="view-radio"/>
+				<label for="student<%= student.id %>">
+					<div class="image-radio" id="<%= student.id %>">
+						<div class ="student-home-icon <%= glow_color(student) %> center-block">
+							<span class="fa fa-fw fa-4x <%= fa_icon(student) %>"></span>
+						</div>
+					</div>
+					<p><span id="<%= student.id %>"><%= ux_student_name(student, 15) %></span></p>
+				</label>
+			</div>    <!-- col -->
+
+	    <% if index == 3 || index == 7 || index == (@top_students.size-1) %>
+	    	</div>   <!-- row -->
+	    <% end %>
+		<% end %>   <!-- each student loop -->
+	<% end %>   <!-- if-else -->
+
+	<!-- Hidden div holds list of all students, so we can select one -->
+	<div style="display:none;">
+		<%= select_tag 'student_id', 
+					options_from_collection_for_select(@all_students.order( 'full_name ASC'), 'id', 'full_name'), 
+					{:required => true} %>
+	</div>
 
 	<!-- Goto Student button -->
 	<div class="row form-group" style="padding-top: 20px" > 
-		<div class="col-xs-2 col-xs-offset-2 text-center">
-			<%= button_tag(type: 'submit', class: "btn btn-lg btn-primary", name: 'go_student') do %>
+		<div class="col-xs-2 col-xs-offset-3 text-center">
+			<%= button_tag(type: 'submit', class: "btn btn-lg btn-primary disabled", 
+						id: 'goto-button', name: 'go_student', disabled: true) do %>
 				<%= image_tag("logos/smallgem.png", :alt => "GeoGem logo", :width => 32) %>
 				 &nbsp; Goto student
 			<% end %>
