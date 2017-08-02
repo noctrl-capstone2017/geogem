@@ -78,4 +78,14 @@ module UxHelper
     "home-icon-" << student.color
   end
 
+  # this is a REALLY weird one, used in many field-of-icons screens, 
+  # to help control when row breaks are needed. 
+  # I put this here because I couldn't find a modulo operator in Rails
+  def ux_check_new_row( index, row_size=4)
+    (index % row_size) == 0
+  end
+
+  # Bill - row helper methods? 
+  # ux_first_row, ux_next_row, ux_last_row?
+
 end

@@ -26,6 +26,10 @@ class StudentsController < ApplicationController
   # GET /students/1.json
   def show
     @student = Student.find(params[:id])
+    # student's reommended roster squares
+    @student_roster_squares = RosterSquare.where(student_id: @student.id)
+    # all behavior squares at the school
+    @school_squares = Square.where(school_id: @student.school_id)
   end
 
   # GET /students/new
@@ -99,12 +103,17 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
-    @student = Student.find(params[:id])
-    if @student.update(student_params)
-        flash[:success] = "Student was successfully updated."
-        redirect_to students_url
+    if params[:start_session]
+      flash[:success] = "Code sessions, Bill."
+      redirect_to home_url
     else
-      render 'edit'
+      @student = Student.find(params[:id])
+      if @student.update(student_params)
+          flash[:success] = "Student was successfully updated."
+          redirect_to students_url
+      else
+        render 'edit'
+      end
     end
   end
 

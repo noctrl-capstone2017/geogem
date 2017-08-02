@@ -5,6 +5,7 @@ class RosterSquaresController < ApplicationController
   before_action :set_roster_square, only: [:show, :edit, :update]
 
   helper_method :set_square_name    # methods used in roster square views
+  helper_method :set_real_square
   helper_method :set_square_color
   helper_method :set_square_id
   helper_method :set_square_desc
@@ -56,6 +57,10 @@ class RosterSquaresController < ApplicationController
   #that would otherwise be unavailable
   def set_roster_id (roster_square)
     @roster_id = RosterSquare.find(roster_square.square_id).screen_name
+  end
+  
+  def set_real_square( roster_square)
+    @real_square = Square.find(roster_square.square_id)
   end
   
   def set_square_id (roster_square)
