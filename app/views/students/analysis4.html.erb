@@ -13,7 +13,7 @@
                 </div>
             </div><!--End page header-->
             <div class="row-xs-2 text-center">
-                <form class="form-horizontal text-center action-buttons-row">
+                <form class="form-horizontal text-center pad40">
     	        	<div class="form-group">
     		        	<h4>Select a Session:</h4>
     				<%= select_tag 'session_id', options_from_collection_for_select(@sessions, 'id', 'start_time'), {:required => true} %>

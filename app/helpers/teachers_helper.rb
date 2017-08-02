@@ -70,7 +70,7 @@ module TeachersHelper
     else
       msg = "home page, " << teacher.full_name
     end
-    msg
+    msg << ". Select a student you'd like to work with."
   end
 
   # return ux string for teacher name

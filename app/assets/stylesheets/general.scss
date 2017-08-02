@@ -139,22 +139,17 @@ $geogem-yellow: #FFDC00;
 .page-header .h1 { padding-left: 100px; }
 .geogem-page-header { margin-bottom: 20px; }
 
-.first-content-row { padding-top: 20px; }
-.student-icon-row { padding-top: 20px; }
-.action-icon-row { padding-top: 40px; }
-.action-buttons-row { padding-top: 40px; padding-bottom: 20px; }
-
-.popover { max-width: 600px; } 		// control tooltip popover width
-
-.info-textarea { resize: both; } 	// turn resize ON for info text areas
+// quick spacing tweaks, mostly for row divs
+.pad20 { padding-top: 20px; }
+.pad40 { padding-top: 40px; }
 
 // form formatting
 .form-row { padding-bottom: 5px; }
 .form-spacer { padding-top: 20px; }
 .form-spacer-line { width: 60%; padding-top: 20px; }
 
-.squares-row { padding: 20px; }
-.add-rm-squares-row { padding-bottom: 20px; }
+.popover { max-width: 600px; } 		// control tooltip popover width
+.info-textarea { resize: both; } 	// turn resize ON for info text areas
 
 // table formatting
 .table-striped > tbody > tr:hover td {
@@ -385,6 +380,7 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	color: white;
 	h3 { font-family: "Courier New", serif; }
 }
+.bsquare-link { text-decoration: none !important; }
 
 // behavior square icon, in a page header
 .bsquare-page-header-icon {
@@ -394,8 +390,9 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	vertical-align: middle;
 	border: 2px solid white;
 	color: white;
-	h3 { font-family: "Courier New", serif; font-size: 0.8em; }
+	h3, h4 { font-family: "Courier New", serif; font-size: 0.8em; }
 }
+
 
 // behavior square icon, in a table, example: All Squares page
 .bsquare-table-icon {

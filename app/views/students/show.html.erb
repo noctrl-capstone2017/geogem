@@ -1,46 +1,115 @@
-<!-- NOT SUPPORTED -->
+<!-- authors: Ricky Perez & Michael Loptien -->
+<% provide(:title, "Student Page") %>
 
-<p id="notice"><%= notice %></p>
+<!-- page header -->
+<%= render partial: 'student_page_header', 
+			:locals => { 	:title => "Student Page", 
+										:subtitle => "work with student #{ @student.full_name }"} %>
 
-<p>
-  <strong>Full name:</strong>
-  <%= @student.full_name %>
-</p>
+<%= form_for(@student) do |f| %>
+  <%= render 'error_messages', object: f.object %>
 
-<p>
-  <strong>Screen name:</strong>
-  <%= @student.screen_name %>
-</p>
+  <!-- show student name, interval and icon -->
+	<div class="row form-row vertical-align">
+		<!-- 1st column - student name, interval fields -->
+		<div class="col-xs-6 col-xs-offset-1">
+			<div class="row form-row">
+				<div class="col-xs-4"><h4>Name: </h4></div>
+				<div class="col-xs-6">
+					<%= f.text_field :full_name, :readonly => true, class: 'form-control' %>
+				</div>
+			</div>   <!-- row -->
+			<div class="row form-row">
+				<div class="col-xs-4"><h4>Session Interval:<br><small>(minutes)</small> </h4></div>
+				<div class="col-xs-4">
+					<%= f.text_field :session_interval, :readonly => true, class: 'form-control' %>
+				</div>
+			</div>   <!-- row -->
+		</div>   <!-- spinners col -->
 
-<p>
-  <strong>Icon:</strong>
-  <%= @student.icon %>
-</p>
+		<!-- 2nd column - student icon -->
+		<div class="col-xs-4">
+			<div class="col-xs-2">
+				<div class="student-icon <%= icon_color(@student) %>" 
+				      title="student=<%= @student.full_name %>" >
+					<span id="sample-student-icon" class="fa fa-3x fa-fw <%= fa_icon(@student) %> "></span>
+				</div>
+			</div>
+		</div>
+	</div>   <!-- name+interval+icon row -->
 
-<p>
-  <strong>Color:</strong>
-  <%= @student.color %>
-</p>
+  <div class="row form-row">
+    <div class="col-xs-4 col-xs-offset-1">
+      <h4>Behavior squares:</h4>
+    </div>
+  </div>
 
-<p>
-  <strong>Contact info:</strong>
-  <%= @student.contact_info %>
-</p>
+	<% if @student_roster_squares.count > 0 %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @student.description %>
-</p>
+		<div class="row">
+			<h4 class="col-xs-10 col-xs-offset-1">Use student's recommended squares.</h4>
+		</div>
+		<!-- use recommeneded squares in student's roster -->	
+		<div col="row">
+		<% @student_roster_squares.each_with_index do | each_roster_square, index |%>
 
-<p>
-  <strong>Session interval:</strong>
-  <%= @student.session_interval %>
-</p>
+	  	<% if ux_check_new_row(index) %>
+	  		</div>
+	  		<div class="row col-xs-offset-1">
+	  	<% end %>
 
-<p>
-  <strong>School:</strong>
-  <%= @student.school_id %>
-</p>
+	  	<% real_square = get_real_square( each_roster_square) %>
+	   	<div class="col-xs-2 col-xs-offset-1 pad20">
+				<%= link_to edit_square_path(real_square), :class => "bsquare-link" do %>
+					<div class="bsquare-icon <%= glow_color(real_square) %> text-center" >
+	  				<h3><%= real_square.screen_name %></h3>
+				    <span class="fa fa-fw fa-lg <%= fa_bsquare_icon(real_square) %>"></span>
+	  			</div>   <!-- behavior-square -->
+				<% end %>   <!-- link_to edit square -->
+			</div>
+		<% end %>   <!-- for each student roster square-->
+		</div>
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+	<% else %>   
+
+		<div class="row">
+			<h4 class="col-xs-10 col-xs-offset-1">Use all squares at the school.</h4>
+		</div>
+		<!-- no squares in the student's roster, so show all squares in school -->
+		<% @school_squares.each do | each_square, index |%>
+	   	<div class="col-xs-2 pad20">
+				<%= link_to edit_square_path(each_square), :class => "bsquare-link" do %>
+					<div class="bsquare-page-header-icon <%= glow_color(each_square) %> text-center" >
+	  				<h4><%= each_square.screen_name %></h4>
+            <span class="fa fa-fw fa-lg %>"></span>
+	  			</div>   <!-- behavior-square -->
+				<% end %>   <!-- link_to edit square -->
+			</div>
+		<% end %>
+
+	<% end %>
+
+  <!-- Start Session button -->
+  <div class="form-spacer"></div>
+  <div class="row form-row pad40">
+    <div class="col-xs-8 col-xs-offset-1 text-center">
+      <%= button_tag(type: 'submit', class: "btn btn-lg btn-success", name: 'start_session') do %>
+			  <span class="fa fa-fw fa-lg fa-thumbs-o-up"></span> Start Session
+			<% end %>
+    </div>
+  </div>
+
+<% end %>
+
+<hr class="form-spacer-line">
+
+<!-- action button to Login Settings page -->
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+		<h4>Assign default behavior squares for student: &nbsp; &nbsp; &nbsp;
+			<%= link_to "Assign squares...", edit_roster_square_path(@student), 
+						:class => "btn btn-lg btn-primary", :title => "Assign default behavior squares" %>
+		</h4>
+	</div>
+</div>
+
