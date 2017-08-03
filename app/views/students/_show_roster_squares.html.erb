@@ -12,7 +12,7 @@
 
 	<% real_square = get_real_square( each_roster_square) %>
  	<div class="col-xs-2">
-		<%= link_to edit_square_path(real_square), :class => "bsquare-link" do %>
+		<%= link_to square_path(real_square), :class => "bsquare-link" do %>
 			<div class="bsquare-icon <%= glow_color(real_square) %> text-center" >
 				<h3><%= real_square.screen_name %></h3>
 		    <span class="fa fa-fw fa-lg <%= fa_bsquare_icon(real_square) %>"></span>

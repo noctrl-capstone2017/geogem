@@ -58,6 +58,7 @@ $scheme-yelloworange: #FFAB35;	// cool!
 $scheme-gray: #C0C0C0;
 $scheme-darkgray: #666666;
 
+.color-scheme-blue { color: $scheme-blue; }
 .color-scheme-lightblue { color: $scheme-lightblue;}
 
 // top ten colors used for user icons
@@ -150,6 +151,8 @@ $geogem-yellow: #FFDC00;
 
 .popover { max-width: 600px; } 		// control tooltip popover width
 .info-textarea { resize: both; } 	// turn resize ON for info text areas
+// text highlight in About page
+.about-highlight { color: $scheme-blue; font-size: 1.2em; font-weight: bold; }
 
 // table formatting
 .table-striped > tbody > tr:hover td {
