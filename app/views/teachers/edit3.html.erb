@@ -1,9 +1,9 @@
-<% provide(:title, "Teacher Access") %>
+<% provide(:title, "Teacher access") %>
 
 <!-- page header -->
 <%= render partial: 'teacher_page_header', 
-			:locals => { 	:title => "Teacher Access", 
-										:subtitle => "Admin page 3, edit student access of #{ @teacher.full_name }"} %>
+			:locals => { 	:title => "Teacher access", 
+										:subtitle => "Admin page 3; edit student access of teacher, #{ @teacher.full_name }"} %>
 
 <!--Edit Login Settings form -->
 <%= form_for(@teacher) do |f| %>
@@ -11,7 +11,7 @@
 
  	<!-- username -->
  	<div class="row form-row">
-		<div class="col-xs-3 col-xs-offset-1"><h4>Username: </h4></div>
+		<div class="col-xs-2 col-xs-offset-1"><h4>Username: </h4></div>
 		<div class="col-xs-3">
 			<%= f.text_field :user_name, :readonly => true, class: 'form-control' %>
 		</div>
@@ -19,7 +19,7 @@
 
 	<!-- teacher name -->
 	<div class="row form-row">
- 		<div class="col-xs-3 col-xs-offset-1"><h4>Name: </h4></div>
+ 		<div class="col-xs-2 col-xs-offset-1"><h4>Name: </h4></div>
 		<div class="col-xs-4">
 			<%= f.text_field :full_name, :readonly => true, class: 'form-control' %>
 		</div>
@@ -49,7 +49,7 @@
 <div class="row form-row">
 	<div class="col-xs-10 col-xs-offset-1">
 		<h4>Admin pages DONE... back to All Teachers page: &nbsp; &nbsp; &nbsp;
-		<%= link_to 'All Teachers', teachers_path, 
+		<%= link_to 'All teachers', teachers_path, 
 						:class => "btn btn-lg btn-primary", :title => "Back to All Teachers page" %>
 		</h4>
 	</div>

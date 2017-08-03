@@ -1,34 +1,14 @@
 <!--Author: Michael Loptien and Ricky Perez -->
-<% provide(:title, "Student squares") %>
+<% provide(:title, "Assign squares") %>
 
 <!-- page header -->
 <%= render partial: 'students/student_page_header', 
-			:locals => { 	:title => "Student squares", 
-										:subtitle => "view/edit behavior squares for student #{ @student.full_name }"} %>
-
-<!-- show student behavior Squares -->
-<div class="row pad20">
-
-	<!--Link to possible solution: https://stackoverflow.com/questions/14528919/new-row-every-3-items -->
-	<!-- set the squares for the specific student-->
-  <% @student_squares.each do | each_square, index |%>
-		<!-- get the real, live behavior square for this roster square -->
-  	<% real_square = set_real_square( each_square) %>
-   	<div class="col-xs-2 col-xs-offset-1 pad20">
-			<%= link_to edit_square_path(real_square), :class => "bsquare-link" do %>
-				<div class="bsquare-icon <%= glow_color(real_square) %> text-center" >
-  				<h3><%= real_square.screen_name %></h3>
-			    <span class="fa fa-fw fa-lg <%= fa_bsquare_icon(real_square) %>"></span>
-  			</div>   <!-- behavior-square -->
-			<% end %>   <!-- link_to edit square -->
-		</div>
-	<%end%>   <!-- do for each student square -->
-
-</div>
+			:locals => { 	:title => "Assign squares", 
+										:subtitle => "assign default/recommended behavior squares to student, #{ @student.full_name }"} %>
 
 <!-- form for add square row-->
 <%= form_for(@roster_square) do |f| %>
-	<div class="row vertical-align pad40">
+	<div class="row vertical-align pad20">
 		<div class="col-xs-1 col-xs-offset-1 text-right">
 			<span class="fa fa-plus" style="color: green;"></span>
 		</div>
@@ -78,3 +58,30 @@
 	
 	<div class="form-spacer"></div>
 </form>   <!-- rm square form -->
+
+<!-- show roster of student behavior squares -->
+<% @student_squares.each_with_index do | each_square, index |%>
+	<% if ux_first_row( index) %>
+		<div class="row pad20 col-xs-offset-1">
+	<% end %>
+	<% if ux_next_row( index, 4) %>
+		</div>
+		<div class="row pad20 col-xs-offset-1">
+	<% end %>
+
+	<!-- get the real, live behavior square for this roster square -->
+	<% real_square = set_real_square( each_square) %>
+ 	<div class="col-xs-2">
+		<%= link_to edit_square_path(real_square), :class => "bsquare-link" do %>
+			<div class="bsquare-icon <%= glow_color(real_square) %> text-center" >
+				<h3><%= real_square.screen_name %></h3>
+		    <span class="fa fa-fw fa-lg <%= fa_bsquare_icon(real_square) %>"></span>
+			</div>   <!-- behavior-square -->
+		<% end %>   <!-- link_to edit square -->
+	</div>
+
+	<% if ux_last_row( index, @student_squares.count) %>
+		</div>
+	<% end %>
+
+<% end %>   <!-- do for each student roster square -->

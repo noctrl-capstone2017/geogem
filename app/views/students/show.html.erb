@@ -11,6 +11,7 @@
 
   <!-- show student name, interval and icon -->
 	<div class="row form-row vertical-align">
+
 		<!-- 1st column - student name, interval fields -->
 		<div class="col-xs-6 col-xs-offset-1">
 			<div class="row form-row">
@@ -45,52 +46,14 @@
   </div>
 
 	<% if @student_roster_squares.count > 0 %>
-
-		<div class="row">
-			<h4 class="col-xs-10 col-xs-offset-1">Use student's recommended squares.</h4>
-		</div>
-		<!-- use recommeneded squares in student's roster -->	
-		<div col="row">
-		<% @student_roster_squares.each_with_index do | each_roster_square, index |%>
-
-	  	<% if ux_check_new_row(index) %>
-	  		</div>
-	  		<div class="row col-xs-offset-1">
-	  	<% end %>
-
-	  	<% real_square = get_real_square( each_roster_square) %>
-	   	<div class="col-xs-2 col-xs-offset-1 pad20">
-				<%= link_to edit_square_path(real_square), :class => "bsquare-link" do %>
-					<div class="bsquare-icon <%= glow_color(real_square) %> text-center" >
-	  				<h3><%= real_square.screen_name %></h3>
-				    <span class="fa fa-fw fa-lg <%= fa_bsquare_icon(real_square) %>"></span>
-	  			</div>   <!-- behavior-square -->
-				<% end %>   <!-- link_to edit square -->
-			</div>
-		<% end %>   <!-- for each student roster square-->
-		</div>
-
+		<!-- show student's roster of default/recommended squares -->
+		<%= render 'show_roster_squares', roster_squares: @student_roster_squares %>
 	<% else %>   
-
-		<div class="row">
-			<h4 class="col-xs-10 col-xs-offset-1">Use all squares at the school.</h4>
-		</div>
-		<!-- no squares in the student's roster, so show all squares in school -->
-		<% @school_squares.each do | each_square, index |%>
-	   	<div class="col-xs-2 pad20">
-				<%= link_to edit_square_path(each_square), :class => "bsquare-link" do %>
-					<div class="bsquare-page-header-icon <%= glow_color(each_square) %> text-center" >
-	  				<h4><%= each_square.screen_name %></h4>
-            <span class="fa fa-fw fa-lg %>"></span>
-	  			</div>   <!-- behavior-square -->
-				<% end %>   <!-- link_to edit square -->
-			</div>
-		<% end %>
-
+		<!-- with no student defaults, show all squares at the school -->
+		<%= render 'show_school_squares', school_squares: @school_squares %>
 	<% end %>
 
   <!-- Start Session button -->
-  <div class="form-spacer"></div>
   <div class="row form-row pad40">
     <div class="col-xs-8 col-xs-offset-1 text-center">
       <%= button_tag(type: 'submit', class: "btn btn-lg btn-success", name: 'start_session') do %>

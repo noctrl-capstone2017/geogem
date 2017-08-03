@@ -4,7 +4,7 @@
 <!-- page header -->
 <%= render partial: 'teacher_page_header', 
 			:locals => { 	:title => "Profile", 
-										:subtitle => "view/edit your teacher profile; change your password"} %>
+										:subtitle => "edit your teacher profile"} %>
 
 <%= form_for(@teacher, url: profile_path) do |f| %>
 	<%= render 'error_messages', object: f.object %>
@@ -33,14 +33,14 @@
 	<div class="row form-row vertical-align">
 		<!-- color and icon spinners in the 1st column -->
 		<div class="col-xs-4 col-xs-offset-3">
-			<div class="row">
+			<div class="row form-row">
 				<div class="col-xs-3"><h4>Color: </h4></div>
 				<div class="col-xs-7 col-xs-offset-1">
 					<%= f.select :color, teacherColors.map {|color| [color.titleize, color]}, 
 											{}, {class: 'form-control'} %>
 				</div>
 			</div>   <!-- row -->
-			<div class="row">
+			<div class="row form-row">
 				<div class="col-xs-3"><h4>Icon: </h4></div>
 				<div class="col-xs-7 col-xs-offset-1">
 					<%= f.select :icon, teacherIcons.map {|icon| [icon.titleize, icon]}, 
@@ -97,8 +97,8 @@
 <div class="row">
 	<div class="col-xs-10 col-xs-offset-1">
 		<h4>Continue here to change your password: &nbsp; &nbsp; &nbsp;
-			<%= link_to "Change Password...", 'password', 
-						:class => "btn btn-lg btn-primary", :title => "Change Password page" %>
+			<%= link_to "Change password...", 'password', 
+						:class => "btn btn-lg btn-primary", :title => "Change password page" %>
 		</h4>
 	</div>
 </row>

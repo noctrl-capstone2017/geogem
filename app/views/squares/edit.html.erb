@@ -1,9 +1,9 @@
 <!-- authors: Ricky Perez & Michael Loptien -->
-<% provide(:title, "Square profile") %>
+<% provide(:title, "Edit square") %>
 
 <!-- page header -->
 <%= render partial: 'square_page_header', 
-			:locals => { 	:title => "Square profile", 
-										:subtitle => "view/edit behavior square #{ @square.screen_name }"} %>
+			:locals => { 	:title => "Edit square", 
+										:subtitle => "edit attributes of behavior square, #{ @square.screen_name }"} %>
 
 <%= render 'form', square: @square, isNew: false %>

@@ -4,24 +4,16 @@
 <!-- page header -->
 <%= render partial: 'home_page_header', :locals => { 	:title => "Home" } %>
 
-<!--
-<div class="row">
-	<div class="col-xs-10 col-xs-offset-1">
-		<h4>Select a student you'd like to work with. And GO!</h4>
-	</div>
-</div>
--->
-
-<!-- Things got too BIG, so home into into 3 separate partials -->
+<!-- things got too BIG, so home into into 3 separate partials -->
 
 <!-- form to switch between all/your student views -->
-<%= render 'form_home_views' %>
+<%= render 'home_views_toggle' %>
 
 <!-- two choices: select one of your students, or select from all students -->
 <% if @view_all %>
-	<%= render 'form_home_all_students' %>
+	<%= render 'home_all_students' %>
 <% else %>
-	<%= render 'form_home_your_students' %>
+	<%= render 'home_your_students' %>
 <% end %>
 
 

@@ -1,5 +1,4 @@
-#Author: Ricky Perez
-#Description: This contains the methods and helpers used for the roster square page
+# Author: Ricky Perez
 
 class RosterSquaresController < ApplicationController
   before_action :set_roster_square, only: [:show, :edit, :update]
@@ -47,7 +46,7 @@ class RosterSquaresController < ApplicationController
     if params[:remove_square]
       if params[:remove_square_id] != nil
         @roster_squares.delete(RosterSquare.find(params[:remove_square_id]))
-        flash[:success] = 'Roster square was successfully removed.'
+        # flash[:success] = 'Roster square was successfully removed.'
         redirect_to  "/roster_squares/#{params[:id]}/edit"
       end
     end
@@ -108,7 +107,7 @@ class RosterSquaresController < ApplicationController
     @square = Square.find_by_id(params[:id])
     @student_squares = RosterSquare.where(student_id: @student)
       if @roster_square.save
-        flash[:success] = 'Roster square was successfully added.'
+        # flash[:success] = 'Roster square was successfully added.'
         redirect_to "/roster_squares/#{@roster_square.student_id}/edit"
       else
         format.html { render :new }
