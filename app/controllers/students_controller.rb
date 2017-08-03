@@ -26,8 +26,10 @@ class StudentsController < ApplicationController
   # GET /students/1.json
   def show
     @student = Student.find(params[:id])
-    # student's reommended roster squares
+
+    # student's roster of default/recommended behavior squares
     @student_roster_squares = RosterSquare.where(student_id: @student.id)
+
     # all behavior squares at the school
     @school_squares = Square.where(school_id: @student.school_id)
   end

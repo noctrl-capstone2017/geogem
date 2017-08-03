@@ -25,7 +25,7 @@
 		<!-- color and icon spinners in the 1st column -->
 		<div class="col-xs-4 col-xs-offset-1">
 
-			<div class="row">
+			<div class="row form-row">
 				<div class="col-xs-3"><h4>Color: </h4></div>
 				<div class="col-xs-6 col-xs-offset-3">
       		<%= f.select :color, squareColors.map {|color| [color.titleize, color]}, 
@@ -33,7 +33,7 @@
 				</div>
 			</div>   <!-- row, color spinner -->
   
-  		<div class="row">
+  		<div class="row form-row">
   			<div class="col-xs-3"><h4>Type: </h4></div>
 		  	<!-- spinner has int value of Type masked with the name -->
   			<div class="col-xs-6 col-xs-offset-3">

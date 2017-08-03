@@ -1,8 +1,8 @@
-<% provide(:title, "School profile") %>
+<% provide(:title, "Edit school") %>
 
 <!-- page header -->
 <%= render partial: 'schools/school_page_header', 
-			:locals => { 	:title => "School profile", 
-										:subtitle => "view/edit information for #{ @school.full_name }"} %>
+			:locals => { 	:title => "Edit school", 
+										:subtitle => "edit attributes of school, #{ @school.full_name }"} %>
 
 <%= render 'form', school: @school, isEdit: true %>

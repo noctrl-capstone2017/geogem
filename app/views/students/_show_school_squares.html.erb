@@ -1,0 +1,26 @@
+<!-- no squares in the student's roster, so show all squares in school -->
+<% school_squares.each_with_index do | each_square, index |%>
+
+	<% if ux_first_row(index) %>
+		<div class="row col-xs-offset-2">
+	<% end %>
+
+	<% if ux_next_row(index, 4) %>
+		</div>   <!-- ux_next_row end div -->
+		<div class="row col-xs-offset-2 pad20">
+	<% end %>
+
+ 	<div class="col-xs-2">
+		<%= link_to edit_square_path(each_square), :class => "bsquare-link" do %>
+			<div class="bsquare-icon <%= glow_color(each_square) %> text-center" >
+				<h3><%= each_square.screen_name %></h3>
+		    <span class="fa fa-fw fa-lg <%= fa_bsquare_icon(each_square) %>"></span>
+			</div>   <!-- behavior-square -->
+		<% end %>   <!-- link_to edit square -->
+	</div>
+
+	<% if ux_last_row( index, school_squares.count) %>
+		</div>   <!-- ux_last_row end div -->
+	<% end %>
+
+<% end %>   <!-- for each square at school -->
