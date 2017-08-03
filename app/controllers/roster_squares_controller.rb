@@ -1,15 +1,22 @@
 # Author: Ricky Perez
 
 class RosterSquaresController < ApplicationController
-  before_action :set_roster_square, only: [:show, :edit, :update]
+  include TeachersHelper
 
-  helper_method :set_square_name    # methods used in roster square views
+  before_action :set_roster_square, only: [:show, :edit, :update]
+  before_action :is_admin, only: [:new, :create, :edit, :update]
+
+  # methods used in roster square views
   helper_method :set_real_square
-  helper_method :set_square_color
-  helper_method :set_square_id
-  helper_method :set_square_desc
-  helper_method :set_roster_id
+  helper_method :set_square_name, :set_square_desc
   helper_method :is_student_square
+
+  # Bill - no longer used
+  # helper_method :set_square_color
+  # helper_method :set_square_id
+  # helper_method :set_square_desc
+  # helper_method :set_roster_id
+
 
   # GET /roster_squares
   # GET /roster_squares.json

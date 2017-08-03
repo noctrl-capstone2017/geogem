@@ -1,36 +1,72 @@
-<!-- NOT SUPPORTED -->
+<!-- authors: Ricky Perez & Michael Loptien -->
+<% provide(:title, "Square page") %>
 
-<p id="notice"><%= notice %></p>
+<!-- page header -->
+<%= render partial: 'square_page_header', 
+			:locals => { 	:title => "Edit square", 
+										:subtitle => "edit attributes of behavior square, #{ @square.screen_name }"} %>
 
-<p>
-  <strong>Full name:</strong>
-  <%= @square.full_name %>
-</p>
+<%= form_for(@square) do |f| %>
+  <%= render 'error_messages', object: f.object %>
 
-<p>
-  <strong>Screen name:</strong>
-  <%= @square.screen_name %>
-</p>
+  <!-- ID field -->
+  <div class="row form-row">
+  	<div class="col-xs-2 col-xs-offset-1">
+  		<h4>Square ID:</h4>
+  	</div> 
+  	<div class="col-xs-2">
+      <%= f.text_field :screen_name, readonly: true, class: "form-control" %>
+  	</div>
+  </div>
 
-<p>
-  <strong>Color:</strong>
-  <%= @square.color %>
-</p>
+	<!-- color and type fields, with interactive sample square -->
+	<div class="row form-row vertical-align">
+		<!-- color and icon spinners in the 1st column -->
+		<div class="col-xs-4 col-xs-offset-1">
 
-<p>
-  <strong>Type:</strong>
-  <%= @square.tracking_type %>
-</p>
+			<div class="row form-row">
+				<div class="col-xs-3"><h4>Color: </h4></div>
+				<div class="col-xs-6 col-xs-offset-3">
+				  <%= f.text_field :color, readonly: true, class: "form-control" %>
+				</div>
+			</div>   <!-- row, color spinner -->
+  
+  		<div class="row form-row">
+  			<div class="col-xs-3"><h4>Type: </h4></div>
+		  	<!-- spinner has int value of Type masked with the name -->
+  			<div class="col-xs-6 col-xs-offset-3">
+  			  <%= f.text_field :tracking_type, readonly: true, class: "form-control" %>
+  			</div>
+  		</div>   <!-- row, type spinner -->
+  	</div>   <!-- col, spinners -->
 
-<p>
-  <strong>Description:</strong>
-  <%= @square.description %>
-</p>
+  	<div class="col-xs-4">
+  		<!-- interactive sample square in this 2nd col -->
+			<div class="col-xs-2 col-xs-offset-1">
+	      <div class="bsquare-icon <%= icon_color(@square) %> text-center" >
+	  			<h3><%= @square.screen_name %></h3>
+			    <span class="fa fa-fw fa-lg <%= fa_bsquare_icon(@square) %>"></span>
+	  		</div>   <!-- behavior-square -->
+    	</div>
+ 		</div>   <!-- col, sample square -->
+	</div>   <!-- row -->
 
-<p>
-  <strong>School:</strong>
-  <%= @square.school_id %>
-</p>
+  <div class="form-spacer">	&nbsp;</div>
 
-<%= link_to 'Edit', edit_square_path(@square) %> |
-<%= link_to 'Back', squares_path %>
+  <!-- square description (required) -->
+	<div class="row form-row">
+		<div class="col-xs-2 col-xs-offset-1">
+			<h4>Description:</h4>
+		</div>
+		<div class="col-sm-6">
+		  <%= f.text_area :description, readonly: true, class: "form-control info-textarea" %>
+		</div>
+	</div>   <!-- form-row -->
+
+  <!-- OK/cancel buttons. -->
+  <div class="row pad40">
+	  <div class="col-xs-6 col-xs-offset-1 text-center">
+      <%= link_to 'Done', home_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

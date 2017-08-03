@@ -1,9 +1,9 @@
 <!-- authors: Ricky Perez & Michael Loptien -->
-<% provide(:title, "Student Page") %>
+<% provide(:title, "Student page") %>
 
 <!-- page header -->
 <%= render partial: 'student_page_header', 
-			:locals => { 	:title => "Student Page", 
+			:locals => { 	:title => "Student page", 
 										:subtitle => "work with student #{ @student.full_name }"} %>
 
 <%= form_for(@student) do |f| %>

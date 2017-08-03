@@ -65,7 +65,7 @@ module TeachersHelper
         else
           tmp = teacher.last_login.strftime('%A %B %d')
         end
-        msg = "Welcome back, " << teacher.full_name << "... your last login was " << tmp << "."
+        msg = "Welcome back, " << teacher.full_name << "... your last login was " << tmp
       end
     else
       msg = "home page, " << teacher.full_name

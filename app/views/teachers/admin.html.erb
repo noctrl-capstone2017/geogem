@@ -7,10 +7,10 @@
 										:subtitle => "exercise admin powers at #{ @school.full_name }"} %>
 
 <!-- action icons, first row -->		
-<div class="row">
+<div class="row pad40">
 
 	<!-- View/edit school -->
-	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit school, <%= @school.full_name %>">
+	<div class="col-xs-2 col-xs-offset-1 text-center" title="Edit school, <%= @school.full_name %>">
 		<div class="action-div">
 			<%= link_to edit_school_path(@school.id) do %>
 				<div class ="action-icon-square action-icon-neutral <%= icon_color(@school) %> center-block">
@@ -18,7 +18,7 @@
 				</div>
 			<% end %>
 		</div>
-		<%= link_to edit_school_path(@school.id) do %>School profile<% end %>
+		<%= link_to edit_school_path(@school.id) do %>Edit school<% end %>
 	</div>
 
 	<!-- Basic school report for admins -->

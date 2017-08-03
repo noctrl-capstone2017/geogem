@@ -7,8 +7,8 @@ class SquaresController < ApplicationController
   
   before_action :set_square, only: [:show, :edit, :update, :destroy]
   before_action :set_school         #set up the school info for the logged in teacher
-  before_action :is_admin, only: [:index]           #make sure only admins can reach any of this
-    
+  before_action :is_admin, only: [:index, :edit, :update]
+
   # GET /squares
   # GET /squares.json
   def index

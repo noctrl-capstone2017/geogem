@@ -22,15 +22,15 @@
 		</div>
 	</div>   <!-- page-header -->
 
-	<div class="row content-text">
+	<div class="row content-text pad20">
 		<div class="col-xs-12">
 			<p>
-				This is GeoGem <%= DeployHelper.geogem_version =%>.
+				This is <span class="about-highlight">GeoGem <%= DeployHelper.geogem_version =%></span>
+				&mdash;
+				deployed on <span class="about-highlight"><%= DeployHelper.geogem_deploy_date =%></span>.
 			</p>
-			<p>
-				It was deployed on <%= DeployHelper.geogem_deploy_date =%>.
-			</p>
-			<br>
+			<%= image_tag("logos/smallgem.png", :alt => "GeoGem logo") %>
+			<br><br>
 			<p>
 				<!--Part 1: Describe GeoGem. What it does. And how it was created.-->
 				GeoGem is a web application designed to make tracking student behaviors easier for teachers and aides. 
