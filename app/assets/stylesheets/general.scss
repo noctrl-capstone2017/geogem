@@ -622,14 +622,6 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	}
 }
 
-/*This fixes the weird ruby buttons by doing the width and a 0 top margin*/
-/*The margin fixes in-line problems. Variations may be necessary due to variable lengths*/
-.btnFix
-{
-	width:auto;
-	margin-top:0;
-}
-
 /*********************************************************
 *  PROF BILL is STYLIN'
 *  merge these into proper categories after the demo?
@@ -715,14 +707,6 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
  
  
  /*Note from Carolyn C- took this from Sessions.scss*/ 
-/***********************************************************
-* BUTTON STYLING FOR SESSIONS
-************************************************************/
-.noteBtn
-{
-	margin-right: 10px;
-	float:left;
-}
 
 /***********************************************************
 * BEHAVIOR SQUARES

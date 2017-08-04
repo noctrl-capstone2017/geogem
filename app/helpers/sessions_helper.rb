@@ -77,4 +77,9 @@ module SessionsHelper
     
       return durationStr
   end
+
+  # return session start time, nicely formatted: 03:25 pm (CDT)
+  def ux_session_start_time( session) 
+    session.start_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P (%Z)")
+  end
 end 
