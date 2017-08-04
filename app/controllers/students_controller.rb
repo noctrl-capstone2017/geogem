@@ -9,7 +9,7 @@ class StudentsController < ApplicationController
   before_action :is_admin, only: [:index]       #make sure only admins can reach any of this
 
   # GET /students
-  # GET /students.json
+  # list all students as an Admin
   def index
     # Admin only, list just that schools students
     @students = Student.where(school_id: current_teacher.school_id)
@@ -22,73 +22,13 @@ class StudentsController < ApplicationController
     @sessions = Session.where(session_student: @students.ids)
   end
 
-  # GET /students/1
-  # GET /students/1.json
-  def show
-    @student = Student.find(params[:id])
-
-    # student's roster of default/recommended behavior squares
-    @student_roster_squares = RosterSquare.where(student_id: @student.id)
-
-    # all behavior squares at the school
-    @school_squares = Square.where(school_id: @student.school_id)
-  end
-
   # GET /students/new
+  # prep creation of a new student
   def new
     @student = Student.new
     @student.color = studentColors.first
     @student.icon = studentIcons.first
   end
-
-  # GET /students/1/edit
-  def edit
-  end
-  
-  #Author: Carolyn C
-  #For analysis purposes
-  def analysis
-    @student = Student.find(params[:id])
-    if params[:analysis_report]
-          redirect_to analysis2_student_path( @student)
-    elsif params[:analyze_csv]
-          redirect_to analysis3_student_path( @student)
-    elsif params[:analyze_charts]
-          redirect_to analysis4_student_path( @student)
-    end
-  end
-  
-  #Author: Carolyn C
-  #For Reports purposes
-  def analysis2
-    @student = Student.find(params[:id])
-    @sessions = Session.where(session_student: @student.id)
-    if params[:report]
-        #redirect_to report1_path(params[:id])
-    end
-  end
-  
-  #Author: Carolyn C
-  #For Reports purposes
-  def analysis3
-    @student = Student.find(params[:id])
-    @sessions = Session.where(session_student: @student.id)
-    if params[:report]
-        #redirect_to report1_path(params[:id])
-    end
-  end
-  
-  #Author: Carolyn C
-  #For Reports purposes
-  def analysis4
-    @student = Student.find(params[:id])
-    @sessions = Session.where(session_student: @student.id)
-    if params[:report]
-        #redirect_to report1_path(params[:id])
-    end
-  end
-  
-  
 
   # POST /students
   # POST /students.json
@@ -102,12 +42,27 @@ class StudentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /students/1
-  # PATCH/PUT /students/1.json
+  # GET /students/1
+  # show a student, the prelude to all work: sessions and analysis
+  def show
+    @student = Student.find(params[:id])
+
+    # student's roster of default/recommended behavior squares
+    @student_roster_squares = RosterSquare.where(student_id: @student.id)
+
+    # all behavior squares at the school
+    @school_squares = Square.where(school_id: @student.school_id)
+  end
+  
+  # GET /students/1/edit
+  def edit
+  end
+
+  # PATCH/PUT /students/1 and /students/1/edit
+  # update student does multiple things
   def update
     if params[:start_session]
-      flash[:success] = "Code sessions, Bill."
-      redirect_to home_url
+      start_session
     else
       @student = Student.find(params[:id])
       if @student.update(student_params)
@@ -119,12 +74,66 @@ class StudentsController < ApplicationController
     end
   end
 
+  # start behavioral session for student-teacher combo
+  def start_session
+    @student = Student.find(params[:id])
+    @session = Session.new
+    @session.session_teacher = current_teacher.id
+    @session.session_student = @student.id
+    @session.start_time = Time.now
+    if @session.save
+      # flash[ :success] = "Session was successfully created."
+      redirect_to @session
+    else
+      render @student
+    end
+  end
+
   # DELETE /students/1
-  # DELETE /students/1.json
+  # unused
   def destroy
-    @student.destroy
-    flash[ :success] = "Student was successfully destroyed."
-    redirect_to students_url
+    # @student.destroy
+    # flash[ :success] = "Student was successfully destroyed."
+    # redirect_to students_url
+  end
+
+  # for Reports purposes, Author: Carolyn C
+  def analysis
+    @student = Student.find(params[:id])
+    if params[:analysis_report]
+          redirect_to analysis2_student_path( @student)
+    elsif params[:analyze_csv]
+          redirect_to analysis3_student_path( @student)
+    elsif params[:analyze_charts]
+          redirect_to analysis4_student_path( @student)
+    end
+  end
+  
+  # for Reports purposes, Author: Carolyn C
+  def analysis2
+    @student = Student.find(params[:id])
+    @sessions = Session.where(session_student: @student.id)
+    if params[:report]
+        #redirect_to report1_path(params[:id])
+    end
+  end
+  
+  # for Reports purposes, Author: Carolyn C
+  def analysis3
+    @student = Student.find(params[:id])
+    @sessions = Session.where(session_student: @student.id)
+    if params[:report]
+        #redirect_to report1_path(params[:id])
+    end
+  end
+
+  # for Reports purposes, Author: Carolyn C
+  def analysis4
+    @student = Student.find(params[:id])
+    @sessions = Session.where(session_student: @student.id)
+    if params[:report]
+        #redirect_to report1_path(params[:id])
+    end
   end
 
   private

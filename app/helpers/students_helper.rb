@@ -5,7 +5,7 @@ module StudentsHelper
   # student - the student
   def ux_last_session_date( sessions, student)
     this_session = sessions.where(session_student: student.id).last
-    if this_session
+    if this_session && this_session.end_time
       this_session.end_time.strftime("%a %b %d, %Y")
     else
       "No previous session"
