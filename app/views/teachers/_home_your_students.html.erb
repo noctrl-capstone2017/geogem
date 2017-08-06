@@ -22,15 +22,15 @@ input[type="radio"]:checked + label { box-shadow: 0 0 24px black; }
 		<!--Student display area: shows the last 8 students teacher worked with -->
 		<% @top_students.each_with_index do |student, index| %>
 			<% if ux_first_row( index) %>
-				<div class="row student-radio col-xs-offset-1 pad20">
+				<div class="row student-radio pad20">
 			<% end %>
 
 			<% if ux_next_row( index, 4) %>
 				</div>
-				<div class="row student-radio col-xs-offset-1 pad20">
+				<div class="row student-radio pad20">
 			<% end %>
 
-			<div class="col-xs-2 text-center">
+			<div class="col-xs-3 text-center">
 				<input name="student_roster" id="student<%= student.id %>" 
 							value="student<%= student.id %>"  type="radio" class="view-radio"/>
 				<label for="student<%= student.id %>">
@@ -59,7 +59,7 @@ input[type="radio"]:checked + label { box-shadow: 0 0 24px black; }
 
 	<!-- Goto Student button -->
 	<div class="row form-group pad20" > 
-		<div class="col-xs-7 col-xs-offset-1 text-center">
+		<div class="col-xs-10 col-xs-offset-1 text-center">
 			<%= button_tag(type: 'submit', class: "btn btn-lg btn-primary disabled", 
 						id: 'goto-button', name: 'go_student', disabled: true) do %>
 				<%= image_tag("logos/smallgem.png", :alt => "GeoGem logo", :width => 32) %>

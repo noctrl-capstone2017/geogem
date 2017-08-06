@@ -5,8 +5,8 @@ window.onload = function () {
   //Add JAlert prompt http://labs.abeautifulsite.net/archived/jquery-alerts/demo/
   
   //Start time of the session
-  var startTime = document.getElementById("start_time");
-  startTime.innerHTML = "Start Time: " + timeOnlyStamp();
+//  var startTime = document.getElementById("start_time");
+//  startTime.innerHTML = "Start Time: " + timeOnlyStamp();
   document.getElementById("start").value = timeStamp();
   document.getElementById("start2").value = timeStamp();
   //Creates all the objects for duration behaviors
@@ -273,7 +273,7 @@ function undo()
 			content: '' +
 			'<form action="" class="formName">' +
 			'<div class="form-group">' +
-			'<label>This will undo the last session event and cannot be undone</label>' +
+			'<label>Please confirm undo of the last session event</label>' +
 			'</div>' +
 			'</form>',
 			buttons: {

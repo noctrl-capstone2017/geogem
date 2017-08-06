@@ -66,8 +66,13 @@ module UxHelper
   end
 
   def fa_bsquare_icon( square)
-    if square.tracking_type == 1
-      "fa-clock-o"
+    case square.tracking_type
+    when 1 
+      "fa-clock-o"    # clock icon for duration
+    when 2
+      ""              # no icon for frequency
+    when 3
+      "fa-info"       # info=i icon for interval
     else
       ""
     end
