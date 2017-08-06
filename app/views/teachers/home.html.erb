@@ -26,23 +26,10 @@
 		     $("select[name='student_id']").val($(this).attr('id'));
 		});
 
-		// $('#student_id').change(function(){ 
-		// 		$('input[name="student_roster"]').prop('checked', false);
-		//     var button = document.getElementById("student" + $(this).val());
-		//     $(button).trigger('click');
-		// });
-
 		// when radio button is clicked, enable the OK button 
 		$('.view-radio').on('click', function() {
 				$("#goto-button").removeClass('disabled');
 				$("#goto-button").prop("disabled", false); 
 		});
-
-		// make the popover tooltip visible on hover
-		$('[data-toggle="popover"]').popover({
-        container: '#popover-here',
-        content: $('#popover').html(),
-        html: true
-		})
 	});
 </script>

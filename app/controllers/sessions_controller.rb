@@ -60,20 +60,21 @@ class SessionsController < ApplicationController
   # handles the end of a session
   def end_session
     @session = Session.find(params[:id])
+
     #if time is already set for the sessions do not reset it
-    # if(@session.start_time.nil? and @session.end_time.nil?)
-    if @session.end_time.nil?
-      #allows for 2 end session buttons
-      if params[:end_sess1]
-        @session.start_time = params[:start].to_s
-        @session.end_time = params[:end].to_s
-        @session.save
-      elsif params[:end_sess2] 
+    if @session.start_time.nil?
+      if params[:end_sess2]
         @session.start_time = params[:start2].to_s
+        @session.save
+      end
+    end
+    if @session.end_time.nil?
+      if params[:end_sess2]
         @session.end_time = params[:end2].to_s
         @session.save
       end
     end
+
     @student = Student.find(@session.session_student)
     @teacher = Teacher.find(@session.session_teacher)
     @squares = @student.squares
