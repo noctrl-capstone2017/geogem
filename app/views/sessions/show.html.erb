@@ -138,7 +138,7 @@
 <!-- Main Content -->
 <div class="container-fluid pad40">
   <!-- Behavior Square Area -->
-  <% @student.squares.each_with_index do |square, index| %>
+  <% @squares.each_with_index do |square, index| %>
 
     <% if ux_first_row( index) %>
       <div class="row behavior-row">
@@ -213,7 +213,7 @@
       <% end %>
     </div>   <!-- col -->
 
-    <% if ux_last_row( index, @student.squares.size) %>
+    <% if ux_last_row( index, @squares.size) %>
       </div>   <!-- row -->
     <% end %>
 

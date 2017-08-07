@@ -55,6 +55,8 @@ class SessionsController < ApplicationController
   def show
     @student = Student.find(@session.session_student)
     @teacher = Teacher.find(@session.session_teacher)
+    @school = School.find( @student.school_id)
+    @squares = get_student_squares( @student)
   end
 
   # handles the end of a session
@@ -77,8 +79,8 @@ class SessionsController < ApplicationController
 
     @student = Student.find(@session.session_student)
     @teacher = Teacher.find(@session.session_teacher)
-    @squares = @student.squares
-    @square_type = @squares
+    @squares = get_student_squares( @student)
+    # @square_type = @squares
   end
 
   # DELETE /sessions/1
@@ -101,4 +103,17 @@ class SessionsController < ApplicationController
     def session_params
       params.require(:session).permit(:start_time, :end_time, :session_teacher, :session_student)
     end
+
+    # returns the behavior squares for a student
+    # This is either the default/recommended squares in the student's roster, 
+    # or if none, then it's all the behavior squares at the student's school.
+    def get_student_squares( student)
+      the_squares = student.squares
+      if the_squares.nil?  ||  the_squares.empty?
+        # no default squares for student, so use all squares at the school
+        the_squares = Square.where(school_id: student.school_id)
+      end
+      the_squares
+    end
+
 end
