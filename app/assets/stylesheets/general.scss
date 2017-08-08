@@ -176,7 +176,7 @@ $geogem-yellow: #FFDC00;
 
 .home-view-button { font-size: 1.0em; }
 .home-view-button:disabled {
-	background-color: #C0C0C0 !important;
+	background-color: $scheme-lighterblue !important;
 	color: black !important;
 	font-weight: bold;
 	border-radius: 8px;

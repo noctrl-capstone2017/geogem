@@ -26,6 +26,11 @@
 		<div class="col-sm-4 col-sm-offset-0">
 			<%= f.password_field :password, required: true, class: 'form-control'%>
 		</div>
+		<div class="col-sm-4" style="padding-top: 16px;">
+			<span class="fa fa-fw fa-lg fa-question-circle color-scheme-blue"
+						data-toggle="popover" data-trigger="click" data-placement="bottom"
+						data-content="Your password must have 6 characters or more."></span>
+		</div>
 	</div>
 
 	<!-- confirm password -->

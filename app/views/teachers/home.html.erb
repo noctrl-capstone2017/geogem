@@ -9,13 +9,18 @@
 <!-- form to switch between all/your student views -->
 <%= render 'home_views_toggle' %>
 
-<!-- two choices: select one of your students, or select from all students -->
-<% if @view_all %>
-	<%= render 'home_all_students' %>
-<% else %>
+<!-- Home page list students; the teacher selects one to work with. -->
+<!-- There are two choices: 1) select one of your students, or -->
+<!-- 2) select from all students at school. -->
+<!-- The view toggle buttons (above) turn the display of these divs on and off -->
+<div id="your-students-div">
 	<%= render 'home_your_students' %>
-<% end %>
+</div>
 
+<div id="all-students-div" style="display:none">
+	<%= render 'home_all_students' %>
+</div>
+		
 
 <!-- Control the selection and unselection of the student roster -->
 <script>

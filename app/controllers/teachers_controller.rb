@@ -171,37 +171,15 @@ class TeachersController < ApplicationController
   end
 
   # PATCH /home
-  # update home means... 1) switch between all/your student views, and 
-  # 2) goto the selected student page
+  # Update home means goto the select Student page and get some work done
   def update_home
     @teacher = current_teacher
-    if params[:view_all]
-      redirect_to home_path( :view_all => true)
-    elsif params[:go_student]
+    if params[:go_student]
       @student = Student.find( params[:student_id])
       redirect_to @student
     else
       redirect_to home_path
     end
-    # if params[:start_session]
-    #   @student = Student.find(params[:student_id])
-    #   if(@student.squares.size == 0)
-    #     flash[ :danger] = "Cannot start session; student #{@student.full_name} has no behavior squares"
-    #     redirect_to home_path
-    #   else
-    #     @session = Session.new
-    #     @session.session_teacher = @teacher.id
-    #     @session.session_student = params[:student_id]
-    #     if @session.save
-    #       flash[ :success] = "Session was successfully created."
-    #       redirect_to @session
-    #     else
-    #       render :new
-    #     end
-    #   end
-    # elsif params[:analyze]
-    #     redirect_to analysis_student_path(params[:student_id])
-    # end
   end
 
   # GET /admin
