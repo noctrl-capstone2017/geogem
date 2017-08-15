@@ -8,7 +8,7 @@ class TeachersController < ApplicationController
   before_action :same_school, only: [:show, :edit, :update]
   before_action :is_admin, only: [:edit, :update, :admin, :admin_report, :index, :new, :create, :login_settings]
   before_action :is_super, only: [:super, :update_super_focus, :super_report]
-  
+
   # GET /teachers
   # Show all teachers. Sets up pagination in an ascending order by their screen_name.
   def index
@@ -58,6 +58,9 @@ class TeachersController < ApplicationController
   # admin page 3 - define teacher access to student analysis
   def edit3
     @teacher = Teacher.find(params[:id])
+    @students = @teacher.students.order('full_name ASC')
+    @students_at_school = Student.where(school_id: @teacher.school_id).order('full_name ASC')
+    @students_not_in_roster = Student.where(school_id: @teacher.school_id).where.not(id: @teacher.students).order('full_name ASC')
   end
 
   # POST /teachers/1
@@ -70,6 +73,8 @@ class TeachersController < ApplicationController
       update2_login_settings
     elsif params[:edit2b]
       update2_password
+    elsif params[:edit3_add]  ||  params[:edit3_remove]
+      update3_access
     else
       redirect_to home_path
     end
@@ -102,6 +107,20 @@ class TeachersController < ApplicationController
       redirect_to edit2_teacher_path(@teacher)
     else
       render 'edit2'
+    end
+  end
+
+  # update admin page 3 - change teacher access to students, aka the roster
+  def update3_access
+    # add student to roster
+    if params[:edit3_add]  &&  (params[:add_student_id] != nil)
+      @teacher.students << Student.find(params[:add_student_id])
+      redirect_to edit3_teacher_path(@teacher)
+
+    # remove student from roster
+    elsif params[:edit3_remove]  &&  (params[:remove_student_id] != nil)
+      @teacher.students.delete(Student.find(params[:remove_student_id]))
+      redirect_to edit3_teacher_path(@teacher)
     end
   end
 
@@ -238,21 +257,15 @@ class TeachersController < ApplicationController
     
       @students = @students_at_school
       @students_not_in_roster = []
-    end
-
-    #Admins always have every student, so they can't add or remove from any admins.
-    if params[:add_student]
-        if params[:add_student_id] != nil
-          if @teacher.admin
-            @teacher.students << Student.find(params[:add_student_id])
-          end
-        end
-
-    elsif params[:remove_student]
-      if params[:remove_student_id] != nil
-        if ! @teacher.admin
-          @teacher.students.delete(Student.find(params[:remove_student_id]))
-        end
+    else
+      # add student case
+      if params[:add_student]  &&  (params[:add_student_id] != nil)
+        @teacher.students << Student.find(params[:add_student_id])
+        redirect_to @teacher
+      # remove student case
+      elsif params[:remove_student]  &&  (params[:remove_student_id] != nil)
+        @teacher.students.delete(Student.find(params[:remove_student_id]))
+        redirect_to @teacher
       end
     end
   end

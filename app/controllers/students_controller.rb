@@ -55,7 +55,18 @@ class StudentsController < ApplicationController
   end
   
   # GET /students/1/edit
+  # edit student page
   def edit
+    @student = Student.find(params[:id])
+  end
+
+  #GET /students/1/edit2
+  # assign recommended squares to student
+  def edit2
+    @student = Student.find(params[:id])
+    @squares = @student.squares
+    @squares_at_school = Square.where(school_id: @student.school_id)
+    @squares_not_in_roster = Square.where(school_id: @student.school_id).where.not(id: @student.squares)
   end
 
   # PATCH/PUT /students/1 and /students/1/edit
@@ -63,7 +74,10 @@ class StudentsController < ApplicationController
   def update
     if params[:start_session]
       start_session
+    elsif params[:edit2_add]  ||  params[:edit2_remove]
+      update2_squares
     else
+      # basic case: edit student attributes
       @student = Student.find(params[:id])
       if @student.update(student_params)
           flash[:success] = "Student was successfully updated."
@@ -86,6 +100,21 @@ class StudentsController < ApplicationController
       redirect_to @session
     else
       render @student
+    end
+  end
+
+  # add/remove a student's recommended squares
+  # note: this is a kissin' cousin to update3_access in the teachers controller
+  def update2_squares
+    # add square to roster
+    if params[:edit2_add]  &&  (params[:add_square_id] != nil)
+      @student.squares << Square.find(params[:add_square_id])
+      redirect_to edit2_student_path(@student)
+
+    # remove square from roster
+    elsif params[:edit2_remove]  &&  (params[:remove_square_id] != nil)
+      @student.squares.delete(Square.find(params[:remove_square_id]))
+      redirect_to edit2_student_path(@student)
     end
   end
 

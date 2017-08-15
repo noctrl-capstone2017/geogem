@@ -11,23 +11,15 @@ class RosterSquaresController < ApplicationController
   helper_method :set_square_name, :set_square_desc
   helper_method :is_student_square
 
-  # Bill - no longer used
-  # helper_method :set_square_color
-  # helper_method :set_square_id
-  # helper_method :set_square_desc
-  # helper_method :set_roster_id
-
-
   # GET /roster_squares
-  # GET /roster_squares.json
+  # unused
   def index
     @roster_squares = RosterSquare.all
   end
 
   # GET /roster_squares/1
-  # GET /roster_squares/1.json
+  # unused
   def show
-    
   end
 
   # GET /roster_squares/new
@@ -59,7 +51,7 @@ class RosterSquaresController < ApplicationController
     end
   end
 
-  #Below are helpers methos that when called allow you to check certain fields
+  #Below are helpers methods that when called allow you to check certain fields
   #that would otherwise be unavailable
   def set_roster_id (roster_square)
     @roster_id = RosterSquare.find(roster_square.square_id).screen_name
@@ -106,7 +98,6 @@ class RosterSquaresController < ApplicationController
   end
   
   # POST /roster_squares
-  # POST /roster_squares.json
   def create
     @roster_square = RosterSquare.new(roster_square_params)
     @student = Student.find_by_id(params[:id])
@@ -123,7 +114,6 @@ class RosterSquaresController < ApplicationController
   end
 
   # PATCH/PUT /roster_squares/1
-  # PATCH/PUT /roster_squares/1.json
   def update
     respond_to do |format|
       if @roster_square.update(roster_square_params)
