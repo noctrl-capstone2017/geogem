@@ -71,6 +71,7 @@ Rails.application.routes.draw do
   #Carolyn C - send student to analysis page
   resources :students do
     member do
+      get :edit2
       get :analysis
       get :analysis2
       get :analysis3
