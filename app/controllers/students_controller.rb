@@ -107,13 +107,17 @@ class StudentsController < ApplicationController
   # note: this is a kissin' cousin to update3_access in the teachers controller
   def update2_squares
     # add square to roster
-    if params[:edit2_add]  &&  (params[:add_square_id] != nil)
-      @student.squares << Square.find(params[:add_square_id])
+    if params[:edit2_add]  
+      if params[:add_square_id].present?
+        @student.squares << Square.find(params[:add_square_id])
+      end
       redirect_to edit2_student_path(@student)
 
     # remove square from roster
-    elsif params[:edit2_remove]  &&  (params[:remove_square_id] != nil)
-      @student.squares.delete(Square.find(params[:remove_square_id]))
+    elsif params[:edit2_remove]
+      if params[:remove_square_id].present?
+        @student.squares.delete(Square.find(params[:remove_square_id]))
+      end
       redirect_to edit2_student_path(@student)
     end
   end

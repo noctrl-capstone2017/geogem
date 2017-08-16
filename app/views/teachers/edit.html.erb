@@ -4,7 +4,7 @@
 <!-- page header -->
 <%= render partial: 'teacher_page_header', 
 			:locals => { 	:title => "Edit teacher", 
-										:subtitle => "Admin page 1; edit attributes of teacher, #{@teacher.full_name}"} %>
+										:subtitle => "edit attributes of teacher, #{@teacher.full_name}"} %>
 
 <%= render 'form', teacher: @teacher, isEdit: true %>
 
@@ -13,7 +13,7 @@
 <!-- action button to Login Settings page -->
 <div class="row">
 	<div class="col-xs-10 col-xs-offset-1">
-		<h4>Admin page 2... change teacher login settings: &nbsp; &nbsp; &nbsp;
+		<h4>Next Admin page &mdash; change teacher login settings... &nbsp; &nbsp; &nbsp;
 			<%= link_to "Login settings...", 'edit2', 
 						:class => "btn btn-lg btn-primary", :title => "Login Settings page" %>
 		</h4>
