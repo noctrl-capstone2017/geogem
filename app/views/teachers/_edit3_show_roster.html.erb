@@ -1,0 +1,21 @@
+<!-- show roster of accessible students -->
+<% @students.each_with_index do |student, index| %>
+	<% if ux_first_row( index) %>
+		<div class="row pad20 col-xs-offset-2">
+	<% end %>
+	<% if ux_next_row( index, 4) %>
+		</div>
+		<div class="row pad20 col-xs-offset-2">
+	<% end %>
+
+	<div class="col-xs-2 text-center" title="student=<%= student.full_name %>">
+		<div class ="student-icon <%= glow_color(student) %> center-block">
+			<span class="fa fa-fw fa-3x <%= fa_icon(student) %>"></span>
+		</div>
+		<p><span id="<%= student.id %>"><%= ux_student_name(student, 15) %></span></p>
+	</div>   <!-- col -->
+
+	<% if ux_last_row( index, @students.count) %>
+		</div>
+	<% end %>
+<% end %>   <!-- foreach student in roster -->

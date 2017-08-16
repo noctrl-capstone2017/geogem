@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725200814) do
+ActiveRecord::Schema.define(version: 20170816145648) do
 
   create_table "roster_squares", force: :cascade do |t|
     t.integer  "square_id"
@@ -100,11 +100,12 @@ ActiveRecord::Schema.define(version: 20170725200814) do
     t.text     "description"
     t.string   "powers"
     t.integer  "school_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "suspended",       default: false, null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.boolean  "suspended",           default: false, null: false
     t.datetime "cur_login"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin",               default: false
+    t.boolean  "access_all_students", default: true
   end
 
 end

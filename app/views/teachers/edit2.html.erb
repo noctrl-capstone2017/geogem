@@ -3,7 +3,7 @@
 <!-- page header -->
 <%= render partial: 'teacher_page_header', 
 			:locals => { 	:title => "Login settings", 
-										:subtitle => "Admin page 2; change login settings of teacher, #{ @teacher.full_name }"} %>
+										:subtitle => "change login settings of teacher, #{ @teacher.full_name }"} %>
 
 <!--Edit Login Settings form -->
 <%= form_for(@teacher) do |f| %>
@@ -32,7 +32,7 @@
 		<div class="col-xs-2 col-xs-offset-1"><h4>Login status: </h4></div>
 		<div class="col-xs-3 checkbox">
 			<%= f.label :suspended do %>
-				<%= f.check_box :suspended, { }, "true", "false" %>Suspended
+				<%= f.check_box :suspended, { }, "true", "false" %>&nbsp; Suspended
 			<% end %>
 		</div>
 	</div>
@@ -92,7 +92,7 @@
 <!-- action button to Teacher Access page -->
 <div class="row">
 	<div class="col-xs-10 col-xs-offset-1">
-		<h4>Admin page 3... define teacher access to students: &nbsp; &nbsp; &nbsp;
+		<h4>Last Admin page &mdash; define teacher access to student data... &nbsp; &nbsp; &nbsp;
 			<%= link_to "Teacher access...", 'edit3', 
 						:class => "btn btn-lg btn-primary", :title => "Teacher Access page" %>
 		</h4>

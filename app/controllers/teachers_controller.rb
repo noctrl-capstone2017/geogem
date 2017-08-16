@@ -73,7 +73,7 @@ class TeachersController < ApplicationController
       update2_login_settings
     elsif params[:edit2b]
       update2_password
-    elsif params[:edit3_add]  ||  params[:edit3_remove]
+    elsif params[:edit3_add]  ||  params[:edit3_remove]  ||  params[:edit3_access]
       update3_access
     else
       redirect_to home_path
@@ -121,7 +121,16 @@ class TeachersController < ApplicationController
     elsif params[:edit3_remove]  &&  (params[:remove_student_id] != nil)
       @teacher.students.delete(Student.find(params[:remove_student_id]))
       redirect_to edit3_teacher_path(@teacher)
+
+    elsif params[:edit3_access]
+      @teacher.update(access_params)
+      # NOTE - I though about this one. A toughie.
+      # If access_all_students, then delete all students in the roster?
+      # I decided against it and just leave the roster alone. It's hidden and 
+      # unused in all pages if access_all_students is true.
+      redirect_to edit3_teacher_path(@teacher)
     end
+
   end
 
   # GET /profile
@@ -302,6 +311,10 @@ class TeachersController < ApplicationController
 
     def password_params
       params.require(:teacher).permit( :current_password, :password, :password_confirmation)
+    end
+
+    def access_params
+      params.require(:teacher).permit( :access_all_students)
     end
 
     def super_params
