@@ -131,6 +131,16 @@ $geogem-yellow: #FFDC00;
 .glow-yellow { color: white; background: $geogem-yellow; 
 	&:hover { color: lightgray; box-shadow: 0 0 16px $geogem-yellow; } }
 
+.glow-scheme-blue { color: white; background: $scheme-blue; 
+	&:hover { color: lightgray; box-shadow: 0 0 16px $scheme-blue; } }
+.glow-scheme-lightblue { color: white; background: $scheme-lightblue; 
+	&:hover { color: lightgray; box-shadow: 0 0 16px $scheme-lightblue; } }
+.glow-scheme-lighterblue { color: white; background: $scheme-lighterblue; 
+	&:hover { color: gray; box-shadow: 0 0 16px black; } }
+.glow-scheme-gray { color: white; background: $scheme-gray; 
+	&:hover { color: black; box-shadow: 0 0 16px black; } }
+.glow-scheme-darkgray { color: white; background: $scheme-darkgray; 
+	&:hover { color: lightgray; box-shadow: 0 0 16px black; } }
 
 /*********************************************************
 	3. SMALLER STUFF
@@ -296,7 +306,7 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 
 .action-rectangle {
 	height: 3em;
-	width: 90%;
+	width: 80%;
 
 	display: inline-flex;
 	align-items: center;

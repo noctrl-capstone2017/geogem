@@ -8,116 +8,92 @@
 
 <div class="row">
 	<div class="col-xs-5 col-xs-offset-1">
-		<h4>Focus school</h4>
+		<h4>Focus school - <small>the super user's secret identity</small></h4>
 	</div>
 </div>
 
 <!-- spinner to allow Super to change focus school -->
-<div class="row pad20">
+<%= form_for( @teacher, :url => { :action => :update_super_focus }) do |f| %>
 
-	<!-- icon of the focus school -->
-	<div class="col-xs-2 col-xs-offset-2 text-center" title="school=<%= @school.full_name %>">
-		<div class="action-div">
-			<%= link_to edit_school_path(@school.id) do %>
-				<div class ="action-icon-square action-icon-neutral <%= icon_color(@school) %> center-block">
-					<span class="fa fa-3x fa-fw <%= fa_icon(@school) %> action-icon"></span>
-				</div>
-			<% end %>
+	<div class="row pad20 vertical-align form-group">
+		<div class="col-xs-3 form-group text-right">
+   		<label class="control-label">School:</label>
+   	</div>
+   	<div class="col-xs-3 form-group">
+	  	<%= f.select :school_id, 
+	    			@schools.order('full_name ASC').map{|c| [c.full_name, c.id]}, 
+	    			{ }, { :class => 'form-control', :style => "min-width: 240px;" } %>
 		</div>
+		<div class="col-xs-4 form-group">
+			<%= button_tag(type: 'submit', class: "btn btn-success") do %>Change focus school<% end %>
+		</div>
+	</div>
+
+<% end %>   <!-- focus school spinner -->
+
+<hr class="form-spacer-line"></hr>
+
+<div class="row" >
+	<!-- Edit school button, the focus school -->
+	<div class="col-sm-6 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 text-center action-div">
 		<%= link_to edit_school_path(@school.id) do %>
-			Edit school
+			<span class ="action-rectangle <%= glow_color(@school) %>" >
+		  	<span class="fa fa-fw fa-lg <%= fa_icon(@school) %>"></span>
+		  	&nbsp; Edit school
+			</span>
 		<% end %>
-	</div>
-
-	<!-- focus school spinner -->
-	<div class="col-xs-5 text-center" style="margin-top:10px;">
-		<%= form_for( @teacher, :url => { :action => :update_super_focus }) do |f| %>
-    <div class="row vertical-align">
-    	<div class="form-group">
-    		<div class="col-xs-5" style="text-align:right;">
-	    		<label class="control-label">School:</label>
-	    	</div>
-	    	<div class="col-xs-7">
-	    		<%= f.select :school_id, 
-	    					@schools.order('full_name ASC').map{|c| [c.full_name, c.id]}, 
-	    					{}, { :class => 'form-control', :style => "min-width: 240px;" } %>
-				</div>
-     	</div>   <!-- form group-->
-    </div>   <!-- row -->
-
-    <div class="row">
-    	<div class="col-xs-8 col-xs-offset-2">
-				<%= button_tag(type: 'submit', class: "btn btn-success") do %>Change Focus School<% end %>
-			</div>
-    </div>
-    <% end %>
-
 	</div>   <!-- col -->
-</div>  <!-- row -->
 
-<!-- action icons, row 2 -->
-<div class="row pad40" >
+	<!-- Backup school button -->
+	<div class="col-sm-6 col-md-4 col-lg-3 col-md-offset-1 text-center action-div">
+		<%= link_to school_backup_path do %>
+			<%= render 'action_button', button_color: "glow-scheme-lightblue", 
+						fa_icon: "fa-floppy-o", button_text: "Backup school" %>
+		<% end %>
+	</div>   <!-- col -->
+</div>   <!-- 1st row of school buttons -->
 
-	<!-- Backup school icon -->
-	<div class="col-xs-2 col-xs-offset-2 text-center" title="Backup data of Super focus school">
-		<div class="action-div">
-			<%= link_to school_backup_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-lightblue", fa_icon: "fa-floppy-o" %>
-			<% end %>
-		</div>
-		<%= link_to school_backup_path do %>Backup school<% end %>
-	</div>
+<div class="row pad20" >
+	<!-- Suspend school button -->
+	<div class="col-sm-6 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 text-center action-div">
+		<%= link_to school_suspend_path do %>
+			<%= render 'action_button', button_color: "glow-scheme-darkgray", 
+						fa_icon: "fa-bomb", button_text: "Suspend school" %>
+		<% end %>
+	</div>   <!-- col -->
 
-	<!-- Suspend school icon -->
-	<div class="col-xs-2 text-center" title="Suspend all teachers at Super focus school">
-		<div class="action-div">
-			<%= link_to school_suspend_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-darkgray", fa_icon: "fa-bomb" %>
-			<% end %>
-		</div>
-		<%= link_to school_suspend_path do %>Suspend school<% end %>
-	</div>
-
-	<!-- Retore school icon -->
-	<div class="col-xs-2 text-center" title="Restore teacher logins at Super focus school">
-		<div class="action-div">
-			<%= link_to school_restore_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-yelloworange", fa_icon: "fa-undo" %>
-			<% end %>
-		</div>
-		<%= link_to school_restore_path do %>Restore school<% end %>
-	</div>
-	
-</div>   <!-- 2nd row of icons -->
+	<!-- Restore school button -->
+	<div class="col-sm-6 col-md-4 col-lg-3 col-md-offset-1 text-center action-div">
+		<%= link_to school_restore_path do %>
+			<%= render 'action_button', button_color: "glow-scheme-lighterblue", 
+						fa_icon: "fa-undo", button_text: "Restore school" %>
+		<% end %>
+	</div>   <!-- col -->
+</div>   <!-- 2nd row of school buttons -->
 
 <!-- Super powers icons are first: all schools and super report -->
-<div class="row">
-	<div class="col-xs-5 col-xs-offset-1">
+<div class="row pad40">
+	<div class="col-xs-10 col-xs-offset-1">
 		<br>
-		<h4>Super powers</h4>
+		<h4>Super powers - <small>only available to the super user</small></h4>
 	</div>
 </div>
 
 <div class="row pad20" >
+	<!-- All schools button -->
+	<div class="col-sm-6 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 text-center action-div">
+		<%= link_to schools_path do %>
+			<%= render 'action_button', button_color: "glow-scheme-blue", 
+						fa_icon: "fa-home", button_text: "All schools" %>
+		<% end %>
+	</div>   <!-- col -->
 
-	<!-- All schools action icon -->
-	<div class="col-xs-2 col-xs-offset-2 text-center" title="View/edit schools">
-		<div class="action-div">
-			<%= link_to schools_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-blue", fa_icon: "fa-home" %>
-			<% end %>
-		</div>
-		<%= link_to schools_path do %>All schools<% end %>
-	</div>
+	<!-- Super report button -->
+	<div class="col-sm-6 col-md-4 col-lg-3 col-md-offset-1 text-center action-div">
+		<%= link_to super_report_path do %>
+			<%= render 'action_button', button_color: "glow-scheme-gray", 
+						fa_icon: "fa-file-text", button_text: "Super report" %>
+		<% end %>
+	</div>   <!-- col -->
 
-	<!-- Super report action icon -->
-	<div class="col-xs-2 text-center" title="GeoGem stats for Super">
-		<div class="action-div">
-			<%= link_to super_report_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-gray", fa_icon: "fa-file-text" %>
-			<% end %>
-		</div>
-		<%= link_to super_report_path do %>Super report<% end %>
-	</div>
-
-</div>   <!-- first row of icons -->
+</div>   <!-- super powers buttons -->

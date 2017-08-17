@@ -10,7 +10,7 @@
 		<div class="col-xs-3">
 			<%= select_tag 'student_id', 
 						options_from_collection_for_select(@all_students.order( 'full_name ASC'), 'id', 'full_name'), 
-						{:required => true, :class => 'form-control'} %>
+						{ :include_blank => 'Select student', :required => true, :class => 'form-control'} %>
 		</div>
 	</div>   <!-- form-group -->
 	<br><br>

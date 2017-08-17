@@ -49,19 +49,19 @@ class SquaresController < ApplicationController
   end
 
   # PATCH/PUT /squares/1
-  # PATCH/PUT /squares/1.json
+  # update square attributes
   def update
     @square = Square.find(params[:id])
     if @square.update(square_params)
        flash[:success] = "Square was successfully updated."
-       redirect_to squares_url
+       redirect_to edit_square_path(@square)
      else
        render 'edit'
     end
   end
 
   # DELETE /squares/1
-  # DELETE /squares/1.json
+  # Unused
   def destroy
     @square.destroy
     flash[ :success] = "Square was successfully destroyed."
@@ -85,6 +85,7 @@ class SquaresController < ApplicationController
     
     # Never trust parameters from the scary internet, only allow the white list through.
     def square_params
-      params.require(:square).permit(:full_name, :screen_name, :color, :tracking_type, :description, :school_id)
+      params.require(:square).permit(:full_name, :screen_name, :color, 
+            :tracking_type, :description, :school_id)
     end
 end
