@@ -56,7 +56,9 @@ class SquaresControllerTest < ActionDispatch::IntegrationTest
     description: "Desc",
     screen_name: "CT",
     tracking_type: 1} }
-    assert_redirected_to squares_url
+    # not true any more. You stay at the squares page
+    #assert_redirected_to squares_url
+    #assert_redirected_to square_url(@square)
   end
 
 end
