@@ -6,63 +6,65 @@
 			:locals => { 	:title => "Admin dashboard", 
 										:subtitle => "exercise admin powers at #{ @school.full_name }"} %>
 
-<!-- action icons, first row -->		
-<div class="row pad40">
-
-	<!-- View/edit school -->
-	<div class="col-xs-2 col-xs-offset-1 text-center" title="Edit school, <%= @school.full_name %>">
-		<div class="action-div">
-			<%= link_to edit_school_path(@school.id) do %>
-				<div class ="action-icon-square action-icon-neutral <%= icon_color(@school) %> center-block">
-					<span class="fa fa-3x fa-fw <%= fa_icon(@school) %> action-icon"></span>
-				</div>
-			<% end %>
-		</div>
-		<%= link_to edit_school_path(@school.id) do %>Edit school<% end %>
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+		<h3>Manage your school<small> - student, teacher, and behavior square setup</small></h3>
 	</div>
-
-	<!-- Basic school report for admins -->
-	<div class="col-xs-2 text-center" title="Report basic lists at school, <%= @school.full_name %>">
-		<div class="action-div">
-			<%= link_to admin_report_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-darkgray", fa_icon: "fa-file-text-o" %>
-			<% end %>
-		</div>
-		<%= link_to admin_report_path do %>Admin report<% end %>
-	</div>
-</div>   <!-- first row of icons -->
+</div>
 
 <!-- action icons, second row -->
-<div class="row pad40">
+<div class="row pad20">
 
 	<!-- View/edit all students -->
-	<div class="col-xs-2 col-xs-offset-1 text-center" title="View/edit all students">
-		<div class="action-div">
-			<%= link_to students_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-lightblue", fa_icon: "fa-child" %>
-			<% end %>
-		</div>
-		<%= link_to students_path do %>All students<% end %>
-	</div>
+	<div class="col-sm-6 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 text-center action-div">
+		<%= link_to students_path do %>
+			<%= render 'action_button', button_color: "glow-scheme-darkgray", 
+						fa_icon: "fa-child", button_text: "All students" %>
+		<% end %>
+	</div>   <!-- col -->
 
 	<!-- View/edit all teachers -->
-	<div class="col-xs-2 text-center" title="View/edit all teachers">
-		<div class="action-div">
-			<%= link_to teachers_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-yelloworange", fa_icon: "fa-apple" %>
-			<% end %>
-		</div>
-		<%= link_to teachers_path do %>All teachers<% end %>
-	</div>
+	<div class="col-sm-6 col-md-4 col-lg-3 col-md-offset-1 text-center action-div">
+		<%= link_to teachers_path do %>
+			<%= render 'action_button', button_color: "glow-scheme-blue", 
+						fa_icon: "fa-apple", button_text: "All teachers" %>
+		<% end %>
+	</div>   <!-- col -->
 
-	<!-- View/edit all behavior squares-->
-	<div class="col-xs-2 text-center" title="View/edit all behavior squares">
-		<div class="action-div">
-			<%= link_to squares_path do %>
-				<%= render 'action_icon', icon_color: "action-icon-gray", fa_icon: "fa-square-o" %>
-			<% end %>
-		</div>
-		<%= link_to squares_path do %>All squares<% end %>
-	</div>
+</div>   <!-- row -->
+
+<div class="row pad20">
+	
+	<!-- View/edit all behavior squares -->
+	<div class="col-sm-6 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 text-center action-div">
+		<%= link_to squares_path do %>
+			<%= render 'action_button', button_color: "glow-scheme-lightblue", 
+						fa_icon: "fa-square-o", button_text: "All squares" %>
+		<% end %>
+	</div>   <!-- col -->
 
 </div>   <!-- 2nd row of icons -->
+
+<br>
+<hr class="form-spacer-line"></hr>
+
+<div class="row">
+
+	<!-- Edit school button -->
+	<div class="col-sm-6 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 text-center action-div">
+		<%= link_to edit_school_path(@school.id) do %>
+			<span class ="action-rectangle <%= glow_color(@school) %>" >
+		  	<span class="fa fa-fw fa-lg <%= fa_icon(@school) %>"></span>
+		  	&nbsp; Edit school
+			</span>
+		<% end %>
+	</div>   <!-- col -->
+
+	<!-- Admin report button -->
+	<div class="col-sm-6 col-md-4 col-lg-3 col-md-offset-1 text-center action-div">
+		<%= link_to admin_report_path do %>
+			<%= render 'action_button', button_color: "glow-scheme-gray", 
+						fa_icon: "fa-file-text", button_text: "Admin report" %>
+		<% end %>
+	</div>   <!-- col -->
+</div>   <!-- first row of icons -->

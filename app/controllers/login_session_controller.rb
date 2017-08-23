@@ -37,13 +37,15 @@ class LoginSessionController < ApplicationController
 
   # logout page
   def logout
-    # update the last login dates, erase the current session's
-    current_teacher.update_attribute(:last_login, current_teacher.cur_login)
-    current_teacher.update_attribute(:cur_login, nil)
+    if logged_in?
+      # update the last login dates, erase the current session's
+      current_teacher.update_attribute(:last_login, current_teacher.cur_login)
+      current_teacher.update_attribute(:cur_login, nil)
 
-    # reset super focus school to Noctrl
-    current_teacher.update_attribute(:school_id, 1) if is_super?
-    log_out if logged_in?
+      # reset super focus school to Noctrl
+      current_teacher.update_attribute(:school_id, 1) if is_super?
+      log_out
+    end
   end
 
 end

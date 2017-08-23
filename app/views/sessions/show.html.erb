@@ -141,12 +141,12 @@
   <% @squares.each_with_index do |square, index| %>
 
     <% if ux_first_row( index) %>
-      <div class="row behavior-row">
+      <div class="row pad20">
     <% end %>
 
     <% if ux_next_row( index, 2) %>
       </div>
-      <div class="row behavior-row">
+      <div class="row pad20">
     <% end %>
 
     <% if index.even? %>

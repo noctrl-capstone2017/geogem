@@ -7,8 +7,8 @@
 										:subtitle => "exercise your GeoGem superpowers, #{ super_teacher.full_name }" } %>
 
 <div class="row">
-	<div class="col-xs-5 col-xs-offset-1">
-		<h4>Focus school - <small>the super user's secret identity</small></h4>
+	<div class="col-xs-10 col-xs-offset-1">
+		<h3>Focus school<small> - the super user's secret identity</small></h3>
 	</div>
 </div>
 
@@ -24,7 +24,7 @@
 	    			@schools.order('full_name ASC').map{|c| [c.full_name, c.id]}, 
 	    			{ }, { :class => 'form-control', :style => "min-width: 240px;" } %>
 		</div>
-		<div class="col-xs-4 form-group">
+		<div class="col-xs-4 form-group text-center">
 			<%= button_tag(type: 'submit', class: "btn btn-success") do %>Change focus school<% end %>
 		</div>
 	</div>
@@ -72,10 +72,10 @@
 </div>   <!-- 2nd row of school buttons -->
 
 <!-- Super powers icons are first: all schools and super report -->
-<div class="row pad40">
+<div class="row pad20">
 	<div class="col-xs-10 col-xs-offset-1">
 		<br>
-		<h4>Super powers - <small>only available to the super user</small></h4>
+		<h3>Super powers<small> - only available to the super user</small></h3>
 	</div>
 </div>
 
