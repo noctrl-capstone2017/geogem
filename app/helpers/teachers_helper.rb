@@ -49,6 +49,22 @@ module TeachersHelper
     Teacher.first
   end
 
+  # returns true if the current_teacher can access student analysis data
+  def can_access_student( student)
+    # 2 ways to access all student: admin or access_all flag
+    if (is_admin?  ||  current_teacher.access_all_students)
+      return true
+    end
+
+    # last gasp: check roster of accessible students
+    find_student = RosterStudent.where( teacher_id: current_teacher.id, student_id: student.id)
+    if ! find_student.blank?
+      return true
+    end
+
+    false     # nope - teacher cannot access this student's data
+  end
+
   # Returns a "fancy" home message based on whether it's the teachers 
   # first ever login or first time visiting Home page or neither
   def ux_fancy_home_welcome( teacher, first_home)

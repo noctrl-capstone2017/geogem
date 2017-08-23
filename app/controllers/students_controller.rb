@@ -74,6 +74,8 @@ class StudentsController < ApplicationController
   def update
     if params[:start_session]
       start_session
+    elsif params[:analysis]
+      redirect_to analysis_student_path(@student)
     elsif params[:edit2_add]  ||  params[:edit2_remove]
       update2_squares
     else
@@ -134,11 +136,11 @@ class StudentsController < ApplicationController
   def analysis
     @student = Student.find(params[:id])
     if params[:analysis_report]
-          redirect_to analysis2_student_path( @student)
+      redirect_to analysis2_student_path( @student)
     elsif params[:analyze_csv]
-          redirect_to analysis3_student_path( @student)
+      redirect_to analysis3_student_path( @student)
     elsif params[:analyze_charts]
-          redirect_to analysis4_student_path( @student)
+      redirect_to analysis4_student_path( @student)
     end
   end
   
