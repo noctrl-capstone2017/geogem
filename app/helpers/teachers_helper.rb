@@ -64,7 +64,6 @@ module TeachersHelper
 
     false     # nope - teacher cannot access this student's data
   end
-
   # Returns a "fancy" home message based on whether it's the teachers 
   # first ever login or first time visiting Home page or neither
   def ux_fancy_home_welcome( teacher, first_home)

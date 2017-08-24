@@ -16,7 +16,7 @@
   	</div> 
   	<div class="col-xs-2">
       <%= f.text_field :screen_name, required: true, class: "form-control",
-            onKeyup: "trackName(this.value)" %>
+      			maxlength: "4", onKeyup: "trackName(this.value)" %>
   	</div>
   </div>
 

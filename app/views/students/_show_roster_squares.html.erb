@@ -12,12 +12,16 @@
 
 	<% real_square = get_real_square( each_roster_square) %>
  	<div class="col-xs-2">
-		<%= link_to square_path(real_square), :class => "bsquare-link" do %>
-			<div class="bsquare-icon <%= glow_color(real_square) %> text-center" >
-				<h3><%= real_square.screen_name %></h3>
-		    <span class="fa fa-fw fa-lg <%= fa_bsquare_icon(real_square) %>"></span>
-			</div>   <!-- behavior-square -->
-		<% end %>   <!-- link_to edit square -->
+
+		<!-- behavior square, click on it for popover of type/description -->
+		<div class="bsquare-icon <%= glow_color(real_square) %> text-center"
+					title="<strong><%= real_square.screen_name %><strong> behavior square, type=<%= ux_square_tracking_type( real_square) %>"
+					data-toggle="popover" data-trigger="click" data-container="body"
+					data-content="<%= real_square.description %>" >
+			<h3><%= real_square.screen_name %></h3>
+			<span class="fa fa-fw fa-lg <%= fa_bsquare_icon(real_square) %>"></span>
+		</div>   <!-- behavior-square -->
+
 	</div>
 
 	<% if ux_last_row( index, roster_squares.count) %>
