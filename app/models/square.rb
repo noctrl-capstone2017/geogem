@@ -11,4 +11,5 @@ class Square < ApplicationRecord
                                    foreign_key: "square_id",
                                    dependent:   :destroy
   has_many :students, through: :passive_relationships, source: :student
+
 end
