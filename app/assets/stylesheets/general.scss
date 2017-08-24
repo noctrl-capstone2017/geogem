@@ -3,7 +3,7 @@
 
 @charset "UTF-8";
 
-/* Authors: Debra Jensen, Carolyn C, many */
+/* Authors: Debra Jensen, Carolyn C, et al */
 
 /*********************************************************
 	1. TOP-LEVEL
@@ -159,7 +159,7 @@ $geogem-yellow: #FFDC00;
 .form-spacer { padding-top: 20px; }
 .form-spacer-line { width: 80%; padding-top: 20px; }
 
-.popover { max-width: 600px; } 		// control tooltip popover width
+.popover { max-width: 600px !important; } 		// control tooltip popover width
 .info-textarea { resize: both; } 	// turn resize ON for info text areas
 // text highlight in About page
 .about-highlight { color: $scheme-blue; font-size: 1.2em; font-weight: bold; }
@@ -542,9 +542,25 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	transform:scale(1.1);
 }
 
+/**********************************************************
+* MEDIA QUERIES FOR SMALLER SCREENS
+* Resizes square divs on the sessions, home, and about
+* screens. For media query requests ask Debra J
+**********************************************************/
+@media only screen and (max-width: 767px){
+	.sq-about { height: 8.5em; width: 8.5em; }
+}
+@media only screen and (max-width: 573px){
+	.sq-about { height: 7em; width: 7em; border-radius: 15px; }
+}
+@media only screen and (max-width: 375px){
+	.sq-about { height: 6em; width: 6em; border-radius: 10px; }
+}
+
+
 
 /**********************************************/
-/** BILL - Still need to cleanup below here! **/
+/** BILL - Still need to cleanup BELOW here! **/
 /**********************************************/
 
 /* Big square used on home and session screen*/
@@ -568,6 +584,17 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	transform:scale(1.1);
 }
 
+.square h1, .square h2,.square h3, .square h4, .square p
+{
+	color: white;
+}
+@media only screen and (max-width: 767px){
+	.square { height: 6em; width: 6em; border-radius: 10px; }
+}
+@media only screen and (max-width: 375px){
+	.square { height: 4.5em; width: 4.5em; border-radius: 10px; }
+}
+
 .sq-active
 {
 	border-color: white;
@@ -579,72 +606,6 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
   box-shadow: 0px 0px 8px $scheme-darkgray;
 }
 
-.square h1, .square h2,.square h3, .square h4, .square p
-{
-	color: white;
-}
-
-/**********************************************************
-* MEDIA QUERIES FOR SMALLER SCREENS
-* Resizes square divs on the sessions, home, and about
-* screens. For media query requests ask Debra J
-**********************************************************/
-@media only screen and (max-width: 767px){
-	.square
-	{
-		height: 6em;
-		width: 6em;
-		border-radius: 10px;
-	}
-	.sq-about
-	{
-		height: 8.5em;
-		width: 8.5em;
-	}
-}
-@media only screen and (max-width: 573px){
-	.sq-about
-	{
-		height: 7em;
-		width: 7em;
-		border-radius: 15px;
-	}
-}
-@media only screen and (max-width: 375px){
-	.square
-	{
-		height: 4.5em;
-		width: 4.5em;
-		border-radius: 10px;
-	}
-	.sq-about
-	{
-		height: 6em;
-		width: 6em;
-		border-radius: 10px;
-	}
-}
-
-/* Action squares appear at the bottom of the page and take user to another page */
-.action-sq {
-	height: 6em;
-	width: 6em;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 10px;
-	transition: all .2s ease-in-out;
-}
-.action-sq:hover {
-	-webkit-transform: scale(1.1);
-	-moz-transform: scale(1.1);
-	-o-transform:scale(1.1);
-	transform:scale(1.1);
-}
-
-/***********************************************************
-* FLOAT RIGHT ROWS
-************************************************************/
 .button-start
 {
   background-color: Transparent;
@@ -698,3 +659,4 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 //   height:100%;
 //   overflow:auto;
 // }
+//
