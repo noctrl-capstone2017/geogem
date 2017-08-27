@@ -12,7 +12,7 @@ class SchoolsController < ApplicationController
 
   # GET /schools - view all schools, sorted by full name
   def index
-    @schools = School.paginate(page: params[:page], :per_page => 10).order('full_name ASC')
+    @schools = School.paginate(page: params[:page], :per_page => 10).order('LOWER(full_name) ASC')
     @school = set_school
     set_school.full_name = params[:full_name]
   end
