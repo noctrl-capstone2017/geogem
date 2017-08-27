@@ -9,21 +9,53 @@
     <%= f.hidden_field :school_id, :value => current_teacher.school_id%>
   <% end %>
 
-  <!-- ID field -->
-  <div class="row form-row">
+  <!-- Name field -->
+  <div class="row form-row vertical-align">
   	<div class="col-xs-2 col-xs-offset-1">
-  		<h4>Square ID:</h4>
+  		<h4>Square Name:</h4>
   	</div> 
   	<div class="col-xs-2">
-      <%= f.text_field :screen_name, required: true, class: "form-control",
-      			maxlength: "4", onKeyup: "trackName(this.value)" %>
+  		<% if local_assigns[:isNew] %>
+	      <%= f.text_field :screen_name, required: true, class: "form-control",
+  	    			maxlength: "4", onKeyup: "trackName(this.value)" %>
+			<% else %>
+				<%= f.text_field :screen_name, :readonly => true, class: "form-control" %>
+ 	   <% end %>
   	</div>
+		<div class="col-xs-1 text-left">
+			<span class="fa fa-fw fa-lg fa-question-circle color-scheme-blue"
+						title="Help: Square name and type"
+						data-toggle="popover" data-trigger="click" data-target="#popover" 
+						data-container="body" 
+						data-content="The name and type attributes of behavior squares cannot be changed after the square is created.
+		This ensures the integrity of data in student behavior sessions." ></span>
+		</div>
   </div>
 
+	<!-- popover is from Bootstrap; www.w3schools.com/bootstrap/bootstrap_popover.asp -->
+	<div id="popover" style="display:none;">
+		<p>The name and type attributes of behavior squares cannot be changed after the square is created.
+		This ensures the integrity of data in student behavior sessions.</p>
+	</div>
+
 	<!-- color and type fields, with interactive sample square -->
-	<div class="row form-row vertical-align">
+	<div class="row form-row vertical-align pad20">
 		<!-- color and icon spinners in the 1st column -->
 		<div class="col-xs-4 col-xs-offset-1">
+
+  		<div class="row form-row">
+  			<div class="col-xs-3"><h4>Type: </h4></div>
+		  	<!-- spinner has int value of Type masked with the name -->
+  			<div class="col-xs-6 col-xs-offset-3">
+  				<% if local_assigns[:isNew] %>
+						<%= f.select :tracking_type,[['Duration',1],['Frequency',2],['Interval',3]],
+									{}, {class: 'form-control'} %>
+  				<% else %>
+						<%= f.text_field :tracking_type, :value => ux_square_tracking_type( square), 
+									:readonly => true, class: 'form-control' %>
+					<% end %>
+  			</div>
+  		</div>   <!-- row, type spinner -->
 
 			<div class="row form-row">
 				<div class="col-xs-3"><h4>Color: </h4></div>
@@ -32,17 +64,6 @@
           		      {}, {class: 'form-control'} %>
 				</div>
 			</div>   <!-- row, color spinner -->
-  
-  		<div class="row form-row">
-  			<div class="col-xs-3"><h4>Type: </h4></div>
-		  	<!-- spinner has int value of Type masked with the name -->
-  			<div class="col-xs-6 col-xs-offset-3">
-
-					<%= f.text_field :tracking_type, :value => ux_square_tracking_type( square), 
-								:readonly => true, class: 'form-control' %>
-
-  			</div>
-  		</div>   <!-- row, type spinner -->
   	</div>   <!-- col, spinners -->
 
   	<div class="col-xs-4">

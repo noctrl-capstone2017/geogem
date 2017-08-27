@@ -15,7 +15,7 @@ class TeachersController < ApplicationController
     @current_teacher = current_teacher
     @school = School.find(@current_teacher.school_id)
     @teachers = Teacher.where(school_id: @current_teacher.school_id).paginate(page: params[:page], :per_page => 10)
-    @teachers = @teachers.order('full_name ASC')
+    @teachers = @teachers.order('LOWER(full_name) ASC')
   end
 
   # GET /teachers/new
