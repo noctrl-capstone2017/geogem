@@ -66,16 +66,16 @@ module SessionsHelper
   #formats the time
   def formatTime(duration)
     #see if duration is at least a minute, if so format as minutes
-     #else format as seconds
-      if duration >= 60
-        #show duration as minutes
-        durationStr = Time.at(duration).utc.strftime("%-M:%S") + " minutes"
-      else
-        #show duration as seconds
-        durationStr = durationStr = Time.at(duration).utc.strftime("%-S") + " seconds"
-      end
-    
-      return durationStr
+    #else format as seconds
+    if duration >= 60
+      #show duration as minutes
+      durationStr = Time.at(duration).utc.strftime("%-M:%S") + " minutes"
+    else
+      #show duration as seconds
+      durationStr = durationStr = Time.at(duration).utc.strftime("%-S") + " seconds"
+    end
+
+    return durationStr
   end
 
   # return session start time, nicely formatted: 03:25 pm (CDT)
