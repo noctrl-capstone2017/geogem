@@ -164,6 +164,10 @@ $geogem-yellow: #FFDC00;
 // text highlight in About page
 .about-highlight { color: $scheme-blue; font-size: 1.2em; font-weight: bold; }
 
+// Apple/IOS/iPad workaround, used in the About page
+// Source: https://stackoverflow.com/questions/28772684/bootstrap-modal-issue-on-safari-ios-iphone
+.ios-clickable { cursor: pointer; }
+
 // table formatting
 .table-striped > tbody > tr:hover td {
   background-color: $scheme-paleblue;
