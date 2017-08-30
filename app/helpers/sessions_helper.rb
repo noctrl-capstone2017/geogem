@@ -1,29 +1,15 @@
 # Authors Alexander Pavia + Matthew O + Debra J
 module SessionsHelper
 
-  #Calculates session duration from start and end times
-  def calculateDuration
-    @session = Session.find(params[:id])
-    start = Time.at(@session.start_time)
-    endt = Time.at(@session.end_time)
-    duration = endt - start
-   
-   return formatTime(duration)
-  end
-
-  # Authors Alexander Pavia + Matthew O + Debra J
-  #If interval square pressed show "yes" in end session report
-  #Else show "No"
+  # if interval square pressed show "yes" in end session report, else return "no"
   def getInterval(square)
     @session = Session.find(params[:id])
     @student = Student.find(@session.session_student)
     @sessionEvent = SessionEvent.where(session_id: @session.id, behavior_square_id: square.id)
     answer = "No"
-    
-    
+
     if  @sessionEvent.length >= 1
       #behavior happend 
-      
       return answer = "Yes"
     end
     
@@ -62,24 +48,44 @@ module SessionsHelper
     return totalDuration
   end
 
-  #Authors Alex P + Matthew O + Debra J
-  #formats the time
+  # returns the duration (num seconds) in a nicely formatted string
   def formatTime(duration)
-    #see if duration is at least a minute, if so format as minutes
-    #else format as seconds
-    if duration >= 60
-      #show duration as minutes
-      durationStr = Time.at(duration).utc.strftime("%-M:%S") + " minutes"
+    # format duration as appropriate: in seconds, minutes or hours
+    if duration >= 3600
+      # session lasted more than 1 hour=3600 seconds; use hours/minutes
+      Time.at(duration).utc.strftime("%-H hours, %-M minutes") 
+    elsif duration >= 60
+      # session lasted more than 1 minute=60 seconds; use minutes
+      Time.at(duration).utc.strftime("%-M minutes") 
     else
-      #show duration as seconds
-      durationStr = durationStr = Time.at(duration).utc.strftime("%-S") + " seconds"
+      # session lasted less than 1 minute; use seconds
+      Time.at(duration).utc.strftime("%-S seconds")
     end
-
-    return durationStr
   end
 
-  # return session start time, nicely formatted: 03:25 pm (CDT)
-  def ux_session_start_time( session) 
-    session.start_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P (%Z)")
+  # return session start time, nicely formatted
+  def ux_session_start_time( session, show_time_zone=false) 
+    if show_time_zone
+      session.start_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P (%Z)")
+    else
+      session.start_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P")
+    end
   end
-end 
+
+  # return session end time, nicely formatted
+  def ux_session_end_time( session, show_time_zone=false)
+    if show_time_zone
+      session.end_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P (%Z)")
+    else
+      session.end_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P")
+    end
+  end
+
+  # calculates session duration and return it, nicely formatted
+  def ux_session_duration(session)
+    # DateTime objects ARE integers, so this returns num seconds elapsed
+    duration = session.end_time.to_i - session.start_time.to_i
+    return formatTime(duration)
+  end
+
+end

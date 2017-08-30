@@ -3,7 +3,7 @@
 
 <div class="page-header vertical-align">
   <div class="col-xs-11">
-    <h2>End Session<small> - session stats for student <%= @student.screen_name%></small></h2>
+    <h2>End Session<small> - session stats for student, <%= @student.full_name %></small></h2>
   </div>
   <div class="col-xs-1">
     <div class="student-page-header-icon <%= icon_color(@student) %>" 
@@ -13,56 +13,157 @@
   </div>
 </div>   <!-- page-header -->
 
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1">
-    <!-- Display the session duration -->
-    <h4>Session Duration: <%= calculateDuration =%></h4>
-    <br>
 
-    <!-- Show end session summary report -->
-    <h4>Quick Summary:</h4>
-    <table class="table table-striped table-hover table-responsive">
+<%= form_for(@session) do |f| %>
+  <div class="row form-row vertical-align">
+    <div class="col-xs-2 col-xs-offset-1">
+      <h4>Student: </h4>
+    </div>
+    <div class="col-xs-3">
+      <input readonly="readonly" class="form-control" type="text" 
+            value="<%= @student.full_name %>" />
+    </div>
+  </div>
+
+  <div class="row form-row vertical-align">
+    <div class="col-xs-2 col-xs-offset-1">
+      <h4>Teacher: </h4>
+    </div>
+    <div class="col-xs-3">
+      <input readonly="readonly" class="form-control" type="text" 
+            value="<%= @teacher.full_name %>" />
+    </div>
+  </div>
+
+  <div class="row form-row vertical-align">
+    <div class="col-xs-2 col-xs-offset-1">
+      <h4>Start time:</h4>
+    </div>
+    <div class="col-xs-3">
+      <input readonly="readonly" class="form-control" type="text"
+            value="<%= ux_session_start_time( @session, true) %>" />
+    </div>
+  </div>
+
+  <div class="row form-row vertical-align">
+    <div class="col-xs-2 col-xs-offset-1">
+      <h4>End time:</h4>
+    </div>
+    <div class="col-xs-3">
+      <input readonly="readonly" class="form-control" type="text"
+            value="<%= ux_session_end_time( @session, true) %>" />
+    </div>
+  </div>
+
+  <div class="row form-row vertical-align">
+    <div class="col-xs-2 col-xs-offset-1">
+      <h4>Duration:</h4>
+    </div>
+    <div class="col-xs-3">
+      <input readonly="readonly" class="form-control" type="text"
+            value="<%= ux_session_duration( @session) %>" />
+    </div>
+  </div>
+
+  <div class="row form-row vertical-align">
+    <div class="col-xs-2 col-xs-offset-1">
+      <h4>Number of events:</h4>
+    </div>
+    <div class="col-xs-3">
+      <input readonly="readonly" class="form-control" type="text"
+            value="<%= @events.count %>" />
+    </div>
+  </div>
+
+  <div class="row form-row pad20 vertical-align">
+    <div class="col-xs-6 col-xs-offset-1">
+      <h4>Once done, return home...</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-1 text-center">
+      <%= link_to 'Home', home_path, :class => "btn btn-lg btn-primary", 
+            :title => "Back to Home page" %>
+     </div>
+  </div>
+
+<% end %>   <!-- sessions form -->
+
+
+<!-- javascript to support the collapsible evens table -->
+<!-- source for Bootstrap collapse is: http://getbootstrap.com/javascript/ -->
+<script>
+	$(document).ready(function() {
+    // handle collapsing event details section
+    $('.collapse').on('shown.bs.collapse', function(){
+      $(this).parent().find(".fa-plus").toggleClass("fa-plus fa-minus");
+    });
+    $('.collapse').on('hidden.bs.collapse', function(){
+      $(this).parent().find(".fa-minus").toggleClass("fa-plus fa-minus");
+    });
+	});
+</script>
+
+<!-- collapsible div part 1: the +/- button to show/collapse content -->
+<div class="row pad40">
+  <div class="col-xs-6 col-xs-offset-1">
+    <a href="#collapseExample" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
+      <button type="button" class="btn btn-lg btn-default">
+        <span class="fa fa-fw fa-plus"></span>
+        All events table
+      </button></a>
+    &nbsp; &nbsp; &nbsp;
+  </div>
+</div>
+
+<!-- collapsible div, part 2: the table of all events during the session -->
+<div class="collapse" id="collapseExample">
+
+<!-- Show end session events log -->
+<div class="row pad20">
+  <div class="col-xs-10 col-xs-offset-1">
+
+    <table class="table table-striped table-responsive">
       <thead>
         <tr>
-          <th>Behavior</th>
+          <th>Num</th>
+          <th>Time</th>
+          <th>Square</th>
           <th>Type</th>
-          <th>Data</th>
+          <th>End time</th>
+          <th>Notes</th>
         </tr>
       </thead>
       <tbody>
-        <!--Print students squares names in the table -->
-        <% @squares.each do |square| %>
-          <tr>
-            <td>
-              <p><%=square.screen_name %></p>
-            </td>
-            <td>
-              <% if square.tracking_type == 2 %> <!-- Frequency -->
-                <label>Frequency</label>
-                <td><%=getFrequency(square)%></td><!--Get frequency and add data to table -->
-              <% end %>
-              <% if square.tracking_type == 3 %> <!--Interval -->
-                <label>Interval</label>
-                <td><%=getInterval(square)%></td><!--Get interval and add data to table -->
-              <% end %>
-              <% if square.tracking_type == 1 %> <!-- Duration-->
-                <label>Duration</label>
-                <td><%=formatTime(getDuration(square))%></td><!--Get duration and add data to table -->
-              <% end %>
-            </td>
-          </tr>
-        <%end%>
+        <!-- one row per event in this table -->
+        <% @events.each_with_index do |each_event, index| %>
+        <tr>
+          <td>
+            <p><%= index+1 %></p>
+          </td>
+          <td>
+            <p><%= ux_event_start_time( each_event) %></p>
+          </td>
+          <td>
+            <p><%= ux_event_behavior_square( each_event) %></p>
+          </td>
+          <td>
+            <p><%= ux_event_behavior_square_type( each_event) %></p>
+          </td>
+          <td>
+            <p><%= ux_event_end_time( each_event) %></p>
+          </td>
+          <td>
+            <p><%= ux_event_notes(each_event) %></p>
+          </td>
+        </tr>
+        <% end %>
+
       </tbody>
     </table>
 
   </div>   <!-- col -->
 </div>   <!-- row -->
 
-<div class="row">
-   <div class="col-xs-10 col-xs-offset-1 text-center">
-      <a href="/home" class="btn btn-lg btn-primary">Home</a>
-      &nbsp; &nbsp; &nbsp;
-      <%= link_to 'Print Report', {:controller => "reports", :action => "report1", 
-       :id=> @session.id} , {:method=>:post, class: "btn btn-lg btn-success", target: '_blank'} %>
-   </div>
-</div>
+</div>   <!-- collapsible -->

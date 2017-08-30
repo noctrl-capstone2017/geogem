@@ -71,15 +71,19 @@ class SessionsController < ApplicationController
       end
     end
     if @session.end_time.nil?
-      if params[:end_sess2]
-        @session.end_time = params[:end2].to_s
-        @session.save
-      end
+      @session.end_time = Time.now
+      @session.save
+      # if params[:end_sess2]
+      #   @session.end_time = params[:end2].to_s
+      #   @session.save
+      # end
     end
 
     @student = Student.find(@session.session_student)
     @teacher = Teacher.find(@session.session_teacher)
+    @events = SessionEvent.where( session_id: @session)
     @squares = get_student_squares( @student)
+
     # @square_type = @squares
   end
 
