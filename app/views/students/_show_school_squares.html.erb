@@ -16,7 +16,7 @@
 		<div class="bsquare-icon <%= glow_color(each_square) %> text-center"
 					title="<strong><%= each_square.screen_name %><strong> behavior square, type=<%= ux_square_tracking_type( each_square) %>"
 					data-toggle="popover" data-trigger="click" data-container="body"
-					data-content="<%= each_square.description %>" >
+					data-placement="bottom" data-content="<%= each_square.description %>" >
 			<h3><%= each_square.screen_name %></h3>
 			<span class="fa fa-fw fa-lg <%= fa_bsquare_icon(each_square) %>"></span>
 		</div>   <!-- behavior-square -->
