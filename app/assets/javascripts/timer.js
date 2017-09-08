@@ -104,7 +104,6 @@ window.onload = function () {
 	  //After timer starts next click will stop the timer
 	  timerSq.buttonStart.onclick = function(){stopTimer(timerSq)};
 	  timerSq.startEventTime = timeStamp();
-	 
   }
   
   //End the timer and call method to send to the database
