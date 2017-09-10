@@ -19,13 +19,13 @@
 
     <div class="col-xs-10 col-md-6 col-lg-4 form-group">
       <label for="studentField">Student</label>
-      <input type="text" class="form-control" id="studentField" 
+      <input type="text" class="form-control form-input-tweak" id="studentField" 
             readonly="readonly" value="<%= @student.full_name %>">
     </div>
 
     <div class="col-xs-10 col-md-6 col-lg-4 form-group">
       <label for="teacherField">Teacher</label>
-      <input type="text" class="form-control" id="teacherField" 
+      <input type="text" class="form-control form-input-tweak" id="teacherField" 
             readonly="readonly" value="<%= @teacher.full_name %>">
     </div>
 
@@ -33,13 +33,13 @@
 
     <div class="col-xs-10 col-md-6 col-lg-4 form-group">
       <label for="startField">Start time</label>
-      <input type="text" class="form-control" id="startField" 
+      <input type="text" class="form-control form-input-tweak" id="startField" 
             readonly="readonly" value="<%= ux_session_start_time( @session, true) %>">
     </div>
 
     <div class="col-xs-10 col-md-6 col-lg-4 form-group">
       <label for="endField">End time</label>
-      <input type="text" class="form-control" id="endField" 
+      <input type="text" class="form-control form-input-tweak" id="endField" 
             readonly="readonly" value="<%= ux_session_end_time( @session, true) %>">
     </div>
 
@@ -47,26 +47,24 @@
 
     <div class="col-xs-10 col-md-6 col-lg-4 form-group">
       <label for="durationField">Duration</label>
-      <input type="text" class="form-control" id="durationField" 
+      <input type="text" class="form-control form-input-tweak" id="durationField" 
             readonly="readonly" value="<%= ux_session_duration( @session) %>">
     </div>
 
     <div class="col-xs-10 col-md-6 col-lg-4 form-group">
       <label for="numeventsField">Number of events</label>
-      <input type="text" class="form-control" id="numeventsField" 
+      <input type="text" class="form-control form-input-tweak" id="numeventsField" 
             readonly="readonly" value="<%= @events.count %>">
     </div>
   </div>   <!-- form-row -->
 
 
-  <div class="row form-row pad20 vertical-align">
-    <div class="col-xs-8 col-xs-offset-1">
+  <div class="row row-tweak pad20">
+    <div class="col-xs-8">
       <h4>Once done, return home...</h4>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-6 col-xs-offset-1 text-center">
+    <div class="clearfix"></div>
+    <div class="col-xs-8 text-center">
       <%= link_to 'Home', home_path, :class => "btn btn-lg btn-primary", 
             :title => "Back to Home page" %>
      </div>
@@ -90,8 +88,8 @@
 </script>
 
 <!-- collapsible div part 1: the +/- button to show/collapse content -->
-<div class="row pad40">
-  <div class="col-xs-6 col-xs-offset-1">
+<div class="row row-tweak pad40">
+  <div class="col-xs-6">
     <a href="#collapseExample" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
       <button type="button" class="btn btn-lg btn-default">
         <span class="fa fa-fw fa-plus"></span>

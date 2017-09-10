@@ -10,72 +10,74 @@
 	<%= render 'error_messages', object: f.object %>
 
 	<!-- username -->
-	<div class="row form-row">
-		<div class="col-xs-2 col-xs-offset-1"><h4>Username: </h4></div>
-		<div class="col-xs-4">
-			<%= f.text_field :user_name, :readonly => true, class: 'form-control' %>
+	<div class="row form-row2">
+
+		<div class="col-xs-10 col-md-6 col-lg-4 form-group">
+			<label for="studentField">Login Username</label>
+			<input type="text" class="form-control form-input-tweak" id="usernameField" 
+						readonly="readonly" value="<%= @teacher.user_name %>">
 		</div>
+
+		<div class="col-xs-10 col-md-6 col-lg-4 form-group">
+			<label for="teacherField">Name</label>
+			<input type="text" class="form-control form-input-tweak" id="nameField" 
+						readonly="readonly" value="<%= @teacher.full_name %>">
+		</div>
+
 	</div>
 
-	<!-- teacher name -->
-	<div class="row form-row">
-		<div class="col-xs-1 col-xs-offset-1"><h4>Name: </h4></div>
-		<div class="col-xs-4 col-xs-offset-1">
-			<%= f.text_field :full_name, :readonly => true, class: 'form-control' %>
-		</div>
-	</div>
+	<div class="form-spacer"></div>
 
 	<!-- teacher icon includes color, icon choice, and interactive sample -->
-	<div class="row">
-		<div class="col-xs-2 col-xs-offset-1"><h4>Teacher Icon:</h4></div>
-	</div>
 
-	<div class="row form-row vertical-align">
+	<div class="row form-row2">
+		
 		<!-- color and icon spinners in the 1st column -->
-		<div class="col-xs-4 col-xs-offset-3">
-			<div class="row form-row">
-				<div class="col-xs-3"><h4>Color: </h4></div>
-				<div class="col-xs-7 col-xs-offset-1">
+		<div class="col-xs-6 form-group">
+
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="colorField">Color</label>
 					<%= f.select :color, teacherColors.map {|color| [color.titleize, color]}, 
-											{}, {class: 'form-control'} %>
+								{}, {class: 'form-control form-input-tweak'} %>
 				</div>
-			</div>   <!-- row -->
-			<div class="row form-row">
-				<div class="col-xs-3"><h4>Icon: </h4></div>
-				<div class="col-xs-7 col-xs-offset-1">
+
+				<div class="col-xs-12 pad20">
+					<label for="iconField">Icon</label>
 					<%= f.select :icon, teacherIcons.map {|icon| [icon.titleize, icon]}, 
-									{}, {class: 'form-control'} %>
+								{}, {class: 'form-control'} %>
 				</div>
-			</div>   <!-- row -->
-		</div>   <!-- form selects col -->
+			</div>
+
+		</div>   <!-- first col -->
 
 		<!-- sample teacher icon in the 2nd column; it's interactive! -->
-		<div class="col-xs-5">
-			<div class="col-xs-2">
-				<div id="sample-teacher-color" class="teacher-icon <%= icon_color(@teacher) %>" 
-									title="teacher=<%= @teacher.full_name %>" >
-					<span id="sample-teacher-icon" class="fa fa-3x fa-fw <%= fa_icon(@teacher) %> "></span>
-				</div>
-
+		<div class="col-xs-5 col-xs-offset-1 pad40">
+			<div id="sample-teacher-color" class="teacher-icon <%= icon_color(@teacher) %>" 
+								title="teacher=<%= @teacher.full_name %>" >
+				<span id="sample-teacher-icon" class="fa fa-3x fa-fw <%= fa_icon(@teacher) %> "></span>
 			</div>
-		</div>   <!-- sample icon col -->
+		</div>   <!-- second col -->
+
 	</div>   <!-- color+icon row -->
+
 
 	<div class="form-spacer">	&nbsp;</div>
 
-	<!-- email -->
-	<div class="row form-row">
-		<div class="col-xs-2 col-xs-offset-1"><h4>Email: </h4></div>
-		<div class="col-xs-4">
-			<%= f.email_field :email, required: true, class: 'form-control' %>
-		</div>
-	</div>
 
-	<!-- extra teacher info (optional) -->  
-	<div class="row form-row">
-		<div class="col-xs-2 col-xs-offset-1"><h4>Teacher Info: <br><small>(optional)</small></h4></div>
-		<div class="col-xs-6">
-			<%= f.text_area :description, class: "form-control info-textarea" %>
+	<div class="row form-row2">
+			<!-- email -->
+		<div class="col-xs-10 col-md-6 col-lg-4 form-group">
+			<label for="emailField">Email</label>
+			<%= f.email_field :email, required: true, class: 'form-control form-input-tweak' %>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<!-- extra teacher info (optional) --> 
+		<div class="col-xs-10 col-md-6 form-group">
+			<label for="infoField">Teacher Info <small>(optional)</small></label>
+			<%= f.text_area :description, class: "form-control form-input-tweak info-textarea" %>
 		</div>
 	</div>
 
