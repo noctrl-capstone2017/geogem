@@ -153,12 +153,14 @@ $geogem-yellow: #FFDC00;
 // quick spacing tweaks, mostly for row divs
 .pad20 { padding-top: 20px; }
 .pad40 { padding-top: 40px; }
+.row-tweak { margin: 0px 20px; }
 
 // form formatting
 .form-row { padding-bottom: 5px; }
 .form-row2 { margin: 0px 20px; }
 .form-spacer { padding-top: 20px; }
 .form-spacer-line { width: 80%; padding-top: 20px; }
+.form-input-tweak { margin-top: -2px; }
 
 .popover { max-width: 600px !important; } 		// control tooltip popover width
 .info-textarea { resize: both; } 	// turn resize ON for info text areas
