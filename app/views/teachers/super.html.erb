@@ -6,34 +6,42 @@
 			:locals => { 	:title => "Super dashboard", 
 										:subtitle => "exercise your GeoGem superpowers, #{ super_teacher.full_name }" } %>
 
-<div class="row">
-	<div class="col-xs-10 col-xs-offset-1">
-		<h3>Focus school<small> - the super user's secret identity</small></h3>
+<div class="row form-row2">
+	<div class="col-xs-10">
+		<h3>Focus school<small> - change the super user's secret identity</small></h3>
 	</div>
 </div>
 
 <!-- spinner to allow Super to change focus school -->
 <%= form_for( @teacher, :url => { :action => :update_super_focus }) do |f| %>
 
-	<div class="row pad20 vertical-align form-group">
-		<div class="col-xs-3 form-group text-right">
-   		<label class="control-label">School:</label>
-   	</div>
-   	<div class="col-xs-3 form-group">
-	  	<%= f.select :school_id, 
+	<div class="row form-row2 pad20">
+
+		<div class="col-xs-6 col-xs-offset-1">
+			<label>School</label>
+			<%= f.select :school_id, 
 	    			@schools.order('full_name ASC').map{|c| [c.full_name, c.id]}, 
 	    			{ }, { :class => 'form-control', :style => "min-width: 240px;" } %>
 		</div>
-		<div class="col-xs-4 form-group text-center">
+		<div class="clearfix"></div>
+		<div class="col-xs-6 text-center pad20">
 			<%= button_tag(type: 'submit', class: "btn btn-success") do %>Change focus school<% end %>
 		</div>
-	</div>
+
+	</div>   <!-- row -->
 
 <% end %>   <!-- focus school spinner -->
 
 <hr class="form-spacer-line"></hr>
 
-<div class="row" >
+<!-- Super powers icons are first: all schools and super report -->
+<div class="row form-row2">
+	<div class="col-xs-10">
+		<h3>Focus school operations<small> - super user operations on the focus school</small></h3>
+	</div>
+</div>
+
+<div class="row pad20" >
 	<!-- Edit school button, the focus school -->
 	<div class="col-sm-6 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 text-center action-div">
 		<%= link_to edit_school_path(@school.id) do %>
@@ -71,11 +79,12 @@
 	</div>   <!-- col -->
 </div>   <!-- 2nd row of school buttons -->
 
+<hr class="form-spacer-line"></hr>
+
 <!-- Super powers icons are first: all schools and super report -->
-<div class="row pad20">
-	<div class="col-xs-10 col-xs-offset-1">
-		<br>
-		<h3>Super powers<small> - only available to the super user</small></h3>
+<div class="row form-row2">
+	<div class="col-xs-10">
+		<h3>Super powers<small> - actions available only to the super user</small></h3>
 	</div>
 </div>
 
