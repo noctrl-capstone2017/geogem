@@ -7,14 +7,14 @@
 										:subtitle => "view/manage all behavior squares at #{ @school.full_name }"} %>
 
 <!-- Start with square info and the New Square button -->
-<div class="row">
-	<div class="col-xs-5 col-xs-offset-1">
+<div class="row form-row2">
+	<div class="col-xs-6">
 	  <h4>
       There <%= @squares.count == 1 ? 'is' : 'are' %> 
       <%= pluralize(@squares.count, "behavior square") %> at <%= @school.full_name %>. 
     </h4>
 	</div>
-	<div class="col-xs-5 text-center">
+	<div class="col-xs-6 text-center">
 		<%= button_to new_square_path, method: :get, class: 'col-sm-offset-1 btn btn-lg btn-success' do %>
 			<span class="fa fa-fw fa-lg fa-plus-square-o"></span> New square
 		<% end %>
