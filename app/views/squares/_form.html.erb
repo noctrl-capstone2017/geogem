@@ -10,20 +10,20 @@
   <% end %>
 
   <!-- Name field -->
-  <div class="row form-row vertical-align">
-  	<div class="col-xs-2 col-xs-offset-1">
-  		<h4>Square Name:</h4>
-  	</div> 
-  	<div class="col-xs-2">
+  <div class="row form-row2">
+  	<div class="col-xs-10 col-md-6 col-lg-4 form-group">
+  		<label>Square name</label>
   		<% if local_assigns[:isNew] %>
-	      <%= f.text_field :screen_name, required: true, class: "form-control",
+	      <%= f.text_field :screen_name, required: true, 
+	      			class: "form-control form-input-tweak",
   	    			maxlength: "4", onKeyup: "trackName(this.value)" %>
 			<% else %>
-				<%= f.text_field :screen_name, :readonly => true, class: "form-control" %>
- 	   <% end %>
-  	</div>
-		<div class="col-xs-1 text-left">
-			<span class="fa fa-fw fa-lg fa-question-circle color-scheme-blue"
+				<%= f.text_field :screen_name, :readonly => true, 
+							class: "form-control form-input-tweak" %>
+			<% end %>
+		</div>
+		<div class="col-xs-1 text-left" style="padding-top: 24px;">
+			<span class="fa fa-fw fa-2x fa-question-circle color-scheme-blue"
 						title="Help: Square name and type"
 						data-toggle="popover" data-trigger="click" data-target="#popover" 
 						data-container="body" data-placement="bottom"
@@ -32,66 +32,53 @@
 		</div>
   </div>
 
-	<!-- popover is from Bootstrap; www.w3schools.com/bootstrap/bootstrap_popover.asp -->
-	<div id="popover" style="display:none;">
-		<p>The name and type attributes of behavior squares cannot be changed after the square is created.
-		This ensures the integrity of data in student behavior sessions.</p>
-	</div>
+	<div class="form-spacer"></div>
 
 	<!-- color and type fields, with interactive sample square -->
-	<div class="row form-row vertical-align pad20">
-		<!-- color and icon spinners in the 1st column -->
-		<div class="col-xs-4 col-xs-offset-1">
-
-  		<div class="row form-row">
-  			<div class="col-xs-3"><h4>Type: </h4></div>
-		  	<!-- spinner has int value of Type masked with the name -->
-  			<div class="col-xs-6 col-xs-offset-3">
-  				<% if local_assigns[:isNew] %>
+	<div class="row form-row2">
+		<div class="col-xs-6 form-group">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- spinner has int value of Type masked with the name -->
+					<label>Type</label>
+					<% if local_assigns[:isNew] %>
 						<%= f.select :tracking_type,[['Duration',1],['Frequency',2],['Interval',3]],
 									{}, {class: 'form-control'} %>
   				<% else %>
 						<%= f.text_field :tracking_type, :value => ux_square_tracking_type( square), 
-									:readonly => true, class: 'form-control' %>
+									:readonly => true, class: 'form-control form-input-tweak' %>
 					<% end %>
-  			</div>
-  		</div>   <!-- row, type spinner -->
-
-			<div class="row form-row">
-				<div class="col-xs-3"><h4>Color: </h4></div>
-				<div class="col-xs-6 col-xs-offset-3">
-      		<%= f.select :color, squareColors.map {|color| [color.titleize, color]}, 
-          		      {}, {class: 'form-control'} %>
 				</div>
-			</div>   <!-- row, color spinner -->
-  	</div>   <!-- col, spinners -->
 
-  	<div class="col-xs-4">
-  		<!-- interactive sample square in this 2nd col -->
-			<div class="col-xs-2 col-xs-offset-1">
-	      <div id="sample-square-color" class="bsquare-icon <%= icon_color(square) %> text-center" >
-	  			<h3 id="sample-square-name"><%= square.screen_name %></h3>
-			    <span id="sample-square-icon" class="fa fa-fw fa-lg <%= fa_bsquare_icon(square) %>"></span>
-	  		</div>   <!-- behavior-square -->
-    	</div>
- 		</div>   <!-- col, sample square -->
+				<div class="col-xs-12 pad20">
+					<label>Color</label>
+					<%= f.select :color, squareColors.map {|color| [color.titleize, color]}, 
+          		      {}, {class: 'form-control form-input-tweak'} %>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-xs-5 col-xs-offset-1 pad40">
+			<div id="sample-square-color" class="bsquare-icon <%= icon_color(square) %> text-center" >
+	  		<h3 id="sample-square-name"><%= square.screen_name %></h3>
+				<span id="sample-square-icon" class="fa fa-fw fa-lg <%= fa_bsquare_icon(square) %>"></span>
+			</div>   <!-- behavior-square -->
+		</div>
 	</div>   <!-- row -->
 
   <div class="form-spacer">	&nbsp;</div>
 
   <!-- square description (required) -->
-	<div class="row form-row">
-		<div class="col-xs-2 col-xs-offset-1">
-			<h4>Description:</h4>
-		</div>
-		<div class="col-sm-6">
+	<div class="row form-row2">
+		<div class="col-xs-10 form-group">
+			<label>Description</label>
 		  <%= f.text_area :description, required: true, class: "form-control info-textarea" %>
 		</div>
-	</div>   <!-- form-row -->
+	</div>   <!-- row -->
 
   <!-- OK/cancel buttons. -->
   <div class="row pad40">
-	  <div class="col-xs-6 col-xs-offset-1 text-center"> 
+	  <div class="col-xs-8 text-center"> 
       <% if local_assigns[:isNew] %>
         <%= button_tag(type: 'submit', class: "btn btn-success") do %>Add New Square<%end%>
       <% else %>

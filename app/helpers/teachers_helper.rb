@@ -93,6 +93,11 @@ module TeachersHelper
     num_chars > 0 ? teacher.full_name.truncate( num_chars) : teacher.full_name
   end
 
+  def ux_teacher_username( teacher, num_chars=20) 
+    num_chars > 0 ? teacher.user_name.truncate( num_chars) : teacher.user_name
+  end
+  
+
   # return ux string for teacher powers (admin of not)
   def ux_teacher_powers(teacher, just_teacher_text = "")
     if teacher == super_teacher
