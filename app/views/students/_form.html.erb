@@ -4,78 +4,76 @@
 <%= form_for(student) do |f| %>
   <%= render 'error_messages', object: f.object %>
 
-  <!-- hidden field for school id, school id of the current teacher -->
-  <% if local_assigns[:isNew] %>
-    <%= f.hidden_field :school_id, :value => current_teacher.school_id%>
-  <% end %>
+<!-- hidden field for school id, school id of the current teacher -->
+<% if local_assigns[:isNew] %>
+  <%= f.hidden_field :school_id, :value => current_teacher.school_id%>
+<% end %>
 
-  <!-- student name -->
-  <div class="row form-row">
-    <div class="col-xs-2 col-xs-offset-1"><h4>Name: </h4></div>
-    <div class="col-xs-4">
-		  <% if local_assigns[:isNew] %>
-			  <%= f.text_field :full_name, required: true, class: 'form-control' %>
-			<% else %>
-        <%= f.text_field :full_name, :readonly => true, class: 'form-control' %>
-			<% end %>
-    </div>
-  </div>
-
-  <!-- color + icon and sample icon that updates interactively -->
-	<div class="row">
-		<div class="col-xs-6 col-xs-offset-1"><h4>Student Icon:</h4></div>
+<!-- student name -->
+<div class="row form-row2">
+	<div class="col-xs-10 col-md-8 form-group">
+		<label for="nameField">Name</label>
+		<% if local_assigns[:isNew] %>
+		  <%= f.text_field :full_name, required: true, class: 'form-control form-input-tweak' %>
+		<% else %>
+      <%= f.text_field :full_name, :readonly => true, class: 'form-control form-input-tweak' %>
+		<% end %>
 	</div>
+</div>   <!-- row -->
 
-	<div class="row form-row vertical-align">
-		<!-- color and icon spinners in the 1st column -->
-		<div class="col-xs-4 col-xs-offset-3">
-			<div class="row form-row">
-				<div class="col-xs-3"><h4>Color: </h4></div>
-				<div class="col-xs-7 col-xs-offset-1">
-					<%= f.select :color, studentColors.map {|color| [color.titleize, color]}, 
-											{}, {class: 'form-control'} %>
-				</div>
-			</div>   <!-- row -->
-			<div class="row form-row">
-				<div class="col-xs-3"><h4>Icon: </h4></div>
-				<div class="col-xs-7 col-xs-offset-1">
-					<%= f.select :icon, studentIcons.map {|icon| [icon.titleize, icon]}, 
-									{}, {class: 'form-control'} %>
-				</div>
-			</div>   <!-- row -->
-		</div>   <!-- spinners col -->
+<div class="form-spacer"></div>
 
-		<!-- sample teacher icon in the 2nd column; it's interactive! -->
-		<div class="col-xs-4">
-			<div class="col-xs-2">
-				<div id="sample-student-color" class="student-icon <%= icon_color(student) %>" 
-									title="student=<%= student.full_name %>" >
-					<span id="sample-student-icon" class="fa fa-3x fa-fw <%= fa_icon(student) %> "></span>
-				</div>
+<!-- student icon includes color, icon choice, and interactive sample -->
+<div class="row form-row2">
+
+	<!-- color and icon spinners in the 1st column -->
+	<div class="col-xs-6 form-group">
+		<div class="row">
+			<div class="col-xs-12">
+				<label for="colorField">Color</label>
+				<%= f.select :color, studentColors.map {|color| [color.titleize, color]}, 
+							{}, {class: 'form-control form-input-tweak'} %>
 			</div>
-		</div>   <!-- sample icon col -->
-	</div>   <!-- color+icon row -->
 
-  <!-- interval time for behavior sessions -->
-  <div class="row form-row" style="padding-top: 40px">
-    <div class="col-xs-2 col-xs-offset-1"><h4>Session Interval:<small><br>(minutes) </small></h4></div>
-    <div class="col-xs-2">
-      <%= f.select :session_interval, [5,15,30,60], {}, {class: 'form-control'}  %>    				
-    </div>
-  </div
+			<div class="col-xs-12 pad20">
+				<label>Icon</label>
+				<%= f.select :icon, studentIcons.map {|icon| [icon.titleize, icon]}, 
+							{}, {class: 'form-control form-input-tweak'} %>
+			</div>
+		</div>   <!-- row -->
+	</div>   <!-- first col -->
 
-  <!-- extra student info (optional) -->  
-	<div class="row form-row">
-		<div class="col-xs-2 col-xs-offset-1"><h4>Student Info: <br><small>(optional)</small></h4></div>
-		<div class="col-xs-6">
-      <%= f.text_area :contact_info, class: "form-control info-textarea" %>
+	<!-- the interactive icon -->
+	<div class="col-xs-5 col-xs-offset-1 pad40">
+		<div id="sample-student-color" class="student-icon <%= icon_color(student) %>" 
+					title="student=<%= student.full_name %>" >
+			<span id="sample-student-icon" class="fa fa-3x fa-fw <%= fa_icon(student) %> "></span>
 		</div>
+  </div>   <!-- second col -->
+
+</div>   <!-- row -->
+
+<div class="form-spacer"> &nbsp; </div>
+
+<!-- session interval and student info -->
+<div class="row form-row2">
+	<div class="col-xs-10 col-md-6 form-group">
+		<label>Session Interval <small> (minutes) </small></label>
+		<%= f.select :session_interval, [5,15,30,60], {}, {class: 'form-control form-input-tweak'}  %> 
 	</div>
 
-  <!-- OK/Cancel buttons -->
-	<div class="row form-row  pad40">
-		<div class="col-xs-6 col-xs-offset-1 text-center">
-		  <% if local_assigns[:isNew] %>
+	<div class="clearfix"></div>
+
+	<div class="col-xs-10 form-group pad20">
+		<label>Student info <small> (optional) </small></label>
+		<%= f.text_area :contact_info, class: "form-control form-input-tweak info-textarea" %>
+	</div>
+</div>   <!-- row -->
+
+<!-- OK/cancel buttons -->
+<div class="row form-row pad20">
+	<div class="col-xs-6 col-xs-offset-1 text-center">
+		<% if local_assigns[:isNew] %>
 		    <%= button_tag(type: 'submit', class: "btn btn-success") do %>Add New Student<% end %>
 		  <% else %>
         <%= button_tag(type: 'submit', class: "btn btn-success") do %>Save Changes<% end %>
@@ -83,8 +81,8 @@
 		  &emsp; &emsp; &emsp;
 		  <%= link_to "Cancel", students_path, :class => "btn btn-danger", 
 		        :title => "Back to All Students page" %>
-		</div>
 	</div>
+</div>   <!-- row -->
 
 <% end %>
 
