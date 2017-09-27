@@ -9,45 +9,47 @@
 <%= form_for(@teacher) do |f| %>
 	<%= render 'error_messages', object: f.object %>
 
- 	<!-- username -->
- 	<div class="row form-row">
-		<div class="col-xs-2 col-xs-offset-1"><h4>Username: </h4></div>
-		<div class="col-xs-4">
-			<%= f.text_field :user_name, :readonly => true, class: 'form-control' %>
-		</div>
+<div class="row form-row2">
+
+	<!-- login username -->
+	<div class="col-xs-10 col-md-6 col-lg-4 form-group">
+		<label>Login Username</label>
+   	<%= f.text_field :user_name, :readonly => true, class: 'form-control form-input-tweak' %>
 	</div>
 
 	<!-- teacher name -->
-	<div class="row form-row">
- 		<div class="col-xs-2 col-xs-offset-1"><h4>Name: </h4></div>
-		<div class="col-xs-4">
-			<%= f.text_field :full_name, :readonly => true, class: 'form-control' %>
-		</div>
-	</div>   <!-- row -->
+	<div class="col-xs-10 col-md-6 col-lg-4 form-group">
+		<label>Name</label>
+		<%= f.text_field :full_name, :readonly => true, class: 'form-control form-input-tweak' %>
+	</div>
 
-	<div class="form-spacer"></div>
+</div>   <!-- row -->
 
-	<!-- Teacher login suspended? -->
-	<div class="row form-row">
-		<div class="col-xs-2 col-xs-offset-1"><h4>Login status: </h4></div>
-		<div class="col-xs-3 checkbox">
+<div class="form-spacer"></div>
+
+<div class="row form-row2">
+	<!-- is teacher login suspended? -->
+	<div class="col-xs-10 col-md-8 form-group">
+		<label>Login Status &nbsp; </label>
+		<span class="checkbox" style="padding-left: 40px;">
 			<%= f.label :suspended do %>
 				<%= f.check_box :suspended, { }, "true", "false" %>&nbsp; Suspended
 			<% end %>
-		</div>
+		</span>
 	</div>
+</div>
 
-	<!-- OK, Cancel buttons -->
-	<div class="row form-row" style="padding-top: 20px"> 
-		<div class="col-xs-6 col-xs-offset-1 text-center">
-			<%= button_tag(type: 'submit', class: "btn btn-success", name: 'edit2a') do %>  
-  			Change Login Status 
-  		<% end %>
-			&nbsp; &nbsp; &nbsp;
-			<%= link_to 'Cancel', teachers_path, 
-						:class => "btn btn-danger", :title => "Back to All Teachers page" %>
-		</div>
+<!-- OK, Cancel buttons -->
+<div class="row form-row2"> 
+	<div class="col-xs-8 text-center">
+		<%= button_tag(type: 'submit', class: "btn btn-success", name: 'edit2a') do %>  
+			Change Login Status 
+		<% end %>
+		&nbsp; &nbsp; &nbsp;
+		<%= link_to 'Cancel', teachers_path, 
+					:class => "btn btn-danger", :title => "Back to All Teachers page" %>
 	</div>
+</div>
 
 <% end %>
 
@@ -58,43 +60,47 @@
 <!-- Change Password form -->
 <%= form_for(@teacher) do |f| %>
 
-	<!-- new password -->
-  <div class="row form-row">
-	  <label class="col-xs-3 col-xs-offset-1" for="newPass"><h4>New Password:</h4></label>
-		<div class="col-xs-3"> 
-		  <%= f.password_field :password, required: true, class: 'form-control' %>
-		</div>
-  </div>
-		
-	<!-- confirm new password -->
-  <div class="row form-row">
-	  <label class="col-xs-3 col-xs-offset-1" for="confPass"><h4>Confirm New Password:</h4></label>
-		<div class="col-xs-3"> 
-		  <%= f.password_field :password_confirmation, required: true, class: 'form-control' %>
-		</div>
-  </div>
-		
-	<!-- OK, Cancel buttons -->
-	<div class="row form-row" style="padding-top: 20px"> 
-		<div class="col-xs-6 col-xs-offset-1 text-center">
-			<%= button_tag(type: 'submit', class: "btn btn-success", name: 'edit2b') do %>Change Password <%end%>
-			&nbsp; &nbsp; &nbsp;
-			<%= link_to "Cancel", teachers_path, 
-						:class => "btn btn-danger", :title => "Back to All Teachers page" %>
-		</div>
+<div class="row form-row2">
+
+	<!-- password -->
+	<div class="col-xs-10 col-md-8 form-group">
+		<label>New Password</label>
+		<%= f.password_field :password, required: true, 
+					class: 'form-control form-input-tweak' %>
 	</div>
+
+	<div class="clearfix"></div>
+
+	<!-- confirm password -->
+	<div class="col-xs-10 col-md-8 form-group">
+		<label>Confirm Password</label>
+		<%= f.password_field :password_confirmation, required: true, 
+					class: 'form-control form-input-tweak' %>
+	</div>
+
+</div>   <!-- row -->
+
+<!-- OK, Cancel buttons -->
+<div class="row form-row2 pad20">
+	<div class="col-xs-8 text-center">
+		<%= button_tag(type: 'submit', class: "btn btn-success", name: 'edit2b') do %>Change Password <%end%>
+		&nbsp; &nbsp; &nbsp;
+		<%= link_to "Cancel", teachers_path, 
+					:class => "btn btn-danger", :title => "Back to All Teachers page" %>
+	</div>
+</div>
 
 <% end %>   <!-- change password form-->
 
 <div class="form-spacer">	&nbsp;</div>
-<hr style="width:80%; padding-top: 10px;">
+<hr class="form-spacer-line">
 
-<!-- action button to Teacher Access page -->
-<div class="row">
-	<div class="col-xs-10 col-xs-offset-1">
-		<h4>Last Admin page &mdash; define teacher access to student data... &nbsp; &nbsp; &nbsp;
+<!-- next step - button to Teacher Access page -->
+<div class="row form-row2">
+	<div class="col-xs-10">
+		<h4>Last step &mdash; define teacher access to student data... &nbsp; &nbsp; &nbsp;
 			<%= link_to "Teacher access...", 'edit3', 
 						:class => "btn btn-lg btn-primary", :title => "Teacher Access page" %>
 		</h4>
 	</div>
-</row>
+</div>   <!-- row -->

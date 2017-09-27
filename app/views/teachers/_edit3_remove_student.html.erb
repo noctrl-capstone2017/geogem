@@ -1,23 +1,20 @@
 <!-- form/row to remove a student from the teacher's access roster -->
 <%= form_for(@teacher) do |f| %>
 
-	<!-- remove student from roster -->
-	<div class="row form-row vertical-align">
-		<div class="col-xs-5 col-md-4 text-right">
-			<span class="fa fa-fw fa-minus" style="color: red;"></span>
-			<label for="removeSquare"><h4>Remove student: </h4></label>
-		</div>
-		<div class="form-group col-xs-3">
-			<%= select_tag 'remove_student_id', 
-						options_from_collection_for_select(@students, "id", "full_name"), 
-						class: 'form-control',
-					  :include_blank => 'Select student', :required => true %>
-		</div>
-		<div class="form-group col-xs-2">
-			<%= button_tag(type: 'submit', class: "btn btn-danger", name: "edit3_remove") do %> 
-				<span class="fa fa-minus icon-white"></span> 
-			<% end %>
-		</div>
-	</div>   <!-- row -->
+	<!-- remove student label and spinner -->
+	<div class="col-xs-4 form-group">
+		<label>Remove Student</label>
+		<%= select_tag 'remove_student_id', 
+					options_from_collection_for_select(@students, "id", "full_name"), 
+					class: 'form-control form-input-tweak',
+					:include_blank => 'Select student', :required => true %>
+	</div>
+
+	<!-- remove student minus sign button-->
+	<div class="col-xs-2 form-group text-left pad20">
+		<%= button_tag(type: 'submit', class: "btn btn-danger", name: "edit3_remove") do %> 
+			<span class="fa fa-minus icon-white"></span> 
+		<% end %>
+	</div>
 
 <% end %>   <!-- remove student form -->

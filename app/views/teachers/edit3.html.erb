@@ -3,11 +3,11 @@
 <!-- page header -->
 <%= render partial: 'teacher_page_header', 
 			:locals => { 	:title => "Teacher access", 
-										:subtitle => "Admin page 3; edit student access of teacher, #{ @teacher.full_name }"} %>
+										:subtitle => "edit student access for teacher, #{ @teacher.full_name }"} %>
 
 <% if @teacher.admin %>
-<div class="row form-row vertical-align pad20">
-	<div class="col-xs-10 col-xs-offset-1">
+<div class="row form-row2">
+	<div class="col-xs-10">
 		<h4>This teacher has <span style="color: red">Admin powers</span>.</h4>
 		<br>
 		<h4>As an Admin, <%= @teacher.full_name %> has access to all student data.</h4>
@@ -19,53 +19,65 @@
 <%= form_for(@teacher) do |f| %>
 	<%= render 'error_messages', object: f.object %>
 
-	<div class="row form-row pad20">
-		<div class="col-xs-10 col-xs-offset-1">
+<div class="row form-row2">
+	<div class="col-xs-10">
 			<h4>Control this teacher's access to student data here:</h4>
-		</div>
 	</div>
+</div>   <!-- row -->
 
-	<div class="row form-row form-group vertical-align">
-		<div class="col-xs-3 col-xs-offset-2 checkbox ">
+<div class="row form-row2 pad20">
+	<div class="col-xs-6 col-md-4 form-group">
+		<span class="checkbox" style="padding-left: 40px;">
 			<%= f.label :access_all_students do %>
-				<%= f.check_box :access_all_students, { }, "true", "false" %>
-				&nbsp; Access all students
-			<% end %>
-		</div>
-		<div class="col-xs-4 text-left">
-			<%= button_tag(type: 'submit', class: "btn btn-success", name: "edit3_access") do %>
-				Change access
-			<% end %>
-		</div>
+			<%= f.check_box :access_all_students, { }, "true", "false" %>
+			&nbsp; Access all students
+		<% end %>
+		</span>
 	</div>
+	<div class="col-xs-4 text-left">
+		<%= button_tag(type: 'submit', class: "btn btn-success", name: "edit3_access") do %>
+			Change access
+		<% end %>
+	</div>
+</div>   <!-- row -->
+
 <% end %>
 
 <% if ! @teacher.access_all_students %>
-	<hr class="form-spacer-line">
-	<div class="row">
-	  <div class="col-xs-10 col-xs-offset-1">
-	    <h4>Without "all access", select specific students for this teacher, <%= @teacher.full_name %>: </h4>
-	  </div>
+
+<hr class="form-spacer-line">
+
+<div class="row form-row2">
+	<div class="col-xs-10">
+		<h4>Without "all access", select access to specific students: </h4>
 	</div>
+</div>   <!-- row -->
+
+<div class="row form-row2 pad40">
 
 	<%= render 'edit3_add_student' %>
 
 	<%= render 'edit3_remove_student' %>
 
-	<div class="form-spacer"></div>
-	<%= render 'edit3_show_roster' %>
+</div>   <!-- row -->
+
+<div class="form-spacer"></div>
+
+<%= render 'edit3_show_roster' %>
+
 <% end %>   <!-- if not all_access -->
 
 <% end %>   <!-- if-else teacher is admin-->
 
-
-<!-- admin pages done... this button goes back to All Teachers page -->
+<div class="form-spacer">	&nbsp;</div>
 <hr class="form-spacer-line">
-<div class="row form-row">
-	<div class="col-xs-10 col-xs-offset-1">
-		<h4>Admin pages done &mdash; return to All Teachers page... &nbsp; &nbsp; &nbsp;
-		<%= link_to 'All teachers', teachers_path, 
+
+<!-- done - button to All Teachers page -->
+<div class="row form-row2">
+	<div class="col-xs-10">
+		<h4>Done &mdash; return to All Teachers page... &nbsp; &nbsp; &nbsp;
+			<%= link_to 'All teachers', teachers_path, 
 						:class => "btn btn-lg btn-primary", :title => "Back to All Teachers page" %>
 		</h4>
 	</div>
-</row>
+</div>   <!-- row -->

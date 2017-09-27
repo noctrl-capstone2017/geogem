@@ -8,14 +8,15 @@
 
 <%= render 'form', teacher: @teacher, isEdit: true %>
 
+<div class="form-spacer">	&nbsp;</div>
 <hr class="form-spacer-line">
 
-<!-- action button to Login Settings page -->
-<div class="row">
-	<div class="col-xs-10 col-xs-offset-1">
-		<h4>Next Admin page &mdash; change teacher login settings... &nbsp; &nbsp; &nbsp;
+<!-- next step - button to Login Settings page -->
+<div class="row form-row2">
+	<div class="col-xs-10">
+		<h4>Next step &mdash; change teacher login settings... &nbsp; &nbsp; &nbsp;
 			<%= link_to "Login settings...", 'edit2', 
 						:class => "btn btn-lg btn-primary", :title => "Login Settings page" %>
 		</h4>
 	</div>
-</row>
+</div>  <!-- row -->

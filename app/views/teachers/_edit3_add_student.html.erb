@@ -1,23 +1,20 @@
 <!-- form/row to add a student to the teacher's access roster -->
 <%= form_for(@teacher) do |f| %>
 
-<!-- add student to roster -->
-<div class="row form-row vertical-align pad20">
-	<div class="col-xs-5 col-md-4 text-right">
-		<span class="fa fa-fw fa-plus" style="color: green;"></span>
-		<label for="addSquare"><h4>Add Student: </h4></label>
-	</div>
-	<div class="form-group col-xs-3">
+	<!-- add student label and spinner -->
+	<div class="col-xs-4 form-group">
+		<label>Add Student</label>
 		<%= select_tag 'add_student_id', 
-					options_from_collection_for_select(@students_not_in_roster, "id", "full_name"), 
-					class: 'form-control',
-					:include_blank => 'Select student', :required => true %>
+						options_from_collection_for_select(@students_not_in_roster, "id", "full_name"), 
+						class: 'form-control form-input-tweak',
+						:include_blank => 'Select student', :required => true %>
 	</div>
-	<div class="form-group col-xs-2">
+
+	<!-- add student plus sign button-->
+	<div class="col-xs-2 form-group text-left pad20">
 		<%= button_tag(type: 'submit', class: "btn btn-success", name: "edit3_add") do %>
 			<span class="fa fa-plus icon-white"></span> 
 		<% end %>
 	</div>
-</div>   <!-- row -->
-	
+
 <% end %>   <!-- add student form -->
