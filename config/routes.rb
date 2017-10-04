@@ -73,6 +73,8 @@ Rails.application.routes.draw do
     member do
       get :edit2
       get :analysis
+      get :analysis_emerald
+      get :analysis_ruby
       get :analysis2
       get :analysis3
       get :analysis4

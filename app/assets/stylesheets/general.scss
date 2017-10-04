@@ -549,6 +549,37 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);		// scheme blue, low opacity
 	transform:scale(1.1);
 }
 
+
+/*********************************************************
+	8. ANALYSIS
+	Analysis pages code
+*********************************************************/
+.color-emerald { color: #50C878 !important; }
+.bg-emerald { background-color: #50C878; }
+.border-emerald { border: 2px solid transparent; }
+.border-emerald:hover { box-shadow: 0 0 16px #50C878; border: 2px solid #50C878; }
+
+.color-ruby { color: #E0115F; }
+.bg-ruby { background-color: #E0115F; }
+.border-ruby { border: 2px solid transparent; }
+.border-ruby:hover { box-shadow: 0 0 16px #E0115F; border: 2px solid #E0115F; }
+
+.color-sapphire { color: #0F52BA; }
+.bg-sapphire { background-color: #0F52BA; }
+.border-sapphire { border: 2px solid transparent; }
+.border-sapphire:hover { box-shadow: 0 0 16px #0F52BA; border: 2px solid #0F52BA; }
+
+.color-diamond { color: #b9f2ff; }
+.bg-diamond { background-color: #b9f2ff; }
+.border-diamond { border: 2px solid transparent; }
+.border-diamond:hover { box-shadow: 0 0 16px #b9f2ff; border: 2px solid #b9f2ff; }
+
+.analysis-row { border: 2px solid transparent; background-color: ghostwhite; }
+.analysis-row:hover { box-shadow: 0 0 16px lightgray; border: 2px solid lightgray; background-color: white; }
+.analysis-row-padding { padding-left: 2.4em; }
+
+
+
 /**********************************************************
 * MEDIA QUERIES FOR SMALLER SCREENS
 * Resizes square divs on the sessions, home, and about

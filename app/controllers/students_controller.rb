@@ -137,13 +137,23 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     if params[:analysis_report]
       redirect_to analysis2_student_path( @student)
-    elsif params[:analyze_csv]
+    elsif params[:analysis_csv]
       redirect_to analysis3_student_path( @student)
     elsif params[:analyze_charts]
       redirect_to analysis4_student_path( @student)
     end
   end
   
+  # Emerald Export writes a CSV file for the data in one session
+  def analysis_emerald
+    @student = Student.find(params[:id])
+  end
+
+  # Ruby Report creates PDF for one behavior square over time
+  def analysis_ruby
+    @student = Student.find(params[:id])
+  end
+
   # for Reports purposes, Author: Carolyn C
   def analysis2
     @student = Student.find(params[:id])
