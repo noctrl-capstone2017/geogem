@@ -14,4 +14,16 @@ module SquaresHelper
     end
   end
 
+  def square_type_acroynm( square)
+    case square.tracking_type
+    when 1
+      "Dur"
+    when 2
+      "Freq"
+    when 3
+      "Int"
+    else
+      "Unknown"
+    end
+  end
 end

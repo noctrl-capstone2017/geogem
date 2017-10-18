@@ -46,54 +46,27 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :students do
+    member do
+      get :edit2
+    end
+  end
 
-##########
-# Bill - issues below this line, also fix only issues in resources above
-##########
-
-  # allow for custom controller function
   resources :sessions do
     member do
       get :end_session
     end
   end
 
-  #route to create and delete session events during the session
+  # session-related routes
   post    '/session_events',  to: 'session_events#create'
   post    '/session_events/undo',  to: 'session_events#undo'
-  
-  #route to pdf from session page
-  post    '/report1',  to: 'reports#report1'
-  
-  #route to end session page
   post    'sessions/:id/end_session', to: 'sessions#end_session', as: :end_session
 
-  #Carolyn C - send student to analysis page
-  resources :students do
-    member do
-      get :edit2
-      get :analysis
-      get :analysis_emerald
-      get :analysis_ruby
-      get :analysis2
-      get :analysis3
-      get :analysis4
-      get :report1
-    end
-  end
+  # routes for student analysis pages: report, export, graph
+  get   'students/:id/analysis',          to: 'students#analysis',          as: :analysis
+  get   'students/:id/analysis_emerald',  to: 'students#analysis_emerald',  as: :analysis_emerald
+  get   'students/:id/analysis_ruby',     to: 'students#analysis_ruby',     as: :analysis_ruby
+  get   'students/:id/emerald_export',    to: 'students#emerald_export',    as: :emerald_export
 
-  get     '/csv1',            to: 'reports#csv1'
-
-  #Carolyn C routes for analysis
-  get 'student/:id/analysis2', to: 'students#analysis', as: :analysis2
-  get 'student/:id/analysis3', to: 'students#analysis', as: :analysis3
-  get 'student/:id/analysis4', to: 'students#analysis', as: :analysis4
-
-  get     'notes',            to: 'session_notes#index'
-
-  get     'graph/main'
-  get     'graph/example'
-  get     'graph/random'
-  get     'graph/todo'
-  get     'graph/other'
 end

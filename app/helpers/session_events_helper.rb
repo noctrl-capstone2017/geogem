@@ -39,7 +39,7 @@ module SessionEventsHelper
   def ux_event_notes( event)
     sq = Square.find( event.behavior_square_id)
     if sq.tracking_type == 1
-      duration = event.duration_end_time.to_i - event.square_press_time.to_i
+      duration = event.duration_in_secs
       if duration >= 60
         "Event duration was " << Time.at(duration).utc.strftime("%-M mins, %-S secs")
       else 

@@ -10,7 +10,7 @@
   <!-- Emerald Export -->
   <div class="col-xs-10 col-xs-offset-1 analysis-row">
 		<h2>
-		  <%= link_to analysis_emerald_student_path(@student.id) do %>
+		  <%= link_to analysis_emerald_path(@student.id) do %>
 		    <i class="fa fa-fw fa-diamond color-emerald border-emerald" title="Goto Emerald Export"></i><% end %>
 			<span class="color-emerald">Emerald Export</span> <br>
 			<small class="analysis-row-padding">
@@ -28,7 +28,7 @@
   <!-- Ruby Report -->
   <div class="col-xs-10 col-xs-offset-1 analysis-row">
 		<h2>
-		  <%= link_to analysis_ruby_student_path(@student.id) do %>
+		  <%= link_to analysis_ruby_path(@student.id) do %>
 		    <i class="fa fa-fw fa-diamond color-ruby border-ruby" title="Goto Ruby Report"></i><% end %>
 			<span class="color-ruby">Ruby Report</span> <br>
 			<small class="analysis-row-padding">
