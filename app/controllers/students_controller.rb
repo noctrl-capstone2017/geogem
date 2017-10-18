@@ -75,7 +75,7 @@ class StudentsController < ApplicationController
     if params[:start_session]
       start_session
     elsif params[:analysis]
-      redirect_to analysis_student_path(@student)
+      redirect_to analysis_path(@student)
     elsif params[:edit2_add]  ||  params[:edit2_remove]
       update2_squares
     else
@@ -98,7 +98,6 @@ class StudentsController < ApplicationController
     @session.session_student = @student.id
     @session.start_time = Time.now
     if @session.save
-      # flash[ :success] = "Session was successfully created."
       redirect_to @session
     else
       render @student
@@ -144,9 +143,19 @@ class StudentsController < ApplicationController
     end
   end
   
-  # Emerald Export writes a CSV file for the data in one session
+  # Setup for Emerald Export which writes CSV for session data
   def analysis_emerald
     @student = Student.find(params[:id])
+    @sessions = Session.where(session_student: @student.id)
+  end
+
+  # Do the Emerald Export; write session data to a CSV file
+  def emerald_export
+    @student = Student.find( params[:id])
+    @session = Session.find( params[:session_id])
+
+    events = SessionEvent.where( session_id: params[:session_id])
+    send_data events.to_csv, filename: emerald_filename( @student, @session)
   end
 
   # Ruby Report creates PDF for one behavior square over time
@@ -201,5 +210,18 @@ class StudentsController < ApplicationController
     def student_params
       params.require(:student).permit(:full_name, :icon, :color, 
             :session_interval, :contact_info,  :school_id)
+    end
+
+    # Emerald export file names are: gg_<student>_<day>.csv
+    # For example: gg_jimmy_oct18.csv
+    def emerald_filename( student, session)
+      # first 8 non-black chars in student's name
+      student_part = student.full_name.delete(' ').strip.truncate( 8)
+
+      # date formatted: jan01_2017
+      date_part = session.created_at.strftime("%b%d")
+
+      filename = "gg_" << student_part << "_" << date_part << ".csv"
+      filename.downcase
     end
 end

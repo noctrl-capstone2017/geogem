@@ -83,9 +83,9 @@ module TeachersHelper
         msg = "Welcome back, " << teacher.full_name << "... your last login was " << tmp
       end
     else
-      msg = "home page, " << teacher.full_name
+      msg = "home page for " << teacher.full_name
     end
-    msg << ". Select a student you'd like to work with."
+    msg << "."
   end
 
   # return ux string for teacher name

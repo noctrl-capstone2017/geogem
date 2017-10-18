@@ -16,7 +16,7 @@
 <div class="row pad20">
 
 	<!-- View/edit all students -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 text-center action-div">
+	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
 		<%= link_to students_path do %>
 			<%= render 'action_button', button_color: "glow-scheme-darkgray", 
 						fa_icon: "fa-child", button_text: "All students" %>
@@ -24,7 +24,7 @@
 	</div>   <!-- col -->
 
 	<!-- View/edit all teachers -->
-	<div class="col-sm-6 col-md-4 col-lg-3 col-md-offset-1 text-center action-div">
+	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
 		<%= link_to teachers_path do %>
 			<%= render 'action_button', button_color: "glow-scheme-blue", 
 						fa_icon: "fa-apple", button_text: "All teachers" %>
@@ -36,7 +36,7 @@
 <div class="row pad20">
 	
 	<!-- View/edit all behavior squares -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 text-center action-div">
+	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
 		<%= link_to squares_path do %>
 			<%= render 'action_button', button_color: "glow-scheme-lightblue", 
 						fa_icon: "fa-square-o", button_text: "All squares" %>
@@ -51,7 +51,7 @@
 <div class="row">
 
 	<!-- Edit school button -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 text-center action-div">
+	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
 		<%= link_to edit_school_path(@school.id) do %>
 			<span class ="action-rectangle <%= glow_color(@school) %>" 
 						title="edit school=<%= @school.full_name %>" >
@@ -62,7 +62,7 @@
 	</div>   <!-- col -->
 
 	<!-- Admin report button -->
-	<div class="col-sm-6 col-md-4 col-lg-3 col-md-offset-1 text-center action-div">
+	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
 		<%= link_to admin_report_path do %>
 			<%= render 'action_button', button_color: "glow-scheme-gray", 
 						fa_icon: "fa-file-text", button_text: "Admin report" %>
