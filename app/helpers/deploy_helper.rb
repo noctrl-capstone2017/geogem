@@ -5,9 +5,9 @@
 module DeployHelper
   
   #Deploy variables, change these when a new deploy is performed
-  @@geogem_version = "V0.1"
-  @@geogem_version_detailed = "V0.1-alpha"
-  @@geogem_deploy_date = "September 12, 2017"
+  @@geogem_version = "V0.2"
+  @@geogem_version_detailed = "V0.2-alpha"
+  @@geogem_deploy_date = "October 18, 2017"
 
   def DeployHelper.geogem_version
     @@geogem_version
