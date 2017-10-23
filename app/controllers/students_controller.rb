@@ -4,9 +4,10 @@ class StudentsController < ApplicationController
   include TeachersHelper
   include UxHelper
 
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
   before_action :set_school   #set up the school info for the logged in teacher
-  before_action :is_admin, only: [:index]       #make sure only admins can reach any of this
+  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :is_admin, only: [:index]     #make sure only admins can reach any of this
+  before_action :emerald_params,  only: [:emerald_export]
 
   # GET /students
   # list all students as an Admin
@@ -153,9 +154,10 @@ class StudentsController < ApplicationController
   def emerald_export
     @student = Student.find( params[:id])
     @session = Session.find( params[:session_id])
+    notes_flag = params[:include_notes] ? true: false
 
     events = SessionEvent.where( session_id: params[:session_id])
-    send_data events.to_csv, filename: emerald_filename( @student, @session)
+    send_data events.to_csv( notes_flag), filename: emerald_filename( @student, @session)
   end
 
   # Ruby Report creates PDF for one behavior square over time
@@ -209,7 +211,11 @@ class StudentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
       params.require(:student).permit(:full_name, :icon, :color, 
-            :session_interval, :contact_info,  :school_id)
+            :session_interval, :contact_info, :school_id)
+    end
+
+    def emerald_params
+      params.permit(:session_id, :include_notes)
     end
 
     # Emerald export file names are: gg_<student>_<day>.csv

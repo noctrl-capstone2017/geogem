@@ -30,6 +30,17 @@
 	</div>
 </div>   <!-- row -->
 
+<!-- include notes checkbox -->
+<div class="row form-row2">
+	<div class="col-xs-10 col-md-6 form-group">
+		<span class="checkbox" style="padding-left: 40px;">
+			<%= label_tag :include_notes do %>
+				<%= check_box_tag :include_notes, 1, true %>&nbsp; Include notes
+			<% end %>
+		</span>
+	</div>
+</div>   <!-- row -->
+
 <!-- export submit button-->
 <div class="row form-row2 pad20">
 	<div class="col-xs-10 col-md-6 text-center">
