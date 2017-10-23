@@ -4,8 +4,8 @@ class SessionEvent < ApplicationRecord
   validates :session_id, presence: true
 
   # write session events in CSV format... used by the Emerald Export screen
-  def self.to_csv
-    header = %w(Num Time Event Type Duration)    # Event Type Duration
+  def self.to_csv( include_notes = false)
+    header = %w(Num Time Event Type Duration Notes)    # Event Type Duration
     #attributes = %w(csv_time)
     num = 1
     CSV.generate do |csv|
@@ -24,8 +24,22 @@ class SessionEvent < ApplicationRecord
           csv_duration = Time.at(tmp_duration).utc.strftime("%-M:%S")
         end
 
-        csv << [ num, csv_time, csv_event, csv_type, csv_duration ]
+        if include_notes
+          csv << [ num, csv_time, csv_event, csv_type, csv_duration, "" ]
+        else
+          csv << [ num, csv_time, csv_event, csv_type, csv_duration ]
+        end
         num += 1
+      end
+      debugger
+      if include_notes
+        notes = SessionNote.where( session_id: first.session_id)
+        if ! notes.empty?
+          notes.each do | each_note |
+            note_time = each_note.created_at.in_time_zone('Central Time (US & Canada)').strftime("%H:%M")
+            csv << [num, note_time, "Note", "Note", 0, each_note.note]
+          end
+        end
       end
     end
   end

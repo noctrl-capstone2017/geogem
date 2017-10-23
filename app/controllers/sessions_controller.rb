@@ -53,10 +53,15 @@ class SessionsController < ApplicationController
   # prep to show session... leads to show view, which is the BIG page 
   # where all the session action happens
   def show
-    @student = Student.find(@session.session_student)
-    @teacher = Teacher.find(@session.session_teacher)
-    @school = School.find( @student.school_id)
-    @squares = get_student_squares( @student)
+    if @session.end_time != nil
+      flash[:danger] = 'This session has already ended and cannot be changed.'
+      redirect_to end_session_url( @session)
+    else
+      @student = Student.find(@session.session_student)
+      @teacher = Teacher.find(@session.session_teacher)
+      @school = School.find( @student.school_id)
+      @squares = get_student_squares( @student)
+    end
   end
 
   # handles the end of a session
@@ -82,6 +87,7 @@ class SessionsController < ApplicationController
     @student = Student.find(@session.session_student)
     @teacher = Teacher.find(@session.session_teacher)
     @events = SessionEvent.where( session_id: @session)
+    @notes = SessionNote.where( session_id: @session)
     @squares = get_student_squares( @student)
 
     # @square_type = @squares

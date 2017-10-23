@@ -52,7 +52,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   #get the show screen 
   test "should show session" do
     log_in_as(@user)
-    get session_url(@session)
+    get end_session_url(@session)
     assert_response :success
   end
   
