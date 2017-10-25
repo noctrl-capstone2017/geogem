@@ -12,8 +12,8 @@
 <div class="row form-row2 pad20">
 	<div class="col-xs-10 col-md-6 form-group">
 		<label for="studentField">Student</label>
-			<%= text_field_tag "studentName", @student.full_name, :readonly => true, 
-						class: 'form-control form-input-tweak' %>
+		<%= text_field_tag "studentName", @student.full_name, :readonly => true, 
+					class: 'form-control form-input-tweak' %>
 	</div>
 </div>   <!-- row -->
 
@@ -26,7 +26,7 @@
 		<label>Session</label>
 		<%= select_tag 'session_id', 
 					options_for_select( @sessions.order('created_at DESC').map{|c| [c.created_at.strftime("%a %b %-d, %Y"), c.id]}), 
-					{ required: true, :include_blank => 'Select a session to export', :class => 'form-control' } %>
+					{ required: true, :include_blank => 'Select a session to export', :class => 'form-control form-input-tweak' } %>
 	</div>
 </div>   <!-- row -->
 
@@ -50,15 +50,16 @@
 </div>   <!-- row -->
 
 <% end %>
+
 <br>
 <hr class="form-spacer-line">
 
-<!-- return to Student Analysis page -->
+<!-- text + link to return to Analysis page -->
 <div class="row form-row2">
 	<div class="col-xs-10">
-		<h4>Return to analysis page for <%= @student.full_name %>... &nbsp; &nbsp; &nbsp;
-			<%= link_to "Analysis", 'analysis', 
-						:class => "btn btn-lg btn-primary", :title => "Student Analysis page" %>
+		<h4>
+			Return to analysis page for <%= @student.full_name %>...
+			<big><%= link_to "Analysis Page", analysis_url %></big>
 		</h4>
 	</div>
 </div>   <!-- row -->

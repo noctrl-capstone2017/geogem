@@ -245,7 +245,6 @@ class TeachersController < ApplicationController
     redirect_to super_path
   end
 
-
   # GET /teachers/1
   # View for a teacher. It sets up pagination similarly to the teacher index.
   def show
@@ -326,6 +325,16 @@ class TeachersController < ApplicationController
       if current_teacher.school_id != Teacher.find(params[:id]).school_id
         redirect_to home_path, :flash => { :notice => "You can't access other schools." }
       end
+    end
+
+    def all_sessions
+      @the_sessions = []
+      teachers = Teacher.where(school_id: current_teacher.school_id)
+      teachers.each do |the_teacher|
+        some_sessions = Session.where( session_teacher: the_teacher)
+        @the_sessions << some_sessions 
+      end
+      return @the_sessions
     end
 
 end
