@@ -88,4 +88,9 @@ module SessionsHelper
     return formatTime(duration)
   end
 
+  # returns the start date in a nice format
+  def ux_session_start_date( session)
+    session.start_time.in_time_zone('Central Time (US & Canada)').strftime("%a %b %d, %y")
+  end
+
 end

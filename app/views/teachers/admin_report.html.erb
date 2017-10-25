@@ -6,116 +6,175 @@
 			:locals => { 	:title => "Admin report", 
 										:subtitle => "basic lists of students, teachers, and squares at #{ @school.full_name }"} %>
 
-<div class="row content-text">
-	<div class="col-xs-10 col-xs-offset-1">
+<!-- Source of this great collapsible panel -->
+<!-- https://codepen.io/martinkrulltott/pen/mejmmj -->
+<style>
+.panel-title .trigger:before { content: '-'; }
+.panel-title .trigger.collapsed:before { content: '+'; }
+.admin-header { margin-bottom: 20px; }
+.admin-panel { margin: 0px 20px;}
+.admin-panel-link { font-size: 1.2em; font-family: monospace;}
+</style>
 
-<!-- This section lists all Students -->
-<h3>1) All students
+<div class="row form-row2">
+	<div class="col-xs-12">
+
+
+<!-- Section 1. STUDENTS table -->
+<h3 class="admin-header">1. All students
 	<small>
 		 - there <%= @students.count == 1 ? 'is' : 'are' %> 
 		<%= pluralize(@students.count, "student") %> at <%= @school.full_name %> 
 	</small>
 </h3>
 
-<br>
-<table class="table table-striped table-hover table-responsive">
-	<thead>
-		<tr>
-			<th>Icon</th>
-			<th>Student Name</th>
-			<th>Info</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @students.each do |each_student| %>
-		<tr data-link="<%= edit_student_path(each_student.id) %>">
-			<td>
-				<div class="student-table-icon <%= icon_color(each_student) %>">
-				 	<span class="fa fa-lg fa-fw <%= fa_icon(each_student) %>"></span>
-				</div>
-			</td>	
-			<td><p> <%= ux_student_name( each_student, 40) %> </p></td>
-			<td><p> <%= truncate( each_student.contact_info, :length => 40) %> </p></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>   <!-- students table -->
+<div class="panel panel-default admin-panel">
+	<div class="panel-heading" role="tab" id="headingStudents">
+		<h4 class="panel-title">
+			<a role="button" data-toggle="collapse" href="#collapseStudents" aria-expanded="true" aria-controls="collapseStudents" 
+						class="trigger collapsed admin-panel-link">
+				Students table
+			</a>
+		</h4>
+	</div>
+	<div id="collapseStudents" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingStudents">
+		<div class="panel-body">
+			<!-- here's the table with the actual student list -->
+			<table class="table table-striped table-hover table-responsive">
+				<thead>
+					<tr>
+						<th>Icon</th>
+						<th>Student Name</th>
+						<th>Info</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @students.each do |each_student| %>
+					<tr data-link="<%= edit_student_path(each_student.id) %>">
+						<td>
+							<div class="student-table-icon <%= icon_color(each_student) %>">
+							 	<span class="fa fa-lg fa-fw <%= fa_icon(each_student) %>"></span>
+							</div>
+						</td>	
+						<td><p> <%= ux_student_name( each_student, 40) %> </p></td>
+						<td><p> <%= truncate( each_student.contact_info, :length => 60) %> </p></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>   <!-- students table -->
+		</div>
+	</div>
+</div>   <!-- collapsible panel div -->
 
-<br><hr><br>
+<div class="clearfix"><br><br></div>
 
-<!-- This section lists all Teachers -->
-<h3>2) All teachers
+
+<!-- Section 2. TEACHERS table -->
+<h3 class="admin-header">2. All teachers
 	<small>
 		 - there <%= @teachers.count == 1 ? 'is' : 'are' %> 
 				<%= pluralize(@teachers.count, "teacher") %> at <%= @school.full_name %> 
 	</small>
 </h3>
 
-<br>
-<table class="table table-striped table-hover table-responsive">
- 	<thead>
- 		<tr>
- 			<th>Icon</th>
-			<th>Teacher Name</th>
-			<th>Login Username</th>
-			<th>Email</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @teachers.each do |each_teacher| %>
-			<tr data-link="<%= edit_teacher_path(each_teacher.id) %>">
-				<td>
-				  <div class="teacher-table-icon <%= icon_color(each_teacher) %>">
-					  <span class="fa fa-lg fa-fw <%= fa_icon(each_teacher) %>"></span>
-				  </div>
-				</td>	
-				<td><p> <%= ux_teacher_name(each_teacher) %> </p></td>
-				<td><p> <%= each_teacher.user_name %> </p></td>
-				<td><p> <%= each_teacher.email %> </p></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>   <!-- teachers table -->
+<div class="panel panel-default admin-panel">
+	<div class="panel-heading" role="tab" id="headingTeachers">
+		<h4 class="panel-title">
+			<a role="button" data-toggle="collapse" href="#collapseTeachers" aria-expanded="true" aria-controls="collapseTeachers" 
+						class="trigger collapsed admin-panel-link">
+				Teachers table
+			</a>
+		</h4>
+	</div>
+	<div id="collapseTeachers" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTeachers">
+		<div class="panel-body">
+			<!-- here's the table with the actual teacher list -->
+			<table class="table table-striped table-hover table-responsive" >
+				<thead>
+			 		<tr>
+			 			<th>Icon</th>
+						<th>Teacher Name</th>
+						<th>Login Username</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @teachers.each do |each_teacher| %>
+						<tr data-link="<%= edit_teacher_path(each_teacher.id) %>">
+							<td>
+								<div class="teacher-table-icon <%= icon_color(each_teacher) %>">
+									<span class="fa fa-lg fa-fw <%= fa_icon(each_teacher) %>"></span>
+								</div>
+							</td>	
+							<td><p> <%= ux_teacher_name(each_teacher) %> </p></td>
+							<td><p> <%= each_teacher.user_name %> </p></td>
+							<td><p> <%= each_teacher.email %> </p></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>   <!-- teachers table -->
+		</div>
+	</div>
+</div>   <!-- collapsible panel div -->
 
-<br><hr><br>
+<div class="clearfix"><br><br></div>
 
-<!-- This section lists all Squares -->
-<h3>3) All squares
+
+<!-- Section 3. SQUARES table -->
+<h3 class="admin-header">3. All squares
 	<small>
 		 - there <%= @squares.count == 1 ? 'is' : 'are' %> 
 				<%= pluralize(@squares.count, "behavior square") %> at <%= @school.full_name %>
 	</small>
 </h3>
 
-<br>
-<table class="table table-striped table-hover table-responsive">
- 	<thead>
- 		<tr>
- 			<th>Icon</th>
-			<th>ID</th>
-			<th>Type</th>
-			<th>Description</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @squares.each do |each_square| %>
-			<tr data-link="<%= edit_square_path(each_square.id) %>">
-				<td>
-					<div class="bsquare-table-icon <%= icon_color(each_square) %>">
-            <h4><%= each_square.screen_name %></h4>
-            <span class="fa fa-fw fa-lg %>"></span>
-				  </div>
-				</td>	
+<div class="panel panel-default admin-panel">
+	<div class="panel-heading" role="tab" id="headingSquares">
+		<h4 class="panel-title">
+			<a role="button" data-toggle="collapse" href="#collapseSquares" aria-expanded="true" aria-controls="collapseSquares" 
+						class="trigger collapsed admin-panel-link">
+				Squares table
+			</a>
+		</h4>
+	</div>
+	<div id="collapseSquares" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSquares">
+		<div class="panel-body">
+			<!-- here's the table with the actual squares list -->
+			<table class="table table-striped table-hover table-responsive">
+				<thead>
+			 		<tr>
+			 			<th>Icon</th>
+						<th>ID</th>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @squares.each do |each_square| %>
+						<tr data-link="<%= edit_square_path(each_square.id) %>">
+							<td>
+								<div class="bsquare-table-icon <%= icon_color(each_square) %>">
+			            <h4><%= each_square.screen_name %></h4>
+			            <span class="fa fa-fw fa-lg %>"></span>
+							  </div>
+							</td>	
+			
+							<td><p><span> <%= each_square.screen_name %></span> </p></td>
+			
+							<td><p> <%= ux_square_tracking_type( each_square) %> </p></td>
+			
+							<td><p> <%= truncate( each_square.description, :length => 40) %> </p></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>   <!-- square table -->
+			
+		</div>
+	</div>
+</div>   <!-- collapsible panel div -->
 
-				<td><p><span> <%= each_square.screen_name %></span> </p></td>
+<div class="clearfix"><br><br></div>
 
-				<td><p> <%= ux_square_tracking_type( each_square) %> </p></td>
-
-				<td><p> <%= truncate( each_square.description, :length => 40) %> </p></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>   <!-- square table -->
 
 	</div>   <!-- col -->
 </div>   <!-- row -->

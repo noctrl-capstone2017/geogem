@@ -58,18 +58,6 @@
     </div>
   </div>   <!-- form-row -->
 
-
-  <div class="row row-tweak pad20">
-    <div class="col-xs-8">
-      <h4>Once done, return home...</h4>
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-xs-8 text-center">
-      <%= link_to 'Home', home_path, :class => "btn btn-lg btn-primary", 
-            :title => "Back to Home page" %>
-     </div>
-  </div>
-
 <% end %>   <!-- sessions form -->
 
 
@@ -88,12 +76,12 @@
 </script>
 
 <!-- collapsible div part 1: the +/- button to show/collapse content -->
-<div class="row row-tweak pad40">
+<div class="row row-tweak pad20">
   <div class="col-xs-6">
     <a href="#collapseExample" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
-      <button type="button" class="btn btn-lg btn-default">
+      <button type="button" class="btn btn-default">
         <span class="fa fa-fw fa-plus"></span>
-        All events table
+        Session details
       </button></a>
     &nbsp; &nbsp; &nbsp;
   </div>
@@ -105,81 +93,96 @@
 <!-- Show end session events log -->
 <div class="row pad20">
   <div class="col-xs-10 col-xs-offset-1">
-
-    <table class="table table-striped table-responsive">
-      <thead>
-        <tr>
-          <th>Num</th>
-          <th>Time</th>
-          <th>Square</th>
-          <th>Type</th>
-          <th>End time</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- one row per event in this table -->
-        <% @events.each_with_index do |each_event, index| %>
-        <tr>
-          <td>
-            <p><%= index+1 %></p>
-          </td>
-          <td>
-            <p><%= ux_event_start_time( each_event) %></p>
-          </td>
-          <td>
-            <p><%= ux_event_behavior_square( each_event) %></p>
-          </td>
-          <td>
-            <p><%= ux_event_behavior_square_type( each_event) %></p>
-          </td>
-          <td>
-            <p><%= ux_event_end_time( each_event) %></p>
-          </td>
-          <td>
-            <p><%= ux_event_notes(each_event) %></p>
-          </td>
-        </tr>
-        <% end %>
-
-      </tbody>
-    </table>
-
+    <% if @events.empty? %>
+      <h4>There were no events during the session.</h4>
+    <% else %>
+      <h4>Session events table</h4>
+      <table class="table table-striped table-responsive">
+        <thead>
+          <tr>
+            <th>Num</th>
+            <th>Time</th>
+            <th>Square</th>
+            <th>Type</th>
+            <th>End time</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- one row per event in this table -->
+          <% @events.each_with_index do |each_event, index| %>
+          <tr>
+            <td>
+              <p><%= index+1 %></p>
+            </td>
+            <td>
+              <p><%= ux_event_start_time( each_event) %></p>
+            </td>
+            <td>
+              <p><%= ux_event_behavior_square( each_event) %></p>
+            </td>
+            <td>
+              <p><%= ux_event_behavior_square_type( each_event) %></p>
+            </td>
+            <td>
+              <p><%= ux_event_end_time( each_event) %></p>
+            </td>
+            <td>
+              <p><%= ux_event_notes(each_event) %></p>
+            </td>
+          </tr>
+          <% end %>
+  
+        </tbody>
+      </table>
+    <% end %>
   </div>   <!-- col -->
 </div>   <!-- row -->
 
 <!-- Show notes take during the session, too -->
 <div class="row pad20">
   <div class="col-xs-10 col-xs-offset-1">
-
-    <table class="table table-striped table-responsive">
-      <thead>
-        <tr>
-          <th>Num</th>
-          <th>Time</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- one row per event in this table -->
-        <% @notes.each_with_index do |each_note, index2| %>
-        <tr>
-          <td>
-            <p><%= index2+1 %></p>
-          </td>
-          <td>
-            <p><%= ux_session_note_time( each_note) %></p>
-          </td>
-          <td>
-            <p><%= each_note.note %></p>
-          </td>
-        </tr>
-        <% end %>
-
-      </tbody>
-    </table>
-
+    <% if @notes.empty? %>
+      <h4>There were no notes during the session.</h4>
+    <% else %>
+      <h4>Session notes table</h4>
+      <table class="table table-striped table-responsive">
+        <thead>
+          <tr>
+            <th>Num</th>
+            <th>Time</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- one row per event in this table -->
+          <% @notes.each_with_index do |each_note, index2| %>
+          <tr>
+            <td>
+              <p><%= index2+1 %></p>
+            </td>
+            <td>
+              <p><%= ux_session_note_time( each_note) %></p>
+            </td>
+            <td>
+              <p><%= each_note.note %></p>
+            </td>
+          </tr>
+          <% end %>
+  
+        </tbody>
+      </table>
+    <% end %>
   </div>   <!-- col -->
 </div>   <!-- row -->
-
 </div>   <!-- collapsible -->
+
+<!-- text + button to return home -->
+<div class="row row-tweak pad40">
+  <div class="col-xs-8">
+    <h4>Once done, return home...
+      <big><%= link_to 'Home page', home_path %></big>
+    </h4>
+   </div>
+</div>
+

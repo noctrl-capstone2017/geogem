@@ -5,8 +5,12 @@ class SessionEvent < ApplicationRecord
 
   # write session events in CSV format... used by the Emerald Export screen
   def self.to_csv( include_notes = false)
-    header = %w(Num Time Event Type Duration Notes)    # Event Type Duration
-    #attributes = %w(csv_time)
+    if include_notes
+      header = %w(Num Time Event Type Duration Notes)
+    else
+      header = %w(Num Time Event Type Duration)
+    end
+
     num = 1
     CSV.generate do |csv|
       csv << header
@@ -31,7 +35,7 @@ class SessionEvent < ApplicationRecord
         end
         num += 1
       end
-      debugger
+
       if include_notes
         notes = SessionNote.where( session_id: first.session_id)
         if ! notes.empty?
