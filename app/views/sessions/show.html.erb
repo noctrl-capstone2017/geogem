@@ -2,7 +2,7 @@
 <% provide(:title, "Behavioral Session") %>
 
 <!-- special navbar and page beginning for Behavior session -->
-<%= render 'layouts/navbar_empty' %>
+<%= render 'layouts/navbar_session' %>
 
 <div class="container">
 	<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">
@@ -36,16 +36,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
 
 
-<div class="row pad20">
-  <div class="col-xs-4 col-xs-offset-0">
-    <a href="#collapseExample" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
-      <button type="button" class="btn btn-lg btn-default">
-        <span class="fa fa-fw fa-plus"></span>
-        Session info
-      </button></a>
-    &nbsp; &nbsp; &nbsp;
-  </div>
-  <div class="col-xs-8 text-right">
+<div class="row form-row2 pad20">
+  <div class="col-xs-12 text-right">
     <%= form_tag end_session_path, :method => :POST do %>
           <%= hidden_field_tag :start2 %>
           <%= hidden_field_tag :end2 %>
@@ -70,38 +62,6 @@
   </div>   <!-- col -->
 </div>   <!-- row -->
 
-<!-- Collapsible div with page header and session info -->
-<!-- Collapse source is Bootstrap: http://getbootstrap.com/javascript/ -->
-<div class="collapse" id="collapseExample">
-  
-  <%= render partial: 'session_page_header',
-        :locals => { :title => "Behavior session",
-        :subtitle => "record behaviors with student, #{ @student.full_name }"} %>
-
-  <%= form_for(@session) do |f| %>
-    <div class="row form-row2">
-      <div class="col-xs-10 col-md-6 col-lg-4 form-group">
-        <label for="studentField">Student</label>
-        <input type="text" class="form-control form-input-tweak" id="studentField" 
-              readonly="readonly" value="<%= @student.full_name %>">
-      </div>
-
-      <div class="col-xs-10 col-md-6 col-lg-4 form-group">
-        <label for="teacherField">Teacher</label>
-        <input type="text" class="form-control form-input-tweak" id="teacherField" 
-              readonly="readonly" value="<%= @teacher.full_name %>">
-      </div>
-
-      <div class="clearfix"></div>
-
-      <div class="col-xs-10 col-md-6 col-lg-4 form-group">
-        <label for="startField">Start time</label>
-        <input type="text" class="form-control form-input-tweak" id="startField" 
-              readonly="readonly" value="<%= ux_session_start_time( @session, true) %>">
-      </div>
-    </div>   <!-- form-row -->
-  <% end %>   <!-- sessions form -->
-</div>   <!-- collapse div -->
 
 <!-- Side bar -->
 <!-- need to hack timer.js to remove this div, currently it's just hidden -->
@@ -210,8 +170,54 @@
 </div>   <!-- container-fluid -->
 
 
+<!-- Session Info collapsible div, appears after all squares -->
+<div class="row form-row2 pad40">
+  <div class="col-xs-12 col-xs-offset-0">
+    <a href="#collapseExample" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
+      <button type="button" class="btn btn-lg btn-default">
+        <span class="fa fa-fw fa-plus"></span>
+        Session info
+      </button></a>
+  </div>
+</div>
+
+<!-- Collapse source is Bootstrap: http://getbootstrap.com/javascript/ -->
+<div class="collapse" id="collapseExample">
+  
+  <%= render partial: 'session_page_header',
+        :locals => { :title => "Behavior session",
+        :subtitle => "record behaviors with student, #{ @student.full_name }"} %>
+
+  <%= form_for(@session) do |f| %>
+    <div class="row form-row2">
+      <div class="col-xs-10 col-md-6 col-lg-4 form-group">
+        <label for="studentField">Student</label>
+        <input type="text" class="form-control form-input-tweak" id="studentField" 
+              readonly="readonly" value="<%= @student.full_name %>">
+      </div>
+
+      <div class="col-xs-10 col-md-6 col-lg-4 form-group">
+        <label for="teacherField">Teacher</label>
+        <input type="text" class="form-control form-input-tweak" id="teacherField" 
+              readonly="readonly" value="<%= @teacher.full_name %>">
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="col-xs-10 col-md-6 col-lg-4 form-group">
+        <label for="startField">Start time</label>
+        <input type="text" class="form-control form-input-tweak" id="startField" 
+              readonly="readonly" value="<%= ux_session_start_time( @session, true) %>">
+      </div>
+    </div>   <!-- form-row -->
+  <% end %>   <!-- sessions form -->
+</div>   <!-- collapse div -->
+
+
 <!-- not displayed, only used in timer js -->
 <textarea class="eventLog" id = "eventLog" style="display:none;" disabled></textarea>
+
+
 
 <div style="padding-bottom: 200px"></div>
 
