@@ -2,35 +2,37 @@
 <%= render 'layouts/navbar_logout' %>
 
 <div class="container">
-	<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 content-col">	
+	<div class="row">
+		<div class="col-xs-12 col-lg-10 col-lg-offset-1 content-col">	
 
-		<div class="page-header vertical-align">
-			<div class="col-xs-11">
-				<h2>Logged Out<small> - thank you for using GeoGem</small></h2><!-- Dynamically fills in with school id -->
-			</div>
-			<div class="col-xs-1 center-block">
-			</div>
-		</div>   <!-- page-header -->
-
-		<div class="row">
-			<div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 text-center logout-art">
-
-				<!-- show Student Art image -->
-				<% image = random_student_art%>
-				<%= image_tag(image.gsub("app/assets/images/", ""), height: "400", alt: "Student Art") %>
-
-				<br>
-				<div class="logout-art-text">
-					<p>
-						<!-- Using Regex to get just the name part of the string, super cool! -->
-						<% image.gsub!(/.*?(?=\d_)(\d_)/, ' ') %>
-            Student art by: <%= image.gsub(/(?=\.)(\W.*)/, ' ') %>
-						<br>
-						<a <%= link_to "About Our Student Art", about_student_art_path %></a>
-					</p>
+			<div class="page-header vertical-align geogem-page-header">
+				<div class="col-xs-11">
+					<h2>Logged Out<small> - thank you for using GeoGem</small></h2>
 				</div>
-			</div>   <!-- col -->
-		</div>   <!-- row -->
+				<div class="col-xs-1 center-block">
+				</div>
+			</div>   <!-- page-header -->
 
-	</div>   <!-- content-col -->
+			<div class="row">
+				<div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 text-center logout-art">
+
+					<!-- show Student Art image -->
+					<% image = random_student_art %>
+					<%= image_tag(image.gsub("app/assets/images/", ""), height: "400", alt: "Student Art") %>
+	
+					<br>
+					<div class="logout-art-text">
+						<p>
+							<!-- Using Regex to get just the name part of the string, super cool! -->
+							<% image.gsub!(/.*?(?=\d_)(\d_)/, ' ') %>
+	            Student art by: <%= image.gsub(/(?=\.)(\W.*)/, ' ') %>
+							<br>
+							<a <%= link_to "About Our Student Art", about_student_art_path %></a>
+						</p>
+					</div>
+				</div>   <!-- col -->
+			</div>   <!-- row -->
+
+		</div>   <!-- content-col -->
+	</div>   <!-- row -->
 </div>   <!--container -->

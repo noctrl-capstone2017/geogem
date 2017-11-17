@@ -5,41 +5,40 @@
 	<div class="row login-row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 well login-col">
 
+		<!-- Geogem login logo, title and version -->
+		<%= image_tag("logos/smallgem.png", 
+					:class => "img-responsive pull-left login-logo", :alt => "GeoGem logo") %>
     <h1 class="login-header-text">
-    	<%= image_tag("logos/smallgem.png", :alt => "GeoGem logo") %> 
     	GeoGem <small> <%= DeployHelper.geogem_version =%> </small>
     </h1>
 		<br>
 
+		<!-- Login for: username, password, submit -->
 		<%= form_for(:login_session, url: login_path) do |f| %>
-			<div class="form-group">		
+			<div class="form-group login-form">
+				<!-- display flash errors if any, like Bad Password, etc -->
 				<%= render 'layouts/flash' %>
+
 				<%= f.label 'Username' %>
-				<%= f.text_field :user_name, class: 'form-control'%>
-			</div>
-			
-			<div class="form-group">
+				<%= f.text_field :user_name, required: true, class: 'form-control form-input-tweak'%>
+
+				<br>
 			  <%= f.label :password %>
-			  <%= f.password_field :password, class: 'form-control' %>
-			</div>
+			  <%= f.password_field :password, required: true, class: 'form-control form-input-tweak' %>
 
+				<br>
+				<%= f.submit "Log in", class: "btn btn-primary btn-lg center-block form-control login-button-tweak" %>
+			</div>
 			<br>
-
-			<div class="form-group">
-				<%= f.submit "Log in", class: "btn btn-primary btn-lg center-block form-control login-button-size" %>
-			</div>
-			
 		<% end %>
-			
-		<br>
-			
-		</div>   <!-- end col --> 
-	</div>   <!-- end row -->
-</div>   <!-- end container -->
+
+		</div>   <!-- login-col --> 
+	</div>   <!-- row -->
+</div>   <!-- container -->
 
 <script>
-	//focuses into the username field when the page loads for convenience
 	$( document ).ready(function() {
+		// focus mouse into the username field for convenience
 		$("#login_session_user_name").focus();
 
 		// trim whitespace out of username on login
