@@ -7,7 +7,7 @@ class SchoolsControllerTest < ActionDispatch::IntegrationTest
     @school = schools(:one)
     log_in_as(teachers(:one))
   end
-  
+
   # This test makes sure super_url gets the super dashboard page
   test "should get super dashboard" do
     get super_url
@@ -20,17 +20,17 @@ class SchoolsControllerTest < ActionDispatch::IntegrationTest
   end
   # This test makes sure backup_url gets the backup school page
   test "should get backup school page" do
-    get school_backup_url
+    get backup_school_url
     assert_response :success
   end 
   # This test makes sure restore_url gets the restore school page 
   test "should get restore school page" do
-    get school_restore_url
+    get restore_school_url
     assert_response :success
   end 
   # This test makes sure suspend_url gets the suspend school page 
   test "should get suspend school page" do
-    get school_suspend_url
+    get suspend_school_url
     assert_response :success
-  end 
+  end
 end #end of super_test.rb file
