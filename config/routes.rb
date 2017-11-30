@@ -27,19 +27,19 @@ Rails.application.routes.draw do
   patch   '/super',           to: 'teachers#update_super_focus'
   get     '/super_report',    to: 'teachers#super_report'
 
-  get     '/school_backup',   to: 'schools#backup'
-  patch   '/school_backup',  to: 'schools#do_backup'
-  get     '/school_suspend',  to: 'schools#suspend'  
-  patch   '/school_suspend',  to: 'schools#do_suspend'
-  get     '/school_restore',  to: 'schools#restore'
-  patch   '/school_restore',  to: 'schools#do_restore'
+  get     '/backup_school',   to: 'schools#backup'
+  patch   '/backup_school',  to: 'schools#do_backup'
+  get     '/suspend_school',  to: 'schools#suspend'  
+  patch   '/suspend_school',  to: 'schools#do_suspend'
+  get     '/restore_school',  to: 'schools#restore'
+  patch   '/restore_school',  to: 'schools#do_restore'
 
   # REST-ful resources
   resources :roster_students
   resources :roster_squares
   resources :session_notes 
   resources :squares
-  resources :schools
+  resources :schools, except: [:show, :destroy]
   resources :teachers do
     member do
       get :edit2, :edit3
