@@ -27,7 +27,7 @@
 							<% image.gsub!(/.*?(?=\d_)(\d_)/, ' ') %>
 	            Student art by: <%= image.gsub(/(?=\.)(\W.*)/, ' ') %>
 							<br>
-							<a <%= link_to "About Our Student Art", about_student_art_path %></a>
+							<%= link_to "About Our Student Art", about_student_art_path %>
 						</p>
 					</div>
 				</div>   <!-- col -->
