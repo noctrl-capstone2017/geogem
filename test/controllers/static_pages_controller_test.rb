@@ -7,25 +7,48 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     @teacher = teachers(:one)
   end
 
-  # test the root path, should be login
+  # test root path pulse
   test 'should get root path' do
     get root_path
     assert_response :success
     assert_select "title", "Login ◆ GeoGem"
   end
 
-  # test About page 
-  test "should get about" do
+  # test About page pulse 
+  test "should get about page" do
     get about_url
     assert_response :success
-    assert_select "title", "About ◆ GeoGem"
+    assert_select "title", { :count => 1, :text => "About ◆ GeoGem" }
   end
 
-  # test About Student Art page
-  test "should get about student art" do
+  # test About page details 
+  test "should check about page details" do
+    get about_url
+    assert_response :success
+    assert_select "a", :href => "/login", :text => "Back to Login"
+    assert_select "h3", :text => "Acknowledgements"
+    assert_select "h3", :text => "Meet the Team"
+    assert_select "div.sq-about", { :count => 18 }
+  end
+
+
+  # test About Student Art page pulse
+  test "should get about student art page" do
     get about_student_art_url
     assert_response :success
+    assert_select "title", "About Student Art ◆ GeoGem"
     assert_select "h2", "About student art - artwork contributed to GeoGem"
+    # prof bill email should be in the About Student Art page
+    # so thay can send me more/new student art
+    assert_select "a[href=?]", "mailto:wtkrieger@noctrl.edu"
+  end
+
+  # test About Student Art page details
+  test "check about student art page details" do
+    get about_student_art_url
+    assert_response :success
+    assert_select "a", :href => "/login", :text => "Back to Login"
+    assert_select "h2", /About student art - */
     # prof bill email should be in the About Student Art page
     # so thay can send me more/new student art
     assert_select "a[href=?]", "mailto:wtkrieger@noctrl.edu"

@@ -1,8 +1,16 @@
 <% provide(:title, "Login") %>
 <%= render 'layouts/navbar_login' %>
 
-<div class="container" data-no-turbolink="true">
+<div class="container">
 	<div class="row login-row">
+		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+
+			<!-- display flash errors if any, like Bad Password, etc -->
+			<%= render 'layouts/flash' %>
+		</div>
+	</div>
+
+	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 well login-col">
 
 		<!-- Geogem login logo, title and version -->
@@ -16,15 +24,14 @@
 		<!-- Login for: username, password, submit -->
 		<%= form_for(:login_session, url: login_path) do |f| %>
 			<div class="form-group login-form">
-				<!-- display flash errors if any, like Bad Password, etc -->
-				<%= render 'layouts/flash' %>
 
-				<%= f.label 'Username' %>
-				<%= f.text_field :user_name, required: true, class: 'form-control form-input-tweak'%>
+
+<!--				<%= f.label 'Username' %>  -->
+				<%= f.text_field :user_name, required: true, placeholder: 'Username', class: 'form-control form-input-tweak'%>
 
 				<br>
-			  <%= f.label :password %>
-			  <%= f.password_field :password, required: true, class: 'form-control form-input-tweak' %>
+<!-- 			  <%= f.label :password %>  -->
+			  <%= f.password_field :password, required: true, placeholder: 'Password', class: 'form-control form-input-tweak' %>
 
 				<br>
 				<%= f.submit "Log in", class: "btn btn-primary btn-lg center-block form-control login-button-tweak" %>
