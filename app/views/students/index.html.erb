@@ -7,15 +7,15 @@
 										:subtitle => "view/manage all students at #{ @school.full_name }"} %>
 
 <!-- Start with student info and the New Student button -->
-<div class="row">
-	<div class="col-xs-5 col-xs-offset-1">
+<div class="row form-row2 pad20">
+	<div class="col-xs-8">
 	  <h4>
 	    There <%= @students.count == 1 ? 'is' : 'are' %> <%= pluralize(@students.count, "student") %> 
 	    at <%= @school.full_name %>.
     </h4>
   </div>
-  <div class="col-xs-5 text-center">
-    <%= button_to new_student_path, method: :get, class: 'btn btn-lg btn-success' do %>
+  <div class="col-xs-4">
+    <%= button_to new_student_path, method: :get, class: 'btn btn-lg btn-success pull-right' do %>
   		<span class="fa fa-fw fa-lg fa-plus-square-o"></span> New student
 		<% end %>
   </div>
@@ -23,8 +23,8 @@
 
 <!-- Start of Table -->
 <br>
-<div class="row pad20">
-  <div class="col-xs-10 col-xs-offset-1">
+<div class="row form-row2 pad20">
+  <div class="col-xs-12">
 
 <table class="table table-striped table-hover table-responsive">
 
