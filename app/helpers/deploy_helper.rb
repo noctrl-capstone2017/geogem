@@ -1,13 +1,15 @@
-# Deploy Helper
-# Returns deploy date and version which are hardcoded values
+# Deploy Helper - deploy date and version help
 # Inspiration from https://github.com/noctrl-csc694-fall2016/giftgarden/blob/master/app/helpers/application_helper.rb
 # Author: Debra J
 module DeployHelper
   
-  #Deploy variables, change these when a new deploy is performed
-  @@geogem_version = "V0.2"
-  @@geogem_version_detailed = "V0.2-alpha"
-  @@geogem_deploy_date = "October 18, 2017"
+  #
+  # IMPORTANT!
+  # These 3 global variables are all you need to change when deploying a new version
+  #
+  @@geogem_version = "V0.3"
+  @@geogem_version_detailed = "V0.3-alpha"
+  @@geogem_deploy_date = "December 2, 2017"
 
   def DeployHelper.geogem_version
     @@geogem_version
@@ -15,8 +17,10 @@ module DeployHelper
   
   def DeployHelper.geogem_version_detailed
     @@geogem_version_detailed
-  end  
+  end
+
   def DeployHelper.geogem_deploy_date
     @@geogem_deploy_date
   end
+
 end 
