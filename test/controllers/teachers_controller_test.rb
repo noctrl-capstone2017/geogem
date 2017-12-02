@@ -8,7 +8,7 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     @teacher = teachers(:one)
   end
 
-  # 1) check pulse of all teacher pages
+  # 1) check pulse - existence + title
   test 'check pulse of all teacher pages' do
     log_in_as(@teacher)
 
@@ -35,6 +35,26 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     get super_path
     assert_response :success
     assert_select "title", { :count => 1, :text => "Super dashboard ◆ GeoGem" }
+
+    get teachers_url
+    assert_response :success
+    assert_select "title", { :count => 1, :text => "All teachers ◆ GeoGem" }
+
+    get new_teacher_url
+    assert_response :success
+    assert_select "title", { :count => 1, :text => "New teacher ◆ GeoGem" }
+
+    get edit_teacher_url(@teacher)
+    assert_response :success
+    assert_select "title", { :count => 1, :text => "Edit teacher ◆ GeoGem" }
+
+    get edit2_teacher_url(@teacher)
+    assert_response :success
+    assert_select "title", { :count => 1, :text => "Login settings ◆ GeoGem" }
+
+    get edit3_teacher_url(@teacher)
+    assert_response :success
+    assert_select "title", { :count => 1, :text => "Teacher access ◆ GeoGem" }
   end
 
   # 2) check details of Home page

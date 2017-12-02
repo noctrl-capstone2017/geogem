@@ -7,23 +7,23 @@
 										:subtitle => "view/manage all teachers at #{ @school.full_name }"} %>
 
 <!-- Start with teacher info and the New Teacher button -->
-<div class="row form-row2">
-	<div class="col-xs-6">
+<div class="row form-row2 pad20">
+	<div class="col-xs-8">
 		<h4>
 			There <%= @teachers.count == 1 ? 'is' : 'are' %> <%= pluralize(@teachers.count, "teacher") %> 
 			at <%= @school.full_name %>.
 		</h4>
 	</div>
-	<div class="col-xs-6 text-center">
-		<%= button_to new_teacher_path, method: :get, class: 'btn btn-lg btn-success' do %>
+	<div class="col-xs-4">
+		<%= button_to new_teacher_path, method: :get, class: 'btn btn-lg btn-success pull-right' do %>
   		<span class="fa fa-fw fa-lg fa-plus-square-o"></span> New teacher
 		<% end %>
 	</div>
 </div>   <!-- row -->
 
 <!-- All teachers display table -->
-<div class="row pad20">
-	<div class="col-xs-10 col-xs-offset-1">
+<div class="row form-row2 pad20">
+	<div class="col-xs-12">
 
 <br>
 <table class="table table-striped table-hover table-responsive">
