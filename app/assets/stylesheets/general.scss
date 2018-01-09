@@ -178,6 +178,12 @@ $geogem-yellow: #FFDC00;
 .table-striped > tbody > tr:hover td {
   background-color: $scheme-paleblue;
 }
+// fixed-width font choices for table data, make table class="table-font1"
+table.table-font1 td, table.table-font1 th { 
+	font-family: "Courier New", Courier, monospace; 
+	font-size: 0.9em; 
+}
+
 
 // Styling for form errors that display at the top of forms, Michael Loptien
 #error_explanation {

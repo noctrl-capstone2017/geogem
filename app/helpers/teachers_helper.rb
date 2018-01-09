@@ -111,9 +111,14 @@ module TeachersHelper
 
   # return ux string for the teacher's last login date  
   def ux_teacher_last_login( teacher)
-    str = teacher.last_login ? time_ago_in_words( teacher.last_login) : "Never"
+    if teacher.cur_login
+      str = time_ago_in_words( teacher.cur_login) << " (*log) "
+    else
+      str = teacher.last_login ? time_ago_in_words( teacher.last_login) : "Never"
+    end
+
     if teacher.suspended?
-      str = str << " (suspended)"
+      str = str << " (*sus)"
     end
     str
   end

@@ -26,7 +26,7 @@
 	<div class="col-xs-12">
 
 <br>
-<table class= "table table-striped table-hover table-responsive">
+<table class= "table table-striped table-hover table-responsive table-font1">
   <!-- Squares Table Header-->
   <thead>
 	  <tr>
@@ -57,11 +57,11 @@
         
         <!-- If statement for translating  square type int into string -->
         <td><% if each_square.tracking_type == 1 %>
-              <p>Duration</p>
+              Duration
             <% elsif each_square.tracking_type == 2 %>
-              <p>Frequency</p>
+              Frequency
             <% else %>
-              <p>Interval</p>
+              Interval
             <% end %>
         </td>
         
