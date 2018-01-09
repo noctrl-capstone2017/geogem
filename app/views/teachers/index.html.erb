@@ -26,15 +26,15 @@
 	<div class="col-xs-12">
 
 <br>
-<table class="table table-striped table-hover table-responsive">
+<table class="table table-striped table-hover table-responsive table-font1">
 	<thead>
 		<tr>
 			<th class="col-xs-1">Icon</th>
 
 			<th>Name</th>
-			<th>Login Username</th>
 			<th>Powers</th>
-			<th>Last Login</th>
+			<th>Login Username</th>
+			<th>Last Login (Status)</th>
 		</tr>
 	</thead>
 	
@@ -48,19 +48,24 @@
 						</div>
 					</td>
 
-					<td><p> <%= ux_teacher_name(teacher, 40) %> </p></td>
+					<td> <%= ux_teacher_name(teacher, 40) %> </td>
 
-					<td><p> <%= ux_teacher_username(teacher, 40) %> </p></td>
+					<td> <%= ux_teacher_powers(teacher) %> </td>
 
-					<td><p> <%= ux_teacher_powers(teacher) %> </p></td>
+					<td> <%= ux_teacher_username(teacher, 40) %> </td>
 
-					<td><p> <%= ux_teacher_last_login( teacher) %> </p></td> 
+					<td> <%= ux_teacher_last_login( teacher) %> </td> 
 				</tr>
 
 			<% end %>
 	</tbody>
 </table>
 <%= will_paginate %>
+
+<div class="text-center" style="font-family: 'Courier New';">
+	<i>(*log) means currently logged in; (*sus) means suspended!</i>
+</div>
+
 
 	</div>   <!-- col -->
 </div>  <!-- row -->
