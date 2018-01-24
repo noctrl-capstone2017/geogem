@@ -10,7 +10,7 @@ module SquaresHelper
     when 3
       "Interval"
     else
-      "Unknown"
+      "Unknown=" + "" + square.tracking_type.to_s
     end
   end
 
@@ -23,7 +23,7 @@ module SquaresHelper
     when 3
       "Int"
     else
-      "Unknown"
+      "Unknown=" + "" + square.tracking_type.to_s
     end
   end
 end

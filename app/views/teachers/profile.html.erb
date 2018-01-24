@@ -9,14 +9,8 @@
 <%= form_for(@teacher, url: profile_path) do |f| %>
 	<%= render 'error_messages', object: f.object %>
 
-	<!-- username -->
+	<!-- name and login username -->
 	<div class="row form-row2 pad20">
-
-		<div class="col-xs-10 col-md-6 col-lg-4 form-group">
-			<label for="studentField">Login Username</label>
-			<input type="text" class="form-control form-input-tweak" id="usernameField" 
-						readonly="readonly" value="<%= @teacher.user_name %>">
-		</div>
 
 		<div class="col-xs-10 col-md-6 col-lg-4 form-group">
 			<label for="teacherField">Name</label>
@@ -24,6 +18,11 @@
 						readonly="readonly" value="<%= @teacher.full_name %>">
 		</div>
 
+		<div class="col-xs-10 col-md-6 col-lg-4 form-group">
+			<label for="studentField">Login Username</label>
+			<input type="text" class="form-control form-input-tweak" id="usernameField" 
+						readonly="readonly" value="<%= @teacher.user_name %>">
+		</div>
 	</div>
 
 	<div class="form-spacer"></div>
@@ -82,11 +81,11 @@
 
 	<!-- OK/Cancel buttons -->
 	<div class="row form-row  pad40">
-		<div class="col-xs-6 col-xs-offset-1 text-center">
-		  <%= button_tag(type: 'submit', class: "btn btn-success") do %>Change Profile<% end %>
+		<div class="col-xs-10 text-center">
+		  <%= button_tag(type: 'submit', class: "btn btn-lg btn-success") do %>Change Profile<% end %>
 		  &emsp; &emsp; &emsp;
 			<%= link_to "Cancel", home_path, 
-						:class => "btn btn-danger", :title => "back to Home page" %>
+						:class => "btn btn-lg btn-danger", :title => "back to Home page" %>
 		</div>
 	</div>
 

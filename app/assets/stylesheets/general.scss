@@ -20,6 +20,9 @@ h1, h2, h3, h4, h5, h6 { font-family: "Rubik", sans-serif; }
 
 p, a { font-family:"Hind", sans-serif; }
 
+// Bootstrap fix collapsed burger menu color
+// it doesn't work without this, though I don't know why
+.icon-bar{ background-color: white; }
 
 // KEY- all content happens within a white background
 .content-col {
