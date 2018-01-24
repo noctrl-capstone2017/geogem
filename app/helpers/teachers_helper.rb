@@ -80,12 +80,12 @@ module TeachersHelper
         else
           tmp = teacher.last_login.strftime('%A %B %d')
         end
-        msg = "Welcome back, " << teacher.full_name << "... your last login was " << tmp
+        msg = "welcome back, " << teacher.full_name << "... your last login was " << tmp
       end
     else
-      msg = "home page for " << teacher.full_name
+      msg = "your home page, " << teacher.full_name
     end
-    msg << "."
+    msg
   end
 
   # return ux string for teacher name

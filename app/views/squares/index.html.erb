@@ -56,13 +56,8 @@
         <td><%= each_square.screen_name %></td>
         
         <!-- If statement for translating  square type int into string -->
-        <td><% if each_square.tracking_type == 1 %>
-              Duration
-            <% elsif each_square.tracking_type == 2 %>
-              Frequency
-            <% else %>
-              Interval
-            <% end %>
+        <td><%= ux_square_tracking_type(each_square) %>
+          
         </td>
         
         <!-- Square Description -->
