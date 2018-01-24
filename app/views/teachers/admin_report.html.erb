@@ -160,8 +160,11 @@
 							</td>	
 			
 							<td><p><span> <%= each_square.screen_name %></span> </p></td>
-			
-							<td><p> <%= ux_square_tracking_type( each_square) %> </p></td>
+
+							<td>
+								<span class="fa fa-fw <%= ux_square_fa_icon(each_square) %>" ></span>
+          			<%= ux_square_tracking_type(each_square) %>
+							</td>
 			
 							<td><p> <%= truncate( each_square.description, :length => 40) %> </p></td>
 						</tr>

@@ -65,22 +65,21 @@ module UxHelper
     "fa-" << object.icon
   end
 
-  def fa_bsquare_icon( square)
-    case square.tracking_type
-    when 1 
-      "fa-clock-o"    # clock icon for duration
-    when 2
-      ""              # no icon for frequency
-    when 3
-      "fa-info"       # info=i icon for interval
-    else
-      ""
-    end
-  end
-
   # returns correct CSS home icon tag for a student, as defined in general.css
   def home_icon_color( student)
     "home-icon-" << student.color
+  end
+
+  # return the Font Awesome icon for the behavior square
+  def ux_square_fa_icon( square)
+    case square.tracking_type
+    when Square::COUNTER
+      "fa-plus"    # plus icon for COUNTER
+    when Square::TIMER
+      "fa-clock-o"    # clock icon for TIMER square
+    else
+      ""
+    end
   end
 
   # These are WEIRD methods used to control row code in views

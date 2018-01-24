@@ -12,4 +12,16 @@ class Square < ApplicationRecord
                                    dependent:   :destroy
   has_many :students, through: :passive_relationships, source: :student
 
+  # faux enums for tracking_type
+  COUNTER = 1
+  TIMER = 2
+
+  def counter_square?
+    tracking_type == COUNTER
+  end
+
+  def timer_square?
+    tracking_type == TIMER
+  end
+
 end

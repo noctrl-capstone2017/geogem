@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816145648) do
+ActiveRecord::Schema.define(version: 20180124210031) do
 
   create_table "roster_squares", force: :cascade do |t|
     t.integer  "square_id"
@@ -82,10 +82,11 @@ ActiveRecord::Schema.define(version: 20170816145648) do
     t.string   "color"
     t.string   "contact_info"
     t.text     "description"
-    t.integer  "session_interval", default: 15
+    t.integer  "session_interval",  default: 15
+    t.boolean  "interval_counting", default: false
     t.integer  "school_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "teachers", force: :cascade do |t|
