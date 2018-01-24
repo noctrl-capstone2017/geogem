@@ -51,13 +51,14 @@
             <span class="fa fa-fw fa-lg %>"></span>
 				  </div>
 				</td>
-				
+
 				<!-- Square Name -->
         <td><%= each_square.screen_name %></td>
-        
+
         <!-- If statement for translating  square type int into string -->
-        <td><%= ux_square_tracking_type(each_square) %>
-          
+        <td>
+          <span class="fa fa-fw <%= ux_square_fa_icon(each_square) %>" ></span>
+          <%= ux_square_tracking_type(each_square) %>
         </td>
         
         <!-- Square Description -->

@@ -29,7 +29,7 @@ class SquaresController < ApplicationController
   def new
     @square = Square.new
     @square.color = "aqua"
-    @square.tracking_type = 2
+    @square.tracking_type = Square::COUNTER
   end
 
   # GET /squares/1/edit
@@ -51,8 +51,9 @@ class SquaresController < ApplicationController
   # PATCH/PUT /squares/1
   # update square attributes
   def update
+    debugger
     @square = Square.find(params[:id])
-    if @square.update(square_params)
+    if @square.update(square_params_update)
        flash[:success] = "Square was successfully updated."
        redirect_to edit_square_path(@square)
      else
@@ -87,5 +88,10 @@ class SquaresController < ApplicationController
     def square_params
       params.require(:square).permit(:full_name, :screen_name, :color, 
             :tracking_type, :description, :school_id)
+    end
+
+    # update is more limiting on params that can be changed
+    def square_params_update
+      params.require(:square).permit(:color, :description, :school_id)
     end
 end

@@ -211,7 +211,7 @@ class StudentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
       params.require(:student).permit(:full_name, :icon, :color, 
-            :session_interval, :contact_info, :school_id)
+            :session_interval, :interval_counting, :contact_info, :school_id)
     end
 
     def emerald_params

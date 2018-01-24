@@ -14,7 +14,7 @@
   	<div class="col-xs-10 col-md-6 form-group">
   		<label>Square name</label>
   		<% if local_assigns[:isNew] %>
-	      <%= f.text_field :screen_name, required: true, 
+	    	<%= f.text_field :screen_name, required: true, 
 	      			class: "form-control form-input-tweak",
   	    			maxlength: "4", onKeyup: "trackName(this.value)" %>
 			<% else %>
@@ -42,7 +42,7 @@
 					<!-- spinner has int value of Type masked with the name -->
 					<label>Type</label>
 					<% if local_assigns[:isNew] %>
-						<%= f.select :tracking_type,[['Duration',1],['Frequency',2],['Interval',3]],
+						<%= f.select :tracking_type,[['Counter',1],['Timer',2]],
 									{}, {class: 'form-control'} %>
   				<% else %>
 						<%= f.text_field :tracking_type, :value => ux_square_tracking_type( square), 
@@ -61,7 +61,7 @@
 		<div class="col-xs-5 col-xs-offset-1 pad40">
 			<div id="sample-square-color" class="bsquare-icon <%= icon_color(square) %> text-center" >
 	  		<h3 id="sample-square-name"><%= square.screen_name %></h3>
-				<span id="sample-square-icon" class="fa fa-fw fa-lg <%= fa_bsquare_icon(square) %>"></span>
+				<span id="sample-square-icon" class="fa fa-fw fa-lg <%= ux_square_fa_icon(square) %>"></span>
 			</div>   <!-- behavior-square -->
 		</div>
 	</div>   <!-- row -->
@@ -121,15 +121,15 @@
 		$('#sample-square-icon').removeClass();
 		$('#sample-square-icon').addClass('fa fa-fw fa-lg');
 		if( icon == 1) { 
-		  $('#sample-square-icon').addClass('fa-clock-o');
+		  $('#sample-square-icon').addClass('fa-plus');
 		}
-		else if( icon == 3) {
-			$('#sample-square-icon').addClass('fa-info');
+		else if( icon == 2) {
+			$('#sample-square-icon').addClass('fa-clock-o');
 		}
 	}
   function trackName( value) {
     //var name = document.getElementById("square_screen_name").value;
 	  //var name =  $('#square_screen_name').find('option:selected').attr('value');
   	$("#sample-square-color h3").html(value);
-	}	
+	}
 </script>

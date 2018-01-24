@@ -1,29 +1,15 @@
 module SquaresHelper
 
-  # return ux string for the behavio
+  # return ux string for the behavior square
   def ux_square_tracking_type( square)
     case square.tracking_type
     when 1 
-      "Duration"
+      "Counter"
     when 2
-      "Frequency"
-    when 3
-      "Interval"
+      "Timer"
     else
       "Unknown=" + "" + square.tracking_type.to_s
     end
   end
 
-  def square_type_acroynm( square)
-    case square.tracking_type
-    when 1
-      "Dur"
-    when 2
-      "Freq"
-    when 3
-      "Int"
-    else
-      "Unknown=" + "" + square.tracking_type.to_s
-    end
-  end
 end

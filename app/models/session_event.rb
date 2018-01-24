@@ -21,7 +21,7 @@ class SessionEvent < ApplicationRecord
         csv_event = event_square.screen_name
         # calling a helper in model code is weird
         # Source: https://stackoverflow.com/questions/29141093/helper-methods-for-models-in-rails
-        csv_type = ApplicationController.helpers.square_type_acroynm( event_square)
+        csv_type = ApplicationController.helpers.ux_square_tracking_type( event_square)
         tmp_duration = event.duration_in_secs
         csv_duration = "0"
         if( tmp_duration != 0)
