@@ -64,6 +64,7 @@ $scheme-darkgray: #666666;
 
 .color-scheme-blue { color: $scheme-blue; }
 .color-scheme-lightblue { color: $scheme-lightblue;}
+.color-scheme-lighterblue { color: $scheme-lighterblue; }
 
 // top ten colors used for user icons
 $geogem-aqua: #7FDBFF;
@@ -513,6 +514,35 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);
 	margin: 0.5em 0.5em 0em 0.5em;
 
 	&:hover {	color: lightgray; } 		// hover means icon symbol goes gray
+}
+
+// navpanel replaces "action icons"; they're based on Bootstrap panels
+.navpanel-row { display: -ms-flexbox; display: -webkit-flex;	display: flex; flex-wrap: wrap; }
+.navpanel-col { padding-top: 20px; }
+.navpanel { height: 90%; width: 100%; }
+.navpanel-title { font-size: 1.2em; }
+.navpanel-body { }
+
+// navpanel colors, based on system scheme colors
+.navpanel-blue { color: $scheme-blue; }
+.navpanel-blue-button { color: $scheme-blue; 
+	&:hover { box-shadow: 0 0 8px $scheme-blue; }
+}
+.navpanel-lightblue { color: $scheme-lightblue; }
+.navpanel-lightblue-button { color: $scheme-lightblue; 
+	&:hover { box-shadow: 0 0 8px $scheme-lightblue; }
+}
+.navpanel-yelloworange { color: $scheme-yelloworange; }
+.navpanel-yelloworange-button { color: $scheme-yelloworange;
+	&:hover { box-shadow: 0 0 8px $scheme-yelloworange; }
+}
+.navpanel-gray { color: $scheme-gray; }
+.navpanel-gray-button { color: $scheme-gray;
+	&:hover { box-shadow: 0 0 8px $scheme-gray; }
+}
+.navpanel-darkgray { color: $scheme-darkgray; }
+.navpanel-darkgray-button { color: $scheme-darkgray;
+	&:hover { box-shadow: 0 0 8px $scheme-darkgray; }
 }
 
 

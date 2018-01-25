@@ -73,13 +73,23 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     get profile_path
     assert_response :success
     assert_select "h2", /Profile - */
+    assert_select "h3", /Properties */
+    assert_select "h3", /Password */
+  end
+
+  # 4) check details of Properties page
+  test 'check details of Properties page' do
+    log_in_as(@teacher)
+    get properties_path
+    assert_response :success
+    assert_select "h2", /Properties - */
     assert_select 'form input[type=text][readonly=readonly]#usernameField'
     assert_select 'form input[type=text][readonly=readonly]#nameField'
-    assert_select 'form button[type=submit]', { :count => 1, :text => 'Change Profile' }
+    assert_select 'form button[type=submit]', { :count => 1, :text => 'Change Properties' }
     assert_select 'a[href="password"]'
   end
 
-  # 4) check details of Password page
+  # 5) check details of Password page
   test 'check details of Password page' do
     log_in_as(@teacher)
     get password_path
@@ -92,7 +102,7 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     assert_select 'form button[type=submit]', { :count => 1, :text => 'Change Password' }
   end
 
-  # 5) check details of Admin page
+  # 6) check details of Admin page
   test 'check details of Admin page' do
     log_in_as(@teacher)
     get admin_path
@@ -105,7 +115,7 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     assert_select 'a[href="/admin_report"]'
   end
 
-  # 6) check details of Admin Report page
+  # 7) check details of Admin Report page
   test 'check details of Admin Report page' do
     log_in_as(@teacher)
     get admin_report_path
@@ -119,7 +129,7 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     assert_select '#collapseSquares'
   end
 
-  # 7) check details of Super Dashboard page
+  # 8) check details of Super Dashboard page
   test 'check details of Super Dashboard page' do
     log_in_as(@teacher)
     get super_path
@@ -128,7 +138,7 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     assert_select 'a[href="/schools"]'
   end
 
-  # 8) check details of Super Report page
+  # 9) check details of Super Report page
   test 'check details of Super Report page' do
     log_in_as(@teacher)
     get super_report_path
@@ -137,7 +147,7 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
   end
 
   #
-  # 9) check that pages require login - redirected to Login if not valid user
+  # 10) check that pages require login - redirected to Login if not valid user
   #
   test 'check login for most pages' do
     get home_path

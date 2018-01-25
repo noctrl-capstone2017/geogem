@@ -51,7 +51,6 @@ class SquaresController < ApplicationController
   # PATCH/PUT /squares/1
   # update square attributes
   def update
-    debugger
     @square = Square.find(params[:id])
     if @square.update(square_params_update)
        flash[:success] = "Square was successfully updated."
