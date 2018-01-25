@@ -50,6 +50,11 @@ module UxHelper
     ["home", "building-o", "university"]
   end
 
+  # returns the color-<XXX> class for an object, ties into general.css
+  def ux_color_of( object)
+    "color-" << object.color
+  end
+
   # returns icon color CSS for object, as defined in general.css
   def icon_color( object)
     "i-" << object.color

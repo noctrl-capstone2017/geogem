@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   get     'home',             to: 'teachers#home'
   patch   'home',             to: 'teachers#update_home'
   get     'profile',          to: 'teachers#profile'
-  patch   'profile',          to: 'teachers#update_profile'
+  get     'properties',       to: 'teachers#properties'
+  patch   'properties',       to: 'teachers#update_properties'
   get     'password',         to: 'teachers#password'
   patch   'password',         to: 'teachers#update_password'
 

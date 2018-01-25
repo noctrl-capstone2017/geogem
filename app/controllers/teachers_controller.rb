@@ -140,15 +140,22 @@ class TeachersController < ApplicationController
     params[:id] = @teacher.id
   end
 
-  # PATCH /profile
-  # edit current teacher's profile
-  def update_profile
+  # GET /properties
+  # show profile of the current teacher
+  def properties
+    @teacher = current_teacher
+    params[:id] = @teacher.id
+  end
+
+  # PATCH /properties
+  # edit current teacher's properties
+  def update_properties
     @teacher = current_teacher
     if @teacher.update(teacher_params)
-      flash[ :success] = "Profile update successful"
+      flash[ :success] = "Properties update successful"
       redirect_to profile_path
     else
-      render :profile
+      render :properties
     end
   end
 

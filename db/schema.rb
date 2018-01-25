@@ -83,10 +83,10 @@ ActiveRecord::Schema.define(version: 20180124210031) do
     t.string   "contact_info"
     t.text     "description"
     t.integer  "session_interval",  default: 15
-    t.boolean  "interval_counting", default: false
     t.integer  "school_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.boolean  "interval_counting"
   end
 
   create_table "teachers", force: :cascade do |t|

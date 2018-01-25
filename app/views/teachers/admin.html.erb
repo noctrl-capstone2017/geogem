@@ -6,66 +6,98 @@
 			:locals => { 	:title => "Admin dashboard", 
 										:subtitle => "exercise admin powers at #{ @school.full_name }"} %>
 
-<div class="row form-row2">
-	<div class="col-xs-10">
-		<h3>Manage your school<small> - setup students, teachers, and behavior squares</small></h3>
+<div class="row form-row2 navpanel-row">
+
+	<!-- STUDENTS navpanel-->
+	<div class="col-xs-12 col-sm-6 col-md-4 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-child navpanel-yelloworange"></span> Students</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Lists all students at your school. In that list, select and do the setup for any student.</p>
+		    <p class="text-right">
+		    	<%= link_to students_path, :class => "btn btn-lg btn-default navpanel-yelloworange-button" do %>
+						All students <i class="fa fa-fw fa-chevron-right"></i>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
 	</div>
-</div>
 
-<!-- action icons, second row -->
-<div class="row pad20">
+	<!-- TEACHERS navpanel -->
+	<div class="col-xs-12 col-sm-6 col-md-4 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-apple navpanel-blue"></span> Teachers</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>List all your teachers. Select and setup any teacher. Add a new teacher.</p>
+		    <p class="text-right">
+		    	<%= link_to teachers_path, class: 'btn btn-lg btn-default navpanel-blue-button' do %>
+		    		All teachers <span class="fa fa-fw fa-chevron-right"></span>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
 
-	<!-- View/edit all students -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
-		<%= link_to students_path do %>
-			<%= render 'action_button', button_color: "glow-scheme-darkgray", 
-						fa_icon: "fa-child", button_text: "All students" %>
-		<% end %>
-	</div>   <!-- col -->
-
-	<!-- View/edit all teachers -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
-		<%= link_to teachers_path do %>
-			<%= render 'action_button', button_color: "glow-scheme-blue", 
-						fa_icon: "fa-apple", button_text: "All teachers" %>
-		<% end %>
-	</div>   <!-- col -->
+	<!-- SQUARES navpanel -->
+	<div class="col-xs-12 col-sm-6 col-md-4 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-square-o navpanel-lightblue"></span> Squares</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>List all your behavior squares. Change their setup. Or create new behavior squares.</p>
+		    <p class="text-right">
+		    	<%= link_to squares_path, class: 'btn btn-lg btn-default navpanel-lightblue-button' do %>
+		    		All squares <span class="fa fa-fw fa-chevron-right"></span>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
 
 </div>   <!-- row -->
 
-<div class="row pad20">
-	
-	<!-- View/edit all behavior squares -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
-		<%= link_to squares_path do %>
-			<%= render 'action_button', button_color: "glow-scheme-lightblue", 
-						fa_icon: "fa-square-o", button_text: "All squares" %>
-		<% end %>
-	</div>   <!-- col -->
-
-</div>   <!-- 2nd row of icons -->
-
 <br>
-<hr class="form-spacer-line"></hr>
+<div class="row form-row2 navpanel-row">
 
-<div class="row">
+	<!-- PROPERTIES - edit school properties -->
+	<div class="col-xs-12 col-sm-6 col-md-4 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title">
+		    	<span class="fa fa-lg fa-fw <%= fa_icon(@school) %> <%= ux_color_of(@school) %>" ></span> Properties
+		    </h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Review/edit your school's properties.</p>
+		    <p class="text-right">
+		    	<%= link_to edit_school_path(@school.id), :class => "btn btn-lg btn-default navpanel-gray-button" do %>
+						<span class="<%= ux_color_of(@school) %>">Edit properties <i class="fa fa-fw fa-chevron-right"></i></span>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
 
-	<!-- Edit school button -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
-		<%= link_to edit_school_path(@school.id) do %>
-			<span class ="action-rectangle <%= glow_color(@school) %>" 
-						title="edit school=<%= @school.full_name %>" >
-		  	<span class="fa fa-fw fa-lg <%= fa_icon(@school) %>"></span>
-		  	&nbsp; Edit school
-			</span>
-		<% end %>
-	</div>   <!-- col -->
+	<!-- ADMIN REPORT navpanel -->
+	<div class="col-xs-12 col-sm-6 col-md-4 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-file-text navpanel-darkgray"></span> Report</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>View a basic report of all students, teachers and squares at <%= @school.full_name %>.</p>
+		    <p class="text-right">
+		    	<%= link_to admin_report_path, class: 'btn btn-lg btn-default navpanel-darkgray-button' do %>
+		    		Admin report <span class="fa fa-fw fa-chevron-right"></span>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
 
-	<!-- Admin report button -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
-		<%= link_to admin_report_path do %>
-			<%= render 'action_button', button_color: "glow-scheme-gray", 
-						fa_icon: "fa-file-text", button_text: "Admin report" %>
-		<% end %>
-	</div>   <!-- col -->
-</div>   <!-- first row of icons -->
+</div>   <!-- row -->
