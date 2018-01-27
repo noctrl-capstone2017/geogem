@@ -46,15 +46,23 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
 
     get edit_teacher_url(@teacher)
     assert_response :success
-    assert_select "title", { :count => 1, :text => "Edit teacher ◆ GeoGem" }
+    assert_select "title", { :count => 1, :text => "Setup teacher ◆ GeoGem" }
 
-    get edit2_teacher_url(@teacher)
+    get edita_teacher_url(@teacher)
     assert_response :success
-    assert_select "title", { :count => 1, :text => "Login settings ◆ GeoGem" }
+    assert_select "title", { :count => 1, :text => "Teacher properties ◆ GeoGem" }
 
-    get edit3_teacher_url(@teacher)
+    get editb_teacher_url(@teacher)
     assert_response :success
     assert_select "title", { :count => 1, :text => "Teacher access ◆ GeoGem" }
+
+    get editc_teacher_url(@teacher)
+    assert_response :success
+    assert_select "title", { :count => 1, :text => "Change password ◆ GeoGem" }
+
+    get editd_teacher_url(@teacher)
+    assert_response :success
+    assert_select "title", { :count => 1, :text => "Login status ◆ GeoGem" }
   end
 
   # 2) check details of Home page
@@ -185,13 +193,13 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
   # End of testing links
   
   # Tests loading of the teacher's data when editing a teacher
-  test "should properly load existing info when loading a profile" do
-    log_in_as(@teacher)
-    get edit_teacher_url(@teacher)
-    assert_template "teachers/edit"
-    #This is all that's necessary, since if one part of it fails, all of it does.
-    assert_select 'h2', text: "Edit teacher - edit attributes of teacher, #{@teacher.full_name}"
-  end
+  # test "should properly load existing info when loading a profile" do
+  #   log_in_as(@teacher)
+  #   get edita_teacher_url(@teacher)
+  #   assert_template "teachers/edita"
+  #   #This is all that's necessary, since if one part of it fails, all of it does.
+  #   assert_select 'h2', text: "Setup teacher - admin setup actions for  #{@teacher.full_name}"
+  # end
   
   # Steven Royster
   # Inspired by previous capstone class

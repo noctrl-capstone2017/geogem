@@ -3,7 +3,7 @@
 <!-- page header -->
 <%= render partial: 'teacher_page_header', 
 			:locals => { 	:title => "Teacher access", 
-										:subtitle => "edit student access for teacher, #{ @teacher.full_name }"} %>
+										:subtitle => "define access to student data for teacher #{ @teacher.full_name }"} %>
 
 <% if @teacher.admin %>
 <div class="row form-row2">
@@ -35,7 +35,7 @@
 		</span>
 	</div>
 	<div class="col-xs-4 text-left">
-		<%= button_tag(type: 'submit', class: "btn btn-success", name: "edit3_access") do %>
+		<%= button_tag(type: 'submit', class: "btn btn-success", name: "editb_access") do %>
 			Change access
 		<% end %>
 	</div>
@@ -55,15 +55,15 @@
 
 <div class="row form-row2 pad40">
 
-	<%= render 'edit3_add_student' %>
+	<%= render 'editb_add_student' %>
 
-	<%= render 'edit3_remove_student' %>
+	<%= render 'editb_remove_student' %>
 
 </div>   <!-- row -->
 
 <div class="form-spacer"></div>
 
-<%= render 'edit3_show_roster' %>
+<%= render 'editb_show_roster' %>
 
 <% end %>   <!-- if not all_access -->
 
@@ -75,9 +75,9 @@
 <!-- done - button to All Teachers page -->
 <div class="row form-row2">
 	<div class="col-xs-10">
-		<h4>Done &mdash; return to All Teachers page... &nbsp; &nbsp; &nbsp;
-			<%= link_to 'All teachers', teachers_path, 
-						:class => "btn btn-lg btn-primary", :title => "Back to All Teachers page" %>
+		<h4>Done &mdash; return to Setup teacher page... &nbsp; &nbsp; &nbsp;
+			<%= link_to 'Setup teacher', edit_teacher_path(@teacher), 
+						:class => "btn btn-lg btn-primary", :title => "Back to Setup teacher page" %>
 		</h4>
 	</div>
 </div>   <!-- row -->
