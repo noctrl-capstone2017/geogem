@@ -6,7 +6,8 @@ class TeachersController < ApplicationController
   before_action :is_suspended
   before_action :set_teacher, only: [:show, :edit, :update]
   before_action :same_school, only: [:show, :edit, :update]
-  before_action :is_admin, only: [:edit, :update, :admin, :admin_report, :index, :new, :create, :login_settings]
+  before_action :is_admin, only: [:edit, :edita, :editb, :editc, :editd, :update, 
+        :admin, :admin_report, :index, :new, :create, :login_settings]
   before_action :is_super, only: [:super, :update_super_focus, :super_report]
 
   # GET /teachers
@@ -43,95 +44,107 @@ class TeachersController < ApplicationController
   end
 
   # GET /teachers/1/edit
-  # admin page 1 - edit teacher profile
+  # admin page 1 - setup screen
   def edit
     @teacher = Teacher.find(params[:id])
   end
 
-  # GET /teachers/id/edit2
-  # admin page 2 - change login settings
-  def edit2
+  # GET /teachers/1/edita
+  # admin setup to edit a teacher's properties
+  def edita
     @teacher = Teacher.find(params[:id])
   end
 
-  # GET /teachers/id/edit3
-  # admin page 3 - define teacher access to student analysis
-  def edit3
+  # GET /teachers/id/editb
+  # admin setup to define a teacher's access to student data
+  def editb
     @teacher = Teacher.find(params[:id])
     @students = @teacher.students.order('full_name ASC')
     @students_at_school = Student.where(school_id: @teacher.school_id).order('full_name ASC')
     @students_not_in_roster = Student.where(school_id: @teacher.school_id).where.not(id: @teacher.students).order('full_name ASC')
   end
 
+  # GET /teachers/1/editc
+  # admin setup to change a teacher's password
+  def editc
+    @teacher = Teacher.find(params[:id])
+  end
+
+  # GET /teachers/1/editd
+  # admin setup to suspend or restore a teacher's GeoGem login
+  def editd
+    @teacher = Teacher.find(params[:id])
+  end
+
   # POST /teachers/1
   # Admin updates a teacher here for all 3 edit pages.
   # Attributes in params[] are used to mux the updating to the correct methods
   def update
-    if params[:edit1]
-      update1_profile
-    elsif params[:edit2a]
-      update2_login_settings
-    elsif params[:edit2b]
-      update2_password
-    elsif params[:edit3_add]  ||  params[:edit3_remove]  ||  params[:edit3_access]
-      update3_access
+    if params[:edita]
+      updatea_properties
+    elsif params[:editb_add]  ||  params[:editb_remove]  ||  params[:editb_access]
+      updateb_access
+    elsif params[:editc]
+      updatec_password
+    elsif params[:editd]
+      updated_login
     else
       redirect_to home_path
     end
   end
 
-  # update admin page 1 - teacher profile attributes 
-  def update1_profile
+  # admin setup teacher A - edit this teacher's properties 
+  def updatea_properties
     if @teacher.update(edit_profile_params)
-      flash[ :success] = "Profile update successful"
+      flash[ :success] = "Properties update successful"
       redirect_to edit_teacher_path(@teacher)
     else
-      render 'edit'
+      render 'edita'
     end
   end
 
-  # update admin page 2a - teacher login settings (suspended flag)
-  def update2_login_settings
-    if @teacher.update(edit_login_settings_params)
-      flash[ :success] = "Login status change successful"
-      redirect_to edit2_teacher_path(@teacher)
-    else
-      render 'edit2'
-    end
-  end
-
-  # update admin page 2b - change teacher password 
-  def update2_password
-    if @teacher.update(edit_password_params)
-      flash[ :success] = "Password change successful"
-      redirect_to edit2_teacher_path(@teacher)
-    else
-      render 'edit2'
-    end
-  end
-
-  # update admin page 3 - change teacher access to students, aka the roster
-  def update3_access
+  # admin setup teacher B - change teacher's access to students, aka the roster
+  def updateb_access
     # add student to roster
-    if params[:edit3_add]  &&  (params[:add_student_id] != nil)
+    if params[:editb_add]  &&  (params[:add_student_id] != nil)
       @teacher.students << Student.find(params[:add_student_id])
-      redirect_to edit3_teacher_path(@teacher)
+      redirect_to editb_teacher_path(@teacher)
 
     # remove student from roster
-    elsif params[:edit3_remove]  &&  (params[:remove_student_id] != nil)
+    elsif params[:editb_remove]  &&  (params[:remove_student_id] != nil)
       @teacher.students.delete(Student.find(params[:remove_student_id]))
-      redirect_to edit3_teacher_path(@teacher)
+      redirect_to editb_teacher_path(@teacher)
 
-    elsif params[:edit3_access]
+    elsif params[:editb_access]
       @teacher.update(access_params)
       # NOTE - I though about this one. A toughie.
       # If access_all_students, then delete all students in the roster?
       # I decided against it and just leave the roster alone. It's hidden and 
       # unused in all pages if access_all_students is true.
-      redirect_to edit3_teacher_path(@teacher)
+      redirect_to editb_teacher_path(@teacher)
     end
-
   end
+
+  # admin setup teacher C - change teacher's password
+  def updatec_password
+    if @teacher.update(edit_password_params)
+      flash[ :success] = "Password change successful"
+      redirect_to edit_teacher_path(@teacher)
+    else
+      render 'editc'
+    end
+  end
+
+  # admin setup teacher D - set the teacher's login status: suspended or not
+  def updated_login
+    if @teacher.update(edit_login_settings_params)
+      flash[ :success] = "Login status change successful"
+      redirect_to edit_teacher_path(@teacher)
+    else
+      render 'editd'
+    end
+  end
+
 
   # GET /profile
   # show profile of the current teacher
@@ -246,7 +259,10 @@ class TeachersController < ApplicationController
   # updates the focus school of the super user
   def update_super_focus
     @teacher = Teacher.first
-    if ! @teacher.update(super_params)
+    if @teacher.update(super_params)
+      the_school = School.find( @teacher.school_id)
+      flash[:success] = "Super focus school is now #{ the_school.full_name }"
+    else
       flash[:danger] = "Error changing Super focus school"
     end
     redirect_to super_path

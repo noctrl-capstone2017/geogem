@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post    'login',            to: 'login_session#create'
   get     'logout',           to: 'login_session#logout'
   get     'about',            to: 'static_pages#about'
-  get   'about_student_art',  to: 'static_pages#about_student_art'
+  get     'about_student_art',    to: 'static_pages#about_student_art'
   get     'help',             to: 'static_pages#help'
 
   # core teacher pages: home, profile, password 
@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get     '/restore_school',  to: 'schools#restore'
   patch   '/restore_school',  to: 'schools#do_restore'
 
+
   # REST-ful resources
   resources :roster_students
   resources :roster_squares
@@ -43,7 +44,7 @@ Rails.application.routes.draw do
   resources :schools, except: [:show, :destroy]
   resources :teachers do
     member do
-      get :edit2, :edit3
+      get :edita, :editb, :editc, :editd
     end
   end
 

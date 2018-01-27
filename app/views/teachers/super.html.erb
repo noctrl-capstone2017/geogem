@@ -32,52 +32,83 @@
 
 <% end %>   <!-- focus school spinner -->
 
-<hr class="form-spacer-line"></hr>
+<div class="row form-row2 navpanel-row pad40">
 
-<!-- Super powers icons are first: all schools and super report -->
-<div class="row form-row2">
-	<div class="col-xs-10">
-		<h3>Focus school operations<small> - super user operations on the focus school</small></h3>
+	<!-- PROPERTIES - edit school properties -->
+	<div class="col-xs-12 col-xs-offset-1 col-sm-6 col-md-4 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title">
+		    	<span class="fa fa-lg fa-fw <%= fa_icon(@school) %> <%= ux_color_of(@school) %>" ></span> Properties
+		    </h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Review/edit your school's properties.</p>
+		    <p class="text-right">
+		    	<%= link_to edit_school_path(@school.id), :class => "btn btn-lg btn-default navpanel-gray-button" do %>
+						<span class="<%= ux_color_of(@school) %>">Edit properties <i class="fa fa-fw fa-chevron-right"></i></span>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
 	</div>
-</div>
 
-<div class="row pad20" >
-	<!-- Edit school button, the focus school -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
-		<%= link_to edit_school_path(@school.id) do %>
-			<span class ="action-rectangle <%= glow_color(@school) %>" >
-		  	<span class="fa fa-fw fa-lg <%= fa_icon(@school) %>"></span>
-		  	&nbsp; Edit school
-			</span>
-		<% end %>
-	</div>   <!-- col -->
+	<!-- SUSPEND school navpanel -->
+	<div class="col-xs-12 col-sm-6 col-md-4 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-bomb navpanel-darkgray"></span> Suspend</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Use super powers to suspend the focus school. This disables login of all teachers at the school.</p>
+		    <p class="text-right">
+		    	<%= link_to suspend_school_path, class: 'btn btn-lg btn-default navpanel-darkgray-button' do %>
+		    		Suspend school <span class="fa fa-fw fa-chevron-right"></span>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
 
-	<!-- Backup school button -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
-		<%= link_to backup_school_path do %>
-			<%= render 'action_button', button_color: "glow-scheme-lightblue", 
-						fa_icon: "fa-floppy-o", button_text: "Backup school" %>
-		<% end %>
-	</div>   <!-- col -->
-</div>   <!-- 1st row of school buttons -->
+</div>   <!-- row -->
 
-<div class="row pad20" >
-	<!-- Suspend school button -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
-		<%= link_to suspend_school_path do %>
-			<%= render 'action_button', button_color: "glow-scheme-darkgray", 
-						fa_icon: "fa-bomb", button_text: "Suspend school" %>
-		<% end %>
-	</div>   <!-- col -->
+<div class="row form-row2 navpanel-row">
 
-	<!-- Restore school button -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
-		<%= link_to restore_school_path do %>
-			<%= render 'action_button', button_color: "glow-scheme-lighterblue", 
-						fa_icon: "fa-undo", button_text: "Restore school" %>
-		<% end %>
-	</div>   <!-- col -->
-</div>   <!-- 2nd row of school buttons -->
+	<!-- BACKUP school data to a text file -->
+	<div class="col-xs-12 col-xs-offset-1 col-sm-6 col-md-4 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-floppy-o navpanel-lightblue"></span> Backup</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Backup school data to a text file.</p>
+		    <p class="text-right">
+		    	<%= link_to backup_school_path, :class => "btn btn-lg btn-default navpanel-lightblue-button" do %>
+						Backup school <i class="fa fa-fw fa-chevron-right"></i>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
+
+	<!-- RESTORE school data from a text file -->
+	<div class="col-xs-12 col-sm-6 col-md-4 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-undo navpanel-yelloworange"></span> Restore</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Restore school data from a text file.</p>
+		    <p class="text-right">
+		    	<%= link_to restore_school_path, class: 'btn btn-lg btn-default navpanel-yelloworange-button' do %>
+		    		Restore school <span class="fa fa-fw fa-chevron-right"></span>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
+
+</div>   <!-- row -->
 
 <hr class="form-spacer-line"></hr>
 
@@ -88,21 +119,40 @@
 	</div>
 </div>
 
-<div class="row pad20" >
-	<!-- All schools button -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
-		<%= link_to schools_path do %>
-			<%= render 'action_button', button_color: "glow-scheme-blue", 
-						fa_icon: "fa-home", button_text: "All schools" %>
-		<% end %>
-	</div>   <!-- col -->
+<div class="row form-row2 navpanel-row">
 
-	<!-- Super report button -->
-	<div class="col-sm-6 col-md-4 col-md-offset-1 text-center action-div">
-		<%= link_to super_report_path do %>
-			<%= render 'action_button', button_color: "glow-scheme-gray", 
-						fa_icon: "fa-file-text", button_text: "Super report" %>
-		<% end %>
-	</div>   <!-- col -->
+	<!-- ALL SCHOOLS lists all schools in GeoGem -->
+	<div class="col-xs-12 col-xs-offset-1 col-sm-6 col-md-4 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-home navpanel-blue"></span> All schools</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>List all schools in GeoGem. Select a school to edit its properties. Create a new school in GeoGem.</p>
+		    <p class="text-right">
+		    	<%= link_to schools_path, :class => "btn btn-lg btn-default navpanel-blue-button" do %>
+						All schools <i class="fa fa-fw fa-chevron-right"></i>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
 
-</div>   <!-- super powers buttons -->
+	<!-- SUPER REPORT basic report on GeoGem for the super user -->
+	<div class="col-xs-12 col-sm-6 col-md-4 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-file-text navpanel-gray"></span> Report</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Show some basic GeoGem stats in a report for the super user.</p>
+		    <p class="text-right">
+		    	<%= link_to super_report_path, class: 'btn btn-lg btn-default navpanel-gray-button' do %>
+		    		Super report <span class="fa fa-fw fa-chevron-right"></span>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
+
+</div>   <!-- row -->
