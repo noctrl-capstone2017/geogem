@@ -37,10 +37,6 @@ Rails.application.routes.draw do
 
 
   # REST-ful resources
-  resources :roster_students
-  resources :roster_squares
-  resources :session_notes 
-  resources :squares
   resources :schools, except: [:show, :destroy]
   resources :teachers do
     member do
@@ -50,9 +46,19 @@ Rails.application.routes.draw do
 
   resources :students do
     member do
-      get :edit2
+      get :edita, :editb, :editc
     end
   end
+
+  resources :squares do
+    member do
+      get :edita
+    end
+  end
+
+  resources :roster_students
+  resources :roster_squares
+  resources :session_notes 
 
   resources :sessions do
     member do

@@ -25,9 +25,9 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
 
     get edit_student_path(@student)
     assert_response :success
-    assert_select "title", { :count => 1, :text => "Edit student ◆ GeoGem" }
+    assert_select "title", { :count => 1, :text => "Setup student ◆ GeoGem" }
 
-    get edit2_student_path(@student)
+    get editb_student_path(@student)
     assert_response :success
     assert_select "title", { :count => 1, :text => "Assign squares ◆ GeoGem" }
   end

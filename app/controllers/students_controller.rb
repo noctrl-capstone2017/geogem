@@ -56,31 +56,45 @@ class StudentsController < ApplicationController
   end
   
   # GET /students/1/edit
-  # edit student page
+  # admin page - Setup student screen
   def edit
     @student = Student.find(params[:id])
   end
 
-  #GET /students/1/edit2
-  # assign recommended squares to student
-  def edit2
+  # GET /students/1/edita
+  # admin setup to edit a students's properties
+  def edita
+    @student = Student.find(params[:id])
+  end
+
+  #GET /students/1/editb
+  #  admin setup to assign behavior squares to student
+  def editb
     @student = Student.find(params[:id])
     @squares = @student.squares
     @squares_at_school = Square.where(school_id: @student.school_id)
     @squares_not_in_roster = Square.where(school_id: @student.school_id).where.not(id: @student.squares)
   end
 
+  # GET /students/1/editc
+  # admin setup of a student's behavior session
+  def editc
+    @student = Student.find(params[:id])
+  end
+
   # PATCH/PUT /students/1 and /students/1/edit
   # update student does multiple things
   def update
-    if params[:start_session]
+    if params[:editb_add]  ||  params[:editb_remove]
+      updateb_squares
+    elsif params[:editc]
+      updatec_setup_session
+    elsif params[:start_session]
       start_session
     elsif params[:analysis]
       redirect_to analysis_path(@student)
-    elsif params[:edit2_add]  ||  params[:edit2_remove]
-      update2_squares
     else
-      # basic case: edit student attributes
+      # basic case: edit A - edit student attributes
       @student = Student.find(params[:id])
       if @student.update(student_params)
           flash[:success] = "Student was successfully updated."
@@ -89,6 +103,30 @@ class StudentsController < ApplicationController
         render 'edit'
       end
     end
+  end
+
+  # add/remove a student's recommended squares
+  # note: this is a kissin' cousin to update3_access in the teachers controller
+  def updateb_squares
+    # add square to roster
+    if params[:editb_add]  
+      if params[:add_square_id].present?
+        @student.squares << Square.find(params[:add_square_id])
+      end
+      redirect_to editb_student_path(@student)
+
+    # remove square from roster
+    elsif params[:editb_remove]
+      if params[:remove_square_id].present?
+        @student.squares.delete(Square.find(params[:remove_square_id]))
+      end
+      redirect_to editb_student_path(@student)
+    end
+  end
+
+  # setup a behavior session for a student
+  def updatec_setup_session
+    debugger
   end
 
   # start behavioral session for student-teacher combo
@@ -102,25 +140,6 @@ class StudentsController < ApplicationController
       redirect_to @session
     else
       render @student
-    end
-  end
-
-  # add/remove a student's recommended squares
-  # note: this is a kissin' cousin to update3_access in the teachers controller
-  def update2_squares
-    # add square to roster
-    if params[:edit2_add]  
-      if params[:add_square_id].present?
-        @student.squares << Square.find(params[:add_square_id])
-      end
-      redirect_to edit2_student_path(@student)
-
-    # remove square from roster
-    elsif params[:edit2_remove]
-      if params[:remove_square_id].present?
-        @student.squares.delete(Square.find(params[:remove_square_id]))
-      end
-      redirect_to edit2_student_path(@student)
     end
   end
 

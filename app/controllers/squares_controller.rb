@@ -34,6 +34,13 @@ class SquaresController < ApplicationController
 
   # GET /squares/1/edit
   def edit
+    @square = Square.find(params[:id])
+  end
+
+  # GET /squares/1/edita
+  # admin edit properties of a square
+  def edita
+    @square = Square.find(params[:id])
   end
 
   # POST /squares

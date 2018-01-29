@@ -4,7 +4,7 @@
 <!-- page header -->
 <%= render partial: 'student_page_header', 
 			:locals => { 	:title => "Assign squares", 
-										:subtitle => "assign recommended behavior squares to student, #{ @student.full_name }"} %>
+										:subtitle => "assign recommended behavior squares to student #{ @student.full_name }"} %>
 
 <div class="row form-row2 pad20">
 
@@ -20,7 +20,7 @@
 					:include_blank => 'Select square to add', :required => true %>
 	</div>
 	<div class="col-xs-2 form-group text-left pad20">
-		<%= button_tag(type: 'submit', class: "btn btn-success", name: "edit2_add") do %>
+		<%= button_tag(type: 'submit', class: "btn btn-success", name: "editb_add") do %>
 				<span class="fa fa-plus icon-white"></span> 
 			<% end %>
 	</div>
@@ -37,7 +37,7 @@
 					:include_blank => 'Select square to remove', :required => true %>
 	</div>
 	<div class="col-xs-2 form-group text-left pad20">
-		<%= button_tag(type: 'submit', class: "btn btn-danger", name: "edit2_remove") do %>
+		<%= button_tag(type: 'submit', class: "btn btn-danger", name: "editb_remove") do %>
 			<span class="fa fa-minus icon-white"></span> 
 		<% end %>
 	</div>
@@ -84,15 +84,15 @@
 
 <% end %>   <!-- do for each student roster square -->
 
-<br>
-<hr class="form-spacer-line">
+<div class="form-spacer">	&nbsp;</div>
 
-<!-- done button... back to All Students page -->
-<div class="row form-row2 pad20">
-	<div class="col-xs-12">
-		<h4>Return to All Students page... &nbsp; &nbsp; &nbsp;
-		<%= link_to 'All students', students_path, 
-						:class => "btn btn-lg btn-primary", :title => "Back to All Students page" %>
-		</h4>
+<!-- BACK TO SETUP TEACHER button -->
+<div class="row form-row2 pad40">
+	<div class="col-xs-10">
+		<p>
+			<%= link_to edit_student_path(@student), class: 'btn btn-lg btn-default navpanel-darkgray-button' do %>
+		  	<span class="fa fa-fw fa-chevron-left"></span> Back to Setup student
+		  <% end %>
+		</p>
 	</div>
-</row>
+</div>   <!-- row -->

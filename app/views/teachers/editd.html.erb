@@ -9,18 +9,18 @@
 <%= form_for(@teacher) do |f| %>
 	<%= render 'error_messages', object: f.object %>
 
-<div class="row form-row2">
-
-	<!-- login username -->
-	<div class="col-xs-10 col-md-6 col-lg-4 form-group">
-		<label>Login Username</label>
-   	<%= f.text_field :user_name, :readonly => true, class: 'form-control form-input-tweak' %>
-	</div>
+<div class="row form-row2 pad20">
 
 	<!-- teacher name -->
 	<div class="col-xs-10 col-md-6 col-lg-4 form-group">
 		<label>Name</label>
 		<%= f.text_field :full_name, :readonly => true, class: 'form-control form-input-tweak' %>
+	</div>
+
+	<!-- login username -->
+	<div class="col-xs-10 col-md-6 col-lg-4 form-group">
+		<label>Login Username</label>
+   	<%= f.text_field :user_name, :readonly => true, class: 'form-control form-input-tweak' %>
 	</div>
 
 </div>   <!-- row -->
@@ -40,14 +40,14 @@
 </div>
 
 <!-- OK, Cancel buttons -->
-<div class="row form-row2"> 
-	<div class="col-xs-8 text-center">
-		<%= button_tag(type: 'submit', class: "btn btn-success", name: 'editd') do %>  
+<div class="row form-row2 pad20"> 
+	<div class="col-xs-10">
+		<%= button_tag(type: 'submit', class: "btn btn-lg btn-success", name: 'editd') do %>  
 			Change Login Status 
 		<% end %>
 		&nbsp; &nbsp; &nbsp;
 		<%= link_to 'Cancel', edit_teacher_path, 
-					:class => "btn btn-danger", :title => "Back to Setup teacher page" %>
+					:class => "btn btn-lg btn-danger", :title => "Back to Setup teacher page" %>
 	</div>
 </div>
 

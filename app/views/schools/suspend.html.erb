@@ -6,8 +6,8 @@
 			:locals => { 	:title => "Suspend school",
 										:subtitle => "suspend all teacher logins at #{ @school.full_name}"} %>
 
-<div class="row pad20 content-text">
-	<div class="col-xs-10 col-xs-offset-1">
+<div class="row form-row2 pad20 content-text">
+	<div class="col-xs-10">
 		<p>
 			Super's focus school: 
 			<span style="color: <%= @school.color %>; font-size: 1.2em; font-weight: bold;">
@@ -24,13 +24,14 @@
 </div>   <!-- row -->
 
 <!-- OK/cancel buttons -->
-<div class="row pad20">
-	<div class="col-xs-8 col-xs-offset-2">
+<div class="row form-row2 pad40">
+	<div class="col-xs-10">
 		<%= form_for( @school, :url => { :action => :do_suspend }) do |f| %>
 			<%= button_tag(type: 'submit', :disabled => (@teacher_count <= 0), 
-											class: "btn btn-success") do %>Suspend school<% end %>
+											class: "btn btn-lg btn-success") do %>Suspend school<% end %>
 			&nbsp; &nbsp; &nbsp;
-			<%= link_to "Cancel", super_path, :class => "btn btn-danger" %>
+			<%= link_to "Cancel", super_path, :class => "btn btn-lg btn-danger",
+						:title => "Back to Super page" %>
 		<% end %>
 	</div>
 </div>

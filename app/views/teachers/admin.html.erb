@@ -9,14 +9,14 @@
 <div class="row form-row2 navpanel-row">
 
 	<!-- STUDENTS navpanel-->
-	<div class="col-xs-12 col-sm-6 col-md-4 navpanel-col">
+	<div class="col-xs-12 col-sm-6 navpanel-col">
 		<div class="panel panel-default navpanel">
 		  <div class="panel-heading">
 		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-child navpanel-yelloworange"></span> Students</h3>
 		  </div>
 		  <div class="panel-body navpanel-body">
 		    <p>Lists all students at your school. In that list, select and do the setup for any student.</p>
-		    <p class="text-right">
+		    <p>
 		    	<%= link_to students_path, :class => "btn btn-lg btn-default navpanel-yelloworange-button" do %>
 						All students <i class="fa fa-fw fa-chevron-right"></i>
 		    	<% end %>
@@ -26,14 +26,14 @@
 	</div>
 
 	<!-- TEACHERS navpanel -->
-	<div class="col-xs-12 col-sm-6 col-md-4 navpanel-col">
+	<div class="col-xs-12 col-sm-6 navpanel-col">
 		<div class="panel panel-default navpanel">
 		  <div class="panel-heading">
 		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-apple navpanel-blue"></span> Teachers</h3>
 		  </div>
 		  <div class="panel-body navpanel-body">
 		    <p>List all your teachers. Select and setup any teacher. Add a new teacher.</p>
-		    <p class="text-right">
+		    <p>
 		    	<%= link_to teachers_path, class: 'btn btn-lg btn-default navpanel-blue-button' do %>
 		    		All teachers <span class="fa fa-fw fa-chevron-right"></span>
 		    	<% end %>
@@ -41,16 +41,19 @@
 		  </div>
 		</div>   <!-- panel -->
 	</div>
+</div>   <!-- row -->
 
+<div class="row form-row2 navpanel-row">
+	
 	<!-- SQUARES navpanel -->
-	<div class="col-xs-12 col-sm-6 col-md-4 navpanel-col">
+	<div class="col-xs-12 col-sm-6 navpanel-col">
 		<div class="panel panel-default navpanel">
 		  <div class="panel-heading">
 		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-square-o navpanel-lightblue"></span> Squares</h3>
 		  </div>
 		  <div class="panel-body navpanel-body">
 		    <p>List all your behavior squares. Change their setup. Or create new behavior squares.</p>
-		    <p class="text-right">
+		    <p>
 		    	<%= link_to squares_path, class: 'btn btn-lg btn-default navpanel-lightblue-button' do %>
 		    		All squares <span class="fa fa-fw fa-chevron-right"></span>
 		    	<% end %>
@@ -61,11 +64,10 @@
 
 </div>   <!-- row -->
 
-<br>
-<div class="row form-row2 navpanel-row">
+<div class="row form-row2 navpanel-row pad20">
 
 	<!-- PROPERTIES - edit school properties -->
-	<div class="col-xs-12 col-sm-6 col-md-4 navpanel-col">
+	<div class="col-xs-12 col-sm-6 navpanel-col">
 		<div class="panel panel-default navpanel">
 		  <div class="panel-heading">
 		    <h3 class="panel-title navpanel-title">
@@ -74,7 +76,7 @@
 		  </div>
 		  <div class="panel-body navpanel-body">
 		    <p>Review/edit your school's properties.</p>
-		    <p class="text-right">
+		    <p>
 		    	<%= link_to edit_school_path(@school.id), :class => "btn btn-lg btn-default navpanel-gray-button" do %>
 						<span class="<%= ux_color_of(@school) %>">Edit properties <i class="fa fa-fw fa-chevron-right"></i></span>
 		    	<% end %>
@@ -84,14 +86,14 @@
 	</div>
 
 	<!-- ADMIN REPORT navpanel -->
-	<div class="col-xs-12 col-sm-6 col-md-4 navpanel-col">
+	<div class="col-xs-12 col-sm-6 navpanel-col">
 		<div class="panel panel-default navpanel">
 		  <div class="panel-heading">
 		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-file-text navpanel-darkgray"></span> Report</h3>
 		  </div>
 		  <div class="panel-body navpanel-body">
 		    <p>View a basic report of all students, teachers and squares at <%= @school.full_name %>.</p>
-		    <p class="text-right">
+		    <p>
 		    	<%= link_to admin_report_path, class: 'btn btn-lg btn-default navpanel-darkgray-button' do %>
 		    		Admin report <span class="fa fa-fw fa-chevron-right"></span>
 		    	<% end %>

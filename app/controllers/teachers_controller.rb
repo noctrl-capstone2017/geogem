@@ -44,7 +44,7 @@ class TeachersController < ApplicationController
   end
 
   # GET /teachers/1/edit
-  # admin page 1 - setup screen
+  # admin page - Setup teacher screen
   def edit
     @teacher = Teacher.find(params[:id])
   end
