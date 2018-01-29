@@ -26,7 +26,7 @@ class SquaresControllerTest < ActionDispatch::IntegrationTest
 
     get edit_square_path(@square)
     assert_response :success
-    assert_select "title", { :count => 1, :text => "Edit square ◆ GeoGem" }
+    assert_select "title", { :count => 1, :text => "Setup square ◆ GeoGem" }
   end
 
   # Should create a square

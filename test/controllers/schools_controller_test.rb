@@ -20,7 +20,7 @@ class SchoolsControllerTest < ActionDispatch::IntegrationTest
 
     get edit_school_url(@school)
     assert_response :success
-    assert_select "title", { :count => 1, :text => "Edit school ◆ GeoGem" }
+    assert_select "title", { :count => 1, :text => "School properties ◆ GeoGem" }
 
     get backup_school_path
     assert_response :success
@@ -39,7 +39,7 @@ class SchoolsControllerTest < ActionDispatch::IntegrationTest
   test 'check details of Edit School page' do
     get edit_school_url(@school)
     assert_response :success
-    assert_select "h2", /Edit school - */
+    assert_select "h2", /School properties - */
     assert_select 'form input[type=text][readonly=readonly]#school_full_name'
     assert_select 'form button[type=submit]', { :count => 1, :text => 'Change School' }
   end

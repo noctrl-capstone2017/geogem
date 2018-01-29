@@ -134,15 +134,19 @@
 
 <!-- OK/Cancel buttons -->
 <div class="row form-row2 pad20">
-	<div class="col-xs-8 text-center">
+	<div class="col-xs-10">
 	  <% if local_assigns[:isNew] %>
-	    <%= button_tag(type: 'submit', class: "btn btn-success") do %>Add New Teacher<% end %>
+	    <%= button_tag(type: 'submit', class: "btn btn-lg btn-success") do %>Add New Teacher<% end %>
+			&emsp; &emsp; &emsp;
+			<%= link_to "Cancel", teachers_path, :class => "btn btn-lg btn-danger", 
+	    			:title => "Back to All teachers page" %>
 	  <% else %>
-      <%= button_tag(type: 'submit', class: "btn btn-success", name: 'edita') do %>Change Profile<% end %>
+      <%= button_tag(type: 'submit', class: "btn btn-lg btn-success", name: 'edita') do %>Change Properties<% end %>
+      &emsp; &emsp; &emsp;
+	  	<%= link_to "Cancel", 'edit', :class => "btn btn-lg btn-danger", 
+	  				:title => "Back to Setup teacher page" %>
 	  <% end %>
-	  &emsp; &emsp; &emsp;
-	  <%= link_to "Cancel", 'edit', :class => "btn btn-danger", 
-	        :title => "Back to Setup teacher page" %>
+
 	</div>
 </div>   <!-- row -->
 

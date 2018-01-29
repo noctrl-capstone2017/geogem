@@ -1,21 +1,82 @@
 <!-- authors: Ricky Perez & Michael Loptien -->
-<% provide(:title, "Edit student") %>
+<% provide(:title, "Setup student") %>
 
 <!-- page header -->
 <%= render partial: 'student_page_header', 
-			:locals => { 	:title => "Edit student", 
-										:subtitle => "edit attributes of student, #{ @student.full_name }"} %>
+			:locals => { 	:title => "Setup student", 
+										:subtitle => "admin setup actions for student #{ @student.full_name }"} %>
 
-<%= render 'form', student: @student, isEdit: true %>
+<%= form_for( @student) do |f| %>
+	<%= render 'error_messages', object: f.object %>
 
-<hr class="form-spacer-line">
+<div class="row form-row2 navpanel-row">
 
-<!-- action button to Login Settings page -->
-<div class="row form-row2 pad20">
-	<div class="col-xs-12">
-		<h4>Continue with next student admin page... &nbsp; &nbsp; &nbsp;
-			<%= link_to "Assign squares", 'edit2', 
-						:class => "btn btn-lg btn-primary", :title => "Assign recommended behavior squares" %>
-		</h4>
+	<!-- PROPERTIES navpanel-->
+	<div class="col-xs-12 col-sm-6 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-edit navpanel-yelloworange"></span> Properties</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Review or edit student properties.</p>
+		    <p>
+		    	<%= link_to 'edita', :class => "btn btn-lg btn-default navpanel-yelloworange-button" do %>
+						Edit properties <i class="fa fa-fw fa-chevron-right"></i>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
 	</div>
-</div>
+
+	<!-- SQUARES navpanel-->
+	<div class="col-xs-12 col-sm-6 navpanel-col">
+		<div class="panel panel-default navpanel">
+			<div class="panel-heading">
+				<h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-square-o navpanel-lightblue"></span> Squares</h3>
+			</div>
+			<div class="panel-body navpanel-body">
+		    <p>Assign behavior squares to this student.</p>
+		    <p>
+		    	<%= link_to 'editb', :class => "btn btn-lg btn-default navpanel-lightblue-button" do %>
+						Assign squares <i class="fa fa-fw fa-chevron-right"></i>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
+
+</div>   <!-- row -->
+
+<div class="row form-row2 navpanel-row">
+
+	<!-- SESSION navpanel -->
+	<div class="col-xs-12 col-sm-6 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-thumbs-o-up navpanel-blue"></span> Session</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Setup a behavior session with the student.</p>
+		    <p>
+		    	<%= link_to 'editc', class: 'btn btn-lg btn-default navpanel-blue-button' do %>
+		    		Setup session <span class="fa fa-fw fa-chevron-right"></span>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
+
+</div>   <!-- row -->
+
+<% end %>
+
+<!-- BACK TO ADMIN button -->
+<div class="row form-row2 pad40">
+	<div class="col-xs-12 col-sm-6">
+		<p>
+			<%= link_to admin_path, class: 'btn btn-lg btn-default navpanel-darkgray-button' do %>
+		  	<span class="fa fa-fw fa-chevron-left"></span> Back to Admin
+		  <% end %>
+		</p>
+	</div>
+</div>   <!-- row -->

@@ -1,0 +1,9 @@
+<!-- authors: Ricky Perez & Michael Loptien -->
+<% provide(:title, "Student properties") %>
+
+<!-- page header -->
+<%= render partial: 'student_page_header', 
+			:locals => { 	:title => "Student properties", 
+										:subtitle => "edit properties of student #{ @student.full_name }"} %>
+
+<%= render 'form', student: @student, isEdit: true %>

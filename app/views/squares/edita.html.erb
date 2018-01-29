@@ -1,0 +1,9 @@
+<!-- authors: Ricky Perez & Michael Loptien -->
+<% provide(:title, "Square properties") %>
+
+<!-- page header -->
+<%= render partial: 'square_page_header', 
+			:locals => { 	:title => "Square properties", 
+										:subtitle => "edit properties of behavior square #{ @square.screen_name }"} %>
+
+<%= render 'form', square: @square, isNew: false %>
