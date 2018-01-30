@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124210031) do
+ActiveRecord::Schema.define(version: 20180130165705) do
 
   create_table "roster_squares", force: :cascade do |t|
     t.integer  "square_id"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20180124210031) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.boolean  "interval_counting"
+    t.text     "session_notes"
   end
 
   create_table "teachers", force: :cascade do |t|

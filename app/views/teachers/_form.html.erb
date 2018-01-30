@@ -117,7 +117,7 @@
 	<div class="clearfix"></div>
 
 	<!-- email -->
-	<div class="col-xs-10 col-md-8 form-group pad20">
+	<div class="col-xs-10 col-md-8 form-group">
 		<label>Email</label>
 		<%= f.email_field :email, required: true, class: 'form-control form-input-tweak' %>
 	</div>
@@ -127,7 +127,8 @@
 	<!-- extra teacher info (optional) --> 
 	<div class="col-xs-10 form-group">
 		<label>Teacher Info<small> (optional) </small></label>
-		<%= f.text_area :description, class: "form-control form-input-tweak info-textarea" %>
+		<%= f.text_area :description, class: "form-control form-input-tweak info-textarea",
+					rows: "6" %>
 	</div>
 
 </div>   <!-- row -->
@@ -137,12 +138,12 @@
 	<div class="col-xs-10">
 	  <% if local_assigns[:isNew] %>
 	    <%= button_tag(type: 'submit', class: "btn btn-lg btn-success") do %>Add New Teacher<% end %>
-			&emsp; &emsp; &emsp;
+			&nbsp; &nbsp; &nbsp;
 			<%= link_to "Cancel", teachers_path, :class => "btn btn-lg btn-danger", 
 	    			:title => "Back to All teachers page" %>
 	  <% else %>
       <%= button_tag(type: 'submit', class: "btn btn-lg btn-success", name: 'edita') do %>Change Properties<% end %>
-      &emsp; &emsp; &emsp;
+      &nbsp; &nbsp; &nbsp;
 	  	<%= link_to "Cancel", 'edit', :class => "btn btn-lg btn-danger", 
 	  				:title => "Back to Setup teacher page" %>
 	  <% end %>

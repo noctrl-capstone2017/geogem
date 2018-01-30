@@ -74,14 +74,14 @@
 	  <% if local_assigns[:isNew] %>
 	    <!-- OK/Cancel buttons for super user creating a school -->
 	    <%= button_tag(type: 'submit', class: "btn btn-lg btn-success") do %>Add New School<% end %>
-		  &emsp; &emsp; &emsp;
+		  &nbsp; &nbsp; &nbsp;
 		  <%= link_to "Cancel", schools_path, :class => "btn btn-lg btn-danger", 
 	        :title => "Back to All Schools page" %>
 
 	  <% else %>
 	    <!-- OK/Cancel buttons for Admin user editing a school -->
       <%= button_tag(type: 'submit', class: "btn btn-lg btn-success") do %>Change School<% end %>
-		  &emsp; &emsp; &emsp;
+		  &nbsp; &nbsp; &nbsp;
       <%= link_to "Cancel", admin_path, :class => "btn btn-lg btn-danger", 
 	        :title => "Back to Admin page" %>
 	  <% end %>

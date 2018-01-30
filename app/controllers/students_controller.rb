@@ -126,7 +126,12 @@ class StudentsController < ApplicationController
 
   # setup a behavior session for a student
   def updatec_setup_session
-    debugger
+    if @student.update(setup_session_params)
+      flash[:success] = "Session setup was successfully updated."
+      redirect_to edit_student_path(@student)
+    else
+      render 'edit'
+    end
   end
 
   # start behavioral session for student-teacher combo
@@ -229,8 +234,12 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:full_name, :icon, :color, 
-            :session_interval, :interval_counting, :contact_info, :school_id)
+      params.require(:student).permit(:full_name, :icon, :color, :contact_info, :school_id)
+    end
+
+    def setup_session_params
+      params.require(:student).permit( :session_interval, :interval_counting, 
+            :session_notes)
     end
 
     def emerald_params
