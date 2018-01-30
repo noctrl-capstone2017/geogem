@@ -57,31 +57,10 @@
 
 <!-- session interval and student info -->
 <div class="row form-row2">
-	<div class="col-xs-10 col-md-6 form-group">
-		<label>Session Interval <small> (minutes) </small></label>
-		<%= f.select :session_interval, [5,15,30,60], {}, {class: 'form-control form-input-tweak'}  %> 
-	</div>
-
-	<div class="clearfix"></div>
-
-	<div class="col-xs-10 col-md-6 form-group pad20">
-		<label>Session squares</label>
-		<span class="fa fa-fw fa-lg fa-question-circle color-scheme-blue"
-					data-toggle="popover" data-trigger="click" data-placement="bottom"
-					data-content="By default, GeoGem records each time a behavior square is pressed.<br>However, if interval counting is set true, behavior squares are only counted once per interval during a session."></span>
-		<span class="checkbox" style="padding-left: 40px;">
-			<%= f.label :interval_counting do %>
-				<%= f.check_box :interval_counting, { :class=> 'form-check' }, "true", "false" %>
-				&nbsp; Interval counting
-			<% end %>
-		</span>
-	</div>
-
-	<div class="clearfix"></div>
-
-	<div class="col-xs-10 form-group pad20">
+	<div class="col-xs-10 form-group">
 		<label>Student info <small> (optional) </small></label>
-		<%= f.text_area :contact_info, class: "form-control form-input-tweak info-textarea" %>
+		<%= f.text_area :contact_info, class: "form-control form-input-tweak info-textarea",
+					rows: "6" %>
 	</div>
 </div>   <!-- row -->
 
