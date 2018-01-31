@@ -76,28 +76,32 @@
 </script>
 
 <!-- collapsible div part 1: the +/- button to show/collapse content -->
-<div class="row row-tweak pad20">
+<div class="row row-tweak">
   <div class="col-xs-6">
     <a href="#collapseExample" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
-      <button type="button" class="btn btn-default">
-        <span class="fa fa-fw fa-plus"></span>
-        Session details
+      <button type="button" class="btn btn-lg btn-info">
+          <span class="fa fa-fw fa-plus"></span>
+          Session details
       </button></a>
     &nbsp; &nbsp; &nbsp;
   </div>
 </div>
+
+<style>
+  .session-details-table td, th { text-align:center; vertical-align:middle; }
+</style>
 
 <!-- collapsible div, part 2: the table of all events during the session -->
 <div class="collapse" id="collapseExample">
 
 <!-- Show end session events log -->
 <div class="row pad20">
-  <div class="col-xs-10 col-xs-offset-1">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
     <% if @events.empty? %>
       <h4>There were no events during the session.</h4>
     <% else %>
-      <h4>Session events table</h4>
-      <table class="table table-striped table-responsive">
+      <h3>Session events</h3>
+      <table class="table table-striped table-responsive session-details-table">
         <thead>
           <tr>
             <th>Num</th>
@@ -141,12 +145,12 @@
 
 <!-- Show notes take during the session, too -->
 <div class="row pad20">
-  <div class="col-xs-10 col-xs-offset-1">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
     <% if @notes.empty? %>
       <h4>There were no notes during the session.</h4>
     <% else %>
-      <h4>Session notes table</h4>
-      <table class="table table-striped table-responsive">
+      <h3>Session notes</h3>
+      <table class="table table-striped table-responsive session-details-table">
         <thead>
           <tr>
             <th>Num</th>
@@ -177,12 +181,14 @@
 </div>   <!-- row -->
 </div>   <!-- collapsible -->
 
-<!-- text + button to return home -->
-<div class="row row-tweak pad40">
-  <div class="col-xs-8">
-    <h4>Once done, return home...
-      <big><%= link_to 'Home page', home_path %></big>
-    </h4>
-   </div>
-</div>
 
+<!-- BACK TO ADMIN button -->
+<div class="row form-row2 pad40">
+	<div class="col-xs-10">
+		<p>
+			<%= link_to home_path, class: 'btn btn-lg btn-default navpanel-darkgray-button' do %>
+		  	<span class="fa fa-fw fa-chevron-left"></span> Back to Home
+		  <% end %>
+		</p>
+	</div>
+</div>   <!-- row -->

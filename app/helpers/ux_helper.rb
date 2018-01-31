@@ -87,6 +87,18 @@ module UxHelper
     end
   end
 
+  # return ux string for the behavior square
+  def ux_square_tracking_type( square)
+    case square.tracking_type
+    when Square::COUNTER
+      "Counter"
+    when Square::TIMER
+      "Timer"
+    else
+      ""
+    end
+  end
+
   # These are WEIRD methods used to control row code in views
   # I decided to do this when I couldn't find % (modulo) in Rails view
 

@@ -94,7 +94,6 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     assert_select 'form input[type=text][readonly=readonly]#usernameField'
     assert_select 'form input[type=text][readonly=readonly]#nameField'
     assert_select 'form button[type=submit]', { :count => 1, :text => 'Change Properties' }
-    assert_select 'a[href="password"]'
   end
 
   # 5) check details of Password page

@@ -2,12 +2,12 @@
 <% roster_squares.each_with_index do | each_roster_square, index |%>
 
 	<% if ux_first_row(index) %>
-		<div class="row col-xs-offset-2">
+		<div class="row col-xs-offset-1">
 	<% end %>
 
 	<% if ux_next_row(index, 4) %>
 		</div>   <!-- ux_next_row end div -->
-		<div class="row col-xs-offset-2 pad20">
+		<div class="row col-xs-offset-1 pad20">
 	<% end %>
 
 	<% real_square = get_real_square( each_roster_square) %>
