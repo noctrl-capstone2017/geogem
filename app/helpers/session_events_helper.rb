@@ -7,7 +7,7 @@ module SessionEventsHelper
   # for ux/view, return event end time (only applicable for duration events)
   def ux_event_end_time( event)
     sq = Square.find( event.behavior_square_id)
-    if sq.tracking_type == 1
+    if sq.tracking_type == Square::TIMER
       event.duration_end_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P")
     else
       ""
@@ -23,13 +23,10 @@ module SessionEventsHelper
   # for ux/view, return behavior square type
   def ux_event_behavior_square_type( event)
     sq = Square.find( event.behavior_square_id)
-    case sq.tracking_type
-    when 1 
-      "Dur"
-    when 2
-      "Frq"
-    when 3
-      "Int"
+    if sq.tracking_type == Square::COUNTER
+      "Counter"
+    elsif sq.tracking_type == Square::TIMER
+      "Timer"
     else
       "???"
     end
@@ -38,7 +35,7 @@ module SessionEventsHelper
   # for ux/view, return notes for an event
   def ux_event_notes( event)
     sq = Square.find( event.behavior_square_id)
-    if sq.tracking_type == 1
+    if sq.tracking_type == Square::TIMER
       duration = event.duration_in_secs
       if duration >= 60
         "Event duration was " << Time.at(duration).utc.strftime("%-M mins, %-S secs")
