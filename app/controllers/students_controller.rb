@@ -238,8 +238,8 @@ class StudentsController < ApplicationController
     end
 
     def setup_session_params
-      params.require(:student).permit( :session_interval, :interval_counting, 
-            :session_notes)
+      params.require(:student).permit( :session_interval, 
+            :session_interval_counting, :session_instructions)
     end
 
     def emerald_params

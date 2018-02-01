@@ -21,13 +21,6 @@
         $(this).toggleClass("sq-active")
         $(this).toggleClass( "blinky-div")
     });
-    // handle collapsing session details section
-    $('.collapse').on('shown.bs.collapse', function(){
-      $(this).parent().find(".fa-plus").toggleClass("fa-plus fa-minus");
-    });
-    $('.collapse').on('hidden.bs.collapse', function(){
-      $(this).parent().find(".fa-minus").toggleClass("fa-plus fa-minus");
-    });
 	});
 </script>
 
@@ -74,7 +67,6 @@
   <% end %>
 </div>   <!-- sidebar -->
 
-
 <style>
 
 /* Make duration square blink while active (ha!) */
@@ -110,7 +102,7 @@
 </style>
 
 <!-- Main Content  - the behavior squares for this session -->
-<div class="container-fluid pad40">
+<div class="container-fluid pad20">
   <div class="row">
 
   <% @squares.each_with_index do |square, index| %>
@@ -153,54 +145,95 @@
 </div>   <!-- container-fluid -->
 
 
-<!-- Session Info collapsible div, appears after all squares -->
-<div class="row form-row2 pad40">
-  <div class="col-xs-12 col-xs-offset-0">
-    <a href="#collapseExample" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
-      <button type="button" class="btn btn-lg btn-default">
-        <span class="fa fa-fw fa-plus"></span>
-        Session info
-      </button></a>
-  </div>
-</div>
+<!-- Accordion section at the bottom -->
+<!-- Source: https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=accordion-with-plus-minus-icon -->
+<script>
+    $(document).ready(function(){
+        // Add minus icon for collapse element which is open by default
+        $(".collapse.in").each(function(){
+        	$(this).siblings(".panel-heading").find(".glyphicon").addClass("glyphicon-minus").removeClass("glyphicon-plus");
+        });
 
-<!-- Collapse source is Bootstrap: http://getbootstrap.com/javascript/ -->
-<div class="collapse" id="collapseExample">
+        // Toggle plus minus icon on show hide of collapse element
+        $(".collapse").on('show.bs.collapse', function(){
+        	$(this).parent().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+        }).on('hide.bs.collapse', function(){
+        	$(this).parent().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+        });
+    });
+</script>
+
+<div class="row form-row2 pad20">
+	<div class="col-xs-12">
+
+<!-- This whole panel group is a collapsible accordion -->
+<div class="panel-group" id="accordion">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+					<span class="glyphicon glyphicon-plus"></span> &nbsp; Session details</a>
+			</h4>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse ">
+			<div class="panel-body">
+
+        <div class="col-xs-10 col-md-6 form-group">
+          <label for="studentField">Student</label>
+          <input type="text" class="form-control form-input-tweak" id="studentField" 
+                readonly="readonly" value="<%= @student.full_name %>">
+        </div>
+
+        <div class="col-xs-10 col-md-6 form-group">
+          <label for="teacherField">Teacher</label>
+          <input type="text" class="form-control form-input-tweak" id="teacherField" 
+                readonly="readonly" value="<%= @teacher.full_name %>">
+        </div>
   
-  <%= render partial: 'session_page_header',
-        :locals => { :title => "Behavior session",
-        :subtitle => "record behaviors with student, #{ @student.full_name }"} %>
+        <div class="clearfix"></div>
 
-  <%= form_for(@session) do |f| %>
-    <div class="row form-row2">
-      <div class="col-xs-10 col-md-6 col-lg-4 form-group">
-        <label for="studentField">Student</label>
-        <input type="text" class="form-control form-input-tweak" id="studentField" 
-              readonly="readonly" value="<%= @student.full_name %>">
-      </div>
+        <div class="col-xs-10 col-md-6 form-group">
+          <label for="teacherField">Session interval (minutes)</label>
+          <input type="text" class="form-control form-input-tweak" id="intervalField" 
+                readonly="readonly" value="<%= @session.session_interval %>">
+        </div>
 
-      <div class="col-xs-10 col-md-6 col-lg-4 form-group">
-        <label for="teacherField">Teacher</label>
-        <input type="text" class="form-control form-input-tweak" id="teacherField" 
-              readonly="readonly" value="<%= @teacher.full_name %>">
-      </div>
+				<div class="col-xs-10 col-md-6 form-group">
+					<label>Behavior squares</label>
+					<input type="text" class="form-control form-input-tweak"
+								readonly="readonly" value="<%= ux_interval_counting_description(@student) %>" >
+				</div>
 
-      <div class="clearfix"></div>
+			</div>
+		</div>   <!-- collapseOne -->
+  </div>   <!-- panel -->
 
-      <div class="col-xs-10 col-md-6 col-lg-4 form-group">
-        <label for="startField">Start time</label>
-        <input type="text" class="form-control form-input-tweak" id="startField" 
-              readonly="readonly" value="<%= ux_session_start_time( @session, true) %>">
-      </div>
-    </div>   <!-- form-row -->
-  <% end %>   <!-- sessions form -->
-</div>   <!-- collapse div -->
+  <div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+				  	  <span class="glyphicon glyphicon-plus"></span> &nbsp; Session instructions</a>
+			</h4>
+		</div>
+		<div id="collapseTwo" class="panel-collapse collapse in">
+			<div class="panel-body">
 
+        <div class="col-xs-10 form-group">
+          <label>Session instructions... specifically for student <%= @student.full_name %></label>
+          <textarea class="form-control form-input-tweak info-textarea" rows="6" 
+                readonly="readonly"><%= @session.session_instructions %></textarea>
+        </div>
+			</div>
+		</div>   <!-- collapseTwo -->
+	</div>   <!-- panel -->
+
+</div>   <!-- panel-group --> 
+
+  </div>
+</div>   <!-- row -->
 
 <!-- not displayed, only used in timer js -->
 <textarea class="eventLog" id = "eventLog" style="display:none;" disabled></textarea>
-
-
 
 <div style="padding-bottom: 200px"></div>
 

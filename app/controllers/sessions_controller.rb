@@ -19,6 +19,12 @@ class SessionsController < ApplicationController
   def create
     @session = Session.new(session_params)
 
+    # copy the student's settings over to the session
+    @student = Student.find(@session.session_student)
+    @session.session_interval = @student.session_interval
+    @session.session_instructions = @student.session_instructions
+    @session.session_interval_counting = @student.session_interval_counting
+
     respond_to do |format|
       if @session.save
         format.html { redirect_to @session }
@@ -61,6 +67,11 @@ class SessionsController < ApplicationController
       @teacher = Teacher.find(@session.session_teacher)
       @school = School.find( @student.school_id)
       @squares = get_student_squares( @student)
+
+      # copy the student's settings over to the session
+      @session.session_interval = @student.session_interval
+      @session.session_instructions = @student.session_instructions
+      @session.session_interval_counting = @student.session_interval_counting
     end
   end
 

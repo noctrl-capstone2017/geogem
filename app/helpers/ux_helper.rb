@@ -99,6 +99,15 @@ module UxHelper
     end
   end
 
+  # return a semi-helpful description of the interval counting flag (dop)
+  def ux_interval_counting_description( student)
+    if student.session_interval_counting == true
+      "Special - squares are counted once per interval."
+    else
+      "Default - squares are counted each time they are pressed."
+    end
+  end
+
   # These are WEIRD methods used to control row code in views
   # I decided to do this when I couldn't find % (modulo) in Rails view
 

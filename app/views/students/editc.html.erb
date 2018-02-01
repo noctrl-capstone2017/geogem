@@ -26,8 +26,8 @@
 					data-toggle="popover" data-trigger="click" data-placement="bottom"
 					data-content="By default, GeoGem records each time a behavior square is pressed.<br>However, if interval counting is set true, behavior squares are only counted once per interval during a session."></span>
 		<span class="checkbox" style="padding-left: 40px;">
-			<%= f.label :interval_counting do %>
-				<%= f.check_box :interval_counting, { :class=> 'form-check' }, "true", "false" %>
+			<%= f.label :session_interval_counting do %>
+				<%= f.check_box :session_interval_counting, { :class=> 'form-check' }, "true", "false" %>
 				&nbsp; Interval counting
 			<% end %>
 		</span>
@@ -41,7 +41,7 @@
 		<span class="fa fa-fw fa-lg fa-question-circle color-scheme-blue"
 					data-toggle="popover" data-trigger="click" data-placement="bottom"
 					data-content="These instructions are shown during the student's behavior session."></span>
-		<%= f.text_area :session_notes, class: "form-control form-input-tweak info-textarea",
+		<%= f.text_area :session_instructions, class: "form-control form-input-tweak info-textarea",
 					rows: "6" %>
 	</div>
 

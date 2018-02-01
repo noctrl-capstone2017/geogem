@@ -17,13 +17,13 @@
 <%= form_for(@session) do |f| %>
   <div class="row form-row2">
 
-    <div class="col-xs-10 col-md-6 col-lg-4 form-group">
+    <div class="col-xs-10 col-md-6 form-group">
       <label for="studentField">Student</label>
       <input type="text" class="form-control form-input-tweak" id="studentField" 
             readonly="readonly" value="<%= @student.full_name %>">
     </div>
 
-    <div class="col-xs-10 col-md-6 col-lg-4 form-group">
+    <div class="col-xs-10 col-md-6 form-group">
       <label for="teacherField">Teacher</label>
       <input type="text" class="form-control form-input-tweak" id="teacherField" 
             readonly="readonly" value="<%= @teacher.full_name %>">
@@ -31,13 +31,13 @@
 
     <div class="clearfix"></div>
 
-    <div class="col-xs-10 col-md-6 col-lg-4 form-group">
+    <div class="col-xs-10 col-md-6 form-group">
       <label for="startField">Start time</label>
       <input type="text" class="form-control form-input-tweak" id="startField" 
             readonly="readonly" value="<%= ux_session_start_time( @session, true) %>">
     </div>
 
-    <div class="col-xs-10 col-md-6 col-lg-4 form-group">
+    <div class="col-xs-10 col-md-6 form-group">
       <label for="endField">End time</label>
       <input type="text" class="form-control form-input-tweak" id="endField" 
             readonly="readonly" value="<%= ux_session_end_time( @session, true) %>">
@@ -45,13 +45,13 @@
 
     <div class="clearfix"></div>
 
-    <div class="col-xs-10 col-md-6 col-lg-4 form-group">
+    <div class="col-xs-10 col-md-6 form-group">
       <label for="durationField">Duration</label>
       <input type="text" class="form-control form-input-tweak" id="durationField" 
             readonly="readonly" value="<%= ux_session_duration( @session) %>">
     </div>
 
-    <div class="col-xs-10 col-md-6 col-lg-4 form-group">
+    <div class="col-xs-10 col-md-6 form-group">
       <label for="numeventsField">Number of events</label>
       <input type="text" class="form-control form-input-tweak" id="numeventsField" 
             readonly="readonly" value="<%= @events.count %>">
@@ -60,125 +60,145 @@
 
 <% end %>   <!-- sessions form -->
 
-
-<!-- javascript to support the collapsible evens table -->
-<!-- source for Bootstrap collapse is: http://getbootstrap.com/javascript/ -->
-<script>
-	$(document).ready(function() {
-    // handle collapsing event details section
-    $('.collapse').on('shown.bs.collapse', function(){
-      $(this).parent().find(".fa-plus").toggleClass("fa-plus fa-minus");
-    });
-    $('.collapse').on('hidden.bs.collapse', function(){
-      $(this).parent().find(".fa-minus").toggleClass("fa-plus fa-minus");
-    });
-	});
-</script>
-
-<!-- collapsible div part 1: the +/- button to show/collapse content -->
-<div class="row row-tweak">
-  <div class="col-xs-6">
-    <a href="#collapseExample" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
-      <button type="button" class="btn btn-lg btn-info">
-          <span class="fa fa-fw fa-plus"></span>
-          Session details
-      </button></a>
-    &nbsp; &nbsp; &nbsp;
-  </div>
-</div>
-
 <style>
   .session-details-table td, th { text-align:center; vertical-align:middle; }
 </style>
 
+<!-- Accordion section holds the events and notes table for the session -->
+<!-- Source: https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=accordion-with-plus-minus-icon -->
+<script>
+    $(document).ready(function(){
+        // Add minus icon for collapse element which is open by default
+        $(".collapse.in").each(function(){
+        	$(this).siblings(".panel-heading").find(".glyphicon").addClass("glyphicon-minus").removeClass("glyphicon-plus");
+        });
+
+        // Toggle plus minus icon on show hide of collapse element
+        $(".collapse").on('show.bs.collapse', function(){
+        	$(this).parent().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+        }).on('hide.bs.collapse', function(){
+        	$(this).parent().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+        });
+    });
+</script>
+
+<div class="row form-row2 pad20">
+	<div class="col-xs-12">
+
+<!-- This whole panel group is a collapsible accordion -->
+<div class="panel-group" id="accordion">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+					<span class="glyphicon glyphicon-plus"></span> &nbsp; Session events</a>
+			</h4>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse ">
+			<div class="panel-body">
+
+        <!-- Show end session events log -->
+        <div class="col-xs-12">
+          <% if @events.empty? %>
+            <h4>There were no events during the session.</h4>
+          <% else %>
+            <h4>Session events table</h4>
+            <table class="table table-striped table-responsive session-details-table">
+              <thead>
+                <tr>
+                  <th>Num</th>
+                  <th>Time</th>
+                  <th>Square</th>
+                  <th>Type</th>
+                  <th>End time</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- one row per event in this table -->
+                <% @events.each_with_index do |each_event, index| %>
+                <tr>
+                  <td>
+                    <p><%= index+1 %></p>
+                  </td>
+                  <td>
+                    <p><%= ux_event_start_time( each_event) %></p>
+                  </td>
+                  <td>
+                    <p><%= ux_event_behavior_square( each_event) %></p>
+                  </td>
+                  <td>
+                    <p><%= ux_event_behavior_square_type( each_event) %></p>
+                  </td>
+                  <td>
+                    <p><%= ux_event_end_time( each_event) %></p>
+                  </td>
+                  <td>
+                    <p><%= ux_event_notes(each_event) %></p>
+                  </td>
+                </tr>
+                <% end %>
+        
+              </tbody>
+            </table>
+          <% end %>
+        </div>   <!-- col -->
+
+        <div class="clearfix"></div>
+        <br>
+
+        <!-- Show notes take during the session, too -->
+        <div class="col-xs-12">
+          <% if @notes.empty? %>
+            <h4>There were no notes during the session.</h4>
+          <% else %>
+            <h4>Session notes table</h4>
+            <table class="table table-striped table-responsive session-details-table">
+              <thead>
+                <tr>
+                  <th>Num</th>
+                  <th>Time</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- one row per event in this table -->
+                <% @notes.each_with_index do |each_note, index2| %>
+                <tr>
+                  <td>
+                    <p><%= index2+1 %></p>
+                  </td>
+                  <td>
+                    <p><%= ux_session_note_time( each_note) %></p>
+                  </td>
+                  <td>
+                    <p><%= each_note.note %></p>
+                  </td>
+                </tr>
+                <% end %>
+        
+              </tbody>
+            </table>
+          <% end %>
+        </div>   <!-- col -->
+
+			</div>
+		</div>   <!-- collapseOne -->
+  </div>   <!-- panel -->
+
+</div>   <!-- panel-group --> 
+
+  </div>
+</div>   <!-- row -->
+
+
+
+
+
 <!-- collapsible div, part 2: the table of all events during the session -->
 <div class="collapse" id="collapseExample">
 
-<!-- Show end session events log -->
-<div class="row pad20">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <% if @events.empty? %>
-      <h4>There were no events during the session.</h4>
-    <% else %>
-      <h3>Session events</h3>
-      <table class="table table-striped table-responsive session-details-table">
-        <thead>
-          <tr>
-            <th>Num</th>
-            <th>Time</th>
-            <th>Square</th>
-            <th>Type</th>
-            <th>End time</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- one row per event in this table -->
-          <% @events.each_with_index do |each_event, index| %>
-          <tr>
-            <td>
-              <p><%= index+1 %></p>
-            </td>
-            <td>
-              <p><%= ux_event_start_time( each_event) %></p>
-            </td>
-            <td>
-              <p><%= ux_event_behavior_square( each_event) %></p>
-            </td>
-            <td>
-              <p><%= ux_event_behavior_square_type( each_event) %></p>
-            </td>
-            <td>
-              <p><%= ux_event_end_time( each_event) %></p>
-            </td>
-            <td>
-              <p><%= ux_event_notes(each_event) %></p>
-            </td>
-          </tr>
-          <% end %>
-  
-        </tbody>
-      </table>
-    <% end %>
-  </div>   <!-- col -->
-</div>   <!-- row -->
 
-<!-- Show notes take during the session, too -->
-<div class="row pad20">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <% if @notes.empty? %>
-      <h4>There were no notes during the session.</h4>
-    <% else %>
-      <h3>Session notes</h3>
-      <table class="table table-striped table-responsive session-details-table">
-        <thead>
-          <tr>
-            <th>Num</th>
-            <th>Time</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- one row per event in this table -->
-          <% @notes.each_with_index do |each_note, index2| %>
-          <tr>
-            <td>
-              <p><%= index2+1 %></p>
-            </td>
-            <td>
-              <p><%= ux_session_note_time( each_note) %></p>
-            </td>
-            <td>
-              <p><%= each_note.note %></p>
-            </td>
-          </tr>
-          <% end %>
-  
-        </tbody>
-      </table>
-    <% end %>
-  </div>   <!-- col -->
-</div>   <!-- row -->
 </div>   <!-- collapsible -->
 
 
