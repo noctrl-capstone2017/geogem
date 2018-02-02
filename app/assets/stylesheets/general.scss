@@ -601,6 +601,19 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);
 	8. ANALYSIS
 	Analysis pages code
 *********************************************************/
+$analysis-emerald: #50C878;					// color for Analysis/Emerald export
+$analysis-ruby: #E0115F;			// color for Analysis/Ruby report
+
+.navpanel-emerald { color: $analysis-emerald; }
+.navpanel-emerald-button { color: $analysis-emerald; 
+	&:hover { box-shadow: 0 0 8px $analysis-emerald; }
+}
+
+.navpanel-ruby { color: $analysis-ruby; }
+.navpanel-ruby-button { color: $analysis-ruby; 
+	&:hover { box-shadow: 0 0 8px $analysis-ruby; }
+}
+
 .color-emerald { color: #50C878 !important; }
 .bg-emerald { background-color: #50C878; }
 .border-emerald { border: 2px solid transparent; }

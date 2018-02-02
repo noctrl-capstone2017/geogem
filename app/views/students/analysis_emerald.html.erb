@@ -8,19 +8,8 @@
 
 <%= form_tag 'emerald_export', :method => 'get' do %>
 
-<!-- student name -->
-<div class="row form-row2 pad20">
-	<div class="col-xs-10 col-md-6 form-group">
-		<label for="studentField">Student</label>
-		<%= text_field_tag "studentName", @student.full_name, :readonly => true, 
-					class: 'form-control form-input-tweak' %>
-	</div>
-</div>   <!-- row -->
-
-<div class="form-spacer"></div>
-
 <!-- sessions spinner -->
-<div class="row form-row2">
+<div class="row form-row2 pad20">
 	<div class="col-xs-10 col-md-6 form-group">
 
 		<label>Session</label>
@@ -43,26 +32,17 @@
 
 <!-- export submit button-->
 <div class="row form-row2 pad20">
-	<div class="col-xs-10 col-md-6 text-center">
+	<div class="col-xs-10">
 		<%= button_tag( type: 'submit', id: 'exportButton', 
 					class: "btn btn-lg btn-success") do %>Export session<% end %>
+		&nbsp; &nbsp; &nbsp;
+		<%= link_to "Cancel", analysis_url, 
+					:class => "btn btn-lg btn-danger", :title => "Back to Analysis page" %>
 	</div>
 </div>   <!-- row -->
 
 <% end %>
 
-<br>
-<hr class="form-spacer-line">
-
-<!-- text + link to return to Analysis page -->
-<div class="row form-row2">
-	<div class="col-xs-10">
-		<h4>
-			Return to analysis page for <%= @student.full_name %>...
-			<big><%= link_to "Analysis Page", analysis_url %></big>
-		</h4>
-	</div>
-</div>   <!-- row -->
 
 <script>
 var flashdiv = document.getElementById('flash');

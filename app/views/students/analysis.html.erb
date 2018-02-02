@@ -5,39 +5,54 @@
 			:locals => { 	:title => "Analysis", 
 										:subtitle => "reports, graphs and export of session data for #{ @student.full_name }"} %>
 
-<div class="row pad20">
+<div class="row form-row2 navpanel-row pad20">
 
-  <!-- Emerald Export -->
-  <div class="col-xs-10 col-xs-offset-1 analysis-row">
-		<h2>
-		  <%= link_to analysis_emerald_path(@student.id) do %>
-		    <i class="fa fa-fw fa-diamond color-emerald border-emerald" title="Goto Emerald Export"></i><% end %>
-			<span class="color-emerald">Emerald Export</span> <br>
-			<small class="analysis-row-padding">
-				Save session data to a file in CSV format <br>
-				<%= link_to "Goto Emerald Export", 'analysis_emerald', :class => "analysis-row-padding" %>
-				<br>
-				&nbsp;
-			</small>
-		</h2>
+  <!-- EMERALD EXPORT nav panel -->
+	<div class="col-xs-12 col-sm-6">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-file-excel-o navpanel-emerald"></span> Emerald Export</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Save/download session data in CSV format.<br>
+		    Comma-Separated Values (CSV) is a text format that is used by many spreadsheet programs like Excel.
+		    </p>
+		    <p>
+		    	<%= link_to analysis_emerald_path(@student.id), :class => "btn btn-lg btn-default navpanel-emerald-button" do %>
+						Emerald export <i class="fa fa-fw fa-chevron-right"></i>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
 	</div>
 
-  <div class="clearfix"></div>
-	<div class="col-xs-10 col-xs-offset-1"><hr></div>
-
-  <!-- Ruby Report -->
-  <div class="col-xs-10 col-xs-offset-1 analysis-row">
-		<h2>
-		  <%= link_to analysis_ruby_path(@student.id) do %>
-		    <i class="fa fa-fw fa-diamond color-ruby border-ruby" title="Goto Ruby Report"></i><% end %>
-			<span class="color-ruby">Ruby Report</span> <br>
-			<small class="analysis-row-padding">
-				Show session stats for one behavior square over time <br>
-				<%= link_to "Goto Ruby Report", 'analysis_ruby', :class => "analysis-row-padding" %>
-				<br>
-				&nbsp;
-			</small>
-		</h2>
+  <!-- RUBY REPORT nav panel -->
+	<div class="col-xs-12 col-sm-6">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-diamond navpanel-ruby"></span> Ruby Report</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Report the statistics of one behavioral square. <br>
+		    The stats are collected over multiple sessions for this student over time.</p>
+		    <p>
+		    	<%= link_to analysis_ruby_path(@student.id), class: 'btn btn-lg btn-default navpanel-ruby-button' do %>
+		    		Ruby report <span class="fa fa-fw fa-chevron-right"></span>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
 	</div>
-
 </div>   <!-- row -->
+
+<!-- BACK TO HOME button -->
+<div class="row form-row2 pad40">
+	<div class="col-xs-10">
+		<p>
+			<%= link_to student_path(@student.id), class: 'btn btn-lg btn-default navpanel-darkgray-button' do %>
+		  	<span class="fa fa-fw fa-chevron-left"></span> Back to Student page
+		  <% end %>
+		</p>
+	</div>
+</div>   <!-- row -->
+

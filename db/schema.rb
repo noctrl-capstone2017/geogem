@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20180201175928) do
     t.integer  "school_id"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.boolean  "session_interval_counting",   default: false
+    t.boolean  "session_interval_counting", default: false
     t.text     "session_instructions"
   end
 
