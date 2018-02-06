@@ -53,27 +53,6 @@
 		</div>   <!-- panel -->
 	</div>
 
-	<!-- SUSPEND school navpanel -->
-	<div class="col-xs-12 col-sm-6 navpanel-col">
-		<div class="panel panel-default navpanel">
-		  <div class="panel-heading">
-		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-bomb navpanel-darkgray"></span> Suspend</h3>
-		  </div>
-		  <div class="panel-body navpanel-body">
-		    <p>Use super powers to suspend the focus school, which disables login of all teachers.</p>
-		    <p>
-		    	<%= link_to suspend_school_path, class: 'btn btn-lg btn-default navpanel-darkgray-button' do %>
-		    		Suspend school <span class="fa fa-fw fa-chevron-right"></span>
-		    	<% end %>
-		    </p>
-		  </div>
-		</div>   <!-- panel -->
-	</div>
-
-</div>   <!-- row -->
-
-<div class="row form-row2 navpanel-row">
-
 	<!-- BACKUP school data to a text file -->
 	<div class="col-xs-12 col-sm-6 navpanel-col">
 		<div class="panel panel-default navpanel">
@@ -91,6 +70,27 @@
 		</div>   <!-- panel -->
 	</div>
 
+</div>   <!-- row -->
+
+<div class="row form-row2 navpanel-row">
+
+	<!-- SUSPEND school navpanel -->
+	<div class="col-xs-12 col-sm-6 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-bomb navpanel-darkgray"></span> Suspend</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Use super powers to suspend the focus school, which disables login of all teachers.</p>
+		    <p>
+		    	<%= link_to suspend_school_path, class: 'btn btn-lg btn-default navpanel-darkgray-button' do %>
+		    		Suspend school <span class="fa fa-fw fa-chevron-right"></span>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
+
 	<!-- RESTORE school data from a text file -->
 	<div class="col-xs-12 col-sm-6 navpanel-col">
 		<div class="panel panel-default navpanel">
@@ -98,7 +98,7 @@
 		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-undo navpanel-yelloworange"></span> Restore</h3>
 		  </div>
 		  <div class="panel-body navpanel-body">
-		    <p>Restore school data from a text file.</p>
+		    <p>Restore all logins at the focus school.</p>
 		    <p>
 		    	<%= link_to restore_school_path, class: 'btn btn-lg btn-default navpanel-yelloworange-button' do %>
 		    		Restore school <span class="fa fa-fw fa-chevron-right"></span>

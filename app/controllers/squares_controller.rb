@@ -63,7 +63,7 @@ class SquaresController < ApplicationController
        flash[:success] = "Square was successfully updated."
        redirect_to edit_square_path(@square)
      else
-       render 'edit'
+      render 'edita'
     end
   end
 
@@ -98,6 +98,16 @@ class SquaresController < ApplicationController
 
     # update is more limiting on params that can be changed
     def square_params_update
+      # BILL. Yuck. This is a fucking hack.
+      # But I can't find a better way to handle a blank description.
+      # On error, my cancel button was dying.
+      # Html5 checks for an empty description, but not one with just whitespace.
+      # But Rails kicks it out if it's just whitespace, so I set is to "None" here.
+      # It's probably an error I need to catch using Javascript in the view. Maybe later.
+      sq = params[:square]
+      if sq[:description].blank?
+        sq[:description] = "None"
+      end
       params.require(:square).permit(:color, :description, :school_id)
     end
 end

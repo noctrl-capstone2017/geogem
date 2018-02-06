@@ -50,7 +50,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :squares do
+  resources :squares, except: [:show, :destroy] do
     member do
       get :edita
     end
