@@ -168,14 +168,36 @@
 
 <!-- This whole panel group is a collapsible accordion -->
 <div class="panel-group" id="accordion">
-	<div class="panel panel-default">
+
+  <!-- SESSION INSTRUCTIONS panel -->
+  <div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+				  	  <span class="glyphicon glyphicon-plus"></span> &nbsp; Session instructions</a>
+			</h4>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse in">
+			<div class="panel-body">
+
+        <div class="col-xs-10 form-group">
+          <label>Session instructions... specifically for student <%= @student.full_name %></label>
+          <textarea class="form-control form-input-tweak info-textarea" rows="6" 
+                readonly="readonly"><%= @session.session_instructions %></textarea>
+        </div>
+			</div>
+		</div>   <!-- collapseOne -->
+	</div>   <!-- panel -->
+
+  <!-- SESSION DETAILS panel -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
 					<span class="glyphicon glyphicon-plus"></span> &nbsp; Session details</a>
 			</h4>
 		</div>
-		<div id="collapseOne" class="panel-collapse collapse ">
+		<div id="collapseTwo" class="panel-collapse collapse ">
 			<div class="panel-body">
 
         <div class="col-xs-10 col-md-6 form-group">
@@ -205,27 +227,8 @@
 				</div>
 
 			</div>
-		</div>   <!-- collapseOne -->
-  </div>   <!-- panel -->
-
-  <div class="panel panel-default">
-		<div class="panel-heading">
-			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-				  	  <span class="glyphicon glyphicon-plus"></span> &nbsp; Session instructions</a>
-			</h4>
-		</div>
-		<div id="collapseTwo" class="panel-collapse collapse in">
-			<div class="panel-body">
-
-        <div class="col-xs-10 form-group">
-          <label>Session instructions... specifically for student <%= @student.full_name %></label>
-          <textarea class="form-control form-input-tweak info-textarea" rows="6" 
-                readonly="readonly"><%= @session.session_instructions %></textarea>
-        </div>
-			</div>
 		</div>   <!-- collapseTwo -->
-	</div>   <!-- panel -->
+  </div>   <!-- panel -->
 
 </div>   <!-- panel-group --> 
 
