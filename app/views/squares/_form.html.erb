@@ -10,8 +10,8 @@
   <% end %>
 
   <!-- Name field -->
-  <div class="row form-row2 pad20">
-  	<div class="col-xs-10 col-md-6 form-group">
+  <div class="row form-row2">
+  	<div class="col-xs-10 col-md-8 form-group">
   		<label>Square name</label>
   		<% if local_assigns[:isNew] %>
 	    	<%= f.text_field :screen_name, required: true, 
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 		
-		<div class="col-xs-5 col-xs-offset-1 pad40">
+		<div class="col-xs-5 pad20">
 			<div id="sample-square-color" class="bsquare-icon <%= icon_color(square) %> text-center" >
 	  		<h3 id="sample-square-name"><%= square.screen_name %></h3>
 				<span id="sample-square-icon" class="fa fa-fw fa-lg <%= ux_square_fa_icon(square) %>"></span>
@@ -71,7 +71,7 @@
 	<div class="row form-row2 pad20">
 		<div class="col-xs-10 form-group">
 			<label>Description</label>
-		  <%= f.text_area :description, required: true, class: "form-control info-textarea" %>
+		  <%= f.text_area :description, required: true, class: "form-control form-input-tweak info-textarea" %>
 		</div>
 	</div>   <!-- row -->
 

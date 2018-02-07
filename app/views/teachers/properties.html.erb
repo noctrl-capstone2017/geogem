@@ -12,16 +12,24 @@
 	<!-- name and login username -->
 	<div class="row form-row2 pad20">
 
-		<div class="col-xs-10 col-md-6 col-lg-4 form-group">
+		<!-- teacher name (readonly) -->
+		<div class="col-xs-10 col-md-8 col-lg-6 form-group">
 			<label for="teacherField">Name</label>
 			<input type="text" class="form-control form-input-tweak" id="nameField" 
 						readonly="readonly" value="<%= @teacher.full_name %>">
 		</div>
 
-		<div class="col-xs-10 col-md-6 col-lg-4 form-group">
-			<label for="studentField">Login Username</label>
+		<!-- username for login (readonly) -->
+		<div class="col-xs-10 col-md-8 col-lg-6 form-group">
+			<label for="studentField">Username <small>(for login)</small></label>
 			<input type="text" class="form-control form-input-tweak" id="usernameField" 
 						readonly="readonly" value="<%= @teacher.user_name %>">
+		</div>
+		
+		<!-- email -->
+		<div class="col-xs-10 col-md-8 form-group">
+			<label for="emailField">Email</label>
+			<%= f.email_field :email, required: true, class: 'form-control form-input-tweak' %>
 		</div>
 	</div>
 
@@ -50,7 +58,7 @@
 		</div>   <!-- first col -->
 
 		<!-- sample teacher icon in the 2nd column; it's interactive! -->
-		<div class="col-xs-5 col-xs-offset-1 pad40">
+		<div class="col-xs-5 pad20">
 			<div id="sample-teacher-color" class="teacher-icon <%= icon_color(@teacher) %>" 
 								title="teacher=<%= @teacher.full_name %>" >
 				<span id="sample-teacher-icon" class="fa fa-3x fa-fw <%= fa_icon(@teacher) %> "></span>
@@ -60,13 +68,6 @@
 	</div>   <!-- color+icon row -->
 
 	<div class="row form-row2 pad20">
-		<!-- email -->
-		<div class="col-xs-10 col-md-6 form-group">
-			<label for="emailField">Email</label>
-			<%= f.email_field :email, required: true, class: 'form-control form-input-tweak' %>
-		</div>
-
-		<div class="clearfix"></div>
 
 		<!-- extra teacher info (optional) --> 
 		<div class="col-xs-10 form-group">

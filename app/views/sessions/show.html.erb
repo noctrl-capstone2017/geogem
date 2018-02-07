@@ -118,7 +118,7 @@
 
         <div class="bsession-text">
           <h3>Duration = <span id = "timer"><span id="minutes">00</span>:<span id="seconds">00</span></span>
-          <br><small><i><%= truncate( square.description, :length => 60) %> </i></small></h3>
+          <br><small><i><%= truncate( square.description, :length => 120) %> </i></small></h3>
         </div>
       </div>   <!-- bsession-cell -->
     <% end %>
@@ -134,7 +134,7 @@
 
         <div class="bsession-text">
           <h3>Count = <label class="count">0</label>
-          <br><small><i><%= truncate( square.description, :length => 60) %> </i></small></h3>
+          <br><small><i><%= truncate( square.description, :length => 120) %> </i></small></h3>
         </div>
       </div>   <!-- bsession-cell -->
     <% end %>
@@ -174,15 +174,15 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-				  	  <span class="glyphicon glyphicon-plus"></span> &nbsp; Session instructions</a>
+				  	  <span class="glyphicon glyphicon-plus"></span> &nbsp; Session instructions, specific to <%= @student.full_name %></a>
 			</h4>
 		</div>
 		<div id="collapseOne" class="panel-collapse collapse in">
 			<div class="panel-body">
 
-        <div class="col-xs-10 form-group">
-          <label>Session instructions... specifically for student <%= @student.full_name %></label>
-          <textarea class="form-control form-input-tweak info-textarea" rows="6" 
+        <div class="col-xs-12 form-group">
+          <label> &nbsp; </label>
+          <textarea class="form-control form-input-tweak info-textarea" rows="8" 
                 readonly="readonly"><%= @session.session_instructions %></textarea>
         </div>
 			</div>

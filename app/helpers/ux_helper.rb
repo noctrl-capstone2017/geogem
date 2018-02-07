@@ -95,7 +95,7 @@ module UxHelper
     when Square::TIMER
       "Timer"
     else
-      ""
+      "??? (" << square.tracking_type.to_s << ")"
     end
   end
 
