@@ -10,8 +10,8 @@
 <% end %>
 
 <!-- student name -->
-<div class="row form-row2 pad20">
-	<div class="col-xs-10 col-md-6 form-group">
+<div class="row form-row2">
+	<div class="col-xs-10 col-md-8 form-group">
 		<label for="nameField">Name</label>
 		<% if local_assigns[:isNew] %>
 		  <%= f.text_field :full_name, required: true, class: 'form-control form-input-tweak' %>
@@ -27,7 +27,7 @@
 <div class="row form-row2">
 
 	<!-- color and icon spinners in the 1st column -->
-	<div class="col-xs-6 form-group">
+	<div class="col-xs-5 form-group">
 		<div class="row">
 			<div class="col-xs-12">
 				<label for="colorField">Color</label>
@@ -44,7 +44,7 @@
 	</div>   <!-- first col -->
 
 	<!-- the interactive icon -->
-	<div class="col-xs-5 col-xs-offset-1 pad40">
+	<div class="col-xs-5 pad20">
 		<div id="sample-student-color" class="student-icon <%= icon_color(student) %>" 
 					title="student=<%= student.full_name %>" >
 			<span id="sample-student-icon" class="fa fa-3x fa-fw <%= fa_icon(student) %> "></span>
