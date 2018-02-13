@@ -11,44 +11,50 @@
 
 <div class="row form-row2">
 
-	<!-- teacher name -->
-	<div class="col-xs-10 col-md-8 form-group">
-		<label>Name</label>
-		<%= f.text_field :full_name, :readonly => true, class: 'form-control form-input-tweak' %>
-	</div>
-
 	<!-- login username -->
 	<div class="col-xs-10 col-md-8 form-group">
-		<label>Login Username</label>
+		<label>Username <small>(for login)</small></label>
    	<%= f.text_field :user_name, :readonly => true, class: 'form-control form-input-tweak' %>
 	</div>
-
 </div>   <!-- row -->
 
-<div class="form-spacer"></div>
-
-<div class="row form-row2">
-	<!-- is teacher login suspended? -->
-	<div class="col-xs-10 col-md-8 form-group">
-		<label>Login Status &nbsp; </label>
-		<span class="checkbox" style="padding-left: 40px;">
-			<%= f.label :suspended do %>
-				<%= f.check_box :suspended, { }, "true", "false" %>&nbsp; Suspended
-			<% end %>
-		</span>
-	</div>
-</div>
-
-<!-- OK, Cancel buttons -->
-<div class="row form-row2 pad20"> 
+<div class="row form-row2 pad20">
 	<div class="col-xs-10">
-		<%= button_tag(type: 'submit', class: "btn btn-lg btn-success", name: 'editd') do %>  
-			Change Login Status 
+		<% if teacher_is_suspended?( @teacher) %>
+			<h4>For teacher <%= @teacher.full_name %>, login is currently <span style="color:red;">suspended!</span></h4>
+			<!-- OK, Cancel buttons -->
+			<div class="row form-row2 pad20"> 
+				<div class="col-xs-10">
+					<%= button_tag(type: 'submit', class: "btn btn-lg btn-success", name: 'editd_restore') do %>  
+						Restore login 
+					<% end %>
+				</div>
+			</div>
+		<% else %>
+			<h4>For teacher <%= @teacher.full_name %>, login is currently OK/active.</h4>
+			<!-- OK, Cancel buttons -->
+			<div class="row form-row2 pad20"> 
+				<div class="col-xs-10">
+					<%= button_tag(type: 'submit', class: "btn btn-lg btn-danger", name: 'editd_suspend') do %>  
+						Suspend login 
+					<% end %>
+				</div>
+			</div>
 		<% end %>
-		&nbsp; &nbsp; &nbsp;
-		<%= link_to 'Cancel', edit_teacher_path, 
-					:class => "btn btn-lg btn-danger", :title => "Back to Setup teacher page" %>
 	</div>
 </div>
 
 <% end %>
+
+<div class="form-spacer">	&nbsp;</div>
+
+<!-- BACK TO SETUP TEACHER button -->
+<div class="row form-row2 pad40">
+	<div class="col-xs-10">
+		<p>
+			<%= link_to edit_teacher_path(@teacher), class: 'btn btn-lg btn-default navpanel-darkgray-button' do %>
+		  	<span class="fa fa-fw fa-chevron-left"></span> Back to Setup teacher
+		  <% end %>
+		</p>
+	</div>
+</div>   <!-- row -->

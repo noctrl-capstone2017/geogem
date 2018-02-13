@@ -44,6 +44,15 @@ module TeachersHelper
     end
   end
 
+  # returns true if this teacher's login is suspended
+  def teacher_is_suspended?( teacher)
+    teacher.suspended
+  end
+
+  def teacher_is_super( teacher)
+    teacher == Teacher.first
+  end
+
   # Returns the Super User/Teacher, the first teacher in the table 
   def super_teacher
     Teacher.first
@@ -64,6 +73,7 @@ module TeachersHelper
 
     false     # nope - teacher cannot access this student's data
   end
+
   # Returns a "fancy" home message based on whether it's the teachers 
   # first ever login or first time visiting Home page or neither
   def ux_fancy_home_welcome( teacher, first_home)
@@ -96,7 +106,6 @@ module TeachersHelper
   def ux_teacher_username( teacher, num_chars=20) 
     num_chars > 0 ? teacher.user_name.truncate( num_chars) : teacher.user_name
   end
-  
 
   # return ux string for teacher powers (admin of not)
   def ux_teacher_powers(teacher, just_teacher_text = "")

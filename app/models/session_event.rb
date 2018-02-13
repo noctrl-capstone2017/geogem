@@ -41,7 +41,8 @@ class SessionEvent < ApplicationRecord
         if ! notes.empty?
           notes.each do | each_note |
             note_time = each_note.created_at.in_time_zone('Central Time (US & Canada)').strftime("%H:%M")
-            csv << [num, note_time, "Note", "Note", 0, each_note.note]
+            str = "" + each_note.note.to_s
+            csv << [num, note_time, "Note", "Note", 0, str ]
           end
         end
       end
