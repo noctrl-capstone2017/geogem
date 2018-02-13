@@ -6,17 +6,28 @@
 			:locals => { 	:title => "Suspend school",
 										:subtitle => "suspend all teacher logins at #{ @school.full_name}"} %>
 
+<%= form_for(@school) do |f| %>
+<div class="row form-row2">
+
+	<!-- FOCUS SCHOOL -->
+	<div class="col-xs-10 col-md-8 form-group">
+		<label>Focus school</label>
+   	<%= f.text_field :full_name, :readonly => true, class: 'form-control form-input-tweak' %>
+	</div>
+</div>   <!-- row -->
+<% end %>
+
 <div class="row form-row2 pad20 content-text">
 	<div class="col-xs-10">
-		<p>
-			Super's focus school: 
-			<span style="color: <%= @school.color %>; font-size: 1.2em; font-weight: bold;">
-				<%= @school.full_name %>
-			</span>
+		<p style="font-style: italic; color: gray;">
+			README - How do you suspend a school? <br>
+			You visit each active (un-suspended) teacher at the school and suspend him/her. 
 		</p>
 		<p>
-			Active teacher count at this school:
-			<span style="color: gray; font-size: 1.2em; font-weight: bold;">
+			<br>
+			Active teachers at this school:
+			<span style="color: blue; font-size: 1.2em; font-weight: bold;">
+				&nbsp;
 				<%= pluralize(@teacher_count, "teacher") %>
 			</span>
 		</p>
@@ -35,3 +46,4 @@
 		<% end %>
 	</div>
 </div>
+

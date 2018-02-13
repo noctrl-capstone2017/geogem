@@ -86,8 +86,10 @@ class TeachersController < ApplicationController
       updateb_access
     elsif params[:editc]
       updatec_password
-    elsif params[:editd]
-      updated_login
+    elsif params[:editd_suspend]
+      updated_suspend
+      elsif params[:editd_restore]
+      updated_restore
     else
       redirect_to home_path
     end
@@ -135,16 +137,34 @@ class TeachersController < ApplicationController
     end
   end
 
-  # admin setup teacher D - set the teacher's login status: suspended or not
-  def updated_login
-    if @teacher.update(edit_login_settings_params)
-      flash[ :success] = "Login status change successful"
+  # admin setup teacher D - SUSPEND teacher login
+  def updated_suspend
+    if teacher_is_super(@teacher)
+      flash[ :danger] = "You can't suspend the super user!"
+      render 'editd'
+    else
+      @teacher.suspended = true
+      if @teacher.save
+        msg = "Teacher " << @teacher.full_name << ", login SUSPENDED!"
+        flash[ :success] = msg
+        redirect_to edit_teacher_path(@teacher)
+      else
+        render 'editd'
+      end
+    end
+  end
+
+  # admin setup teacher D - RESTORE teacher login
+  def updated_restore
+    @teacher.suspended = false
+    if @teacher.save
+      msg = "Teacher " << @teacher.full_name << ", login RESTORED"
+      flash[ :success] = msg
       redirect_to edit_teacher_path(@teacher)
     else
       render 'editd'
     end
   end
-
 
   # GET /profile
   # show profile of the current teacher
