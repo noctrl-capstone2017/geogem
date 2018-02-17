@@ -113,10 +113,9 @@
 				<tr>
 					<td ><%= interval %></td>
 					<td ><%= ux_topaz_time_range( @student, interval) %></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<% @squares.each do |each_square| %>
+						<td></td>
+					<% end %>
 				</tr>
 				<% end %>
 
@@ -139,10 +138,9 @@
 				<tr>
 					<td ><%= interval %></td>
 					<td ><%= ux_topaz_time_range( @student, interval) %></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<% @squares.each do |each_square| %>
+						<td></td>
+					<% end %>
 				</tr>
 				<% end %>
 
