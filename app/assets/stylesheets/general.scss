@@ -156,6 +156,7 @@ $geogem-yellow: #FFDC00;
 .geogem-page-header { margin-bottom: 20px; }
 
 // quick spacing tweaks, mostly for row divs
+.pad10 { padding-top: 10px; }
 .pad20 { padding-top: 20px; }
 .pad40 { padding-top: 40px; }
 .row-tweak { margin: 0px 20px; }
@@ -601,8 +602,9 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);
 	8. ANALYSIS
 	Analysis pages code
 *********************************************************/
-$analysis-emerald: #50C878;					// color for Analysis/Emerald export
+$analysis-emerald: #50C878;		// color for Analysis/Emerald export
 $analysis-ruby: #E0115F;			// color for Analysis/Ruby report
+$analysis-topaz: #FFC87C;			// color for Analysis/Topaz form
 
 .navpanel-emerald { color: $analysis-emerald; }
 .navpanel-emerald-button { color: $analysis-emerald; 
@@ -614,6 +616,11 @@ $analysis-ruby: #E0115F;			// color for Analysis/Ruby report
 	&:hover { box-shadow: 0 0 8px $analysis-ruby; }
 }
 
+.navpanel-topaz { color: $analysis-topaz; }
+.navpanel-topaz-button { color: $analysis-topaz; 
+	&:hover { box-shadow: 0 0 8px $analysis-topaz; }
+}
+
 .color-emerald { color: #50C878 !important; }
 .bg-emerald { background-color: #50C878; }
 .border-emerald { border: 2px solid transparent; }
@@ -623,6 +630,11 @@ $analysis-ruby: #E0115F;			// color for Analysis/Ruby report
 .bg-ruby { background-color: #E0115F; }
 .border-ruby { border: 2px solid transparent; }
 .border-ruby:hover { box-shadow: 0 0 16px #E0115F; border: 2px solid #E0115F; }
+
+.color-topaz { color: $analysis-topaz; }
+.bg-topaz { background-color: $analysis-topaz; }
+.border-topaz { border: 2px solid transparent; }
+.border-topaz:hover { box-shadow: 0 0 16px $analysis-topaz; border: 2px solid $analysis-topaz; }
 
 .color-sapphire { color: #0F52BA; }
 .bg-sapphire { background-color: #0F52BA; }
@@ -638,6 +650,28 @@ $analysis-ruby: #E0115F;			// color for Analysis/Ruby report
 .analysis-row:hover { box-shadow: 0 0 16px lightgray; border: 2px solid lightgray; background-color: white; }
 .analysis-row-padding { padding-left: 2.4em; }
 
+/*********************************************************
+	8. PRINTING
+	CSS for printing control over web pages
+*********************************************************/
+
+@media print {
+	.display-on-print-only { display:block; }
+	.hide-on-print { display:none; }
+
+	body {
+		padding: 0px;
+		margin: 0px;
+		-webkit-print-color-adjust: exact;
+	}
+	nav { display: none; }
+}
+
+@media screen {
+	.display-on-print-only { display:none; }
+}
+
+.display-all-media { display: block; }
 
 
 /**********************************************************
@@ -645,13 +679,13 @@ $analysis-ruby: #E0115F;			// color for Analysis/Ruby report
 * Resizes square divs on the sessions, home, and about
 * screens. For media query requests ask Debra J
 **********************************************************/
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 767px) {
 	.sq-about { height: 8.5em; width: 8.5em; }
 }
-@media only screen and (max-width: 573px){
+@media only screen and (max-width: 573px) {
 	.sq-about { height: 7em; width: 7em; border-radius: 15px; }
 }
-@media only screen and (max-width: 375px){
+@media only screen and (max-width: 375px) {
 	.sq-about { height: 6em; width: 6em; border-radius: 10px; }
 }
 
@@ -724,37 +758,3 @@ $analysis-ruby: #E0115F;			// color for Analysis/Ruby report
   // outline:none;
 }
 
-
-/* Note from Carolyn C- moved from teachers.scss */
-
-// .image-radio input[type="radio"] {
-//     display: none;
-// }
-
-// input[type="radio"]:checked + label {
-//     border-color: $geogem-aqua;
-// 	border-style: solid;
-// 	border-width:3px;
-    	
-//     -webkit-box-shadow: 0px 0px 7px $geogem-aqua;
-//     -moz-box-shadow: 0px 0px 7px $geogem-aqua;
-//     box-shadow: 0px 0px 7px $geogem-aqua;
-// }
-
-// #sidebar {
-//   width: inherit;
-//   min-width: 220px;
-//   max-width: 220px;
-//   background-color: whitesmoke;   /* hex is #f5f5f5 */
-//   float: left;
-//   height:100%;
-//   position:relative;
-//   overflow-y:auto;
-//   overflow-x:hidden;
-// }
-
-// #main {
-//   height:100%;
-//   overflow:auto;
-// }
-//

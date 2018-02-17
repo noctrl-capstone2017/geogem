@@ -6,7 +6,7 @@
 			:locals => { 	:title => "Emerald Export", 
 										:subtitle => "export session data in CSV format for #{ @student.full_name }"} %>
 
-<%= form_tag 'emerald_export', :method => 'get' do %>
+<%= form_tag 'analysis_emerald', :method => 'get' do %>
 
 <!-- sessions spinner -->
 <div class="row form-row2 pad20">
@@ -33,7 +33,7 @@
 <!-- export submit button-->
 <div class="row form-row2 pad20">
 	<div class="col-xs-10">
-		<%= button_tag( type: 'submit', id: 'exportButton', 
+		<%= button_tag( type: 'submit', id: 'exportButton', name: "do_emerald", 
 					class: "btn btn-lg btn-success") do %>Export session<% end %>
 		&nbsp; &nbsp; &nbsp;
 		<%= link_to "Cancel", analysis_url, 

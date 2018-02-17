@@ -49,6 +49,7 @@ module TeachersHelper
     teacher.suspended
   end
 
+  # returns true if teacher is the super user
   def teacher_is_super( teacher)
     teacher == Teacher.first
   end
