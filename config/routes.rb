@@ -75,6 +75,9 @@ Rails.application.routes.draw do
   get   'students/:id/analysis',          to: 'students#analysis',          as: :analysis
   get   'students/:id/analysis_emerald',  to: 'students#analysis_emerald',  as: :analysis_emerald
   get   'students/:id/analysis_ruby',     to: 'students#analysis_ruby',     as: :analysis_ruby
-  get   'students/:id/emerald_export',    to: 'students#emerald_export',    as: :emerald_export
+  get   'students/:id/analysis_topaz',    to: 'students#analysis_topaz',    as: :analysis_topaz
+
+  # delete this?
+#  get   'students/:id/emerald_export',    to: 'students#emerald_export',    as: :emerald_export
 
 end

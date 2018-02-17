@@ -159,29 +159,31 @@ class StudentsController < ApplicationController
   # for Reports purposes, Author: Carolyn C
   def analysis
     @student = Student.find(params[:id])
-    if params[:analysis_report]
-      redirect_to analysis2_student_path( @student)
-    elsif params[:analysis_csv]
-      redirect_to analysis3_student_path( @student)
-    elsif params[:analyze_charts]
-      redirect_to analysis4_student_path( @student)
-    end
   end
   
-  # Setup for Emerald Export which writes CSV for session data
+  # Emerald Export which writes CSV for session data
   def analysis_emerald
-    @student = Student.find(params[:id])
-    @sessions = Session.where(session_student: @student.id)
+    if params[:do_emerald]
+      # do the CSV export
+      @student = Student.find( params[:id])
+      @session = Session.find( params[:session_id])
+      notes_flag = params[:include_notes] ? true: false
+
+      events = SessionEvent.where( session_id: params[:session_id])
+      send_data events.to_csv( notes_flag), filename: emerald_filename( @student, @session)
+    else
+      # setup the form for Emerald export
+      @student = Student.find(params[:id])
+      @sessions = Session.where(session_student: @student.id)
+    end
   end
 
-  # Do the Emerald Export; write session data to a CSV file
-  def emerald_export
-    @student = Student.find( params[:id])
-    @session = Session.find( params[:session_id])
-    notes_flag = params[:include_notes] ? true: false
-
-    events = SessionEvent.where( session_id: params[:session_id])
-    send_data events.to_csv( notes_flag), filename: emerald_filename( @student, @session)
+  # Setup for Topaz Form which shows a printable session form
+  def analysis_topaz
+    @student = Student.find(params[:id])
+    @teacher = current_teacher
+    @squares = @student.squares
+    @num_intervals = topaz_num_intervals(@student)
   end
 
   # Ruby Report creates PDF for one behavior square over time
@@ -189,32 +191,43 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
-  # for Reports purposes, Author: Carolyn C
-  def analysis2
-    @student = Student.find(params[:id])
-    @sessions = Session.where(session_student: @student.id)
-    if params[:report]
-        #redirect_to report1_path(params[:id])
-    end
-  end
-  
-  # for Reports purposes, Author: Carolyn C
-  def analysis3
-    @student = Student.find(params[:id])
-    @sessions = Session.where(session_student: @student.id)
-    if params[:report]
-        #redirect_to report1_path(params[:id])
-    end
-  end
+
+  # Do the Emerald Export; write session data to a CSV file
+  # def emerald_export
+  #   @student = Student.find( params[:id])
+  #   @session = Session.find( params[:session_id])
+  #   notes_flag = params[:include_notes] ? true: false
+
+  #   events = SessionEvent.where( session_id: params[:session_id])
+  #   send_data events.to_csv( notes_flag), filename: emerald_filename( @student, @session)
+  # end
 
   # for Reports purposes, Author: Carolyn C
-  def analysis4
-    @student = Student.find(params[:id])
-    @sessions = Session.where(session_student: @student.id)
-    if params[:report]
-        #redirect_to report1_path(params[:id])
-    end
-  end
+  # def analysis2
+  #   @student = Student.find(params[:id])
+  #   @sessions = Session.where(session_student: @student.id)
+  #   if params[:report]
+  #       #redirect_to report1_path(params[:id])
+  #   end
+  # end
+  
+  # for Reports purposes, Author: Carolyn C
+  # def analysis3
+  #   @student = Student.find(params[:id])
+  #   @sessions = Session.where(session_student: @student.id)
+  #   if params[:report]
+  #       #redirect_to report1_path(params[:id])
+  #   end
+  # end
+
+  # for Reports purposes, Author: Carolyn C
+  # def analysis4
+  #   @student = Student.find(params[:id])
+  #   @sessions = Session.where(session_student: @student.id)
+  #   if params[:report]
+  #       #redirect_to report1_path(params[:id])
+  #   end
+  # end
 
   private
 
@@ -257,5 +270,19 @@ class StudentsController < ApplicationController
 
       filename = "gg_" << student_part << "_" << date_part << ".csv"
       filename.downcase
+    end
+
+    def topaz_num_intervals( student)
+      case student.session_interval
+      when 5
+        num = 12
+      when 15
+        num = 16
+      when 30
+        num = 16
+      else
+        num = 8
+      end
+      return num
     end
 end
