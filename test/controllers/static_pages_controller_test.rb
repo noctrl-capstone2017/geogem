@@ -2,6 +2,9 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @teacher = teachers(:one)
+  end
 
   #
   # 1) check pulse of all static pages: existence and title
@@ -23,6 +26,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "title", { :count => 1, :text => "About Student Art ◆ GeoGem" }
 
+    log_in_as(@teacher)     # must login for help page now
     get help_url
     assert_response :success
     assert_select "title", { :count => 1, :text => "Help ◆ GeoGem" }
@@ -56,6 +60,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   # 4) check details of Help page
   #
   test "should get help" do
+    log_in_as(@teacher)     # must login for help page now
     get help_url
     assert_response :success
     assert_select "h2", "Help - frequently asked questions about GeoGem"

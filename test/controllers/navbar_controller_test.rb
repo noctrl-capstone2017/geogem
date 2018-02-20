@@ -17,19 +17,20 @@ class NavbarControllerTest < ActionDispatch::IntegrationTest
     assert_select 'a[href="/admin"]'
     assert_select 'a[href="/profile"]'
     assert_select 'a[href="/logout"]'
+
+    # I changed the help page, it now requires login
+    get help_path
+    assert_select 'a[href="/home"]'
+    assert_select 'a[href="/help"]'
+    assert_select 'a[href="/super"]'
+    assert_select 'a[href="/admin"]'
+    assert_select 'a[href="/profile"]'
+    assert_select 'a[href="/logout"]'
   end
 
   # 2) goto help and about pages when NOT logged in - stripped down navbar
   test 'check navbar when NOT logged in' do
-    get help_path
-    assert_select 'a[href="/home"]', false
-    assert_select 'a[href="/help"]', false
-    assert_select 'a[href="/super"]', false
-    assert_select 'a[href="/admin"]', false
-    assert_select 'a[href="/profile"]', false
-    assert_select 'a[href="/logout"]', false
-    assert_select 'a[href="/login"]'
-    
+
     get about_path
     assert_select 'a[href="/home"]', false
     assert_select 'a[href="/help"]', false

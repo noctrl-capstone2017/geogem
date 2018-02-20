@@ -160,7 +160,7 @@ class StudentsController < ApplicationController
   def analysis
     @student = Student.find(params[:id])
   end
-  
+
   # Emerald Export which writes CSV for session data
   def analysis_emerald
     if params[:do_emerald]
@@ -190,44 +190,6 @@ class StudentsController < ApplicationController
   def analysis_ruby
     @student = Student.find(params[:id])
   end
-
-
-  # Do the Emerald Export; write session data to a CSV file
-  # def emerald_export
-  #   @student = Student.find( params[:id])
-  #   @session = Session.find( params[:session_id])
-  #   notes_flag = params[:include_notes] ? true: false
-
-  #   events = SessionEvent.where( session_id: params[:session_id])
-  #   send_data events.to_csv( notes_flag), filename: emerald_filename( @student, @session)
-  # end
-
-  # for Reports purposes, Author: Carolyn C
-  # def analysis2
-  #   @student = Student.find(params[:id])
-  #   @sessions = Session.where(session_student: @student.id)
-  #   if params[:report]
-  #       #redirect_to report1_path(params[:id])
-  #   end
-  # end
-  
-  # for Reports purposes, Author: Carolyn C
-  # def analysis3
-  #   @student = Student.find(params[:id])
-  #   @sessions = Session.where(session_student: @student.id)
-  #   if params[:report]
-  #       #redirect_to report1_path(params[:id])
-  #   end
-  # end
-
-  # for Reports purposes, Author: Carolyn C
-  # def analysis4
-  #   @student = Student.find(params[:id])
-  #   @sessions = Session.where(session_student: @student.id)
-  #   if params[:report]
-  #       #redirect_to report1_path(params[:id])
-  #   end
-  # end
 
   private
 
@@ -272,6 +234,8 @@ class StudentsController < ApplicationController
       filename.downcase
     end
 
+    # returns the number of intervals in a Topaz Form for a student's 
+    # given interval time: {5, 15, 30, 60} mins
     def topaz_num_intervals( student)
       case student.session_interval
       when 5
