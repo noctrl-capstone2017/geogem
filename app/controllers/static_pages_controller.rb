@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
   before_action :special_navbar_and_layout
 
   # skip login guard; these pages don't require login
-  skip_before_action :require_login
+  skip_before_action :require_login, except: :help
 
   def about
   end
