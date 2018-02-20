@@ -7,7 +7,8 @@ class StudentsController < ApplicationController
   before_action :set_school   #set up the school info for the logged in teacher
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   before_action :is_admin, only: [:index]     #make sure only admins can reach any of this
-  before_action :emerald_params,  only: [:emerald_export]
+  before_action :emerald_params,  only: [:analysis_emerald]
+  before_action :ruby_params, only: [:analysis_ruby]
 
   # GET /students
   # list all students as an Admin
@@ -188,7 +189,20 @@ class StudentsController < ApplicationController
 
   # Ruby Report creates PDF for one behavior square over time
   def analysis_ruby
-    @student = Student.find(params[:id])
+    if params[:do_ruby]
+      # do the CSV export
+      # @student = Student.find( params[:id])
+      # 
+      # notes_flag = params[:include_notes] ? true: false
+      @student = Student.find( params[:id])
+      @sessions = Session.where(session_student: @student.id)
+      @ruby_session = params[:session_id].blank? ? nil: Session.find( params[:session_id])
+      @teacher = @ruby_session.blank? ? nil : Teacher.find( @ruby_session.session_teacher)
+    else
+      # setup the form for Emerald export
+      @student = Student.find(params[:id])
+      @sessions = Session.where(session_student: @student.id)
+    end
   end
 
   private
@@ -219,6 +233,10 @@ class StudentsController < ApplicationController
 
     def emerald_params
       params.permit(:session_id, :include_notes)
+    end
+
+    def ruby_params
+      params.permit(:session_id)
     end
 
     # Emerald export file names are: gg_<student>_<day>.csv
