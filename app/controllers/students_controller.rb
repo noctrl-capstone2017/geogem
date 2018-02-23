@@ -195,6 +195,7 @@ class StudentsController < ApplicationController
       # 
       # notes_flag = params[:include_notes] ? true: false
       @student = Student.find( params[:id])
+      @squares = @student.squares
       @sessions = Session.where(session_student: @student.id)
       @ruby_session = params[:session_id].blank? ? nil: Session.find( params[:session_id])
       @teacher = @ruby_session.blank? ? nil : Teacher.find( @ruby_session.session_teacher)
