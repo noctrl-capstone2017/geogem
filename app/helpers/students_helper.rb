@@ -12,6 +12,11 @@ module StudentsHelper
     end
   end
 
+  # returns the formatter date of a session used in reports: Tue Feb 27, 2018
+  def ux_session_date( session)
+    session ? session.start_time.strftime("%a %b %d, %Y") : ""
+  end
+
   # returns a ux/view string for num behavior sessions for student
   # sessions - a list of sessions, presumably controller prepared
   # student - the student

@@ -7,6 +7,7 @@
 
 <style>
 .ruby-content { font-size: 14px; font-family: Arial; }
+.ruby-content li { padding-bottom: 8px; }
 .ruby-student-param { font-size: 1.4em; font-weight: bold; }
 .ruby-param { text-decoration: underline; }
 
@@ -66,7 +67,7 @@
 
 <div class="row form-row2 hide-on-print">
 	<div class="col-xs-6">
-		<button class="btn btn-lg btn-primary" onclick="window.print();">Print report</button>
+		<button class="btn btn-lg btn-primary" onclick="window.print();">Print this</button>
 	</div>
 </div>
 
@@ -80,7 +81,7 @@
 		<h3>Ruby Report</h3>
 	</div>
 	<div class="col-xs-6 text-right pad20">
-		Session Date: <%= @ruby_session.end_time %>
+		Session Date: <%= ux_session_date(@ruby_session) %>
 	</div>
 
 	<div class="clearfix"></div>
@@ -95,6 +96,26 @@
 	</div>
 </div>   <!-- row -->
 
+<div class="row form-row2 pad20 ruby-content">
+	<div class="col-xs-12">
+		<strong>Squares key &mdash; </strong>
+		<% @squares.each do |each_square| %>
+			<strong><%= each_square.screen_name %></strong> = <%= each_square.description %> &nbsp;
+		<% end %>
+	</div>
+</div>
+
+<div class="row form-row2 pad20 ruby-content">
+	<div class="col-xs-12">
+		<h4>Squares key</h4>
+		<p>The behavior squares assigned to this student are:</p>
+		<ul>
+		<% @squares.each do |each_square| %>
+			<li><strong><%= each_square.screen_name %></strong> = <%= each_square.description %> &nbsp;</li>
+		<% end %>
+		</ul>
+	</div>
+</div>
 
 <% end %>
 
