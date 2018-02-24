@@ -7,7 +7,12 @@
 										:subtitle => "a printable behavior session form for #{ @student.full_name }"} %>
 
 <style>
-.topaz-content { font-size: 14px; font-family: Arial; }
+.show-on-regular-only { font-size: 1.0em; }
+.show-on-skinny-only { font-size: 1.0em; }
+.topaz-div-regular { font-size: 16px; font-family: Arial; }
+.topaz-div-skinny { font-size: 14px; font-family: Arial; }
+.report-page-break { page-break-before: always; }
+
 .topaz-student-param { font-size: 1.4em; font-weight: bold; }
 .topaz-param { text-decoration: underline; }
 
@@ -28,6 +33,7 @@
 	font-size: 14px; font-family: Verdana;
 	border: 2px solid black;
 }
+
 #topaz-skinny-table { margin: 0 auto; border: 1px solid black; width: 96%; }
 #topaz-skinny-table td { 
 	text-align:center; vertical-align:middle; 
@@ -47,110 +53,160 @@
 
 <div class="row form-row2 pad20 hide-on-print">
 
+	<!-- print this and Back to buttons -->
 	<div class="col-xs-12">
-		<h4>Print this Topaz Form to manually record a behavior session with <%= @student.full_name %>.</h4>
-		<h4>When printed, only the text below the <span class="color-topaz">topaz line</span> is shown.</h4>
-	</div>
-
-	<div class="clearfix"></div>
-
-	<div class="col-xs-12 pad40">
 		<button class="btn btn-lg btn-primary" onclick="window.print();">Print this</button>
 		&nbsp; &nbsp; &nbsp;
 		<%= link_to analysis_path(@student.id), class: 'btn btn-lg btn-default navpanel-darkgray-button' do %>
 					<span class="fa fa-fw fa-chevron-left"></span> Back to Analysis page
 		<% end %>
 	</div>
+
+	<div class="clearfix"></div>
+
+	<!-- accordion panel for Topaz options -->
+	<div class="col-xs-12 pad40">
+		<div class="panel-group" id="accordion">
+
+		  <!-- TOPAZ OPTIONS panel -->
+		  <div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+						  	  <span class="glyphicon glyphicon-plus"></span> &nbsp; Topaz options</a>
+					</h4>
+				</div>
+				<div id="collapseOne" class="panel-collapse collapse">
+					<div class="panel-body">
+
+						<!-- options text -->
+						<div class="col-xs-12 form-group">
+							<h4>Print this Topaz Form to manually record a behavior session with <%= @student.full_name %>.</h4>
+							<h4>When printed, only the text below the <span class="color-topaz">topaz line</span> is shown.</h4>
+						</div>
+
+						<!-- Skinny checkbox -->
+		        <div class="col-xs-12 form-group" style="padding-left: 40px;">
+		        	<label class="checkbox">
+		        		<h4>
+			        		<input type="checkbox" id="skinnyCheckbox" class="pull-left" onclick="doSkinny()">
+		        			&nbsp; Skinny form <small> - scrunches form for smaller printing</small>
+		        		</h4>
+		        	</label>
+		        </div>
+		        
+		        <!-- Page break checkbox -->
+		        <div class="col-xs-12 form-group" style="padding-left: 40px;">
+		        	<label class="checkbox">
+		        		<h4>
+			        		<input type="checkbox" id="pagebreakCheckbox" onclick="doPagebreak()">
+		        			&nbsp; Page break <small> - force page break after table when printing</small>
+		        		</h4>
+		        	</label>
+		        </div>
+					</div>
+				</div>   <!-- collapseOne -->
+			</div>   <!-- panel -->
+		</div>   <!-- panel-group -->
+	</div>
+
 </div>   <!-- row -->
 
+<!-- topaz line, printable form is below this line -->
 <div class="hide-on-print">
 	<hr id="topaz-divider-line">
 </div>
 
-
+<!---------------------->
 <!-- BEGIN TOPAZ FORM -->
+<!---------------------->
 
-<div class="row form-row2 topaz-content" id="topaz-title">
-	<div class="col-xs-6">
-		<h3>Topaz Form</h3>
-	</div>
-	<div class="col-xs-6 text-right pad20">
-		Date: _________________________
-	</div>
+<!-- Form title and some intro text -->
+<div id="topaz-title" class="row form-row2 topaz-div-regular">
+		<div class="col-xs-6">
+			<h3>Topaz Form</h3>
+		</div>
+		<div class="col-xs-6 text-right pad20">
+			Date: _________________________
+		</div>
+	
+		<div class="clearfix"></div>
+		<div class="col-xs-12 pad10">
+			Student: <span class="topaz-student-param"> <%= @student.full_name %></span> &nbsp; ~ &nbsp;
+			Teacher: <span class="topaz-param"><%= @teacher.full_name %></span> &nbsp; ~ &nbsp;
+			Interval time: <span class="topaz-param"><%= @student.session_interval %> mins</span>
+		</div>
+	
+		<div class="clearfix"></div>
+		<div class="col-xs-12 pad20">
+			Use this form and use it to manually record a behavior session. 
+			Remember to note the actual start and end times of your session below. 
+			And write additional notes on the back of the form.
+	</div>   <!-- topaz-div-regular -->
+</div>   <!-- row -->
 
-	<div class="clearfix"></div>
-	<div class="col-xs-12 pad10">
-		Student: <span class="topaz-student-param"> <%= @student.full_name %></span> &nbsp; ~ &nbsp;
-		Teacher: <span class="topaz-param"><%= @teacher.full_name %></span> &nbsp; ~ &nbsp;
-		Interval time: <span class="topaz-param"><%= @student.session_interval %> mins</span>
-	</div>
-	<div class="clearfix"></div>
-	<div class="col-xs-12 pad20">
-		Use this form and use it to manually record a behavior session. 
-		Remember to note the actual start and end times of your session below. 
-		And write additional notes on the back of the form.
+<!-- The main part: the behavior squsares table -->
+<div class="row form-row2 topaz-div-regular">
+	<div class="col-xs-12 center-block text-center" style="text-align: center; margin: 0 auto;">
+
+		<!-- regular-only div table -->
+		<div class="show-on-regular-only">
+			<table id="topaz-table" class="table table-bordered" >
+				<thead>
+					<tr>
+						<th style="width:5%;"></th>
+						<th style="width:15%;">Time</th>
+						<% @squares.each do |each_square| %>
+							<th style="width: 10%;"><%= each_square.screen_name %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<% for interval in 1..@num_intervals %>
+					<tr>
+						<td ><%= interval %></td>
+						<td ><%= ux_topaz_time_range( @student, interval) %></td>
+						<% @squares.each do |each_square| %>
+							<td></td>
+						<% end %>
+					</tr>
+					<% end %>
+	
+				</tbody>
+			</table>
+		</div>   <!-- regular-only div -->
+
+		<!-- skinny-only div table -->
+		<div class="show-on-skinny-only" style="display: none;">
+			<table id="topaz-skinny-table" class="table table-bordered" >
+				<thead>
+					<tr>
+						<th style="width:5%;"></th>
+						<th style="width:15%;">Time</th>
+						<% @squares.each do |each_square| %>
+							<th style="width: 10%;"><%= each_square.screen_name %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<% for interval in 1..@num_intervals %>
+					<tr>
+						<td ><%= interval %></td>
+						<td ><%= ux_topaz_time_range( @student, interval) %></td>
+						<% @squares.each do |each_square| %>
+							<td></td>
+						<% end %>
+					</tr>
+					<% end %>
+	
+				</tbody>
+			</table>
+		</div>   <!-- skinny-only div -->
 	</div>
 </div>   <!-- row -->
 
-
-<div class="row form-row2">
-	<div class="col-xs-12 center-block text-center" 
-				style="text-align: center; margin: 0 auto;">
-
-		<% if @num_intervals <= 12 %>
-		<table id="topaz-table" class="table table-bordered" >
-			<thead>
-				<tr>
-					<th style="width:5%;"></th>
-					<th style="width:15%;">Time</th>
-					<% @squares.each do |each_square| %>
-						<th style="width: 10%;"><%= each_square.screen_name %></th>
-					<% end %>
-				</tr>
-			</thead>
-			<tbody>
-				<% for interval in 1..@num_intervals %>
-				<tr>
-					<td ><%= interval %></td>
-					<td ><%= ux_topaz_time_range( @student, interval) %></td>
-					<% @squares.each do |each_square| %>
-						<td></td>
-					<% end %>
-				</tr>
-				<% end %>
-
-			</tbody>
-		</table>
-		
-		<% else %>
-		<table id="topaz-skinny-table" class="table table-bordered" >
-			<thead>
-				<tr>
-					<th style="width:5%;"></th>
-					<th style="width:15%;">Time</th>
-					<% @squares.each do |each_square| %>
-						<th style="width: 10%;"><%= each_square.screen_name %></th>
-					<% end %>
-				</tr>
-			</thead>
-			<tbody>
-				<% for interval in 1..@num_intervals %>
-				<tr>
-					<td ><%= interval %></td>
-					<td ><%= ux_topaz_time_range( @student, interval) %></td>
-					<% @squares.each do |each_square| %>
-						<td></td>
-					<% end %>
-				</tr>
-				<% end %>
-
-			</tbody>
-		</table>
-		<% end %>
-	</div>
-</div>
-
-<div class="row form-row2 pad40 topaz-content" style="padding: 10px 0px;">
+<!-- start and end time underlines -->
+<div class="row form-row2 pad40 topaz-div-regular" style="padding: 10px 0px;">
 	<br>
 	<div class="col-xs-6" >
 		Start Time: _________________________
@@ -161,24 +217,142 @@
 	</div>
 </div>
 
-<div class="row form-row2 pad20 topaz-content">
+<!-- forced page break; it's turned on/off with the checkbox above -->
+<div class="report-page-break" style="display: none;"></div>
+
+<!-- behavior squares key; swap between regular and skinny divs -->
+<div class="row form-row2 pad20 topaz-div-regular">
 	<div class="col-xs-12">
-		<strong>Squares key &mdash; </strong>
-		<% @squares.each do |each_square| %>
-			<strong><%= each_square.screen_name %></strong> = <%= each_square.description %> &nbsp;
-		<% end %>
+
+		<div class="show-on-regular-only">		<!-- regular-only div -->
+			<h3>Squares key</h3>
+			<ul>
+				<% @squares.each do |each_square| %>
+					<li>
+						<strong><%= each_square.screen_name %></strong> = <%= each_square.description %>
+					</li>
+				<% end %>
+			</ul>
+		</div>   <!-- regular-only div -->
+
+		<div class="show-on-skinny-only" style="display: none;">		<!-- skinny-only div -->
+			<strong>Squares key &mdash; </strong>
+			<% @squares.each do |each_square| %>
+				<strong><%= each_square.screen_name %></strong> = <%= each_square.description %> &nbsp;
+			<% end %>
+		</div>   <!-- skinny-only div --> 
+
 	</div>
 </div>
 
-<div class="row form-row2 pad20 topaz-content">
+<!-- student instructions; swap between regular and skinny divs -->
+<div class="row form-row2 pad20 topaz-div-regular">
 	<div class="col-xs-12">
-		<strong>Student instructions &mdash; </strong>
-		<%= @student.session_instructions %>
+
+		<div class="show-on-regular-only regular-font">		<!-- regular-only div -->
+			<h3>Student instructions</h3>
+			<%= @student.session_instructions %>
+		</div>   <!-- regular-only div -->
+
+		<div class="show-on-skinny-only skinny-font" style="display: none;">		<!-- skinny-only div -->
+			<strong>Student instructions &mdash; </strong>
+			<%= @student.session_instructions %>
+		</div>   <!-- skinny-only div -->
 	</div>
 </div>
 
+<!-- simple footer; it's on print only -->
 <div class="row text-center display-on-print-only">
 	<div id="topaz-footer" class="col-xs-12 text-center">
 		GeoGem &copy; 2018
 	</div>
 </div>
+
+
+<script>
+	// accordion jquery functions, most of this is from the bootstrap website
+	$(document).ready(function(){
+		// "in" class makes opens the accordion to start 
+		$(".collapse.in").each(function(){
+			$(this).siblings(".panel-heading").find(".glyphicon").addClass("glyphicon-minus").removeClass("glyphicon-plus");
+		});
+
+		// Toggle plus minus icon on show hide of collapse element
+		// I added to this for my view/hide section buttons (smile)
+		$(".collapse").on('show.bs.collapse', function(){
+			$(this).parent().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+			$(this).parent().find(".btn-default").text("- Hide");
+			$(this).parent().find(".section-title").removeClass("hide-on-print");
+		}).on('hide.bs.collapse', function(){
+			$(this).parent().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+			$(this).parent().find(".btn-default").text("+ Show");
+			$(this).parent().find(".section-title").addClass("hide-on-print");
+		});
+	});
+
+</script>
+
+<script type="text/javascript">
+
+	// this function handles the Skinny checkbox above
+	function doSkinny() {
+		var checkBox = document.getElementById("skinnyCheckbox");
+
+		regularDivs = document.querySelectorAll(".show-on-regular-only");
+		skinnyDivs = document.querySelectorAll(".show-on-skinny-only");
+
+		if( checkBox.checked == true) {
+			// 1) make regular-only divs display=none; make skinny divs display=block
+			for( var i = 0; i < regularDivs.length; i++) {
+				regularDivs[i].style.display = "none";
+			}
+			for( var i = 0; i < skinnyDivs.length; i++) {
+				skinnyDivs[i].style.display = "block";
+			}
+
+			// 2) swap regular topaz divs for the skinny version
+			var divs = document.querySelectorAll(".topaz-div-regular");
+			console.log( "skinny: divs length=" + divs.length);
+			for( var i = 0; i < divs.length; i++) {
+				console.log( "skinny: i=" + i + ", divs=" + divs[i]);
+				console.log( "skinny, cont: classlist=" + divs[i].classlist);
+				divs[i].classList.add( "topaz-div-skinny");
+				divs[i].classList.remove( "topaz-div-regular");
+			}
+		}
+		else {
+			// 1) make skinny-only divs display=none; make regular divs display=block
+			for( var i = 0; i < regularDivs.length; i++) {
+				regularDivs[i].style.display = "block";
+			}
+			for( var i = 0; i < skinnyDivs.length; i++) {
+				skinnyDivs[i].style.display = "none";
+			}
+
+			// 2) swap skinny topaz divs for the regular version
+			var divs = document.querySelectorAll(".topaz-div-skinny");
+			console.log( "NOT skinny: divs length=" + divs.length);
+			for( var i = 0; i < divs.length; i++) {
+				divs[i].classList.add( "topaz-div-regular");
+				divs[i].classList.remove( "topaz-div-skinny");
+			}
+		}
+	}   // doSkinny()
+
+
+	// this function handles the Page Break checkbox above
+	function doPagebreak() {
+		var checkBox = document.getElementById("pagebreakCheckbox");
+		var divs = document.querySelectorAll(".report-page-break");
+		for( i = 0; i < divs.length; i++) {
+			if( checkBox.checked == true) {
+				divs[i].style.display = "block"; 
+			}
+			else { 
+				divs[i].style.display = "none"; 
+			}
+		}
+	}  // doPagebreak()
+
+</script>
+
