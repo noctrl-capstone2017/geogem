@@ -128,11 +128,11 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     get admin_report_path
     assert_response :success
     assert_select "h2", /Admin report - */
-    assert_select '#headingStudents'
+    assert_select "h3", /All students/
     assert_select '#collapseStudents'
-    assert_select '#headingTeachers'
+    assert_select "h3", /All teachers/
     assert_select '#collapseTeachers'
-    assert_select '#headingSquares'
+    assert_select "h3", /All squares/
     assert_select '#collapseSquares'
   end
 

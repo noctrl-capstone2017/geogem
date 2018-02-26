@@ -17,6 +17,11 @@ module StudentsHelper
     session ? session.start_time.strftime("%a %b %d, %Y") : ""
   end
 
+  # returns the student instructions for a session, set to "none" if empty
+  def ux_session_instructions( student)
+    student.session_instructions.blank? ? "None" : student.session_instructions
+  end
+
   # returns a ux/view string for num behavior sessions for student
   # sessions - a list of sessions, presumably controller prepared
   # student - the student

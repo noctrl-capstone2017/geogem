@@ -71,10 +71,12 @@
 		  <!-- TOPAZ OPTIONS panel -->
 		  <div class="panel panel-default">
 				<div class="panel-heading">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" 
+								style="text-decoration: none;">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-						  	  <span class="glyphicon glyphicon-plus"></span> &nbsp; Topaz options</a>
+						<span class="glyphicon glyphicon-plus"></span> &nbsp; Topaz options
 					</h4>
+					</a>
 				</div>
 				<div id="collapseOne" class="panel-collapse collapse">
 					<div class="panel-body">
@@ -82,7 +84,7 @@
 						<!-- options text -->
 						<div class="col-xs-12 form-group">
 							<h4>Print this Topaz Form to manually record a behavior session with <%= @student.full_name %>.</h4>
-							<h4>When printed, only the text below the <span class="color-topaz">topaz line</span> is shown.</h4>
+							<h4>Try tweaking your printout with these options.</h4>
 						</div>
 
 						<!-- Skinny checkbox -->
@@ -90,7 +92,7 @@
 		        	<label class="checkbox">
 		        		<h4>
 			        		<input type="checkbox" id="skinnyCheckbox" class="pull-left" onclick="doSkinny()">
-		        			&nbsp; Skinny form <small> - scrunches form for smaller printing</small>
+		        			&nbsp; Skinny form <small> - scrunch form for smaller printing</small>
 		        		</h4>
 		        	</label>
 		        </div>
@@ -113,9 +115,7 @@
 </div>   <!-- row -->
 
 <!-- topaz line, printable form is below this line -->
-<div class="hide-on-print">
-	<hr id="topaz-divider-line">
-</div>
+<div class="form-spacer hide-on-print"></div>
 
 <!---------------------->
 <!-- BEGIN TOPAZ FORM -->
@@ -127,7 +127,7 @@
 			<h3>Topaz Form</h3>
 		</div>
 		<div class="col-xs-6 text-right pad20">
-			Date: _________________________
+			Date: ______________________
 		</div>
 	
 		<div class="clearfix"></div>
@@ -198,7 +198,7 @@
 						<% end %>
 					</tr>
 					<% end %>
-	
+
 				</tbody>
 			</table>
 		</div>   <!-- skinny-only div -->
@@ -209,11 +209,11 @@
 <div class="row form-row2 pad40 topaz-div-regular" style="padding: 10px 0px;">
 	<br>
 	<div class="col-xs-6" >
-		Start Time: _________________________
+		Start Time: ______________________
 	</div>
 
 	<div class="col-xs-6 text-right">
-		End Time: _________________________
+		End Time: ______________________
 	</div>
 </div>
 
@@ -226,6 +226,7 @@
 
 		<div class="show-on-regular-only">		<!-- regular-only div -->
 			<h3>Squares key</h3>
+			<p>Behavior squares assigned to student <%= @student.full_name %>: </p>
 			<ul>
 				<% @squares.each do |each_square| %>
 					<li>
@@ -251,12 +252,12 @@
 
 		<div class="show-on-regular-only regular-font">		<!-- regular-only div -->
 			<h3>Student instructions</h3>
-			<%= @student.session_instructions %>
+			<%= ux_session_instructions( @student) %>
 		</div>   <!-- regular-only div -->
 
 		<div class="show-on-skinny-only skinny-font" style="display: none;">		<!-- skinny-only div -->
 			<strong>Student instructions &mdash; </strong>
-			<%= @student.session_instructions %>
+			<%= ux_session_instructions( @student) %>
 		</div>   <!-- skinny-only div -->
 	</div>
 </div>

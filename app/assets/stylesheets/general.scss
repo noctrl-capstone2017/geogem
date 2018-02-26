@@ -518,7 +518,7 @@ $scheme-blue-seethru: rgba( 32, 107, 164, 0.2);
 }
 
 // navpanel replaces "action icons"; they're based on Bootstrap panels
-.navpanel-row { display: -ms-flexbox; display: -webkit-flex;	display: flex; flex-wrap: wrap; }
+//.navpanel-row { display: -ms-flexbox; display: -webkit-flex;	display: flex; flex-wrap: wrap; }
 .navpanel-col { padding-top: 20px; }
 .navpanel { height: 90%; width: 100%; }
 .navpanel-title { font-size: 1.2em; }

@@ -1,0 +1,32 @@
+<!-- This is the Admin table of all SQUARES in the school -->
+<table class="table table-striped table-hover table-responsive">
+	<thead>
+ 		<tr>
+ 			<th>Icon</th>
+			<th>ID</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @squares.each do |each_square| %>
+			<tr data-link="<%= edit_square_path(each_square.id) %>">
+				<td>
+					<div class="bsquare-table-icon <%= icon_color(each_square) %>">
+          	<h4><%= each_square.screen_name %></h4>
+          	<span class="fa fa-fw fa-lg %>"></span>
+				  </div>
+				</td>	
+
+				<td><p><span> <%= each_square.screen_name %></span> </p></td>
+
+				<td>
+					<span class="fa fa-fw <%= ux_square_fa_icon(each_square) %>" ></span>
+    			<%= ux_square_tracking_type(each_square) %>
+				</td>
+
+				<td><p> <%= truncate( each_square.description, :length => 40) %> </p></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
