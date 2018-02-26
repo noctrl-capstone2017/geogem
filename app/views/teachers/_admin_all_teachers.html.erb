@@ -1,0 +1,25 @@
+<!-- This is the Admin table of all TEACHERS in the school -->
+<table class="table table-striped table-hover table-responsive" >
+	<thead>
+ 		<tr>
+ 			<th>Icon</th>
+			<th>Teacher Name</th>
+			<th>Login Username</th>
+			<th>Email</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @teachers.each do |each_teacher| %>
+		<tr data-link="<%= edit_teacher_path(each_teacher.id) %>">
+			<td>
+				<div class="teacher-table-icon <%= icon_color(each_teacher) %>">
+					<span class="fa fa-lg fa-fw <%= fa_icon(each_teacher) %>"></span>
+				</div>
+			</td>	
+			<td><p> <%= ux_teacher_name(each_teacher) %> </p></td>
+			<td><p> <%= each_teacher.user_name %> </p></td>
+			<td><p> <%= each_teacher.email %> </p></td>
+		</tr>
+	<% end %>
+</tbody>
+</table>
