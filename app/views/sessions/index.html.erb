@@ -1,34 +1,53 @@
 <!--  Authors Matthew O, Alex P, Debra J -->
-<p id="notice"><%= notice %></p>
+<!-- authors: Ricky Perez & Michael Loptien -->
+<% provide(:title, "All sessions") %>
 
-<h1>Sessions</h1>
+<!-- page header -->
+<%= render partial: 'schools/school_page_header', 
+			:locals => { 	:title => "All sessions", 
+										:subtitle => "view all behavior sessions at #{ @school.full_name }"} %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Session teacher</th>
-      <th>Session student</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!-- Start with session count -->
+<div class="row form-row2 pad20">
+	<div class="col-xs-12">
+	  <h4>
+	    There <%= @sessions.count == 1 ? 'is' : 'are' %> <%= pluralize(@sessions.count, "behavior session") %> 
+	    at <%= @school.full_name %>.
+    </h4>
+  </div>
+</div>
 
-  <tbody>
-    <% @sessions.each do |session| %>
-      <tr>
-        <td><%= session.start_time %></td>
-        <td><%= session.end_time %></td>
-        <td><%= session.session_teacher %></td>
-        <td><%= session.session_student %></td>
-        <td><%= link_to 'Show', session %></td>
-        <td><%= link_to 'Edit', edit_session_path(session) %></td>
-        <td><%= link_to 'Destroy', session, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!-- If sessions are present (>0), then show a table of them all -->
+<div class="row form-row2 pad20">
+  <div class="col-xs-12">
 
-<br>
+    <% if @sessions.present? %>
+    <table class="table table-striped table-hover table-responsive table-condensed table-font1">
+      <thead>
+        <tr>
+          <th>Session date</th>
+          <th>Start time</th>
+          <th>End time</th>
+          <th>Teacher</th>
+          <th>Student</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <% @sessions.each do |each_session| %>
+          <!--Make the entire line a link--> 
+          <tr data-link = "<%= end_session_path(each_session, :back_to_sessions => true) %>">
+            <td><%= ux_session_start_date(each_session) %> </td>
+            <td><%= ux_session_start_time(each_session) %></td>
+            <td><%= ux_session_end_time(each_session) %></td>
+            <td><%= ux_session_teacher_name(each_session) %></td>
+            <td><%= ux_session_student_name(each_session) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate %>
+<% end %>
 
-<%= link_to 'New Session', new_session_path %>
+  </div>
+</div>   <!-- row -->

@@ -53,17 +53,17 @@
 		</div>   <!-- panel -->
 	</div>
 
-	<!-- BACKUP school data to a text file -->
+	<!-- BACKUP - save school data to a text file -->
 	<div class="col-xs-12 col-sm-6 navpanel-col">
 		<div class="panel panel-default navpanel">
 		  <div class="panel-heading">
-		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-floppy-o navpanel-lightblue"></span> Backup</h3>
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-floppy-o navpanel-lightblue"></span> Sessions</h3>
 		  </div>
 		  <div class="panel-body navpanel-body">
-		    <p>Backup school data to a text file.</p>
+		    <p>View all behavior sessions at focus school <%= @school.full_name %>.</p>
 		    <p>
-		    	<%= link_to backup_school_path, :class => "btn btn-lg btn-default navpanel-lightblue-button" do %>
-						Backup school <i class="fa fa-fw fa-chevron-right"></i>
+		    	<%= link_to sessions_path, :class => "btn btn-lg btn-default navpanel-lightblue-button" do %>
+						All sessions <i class="fa fa-fw fa-chevron-right"></i>
 		    	<% end %>
 		    </p>
 		  </div>
@@ -74,7 +74,7 @@
 
 <div class="row form-row2 navpanel-row">
 
-	<!-- SUSPEND school navpanel -->
+	<!-- SUSPEND - suspend the login of all teachers at focus school -->
 	<div class="col-xs-12 col-sm-6 navpanel-col">
 		<div class="panel panel-default navpanel">
 		  <div class="panel-heading">
@@ -91,7 +91,7 @@
 		</div>   <!-- panel -->
 	</div>
 
-	<!-- RESTORE school data from a text file -->
+	<!-- RESTORE - restore the login of all teachers at focus school -->
 	<div class="col-xs-12 col-sm-6 navpanel-col">
 		<div class="panel panel-default navpanel">
 		  <div class="panel-heading">
@@ -108,6 +108,26 @@
 		</div>   <!-- panel -->
 	</div>
 
+</div>   <!-- row -->
+
+<div class="row form-row2 navpanel-row">
+
+	<!-- BACKUP school data to a text file -->
+	<div class="col-xs-12 col-sm-6 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-floppy-o navpanel-gray"></span> Backup</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Backup school data to a text file.</p>
+		    <p>
+		    	<%= link_to backup_school_path, :class => "btn btn-lg btn-default navpanel-gray-button" do %>
+						Backup school <i class="fa fa-fw fa-chevron-right"></i>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
 </div>   <!-- row -->
 
 <hr class="form-spacer-line"></hr>

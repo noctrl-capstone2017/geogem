@@ -74,10 +74,14 @@ module SessionsHelper
 
   # return session end time, nicely formatted
   def ux_session_end_time( session, show_time_zone=false)
-    if show_time_zone
-      session.end_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P (%Z)")
+    if session.end_time != nil
+      if show_time_zone
+        session.end_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P (%Z)")
+      else
+        session.end_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P")
+      end
     else
-      session.end_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P")
+      "error"
     end
   end
 
@@ -90,7 +94,19 @@ module SessionsHelper
 
   # returns the start date in a nice format
   def ux_session_start_date( session)
-    session.start_time.in_time_zone('Central Time (US & Canada)').strftime("%a %b %d, %y")
+    session.start_time.in_time_zone('Central Time (US & Canada)').strftime("%a %b %d, %Y")
+  end
+
+  # returns the name of the teacher for this behavior session
+  def ux_session_teacher_name( session) 
+    teacher = Teacher.find( session.session_teacher)
+    teacher.full_name
+  end
+
+  # returns the name of the student for this behavior session
+  def ux_session_student_name( session) 
+    student = Student.find( session.session_student)
+    student.full_name
   end
 
 end

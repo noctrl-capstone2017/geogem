@@ -1,11 +1,30 @@
 class SessionsController < ApplicationController
+  include TeachersHelper
+
   before_action :set_session, only: [:show, :edit, :update, :destroy]
   before_action :special_navbar_and_layout, only: [:show]
+  before_action :is_super, only: [:index]     # only super gets All sessions index
 
   # GET /sessions
-  # unused
+  # This is a Super-only list of all behavior sessions
   def index
-    @sessions = Session.all
+    @school = School.find( current_teacher.school_id)
+
+    # step 1 - create an array of session ID's for the current school
+    all_sessions = Session.all
+    session_ids = []
+    all_sessions.each do | sesh |
+        session_ids << sesh.id if sesh.school_id == current_teacher.school_id
+    end
+
+    # step 2 - turn the array of ID's into a relation
+    # I got this clever array to relation idea from this source:
+    # stackoverflow.com/questions/4352895/ruby-on-rails-will-paginate-an-array
+    @sessions = Session.where( :id => session_ids)
+
+    # step 3 - order by start time and paginate the sessions
+    @sessions = @sessions.order('start_time DESC')
+    @sessions = @sessions.paginate(page: params[:page], :per_page => 20)
   end
 
   # GET /sessions/new
@@ -95,13 +114,14 @@ class SessionsController < ApplicationController
       # end
     end
 
+    # the default is back to home; back to sessions page is a special case
+    @back_to_sessions = params[:back_to_sessions].present?
+
     @student = Student.find(@session.session_student)
     @teacher = Teacher.find(@session.session_teacher)
     @events = SessionEvent.where( session_id: @session)
     @notes = SessionNote.where( session_id: @session)
     @squares = get_student_squares( @student)
-
-    # @square_type = @squares
   end
 
   # DELETE /sessions/1
