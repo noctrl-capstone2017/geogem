@@ -16,9 +16,6 @@
 .topaz-student-param { font-size: 1.4em; font-weight: bold; }
 .topaz-param { text-decoration: underline; }
 
-#topaz-divider-line { width: 80%; margin: 60px auto; 
-			border-width: 4px; border-color: #FFC87C; }
-
 #topaz-title { border: 0px solid lightgray; border-radius: 18px; 
 			background-color: white; padding: 0px 4px 12px 4px; }
 
@@ -83,26 +80,29 @@
 
 						<!-- options text -->
 						<div class="col-xs-12 form-group">
-							<h4>Print this Topaz Form to manually record a behavior session with <%= @student.full_name %>.</h4>
-							<h4>Try tweaking your printout with these options.</h4>
+							<h4>
+								Print this Topaz Form to manually record a behavior session 
+								with student <%= @student.full_name %>.
+								Tweak your printout with these options.
+							</h4>
 						</div>
 
 						<!-- Skinny checkbox -->
-		        <div class="col-xs-12 form-group" style="padding-left: 40px;">
+		        <div class="col-xs-6 form-group" style="padding-left: 40px;">
 		        	<label class="checkbox">
 		        		<h4>
 			        		<input type="checkbox" id="skinnyCheckbox" class="pull-left" onclick="doSkinny()">
-		        			&nbsp; Skinny form <small> - scrunch form for smaller printing</small>
+		        			&nbsp; Skinny form <small><br>&nbsp; scrunch your form for smaller printing</small>
 		        		</h4>
 		        	</label>
 		        </div>
-		        
+
 		        <!-- Page break checkbox -->
-		        <div class="col-xs-12 form-group" style="padding-left: 40px;">
+		        <div class="col-xs-6 form-group" style="padding-left: 40px;">
 		        	<label class="checkbox">
 		        		<h4>
 			        		<input type="checkbox" id="pagebreakCheckbox" onclick="doPagebreak()">
-		        			&nbsp; Page break <small> - force page break after table when printing</small>
+		        			&nbsp; Page break <small><br>&nbsp; force a page break after the main table</small>
 		        		</h4>
 		        	</label>
 		        </div>

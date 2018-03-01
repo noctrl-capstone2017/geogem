@@ -6,14 +6,6 @@
 			:locals => { 	:title => "Admin report", 
 										:subtitle => "basic lists of students, teachers, and squares at #{ @school.full_name }"} %>
 
-<!-- Source of this great collapsible panel -->
-<!-- https://codepen.io/martinkrulltott/pen/mejmmj -->
-<style>
-.panel-title .trigger:before { content: '-'; }
-.panel-title .trigger.collapsed:before { content: '+'; }
-.admin-header { margin-bottom: 20px; }
-.admin-panel-link { font-size: 1.2em; font-family: monospace;}
-</style>
 
 <div class="row form-row2">
 	<div class="col-xs-12">
@@ -31,12 +23,13 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<a data-toggle="collapse" data-parent="#accordion" href="#collapseStudents" 
-						style="text-decoration: none;">
+					style="text-decoration: none;">
 				<h4 class="panel-title">
 					<span class="glyphicon glyphicon-plus"></span> &nbsp; Students table
 				</h4>
 			</a>
 		</div>   <!-- panel-heading -->
+
 		<div id="collapseStudents" class="panel-collapse collapse">
 			<div class="panel-body">
 				<%= render 'admin_all_students'  %>
