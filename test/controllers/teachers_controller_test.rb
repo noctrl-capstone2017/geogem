@@ -71,8 +71,6 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     get home_path
     assert_response :success
     assert_select "h2", /Home - */
-    # there are 2 Go Student buttons, one is always hidden
-    assert_select 'form button[type=submit][name=go_student]', { :count => 2 }
   end
 
   # 3) check details of Profile page

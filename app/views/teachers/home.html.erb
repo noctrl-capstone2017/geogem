@@ -4,37 +4,82 @@
 <!-- page header -->
 <%= render partial: 'home_page_header', :locals => { 	:title => "Home" } %>
 
-<!-- things got too BIG, so home into into 3 separate partials -->
+<!-- some student text + views spinner -->
+<div class="row form-row2 content-text">
+	<div class="col-xs-12 col-md-8">
+		<!-- select a student text with the requisite smiley face -->
+		Select a student you'd like to work with.  <i style="color:gray" class="fa fa-smile-o" aria-hidden="true"></i>
+	</div>
+	<div class="col-xs-12 col-md-4">
+		<!-- viewing spinner: my students or all students -->
+		<label class="pull-right" style="font-weight: normal; font-size: 0.9em;">Viewing: &nbsp; 
+			<select id="viewSpinner" style="font-size: 0.9em;" onchange="doViewSpinner(this.value)">
+		  	<option value="my_students" selected > &nbsp; My students &nbsp; </option>
+		  	<option value="all_students"> &nbsp; All students &nbsp; </option>
+			</select>
+		</label>
+	</div>
+</div>
 
-<!-- form to switch between all/your student views -->
-<%= render 'home_views_toggle' %>
+<div class="form-spacer"></div>
 
-<!-- Home page list students; the teacher selects one to work with. -->
-<!-- There are two choices: 1) select one of your students, or -->
-<!-- 2) select from all students at school. -->
-<!-- The view toggle buttons (above) turn the display of these divs on and off -->
-<div id="your-students-div">
-	<%= render 'home_your_students' %>
+<div id="my-students-div">
+	<% if @my_students.count == 0 %>
+		<div class="row">
+			<div class="col-xs-8 col-xs-offset-2" style="padding: 20px 0 40px 0;">
+				<div class="jumbotron well">
+					<h4>
+						<i>Sorry &mdash; You haven't worked with any students yet.
+						<br><br>
+						Try viewing "All students" above to get started. </i>
+					</h4>
+				</div>
+			</div>
+		</div>   <!-- row -->
+	<% else %>
+		<%= render partial: 'home_student_icons', :locals => { 	:the_students => @my_students } %>
+	<% end %>
 </div>
 
 <div id="all-students-div" style="display:none">
-	<%= render 'home_all_students' %>
+	<% if @all_students.count == 0 %>
+		<div class="row">
+			<div class="col-xs-10 col-xs-offset-1" style="padding: 20px 0 40px 0;">
+				<div class="jumbotron well">
+					<h4>
+						<i>Sorry &mdash; There are no students at school <%= @school.full_name %>.
+						<br><br>
+						If this is an error, please report it.</i>
+					</h4>
+				</div>
+			</div>
+		</div>   <!-- row -->
+	<% else %>
+		<%= render partial: 'home_student_icons', :locals => { 	:the_students => @all_students } %>
+	<% end %>
 </div>
-		
 
-<!-- Control the selection and unselection of the student roster -->
-<script>
-	$(document).ready(function() {
-		// when radio icon is clicked, set that select attribute to student ID
-		$(".image-radio").click("click",function(){
-		     $(this).attr('checked',true);
-		     $("select[name='student_id']").val($(this).attr('id'));
-		});
 
-		// when radio button is clicked, enable the OK button 
-		$('.view-radio').on('click', function() {
-				$("#goto-button").removeClass('disabled');
-				$("#goto-button").prop("disabled", false); 
-		});
-	});
+<script type="text/javascript">
+
+	// doViewSpinner - action function for the views spinner
+	// It toggles between the my_students and all_students divs.
+	function doViewSpinner(value) {
+		// everything's an ID; spinner, my-students div, and all-students div
+		var viewSpinner = document.getElementById("viewSpinner");
+		var myStudentsDiv = document.getElementById("my-students-div");
+		var allStudentsDiv = document.getElementById("all-students-div");
+
+		if( value == "all_students") {
+			// hide my-students div and show all-students div
+			myStudentsDiv.style.display = "none";
+			allStudentsDiv.style.display = "block";
+		}
+		else {
+			// show my-students div and hide all-students div
+			myStudentsDiv.style.display = "block";
+			allStudentsDiv.style.display = "none";
+		}
+	}
+
 </script>

@@ -231,11 +231,12 @@ class TeachersController < ApplicationController
   #home page for teachers, display top 8 most used students, route to anaylze or new session
   def home
     @teacher = current_teacher
+    @school = School.find( current_teacher.school_id)
     @first_login = params[:first_login] != nil
     @first_home = params[:first_home] != nil
     @view_all = params[:view_all] != nil
-    @top_students = Student.where(id: Session.where(session_teacher: @teacher.id).group('session_student').order('count(*)').select('session_student').limit(8))
-    @all_students = Student.where(school_id: current_teacher.school_id)
+    @my_students = Student.where(id: Session.where(session_teacher: @teacher.id).group('session_student').order('count(*)').select('session_student').limit(8))
+    @all_students = Student.where(school_id: current_teacher.school_id).order( 'full_name ASC')
   end
 
   # PATCH /home
