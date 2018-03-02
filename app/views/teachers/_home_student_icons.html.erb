@@ -1,0 +1,29 @@
+<!-- This partial shows a field of student icons -->
+<!-- The list of students is passed in via the local variable, the_students -->
+
+<% the_students.each_with_index do |student, index| %>
+	<% if ux_first_row( index) %>
+		<div class="row pad20">
+	<% end %>
+
+	<% if ux_next_row( index, 4) %>   <!-- 4 icons per row! -->
+		</div>
+		<div class="row pad20">
+	<% end %>
+
+	<div class="col-xs-3 text-center">
+		<label for="student<%= student.id %>">
+			<%= link_to student_path( student.id), :style => "text-decoration: none;" do %>
+				<div class ="student-home-icon <%= glow_color(student) %> center-block">
+					<span class="fa fa-fw fa-4x <%= fa_icon(student) %>"></span>
+				</div>
+				<%= ux_student_name(student, 15) %>
+			<% end %>
+		</label>
+	</div>   <!-- col, one per student icon -->
+
+	<% if ux_last_row( index, the_students.size) %>
+		</div>
+	<% end %>
+
+<% end %>   <!-- each student loop -->

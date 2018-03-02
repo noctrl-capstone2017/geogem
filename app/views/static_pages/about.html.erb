@@ -22,15 +22,20 @@
 		</div>
 	</div>   <!-- page-header -->
 
-	<div class="row content-text pad20">
+	<div class="row form-row2 content-text pad20">
 		<div class="col-xs-12">
 			<p>
-				This is <span class="about-highlight">GeoGem <%= DeployHelper.geogem_version_detailed =%></span>
-				&mdash;
-				deployed on <span class="about-highlight"><%= DeployHelper.geogem_deploy_date =%></span>.
+				This is...<br>
 			</p>
-			<%= image_tag("logos/smallgem.png", :alt => "GeoGem logo") %>
-			<br><br>
+			<div style="padding: 20px;">
+				<span class="about-highlight">GeoGem <%= DeployHelper.geogem_version_detailed =%></span>
+				&mdash;
+				deployed on <%= DeployHelper.geogem_deploy_date =%>.
+				<br>
+				<%= image_tag("logos/smallgem.png", :alt => "GeoGem logo") %>
+			</div>
+		</div>
+		<div class="col-xs-12 pad40">
 			<p>
 				<!--Part 1: Describe GeoGem. What it does. And how it was created.-->
 				GeoGem is a web application designed to make tracking student behaviors easier for teachers and aides. 
@@ -39,10 +44,8 @@
 				We make tracking and analytics easier so you can focus on what's important, your students. 
 			</p>
 		</div>
-	</div>
 
-	<div class="row content-text">
-		<div class="col-xs-12">
+		<div class="col-xs-12 pad20 ">
 			<h3>Acknowledgements</h3>
 			<p>
 				<!--Part 2: Thank you Turning Pointe and others. -->
@@ -50,10 +53,8 @@
 				with this project. In particular we would like to thank Carrie P, Bianca E, and Stefan K for their help with this project.
 			</p>
 		</div>
-	</div>
 
-	<div class="row content-text">
-		<div class="col-xs-12">
+		<div class="col-xs-12 pad20">
 			<h3>Meet the Team</h3>
 			<p>
 				<!--Part 3: Authors. GeoGem is the creation of... Capstone2017 student profiles. (smile)-->
