@@ -91,6 +91,7 @@ class SessionsController < ApplicationController
       @session.session_interval = @student.session_interval
       @session.session_instructions = @student.session_instructions
       @session.session_interval_counting = @student.session_interval_counting
+      @session.save
     end
   end
 

@@ -7,23 +7,6 @@
 
 <div class="row form-row2 navpanel-row pad20">
 
-  <!-- RUBY REPORT nav panel -->
-	<div class="col-xs-12 col-sm-6">
-		<div class="panel panel-default navpanel">
-		  <div class="panel-heading">
-		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-diamond navpanel-ruby"></span> Ruby Report</h3>
-		  </div>
-		  <div class="panel-body navpanel-body">
-		    <p>Report the results of one behavior session.</p>
-		    <p>
-		    	<%= link_to analysis_ruby_path(@student.id), class: 'btn btn-lg btn-default navpanel-ruby-button' do %>
-		    		Ruby report <span class="fa fa-fw fa-chevron-right"></span>
-		    	<% end %>
-		    </p>
-		  </div>
-		</div>   <!-- panel -->
-	</div>
-
   <!-- EMERALD EXPORT nav panel -->
 	<div class="col-xs-12 col-sm-6">
 		<div class="panel panel-default navpanel">
@@ -43,8 +26,6 @@
 		</div>   <!-- panel -->
 	</div>
 
-  <div class="clearfix"></div>
-
   <!-- TOPAZ FORM nav panel -->
 	<div class="col-xs-12 col-sm-6">
 		<div class="panel panel-default navpanel">
@@ -57,6 +38,25 @@
 		    <p>
 		    	<%= link_to analysis_topaz_path(@student.id), :class => "btn btn-lg btn-default navpanel-topaz-button" do %>
 						Topaz form <i class="fa fa-fw fa-chevron-right"></i>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
+
+  <div class="clearfix"></div>
+
+  <!-- RUBY REPORT nav panel -->
+	<div class="col-xs-12 col-sm-6">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-diamond navpanel-ruby"></span> Ruby Report</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>Report the results of one behavior session.</p>
+		    <p>
+		    	<%= link_to analysis_ruby_path(@student.id), class: 'btn btn-lg btn-default navpanel-ruby-button' do %>
+		    		Ruby report <span class="fa fa-fw fa-chevron-right"></span>
 		    	<% end %>
 		    </p>
 		  </div>
