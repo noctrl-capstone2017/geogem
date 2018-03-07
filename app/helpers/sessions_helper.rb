@@ -15,7 +15,7 @@ module SessionsHelper
     
     return answer
   end # end isInterval
-  
+
   # Authors Alexander Pavia + Matthew O + Debra J
   #display the frequency on the end session summary report
   def getFrequency(square)
@@ -107,6 +107,15 @@ module SessionsHelper
   def ux_session_student_name( session) 
     student = Student.find( session.session_student)
     student.full_name
+  end
+
+  # return a string describing the counting style of this session
+  def ux_session_counting_style( session) 
+    if session.session_interval_counting
+      "Interval counting, once per interval"
+    else
+      "Default, each square press counted"
+    end
   end
 
 end

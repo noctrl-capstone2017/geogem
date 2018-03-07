@@ -18,7 +18,7 @@
 .ruby-content { font-size: 14px; font-family: Arial; }
 .ruby-content li { padding-bottom: 8px; }
 
-#ruby-title { border: 0px solid lightgray; border-radius: 18px; 
+.ruby-title { border: 0px solid lightgray; border-radius: 18px; 
 			background-color: white; padding: 0px 4px 12px 4px; }
 #ruby-footer { position: fixed; bottom: 0; color: gray; }
 </style>
@@ -57,9 +57,9 @@
 			<div class="col-xs-12 pad20">
 				<!-- "Print this" button is disabled if no session selected -->
 				<% if @ruby_session %>
-					<button class="btn btn-lg btn-primary" onclick="window.print();">Print this</button>
+					<button class="btn btn-lg btn-primary" onclick="window.print(); return false;">Print this</button>
 				<% else %>
-					<button class="btn btn-lg btn-primary" onclick="window.print();" disabled>Print this</button>
+					<button class="btn btn-lg btn-primary" onclick="window.print(); return false;" disabled>Print this</button>
 				<% end %>
 				&nbsp; &nbsp; &nbsp;
 				<%= link_to analysis_path(@student.id), class: 'btn btn-lg btn-default navpanel-darkgray-button' do %>
@@ -78,11 +78,11 @@
 	<div class="row form-row2 pad40 hide-on-print">
 
 		<!-- accordion panel for Ruby Report options -->
-		<div class="col-xs-12 pad40">
+		<div class="col-xs-12">
 			<div class="panel-group" id="accordion">
 	
 			  <!-- RUBY OPTIONS panel -->
-			  <div class="panel panel-danger">
+			  <div class="panel panel-default">
 					<div class="panel-heading">
 						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" 
 									style="text-decoration: none;">
@@ -105,7 +105,10 @@
 			        <div class="col-xs-6 form-group" style="padding-left: 40px;">
 			        	<label class="checkbox">
 			        		<h4>
-				        		<input type="checkbox" id="skinnyCheckbox" class="pull-left" onclick="doSkinny()">
+				        		<input type="checkbox" id="skinnyCheckbox" class="pull-left" 
+				        					theCheckedDiv="show-on-skinny-only"
+				        					theNotCheckedDiv="show-on-regular-only" 
+				        					onclick="swapDivs(this)">
 			        			&nbsp; Skinny form <small><br>&nbsp; scrunch your form for smaller printing</small>
 			        		</h4>
 			        	</label>
@@ -115,7 +118,8 @@
 			        <div class="col-xs-6 form-group" style="padding-left: 40px;">
 			        	<label class="checkbox">
 			        		<h4>
-				        		<input type="checkbox" id="pagebreakCheckbox" onclick="doPagebreak()">
+			        			<input type="checkbox" id="pagebreakCheckbox" 
+			        					theDiv="report-page-break" onclick="toggleDivDisplay(this)">
 			        			&nbsp; Page break <small><br>&nbsp; force a page break after the main table</small>
 			        		</h4>
 			        	</label>
@@ -133,7 +137,96 @@
 <!-- BEGIN RUBY REPORT -->
 <!----------------------->
 
+<!-- This is controversial. I have two completely separate reports. -->
+<!-- This first one is "regular". The second is "skinny" -->
+<!-- I did this because the actual structure of the reports is different -->
+<!-- and not just CSS classes, etc. -->
+
+<!-- BEGIN regular report div -->
+<div class="show-on-regular-only">
+
 <div id="ruby-title" class="row form-row2 ruby-div-regular" >
+	<!-- Title on the left, session date on the right -->
+	<div class="col-xs-6">
+		<h3>Ruby Report</h3>
+	</div>
+	<div class="col-xs-6 text-right pad20">
+		Session Date: <span style="text-decoration: underline;"> <%= ux_session_date(@ruby_session) %> </span>
+	</div>
+
+	<div class="clearfix"></div>
+	<div class="col-xs-12 pad10">
+		Student: <span class="ruby-student-param"> <%= @student.full_name %></span> &nbsp; ~ &nbsp;
+		Teacher: <span class="ruby-param"><%= @teacher.full_name %></span> &nbsp; ~ &nbsp;
+		Interval time: <span class="ruby-param"><%= @ruby_session.session_interval %> mins</span>
+	</div>
+
+	<div class="clearfix"></div>
+	<div class="col-xs-12 pad20">
+		This report summarizes the details of one behavior session.
+	</div>
+</div>   <!-- row -->
+
+<!-- The main part: the table of squares pressed at each interval -->
+<div class="row form-row2 ruby-div-regular">
+	<div class="col-xs-12 center-block text-center" style="text-align: center; margin: 0 auto;">
+		<br><br>
+		<p>Table goes here...</p>
+		<br><br>
+	</div>
+</div>
+
+<!-- forced page break; it's turned on/off with the checkbox above -->
+<div class="report-page-break" style="display: none;"></div>
+
+<!-- Section: Squares key -->
+<div class="row form-row2 pad20 ruby-div-regular">
+	<div class="col-xs-12">
+		<h3>Squares key</h3>
+		<p>The behavior squares assigned to this student are:</p>
+		<ul>
+			<% @squares.each do |each_square| %>
+				<li><strong><%= each_square.screen_name %></strong> = <%= each_square.description %> &nbsp;</li>
+			<% end %>
+		</ul>
+	</div>
+</div>   <!-- squares key section -->
+
+<!-- Section: Session setup -->
+<div class="row form-row2 pad20 ruby-div-regular">
+	<div class="col-xs-12">
+		<h3>Session setup</h3>
+		<p>Session parameters are:</p>
+		<ul>
+			<li>Session interval: <%= @student.session_interval %> mins </li>
+			<li>Square counting: <%= ux_session_counting_style( @ruby_session) %> </li>
+		</ul>
+		<br>
+		<p>Session instructions specific to <%= @student.full_name %></p>
+		<p style="font-style: italic; margin-left: 40px;">
+			<%= @ruby_session.session_instructions %>
+		</p>
+	</div>
+</div>   <!-- squares setup section -->
+
+<!-- Section: Session results -->
+<div class="row form-row2 pad20 ruby-div-regular">
+	<div class="col-xs-12">
+		<h3>Session results</h3>
+		<p>Coming soon...</p>
+		<ul>
+			<li>Session interval: <%= @student.session_interval %> mins </li>
+			<li>Square counting: <%= ux_session_counting_style( @ruby_session) %> </li>
+		</ul>
+	</div>
+</div>   <!-- squares setup section -->
+
+</div>   <!-- MAJOR regular-only report div -->
+
+
+<!-- BEGIN skinny report, initially hidden -->
+<div class="show-on-skinny-only" style="display: none;">
+	<div id="ruby-title" class="row form-row2 ruby-div-regular" >
 	<div class="col-xs-6">
 		<h3>Ruby Report</h3>
 	</div>
@@ -146,7 +239,7 @@
 	<div class="col-xs-12 pad10">
 		Student: <span class="ruby-student-param"> <%= @student.full_name %></span> &nbsp; ~ &nbsp;
 		Teacher: <span class="ruby-param"><%= @teacher.full_name %></span> &nbsp; ~ &nbsp;
-		Interval time: <span class="ruby-param"><%= @student.session_interval %> mins</span>
+		Interval time: <span class="ruby-param"><%= @ruby_session.session_interval %> mins</span>
 	</div>
 	<div class="clearfix"></div>
 	<div class="col-xs-12 pad20">
@@ -166,29 +259,45 @@
 <!-- forced page break; it's turned on/off with the checkbox above -->
 <div class="report-page-break" style="display: none;"></div>
 
+<!-- Section: Squares key -->
 <div class="row form-row2 pad20 ruby-div-regular">
 	<div class="col-xs-12">
-    <div class="show-on-regular-only">		<!-- regular-only div -->
-			<h3>Squares key</h3>
-			<p>The behavior squares assigned to this student are:</p>
-			<ul>
-				<% @squares.each do |each_square| %>
-					<li><strong><%= each_square.screen_name %></strong> = <%= each_square.description %> &nbsp;</li>
-				<% end %>
-			</ul>
-		</div>   <!-- regular-only div -->
-		
-		<div class="show-on-skinny-only" style="display: none;">		<!-- skinny-only div -->
-			<strong>Squares key &mdash; </strong>
-			<% @squares.each do |each_square| %>
-				<strong><%= each_square.screen_name %></strong> = <%= each_square.description %> &nbsp;
-			<% end %>
-		</div>
-
+		<strong>Squares key &mdash; </strong>
+		<% @squares.each do |each_square| %>
+			<strong><%= each_square.screen_name %></strong> = <%= each_square.description %> &nbsp;
+		<% end %>
 	</div>
-</div>   <!-- -->
+</div>   <!-- squares key section -->
 
-<% end %>
+<!-- Section: Session setup -->
+<div class="row form-row2 pad20 ruby-div-regular">
+	<div class="col-xs-12">
+		<h3>Session setup</h3>
+		<strong>Session parameters &mdash; </strong>
+		Session interval: <%= @ruby_session.session_interval %> mins &nbsp; ~ &nbsp;
+		Square counting: <%= ux_session_counting_style( @ruby_session) %>
+		<br><br>
+		<strong>Session instructions specific to <%= @student.full_name %> &mdash; </strong>
+		<i> <%= @ruby_session.session_instructions %> </i>
+	</div>
+</div>   <!-- squares setup section -->
+
+<!-- Section: Session results -->
+<div class="row form-row2 pad20 ruby-div-regular">
+	<div class="col-xs-12">
+		<h3>Session results</h3>
+		<p>
+			a) Session parameters &mdash;
+			Session interval: <%= @ruby_session.session_interval %> mins &nbsp; ~ &nbsp;
+			Square counting: <%= ux_session_counting_style( @ruby_session) %>
+		</p>
+	</div>
+</div>   <!-- squares setup section -->
+	
+</div>   <!-- MAJOR skinny-only report div -->
+
+<% end %>   <!-- if @ruby_sessions, in other words, report is not empty -->
+
 
 <!-- simple footer; it's on print only -->
 <div class="row text-center display-on-print-only">
@@ -196,68 +305,4 @@
 		GeoGem &copy; 2018
 	</div>
 </div>
-
-<script type="text/javascript">
-
-	// this function handles the Skinny checkbox above
-	function doSkinny() {
-		var checkBox = document.getElementById("skinnyCheckbox");
-
-		regularDivs = document.querySelectorAll(".show-on-regular-only");
-		skinnyDivs = document.querySelectorAll(".show-on-skinny-only");
-
-		if( checkBox.checked == true) {
-			// 1) make regular-only divs display=none; make skinny divs display=block
-			for( var i = 0; i < regularDivs.length; i++) {
-				regularDivs[i].style.display = "none";
-			}
-			for( var i = 0; i < skinnyDivs.length; i++) {
-				skinnyDivs[i].style.display = "block";
-			}
-
-			// 2) swap regular ruby divs for the skinny version
-			var divs = document.querySelectorAll(".ruby-div-regular");
-			console.log( "skinny: divs length=" + divs.length);
-			for( var i = 0; i < divs.length; i++) {
-				console.log( "skinny: i=" + i + ", divs=" + divs[i]);
-				console.log( "skinny, cont: classlist=" + divs[i].classlist);
-				divs[i].classList.add( "ruby-div-skinny");
-				divs[i].classList.remove( "ruby-div-regular");
-			}
-		}
-		else {
-			// 1) make skinny-only divs display=none; make regular divs display=block
-			for( var i = 0; i < regularDivs.length; i++) {
-				regularDivs[i].style.display = "block";
-			}
-			for( var i = 0; i < skinnyDivs.length; i++) {
-				skinnyDivs[i].style.display = "none";
-			}
-
-			// 2) swap skinny ruby divs for the regular version
-			var divs = document.querySelectorAll(".ruby-div-skinny");
-			console.log( "NOT skinny: divs length=" + divs.length);
-			for( var i = 0; i < divs.length; i++) {
-				divs[i].classList.add( "ruby-div-regular");
-				divs[i].classList.remove( "ruby-div-skinny");
-			}
-		}
-	}   // doSkinny()
-
-
-	// this function handles the Page Break checkbox above
-	function doPagebreak() {
-		var checkBox = document.getElementById("pagebreakCheckbox");
-		var divs = document.querySelectorAll(".report-page-break");
-		for( i = 0; i < divs.length; i++) {
-			if( checkBox.checked == true) {
-				divs[i].style.display = "block"; 
-			}
-			else { 
-				divs[i].style.display = "none"; 
-			}
-		}
-	}  // doPagebreak()
-
-</script>
 
