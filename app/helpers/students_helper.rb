@@ -52,4 +52,26 @@ module StudentsHelper
     end
   end
 
+  # this is a jumble
+  def ux_ruby_get_result( results_array, squares, cur_interval, cur_square)
+    index = (cur_interval-1) * squares.size + cur_square
+    results_array[index]
+  end
+
+  # Ruby Report - returns a string that serves as the interval time range
+  # For example: 11:00 - 11:05
+  def ux_ruby_time_range( session, interval_num)
+    # multiplier is minutes per interval
+    multiplier = session.session_interval
+
+    # calc the start and end times of the range
+    start_time = session.start_time + (interval_num-1) * multiplier.minutes
+    end_time = start_time + multiplier.minutes
+
+    # format the strings using Central Time
+    start_string = start_time.in_time_zone('Central Time (US & Canada)').strftime("%-l:%M")
+    end_string = end_time.in_time_zone('Central Time (US & Canada)').strftime("%-l:%M")
+    start_string << " - " << end_string
+  end
+
 end

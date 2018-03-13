@@ -88,8 +88,8 @@ module SessionsHelper
   # calculates session duration and return it, nicely formatted
   def ux_session_duration(session)
     # DateTime objects ARE integers, so this returns num seconds elapsed
-    duration = session.end_time.to_i - session.start_time.to_i
-    return formatTime(duration)
+#    duration = session.end_time.to_i - session.start_time.to_i
+    return formatTime( session.duration)
   end
 
   # returns the start date in a nice format
@@ -116,6 +116,11 @@ module SessionsHelper
     else
       "Default, each square press counted"
     end
+  end
+
+  # return the number of intervals in a session using the start/end times
+  def ux_session_num_intervals( session) 
+    12
   end
 
 end

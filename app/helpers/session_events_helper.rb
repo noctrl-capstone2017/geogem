@@ -1,4 +1,5 @@
 module SessionEventsHelper
+
   # for ux/view, return event start time (square press time)
   def ux_event_start_time( event)
     event.square_press_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P")
@@ -12,6 +13,11 @@ module SessionEventsHelper
     else
       ""
     end
+  end
+
+  # returns the interval, within the session, that the event occurred
+  def ux_event_interval( session, event)
+    7
   end
 
   # for ux/view, return behavior square name
