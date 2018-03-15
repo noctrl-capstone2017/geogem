@@ -144,7 +144,6 @@
   </div>   <!-- row -->
 </div>   <!-- container-fluid -->
 
-
 <!-- Accordion section at the bottom -->
 <!-- Source: https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=accordion-with-plus-minus-icon -->
 <script>
@@ -153,7 +152,6 @@
         $(".collapse.in").each(function(){
         	$(this).siblings(".panel-heading").find(".glyphicon").addClass("glyphicon-minus").removeClass("glyphicon-plus");
         });
-
         // Toggle plus minus icon on show hide of collapse element
         $(".collapse").on('show.bs.collapse', function(){
         	$(this).parent().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
@@ -172,12 +170,14 @@
   <!-- SESSION INSTRUCTIONS panel -->
   <div class="panel panel-default">
 		<div class="panel-heading">
-			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-				  	  <span class="glyphicon glyphicon-plus"></span> &nbsp; Session instructions, specific to <%= @student.full_name %></a>
-			</h4>
+			<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+			      style="text-decoration: none;">
+  			<h4 class="panel-title">
+		  	  <span class="glyphicon glyphicon-plus"></span> &nbsp; Session instructions, specific to <%= @student.full_name %>
+  			</h4>
+      </a>
 		</div>
-		<div id="collapseOne" class="panel-collapse collapse in">
+		<div id="collapseOne" class="panel-collapse collapse">
 			<div class="panel-body">
 
         <div class="col-xs-12 form-group">
@@ -192,10 +192,12 @@
   <!-- SESSION DETAILS panel -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-					<span class="glyphicon glyphicon-plus"></span> &nbsp; Session details</a>
-			</h4>
+			<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+			      style="text-decoration: none;">
+  			<h4 class="panel-title">
+					<span class="glyphicon glyphicon-plus"></span> &nbsp; Session details
+  			</h4>
+  		</a>
 		</div>
 		<div id="collapseTwo" class="panel-collapse collapse ">
 			<div class="panel-body">
