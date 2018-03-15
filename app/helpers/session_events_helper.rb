@@ -16,8 +16,8 @@ module SessionEventsHelper
   end
 
   # returns the interval, within the session, that the event occurred
-  def ux_event_interval( session, event)
-    7
+  def ux_event_interval( event)
+    event.interval_num.present? ? event.interval_num : " "
   end
 
   # for ux/view, return behavior square name
@@ -44,9 +44,9 @@ module SessionEventsHelper
     if sq.tracking_type == Square::TIMER
       duration = event.duration_in_secs
       if duration >= 60
-        "Event duration was " << Time.at(duration).utc.strftime("%-M mins, %-S secs")
+        "Duration: " << Time.at(duration).utc.strftime("%-M mins, %-S secs")
       else 
-        "Event duration was " << Time.at(duration).utc.strftime("%-S secs")
+        "Duration: " << Time.at(duration).utc.strftime("%-S secs")
       end
     else
       ""

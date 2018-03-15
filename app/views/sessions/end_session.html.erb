@@ -109,6 +109,7 @@
                 <tr>
                   <th>Num</th>
                   <th>Time</th>
+                  <th>Interval num</th>
                   <th>Square</th>
                   <th>Type</th>
                   <th>End time</th>
@@ -124,6 +125,9 @@
                   </td>
                   <td>
                     <p><%= ux_event_start_time( each_event) %></p>
+                  </td>
+                  <td>
+                    <p><%= ux_event_interval( each_event) %></p>
                   </td>
                   <td>
                     <p><%= ux_event_behavior_square( each_event) %></p>

@@ -190,10 +190,6 @@ class StudentsController < ApplicationController
   # Ruby Report creates PDF for one behavior square over time
   def analysis_ruby
     if params[:do_ruby]
-      # do the CSV export
-      # @student = Student.find( params[:id])
-      # 
-      # notes_flag = params[:include_notes] ? true: false
       @student = Student.find( params[:id])
       @squares = @student.squares
       @sessions = Session.where(session_student: @student.id)
@@ -202,7 +198,9 @@ class StudentsController < ApplicationController
       @ruby_notes = SessionNote.where( session_id: @ruby_session)
       @teacher = @ruby_session.blank? ? nil : Teacher.find( @ruby_session.session_teacher)
       @num_intervals = @ruby_session.num_intervals
-      @ruby_results = [ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37 ]
+      
+      # Bogus! Update old events so they have the new interval_num
+      old_events_sanity_check( @ruby_events, @ruby_session)
     else
       # setup the form for Emerald export
       @student = Student.find(params[:id])
@@ -273,4 +271,11 @@ class StudentsController < ApplicationController
       return num
     end
 
+    def old_events_sanity_check( events, session)
+      events.each do | each_event |
+        if each_event.interval_num.nil?
+          each_event.set_interval_num( session)
+        end
+      end
+    end
 end

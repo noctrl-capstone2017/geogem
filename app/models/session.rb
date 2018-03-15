@@ -17,9 +17,14 @@ class Session < ApplicationRecord
   # returns the number of intervals in the session, given its duration (in secs)
   # and the size of each interval (in mins)
   def num_intervals
-    count = (self.duration / (self.session_interval * 60)).ceil
-    count = 1 if count < 1
+    count = (self.duration.to_f / (self.session_interval * 60)).ceil
+    count = 1 if count < 1      # sanity check
     count
+  end
+
+  def sanity_check
+    if end_time.nil?
+    end
   end
 
 end

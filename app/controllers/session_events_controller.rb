@@ -31,10 +31,11 @@ class SessionEventsController < ApplicationController
     @session_event.behavior_square_id = params[:behavior_id]
     @session_event.square_press_time = params[:start_time].to_s
     @session_event.duration_end_time = params[:end_time].to_s
-    #Taylor S for debugging
-    #@session_event.square_press_time = Time.now
-    #@session_event.duration_end_time = Time.now + 5*60
     @session_event.session_id = params[:session_id]
+
+    # calculate and set the interval num for this event... a little complicated
+    the_session = Session.find(params[:session_id])
+    @session_event.set_interval_num( the_session)
 
     respond_to do |format|
       if @session_event.save
@@ -91,4 +92,5 @@ class SessionEventsController < ApplicationController
     def session_event_params
       params.require(:session_event).permit(:behavior_square_id, :square_press_time, :duration_end_time, :session_id)
     end
+
 end

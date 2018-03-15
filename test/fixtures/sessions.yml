@@ -6,6 +6,7 @@ one:
   end_time: 2017-05-10 22:10:18
   session_teacher: 1
   session_student: 1
+  session_interval: 15
 
 two:
   id: 2
@@ -13,3 +14,4 @@ two:
   end_time: 2017-05-10 22:15:18
   session_teacher: 1
   session_student: 1
+  session_interval: 15

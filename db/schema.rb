@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180201175928) do
+ActiveRecord::Schema.define(version: 20180313195309) do
 
   create_table "roster_squares", force: :cascade do |t|
     t.integer  "square_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20180201175928) do
     t.integer  "session_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "interval_num"
   end
 
   create_table "session_notes", force: :cascade do |t|
@@ -89,7 +90,7 @@ ActiveRecord::Schema.define(version: 20180201175928) do
     t.integer  "school_id"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.boolean  "session_interval_counting", default: false
+    t.boolean  "session_interval_counting"
     t.text     "session_instructions"
   end
 
