@@ -647,6 +647,32 @@ $analysis-topaz: #FFC87C;			// color for Analysis/Topaz form
 .analysis-row:hover { box-shadow: 0 0 16px lightgray; border: 2px solid lightgray; background-color: white; }
 .analysis-row-padding { padding-left: 2.4em; }
 
+/* this CSS used to format report content */
+.regular-report-div { font-size: 16px; }
+.regular-report-div ul li { padding-bottom: 8px; }
+
+.regular-report-div table { width: 100%; margin: 0 auto; }
+.regular-report-div td, th { text-align: center; font-size: 14px; font-family: Verdana;}
+
+.skinny-report-div { font-size: 14px; }
+.skinny-report-div h4 { font-size: 18px; }
+.skinny-report-div li { display: inline; }
+.skinny-report-div ul li:after { content: ";"; padding-right: .5em; }
+
+.skinny-report-div table { width: 100%; margin: 0 auto; }
+.skinny-report-div td, th { text-align: center; font-size: 12px; font-family: Verdana;}
+
+@media print {
+	.regular-report-div table { page-break-inside: avoid; }
+	.skinny-report-div table { page-break-inside: avoid; }
+}
+
+.report-param { text-decoration: underline; }
+.report-student-param { font-size: 1.2em; font-weight: bold; }
+.report-page-break { page-break-before: always; }
+.report-footer { position: fixed; bottom: 0; font-size: 0.8em; color: gray; }
+
+
 /*********************************************************
 	8. PRINTING
 	CSS for printing control over web pages

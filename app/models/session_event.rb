@@ -3,6 +3,21 @@ class SessionEvent < ApplicationRecord
   belongs_to :session
   validates :session_id, presence: true
 
+
+  # return the duration of a session_event in number of seconds
+  def duration_in_secs
+    duration_end_time.to_i - square_press_time.to_i
+  end
+
+  # calc and then set the interval num for an event, requires the session object
+  def set_interval_num( session)
+    time1 = Time.at(self.square_press_time)
+    time2 = Time.at(session.start_time)
+    delta = (time1.to_f - time2.to_f).to_i
+    self.interval_num = delta / (session.session_interval * 60)
+    self.save
+  end
+
   # write session events in CSV format... used by the Emerald Export screen
   def self.to_csv( include_notes = false)
     if include_notes
@@ -23,12 +38,6 @@ class SessionEvent < ApplicationRecord
         # Source: https://stackoverflow.com/questions/29141093/helper-methods-for-models-in-rails
         csv_type = ApplicationController.helpers.ux_square_tracking_type( event_square)
         csv_duration = (csv_type == "Timer" ? event.duration_in_secs : 0)
-        # if csv_type == "Timer"
-        #   csv_duration = event.duration_in_secs
-        # csv_duration = "0"
-        # if( tmp_duration != 0)
-        #   csv_duration = Time.at(tmp_duration).utc.strftime("%-M:%S")
-        # end
 
         if include_notes
           csv << [ num, csv_time, csv_event, csv_type, csv_duration, "" ]
@@ -38,7 +47,7 @@ class SessionEvent < ApplicationRecord
         num += 1
       end
 
-      if include_notes
+      if include_notes  &&  all.present?
         notes = SessionNote.where( session_id: first.session_id)
         if ! notes.empty?
           notes.each do | each_note |
@@ -49,11 +58,6 @@ class SessionEvent < ApplicationRecord
         end
       end
     end
-  end
-
-  # return the duration of a session_event in number of seconds
-  def duration_in_secs
-    duration_end_time.to_i - square_press_time.to_i
   end
 
 end

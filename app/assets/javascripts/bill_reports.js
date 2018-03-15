@@ -1,5 +1,36 @@
 
 /***
+ * toggleDivsWithCheckbox - toggle between two divs using a checkbox.
+ * I used this to toggle between regular and skinny classes in reports.
+ * 
+ *	cb - the checkbox must be the first param
+ *	checkDiv - the CSS class name present when checkbox is on
+ *	uncheckDiv - the CSS class name present when checkbox is off
+ *	
+ * Example call: 
+ *		<input type="checkbox" id="toggleCheckbox" 
+ *					checkDiv="skinny-report-div" uncheckDiv="regular-report-div"
+ *					onclick="toggleDivsWithCheckbox(this)">
+ ***/
+function toggleDivsWithCheckbox( cb) {
+	var checkDivName = cb.getAttribute( "checkDiv");
+	var uncheckDivName = cb.getAttribute( "uncheckDiv");
+
+	var divList;
+	if( cb.checked == true) {
+		divList = document.querySelectorAll("." + uncheckDivName);
+	}
+	else {
+		divList = document.querySelectorAll("." + checkDivName);
+	}
+
+	for( var i = 0; i < divList.length; i++) {
+		divList[i].classList.toggle( checkDivName);
+		divList[i].classList.toggle( uncheckDivName);
+	}
+}
+
+/***
  * toggleDivDisplay - toggles the display of a div using a checkbox.
  * The display of all divs with a CSS class name are controlled by the checkbox.
  * 

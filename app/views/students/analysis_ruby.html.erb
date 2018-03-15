@@ -5,27 +5,6 @@
 			:locals => { 	:title => "Ruby Report", 
 										:subtitle => "show session stats for one behavior square for #{ @student.full_name }"} %>
 
-<!-- CSS specific to Ruby Report -->
-<style>
-.show-on-regular-only { font-size: 1.0em; }
-.show-on-skinny-only { font-size: 1.0em; }
-.ruby-div-regular { font-size: 16px; font-family: Arial; }
-.ruby-div-skinny { font-size: 14px; font-family: Arial; }
-.report-page-break { page-break-before: always; }
-
-.ruby-student-param { font-size: 1.4em; font-weight: bold; }
-.ruby-param { text-decoration: underline; }
-
-.ruby-content { font-size: 14px; font-family: Arial; }
-.ruby-div-regular li { padding-bottom: 8px; }
-
-.ruby-report-table { width: 90%; margin: 0 auto; }
-.ruby-report-table td, th { text-align: center; }
-
-.ruby-title { border: 0px solid lightgray; border-radius: 18px; 
-			background-color: white; padding: 0px 4px 12px 4px; }
-#ruby-footer { position: fixed; bottom: 0; color: gray; }
-</style>
 
 <%= form_tag 'analysis_ruby', :method => 'get' do %>
 
@@ -49,7 +28,7 @@
 				<label>Session</label>
 				<%= select_tag 'session_id', 
 							options_for_select( @sessions.order('created_at DESC').map{|c| [c.created_at.strftime("%a %b %-d, %Y"), c.id]}), 
-							{  :include_blank => 'Select a session to export', :class => 'form-control form-input-tweak' } %>
+							{  :include_blank => 'Select a session', :class => 'form-control form-input-tweak' } %>
 			</div>
 
 			<!-- update report button; it's updated with a new session value -->
@@ -106,10 +85,10 @@
 			        	<label class="checkbox">
 			        		<h4>
 				        		<input type="checkbox" id="skinnyCheckbox" class="pull-left" 
-				        					theCheckedDiv="show-on-skinny-only"
-				        					theNotCheckedDiv="show-on-regular-only" 
-				        					onclick="swapDivs(this)">
-			        			&nbsp; Skinny form <small><br>&nbsp; scrunch your form for smaller printing</small>
+				        					checkDiv="skinny-report-div"
+				        					uncheckDiv="regular-report-div" 
+				        					onclick="toggleDivsWithCheckbox(this)">
+			        			&nbsp; Skinny form <small><br>&nbsp; scrunch your report for smaller printing</small>
 			        		</h4>
 			        	</label>
 			        </div>
@@ -139,66 +118,63 @@
 <!-- BEGIN RUBY REPORT -->
 <!----------------------->
 
-<!-- This is controversial. I have two completely separate reports. -->
-<!-- This first one is "regular". The second is "skinny" -->
-<!-- I did this because the actual structure of the reports is different -->
-<!-- and not just CSS classes, etc. -->
-
-<!-- BEGIN regular report div -->
-<div class="show-on-regular-only">
-
 <!-- Section: Header, includes the title, session date, params and summart sentence -->
-<div id="ruby-title" class="row form-row2 ruby-div-regular">
-	<div class="col-xs-12 pad20">
+<div class="row form-row2 regular-report-div pad20">
 
-		<!-- Report title on left, session date pulled right-->
-		<h2>Ruby Report 
-			<small class="pull-right pad10">
-					Session Date: <span style="text-decoration: underline;"> <%= ux_session_date(@ruby_session) %> </span>
-			</small>
-		</h2>
+	<!-- Big, old report title on left -->
+	<div class="col-xs-6">
+		<h2>Ruby Report</h2>
+	</div>
 
-		<!-- Most important report params on one line -->
+	<!-- Session date pulled to the right -->
+	<div class="col-xs-6 pad20">
+		<span class="pull-right">
+			Session date: <span style="text-decoration: underline;"> <%= ux_session_date(@ruby_session) %> </span>
+		</span>
+	</div>
+</div>   <!-- row -->
+
+<div class="row form-row2 regular-report-div">
+	<div class="col-xs-12">
+		<!-- Most important report params at the top on one line -->
 		<p class="pad20">
-			Student: <span class="ruby-student-param"> <%= @student.full_name %></span> &nbsp; ~ &nbsp;
-			Teacher: <span class="ruby-param"><%= @teacher.full_name %></span> &nbsp; ~ &nbsp;
-			Interval time: <span class="ruby-param"><%= @ruby_session.session_interval %> mins</span>
+			Student: <span class="report-student-param"> <%= @student.full_name %></span> &nbsp; ~ &nbsp;
+			Teacher: <span class="report-param"><%= @teacher.full_name %></span> &nbsp; ~ &nbsp;
+			Interval time: <span class="report-param"><%= @ruby_session.session_interval %> mins</span>
 		</p>
 
 		<!-- One sentence summary of the report -->
 		<p>The Ruby Report summarizes the details of one behavior session.</p>
-
 	</div>
 </div>   <!-- row -->
 
-<!-- Section: Interval table, stats for squares pressed at each interval -->
-<div class="row form-row2 ruby-div-regular pad40">
+<!-- Section: Session Summary table, stats for squares pressed at each interval -->
+<div class="row form-row2 regular-report-div pad20">
 	<div class="col-xs-12">
 		<h4>I. Session summary table</h4>
 
-		<table class="table table-bordered table-condensed ruby-report-table">
+		<table class="table table-bordered table-striped table-responsive table-condensed">
 			<thead>
 				<tr>
 					<th style="width: 10%;">Interval</th>
-					<th style="width: 10%;">Time range</th>
+					<th style="width: 20%;">Time range</th>
 					<% @squares.each do |each_square| %>
 						<th style="width: 10%;"><%= each_square.screen_name %></th>
 					<% end %>
 				</tr>
 			</thead>
 			<tbody>
-				<% for interval in 1..@num_intervals %>
+				<% for interval in 0..@num_intervals-1 %>
 					<tr>
-						<td> <%= interval %> </td>
+						<td> <%= interval+1 %> </td>
 						<td> <%= ux_ruby_time_range( @ruby_session, interval) %> </td>
 						<% @squares.each_with_index do |square, index| %>
-							<td> <%= ux_ruby_get_result( @ruby_results, @squares, interval, index) %> </td>
+							<td> <%= ux_ruby_count_events_during_interval( @ruby_events, square, interval) %> </td>
 						<% end %>
 					</tr>
 				<% end %>
 			</tbody>
 		</table>
-		<br><br>
 	</div>
 </div>   <!-- row -->
 
@@ -206,30 +182,30 @@
 <div class="report-page-break" style="display: none;"></div>
 
 <!-- Section: Squares key -->
-<div class="row form-row2 pad20 ruby-div-regular">
+<div class="row form-row2 regular-report-div pad20">
 	<div class="col-xs-12">
 		<h4>II. Squares key</h4>
 		<p>The behavior squares assigned to this student are:</p>
 
 		<!-- For each square, print its description -->
-		<ul style="display: inline-block;">
+		<ul>
 			<% @squares.each do |each_square| %>
-				<li><strong><%= each_square.screen_name %></strong> = <%= each_square.description %> &nbsp;</li>
+				<li><strong><%= each_square.screen_name %></strong> = <%= each_square.description %></li>
 			<% end %>
 		</ul>
 	</div>
 </div>   <!-- row, squares key -->
 
 <!-- Section: Session setup -->
-<div class="row form-row2 pad20 ruby-div-regular">
+<div class="row form-row2 regular-report-div">
 	<div class="col-xs-12">
 		<h4>III. Session setup</h4>
 
 		<!-- Student's session params -->
 		<p>a) Session parameters:</p>
 		<ul>
-			<li>Session interval: <%= @student.session_interval %> mins </li>
-			<li>Square counting: <%= ux_session_counting_style( @ruby_session) %> </li>
+			<li>Session interval: <%= @student.session_interval %> mins</li>
+			<li>Square counting: <%= ux_session_counting_style( @ruby_session) %></li>
 		</ul>
 
 		<!-- Student's session instructions -->
@@ -241,7 +217,7 @@
 </div>   <!-- row, setup section -->
 
 <!-- Section: Session results -->
-<div class="row form-row2 pad20 ruby-div-regular">
+<div class="row form-row2 regular-report-div">
 	<div class="col-xs-12">
 		<h4>IV. Session results</h4>
 
@@ -250,22 +226,22 @@
 		<ul>
 			<li>Session start/end times: 
 						<%= ux_session_start_time( @ruby_session) %> - 
-						<%= ux_session_end_time( @ruby_session) %> </li>
+						<%= ux_session_end_time( @ruby_session) %></li>
 			<li>Session duration: 
 						<%= ux_session_duration( @ruby_session) %> </li>
+			<li>Num intervals: <%= @ruby_session.num_intervals %> intervals</li>
 		</ul>
 	</div>
 </div>   <!-- row -->
 
 <!-- Continue Results section, Table of session events -->
-<div class="row form-row2 pad20 ruby-div-regular">
+<div class="row form-row2 regular-report-div">
 	<div class="col-xs-12">
-		<p>b) Session events:</p>
+		<p>b) Session events table:</p>
     <% if @ruby_events.empty? %>
       <p style="padding-left: 40px;">There were <b>no events</b> during the session.</p>
     <% else %>
-      <h4 class="text-center">Session events table</h4>
-      <table class="table table-striped table-responsive table-condensed ruby-report-table">
+      <table class="table table-striped table-responsive table-condensed">
         <thead>
           <tr>
             <th>Num</th>
@@ -282,25 +258,25 @@
           <% @ruby_events.each_with_index do |each_event, index| %>
           <tr>
             <td>
-              <p><%= index+1 %></p>
+              <%= index+1 %>
             </td>
             <td>
-              <p><%= ux_event_start_time( each_event) %></p>
+              <%= ux_event_start_time( each_event) %>
             </td>
             <td>
-            	<p><%= ux_event_interval( @ruby_session, each_event) %></p>
+            	<%= ux_event_interval( each_event) %>
             </td>
             <td>
-              <p><%= ux_event_behavior_square( each_event) %></p>
+              <%= ux_event_behavior_square( each_event) %>
             </td>
             <td>
-              <p><%= ux_event_behavior_square_type( each_event) %></p>
+              <%= ux_event_behavior_square_type( each_event) %>
             </td>
             <td>
-              <p><%= ux_event_end_time( each_event) %></p>
+              <%= ux_event_end_time( each_event) %>
             </td>
             <td>
-              <p><%= ux_event_notes(each_event) %></p>
+              <%= ux_event_notes(each_event) %>
             </td>
           </tr>
           <% end %>
@@ -312,14 +288,13 @@
 </div>   <!-- squares setup section -->
 
 <!-- Continue Results section, Table of session notes -->
-<div class="row form-row2 pad20 ruby-div-regular">
+<div class="row form-row2 pad20 regular-report-div">
 	<div class="col-xs-12">
-		<p>c) Session notes:</p>
+		<p>c) Session notes table:</p>
     <% if @ruby_notes.empty? %>
       <p style="padding-left: 40px;">There were <b>no notes</b> during the session.</p>
     <% else %>
-      <h4 class="text-center">Session notes table</h4>
-      <table class="table table-striped table-responsive table-condensed ruby-report-table">
+      <table class="table table-striped table-responsive table-condensed">
         <thead>
           <tr>
             <th>Num</th>
@@ -332,13 +307,13 @@
           <% @ruby_notes.each_with_index do |each_note, index2| %>
           <tr>
             <td>
-              <p><%= index2+1 %></p>
+              <%= index2+1 %>
             </td>
             <td>
-              <p><%= ux_session_note_time( each_note) %></p>
+              <%= ux_session_note_time( each_note) %>
             </td>
             <td>
-              <p><%= each_note.note %></p>
+              <%= each_note.note %>
             </td>
           </tr>
           <% end %>
@@ -349,88 +324,11 @@
 	</div>
 </div>   <!-- row -->
 
-</div>   <!-- MAJOR regular-only report div -->
-
-
-<!-- BEGIN skinny report, initially hidden -->
-<div class="show-on-skinny-only" style="display: none;">
-	<div id="ruby-title" class="row form-row2 ruby-div-regular" >
-	<div class="col-xs-6">
-		<h3>Ruby Report</h3>
-	</div>
-	<div class="col-xs-6 text-right pad20">
-		Session Date: <span style="text-decoration: underline;"> <%= ux_session_date(@ruby_session) %> </span>
-	</div>
-
-	<div class="clearfix"></div>
-
-	<div class="col-xs-12 pad10">
-		Student: <span class="ruby-student-param"> <%= @student.full_name %></span> &nbsp; ~ &nbsp;
-		Teacher: <span class="ruby-param"><%= @teacher.full_name %></span> &nbsp; ~ &nbsp;
-		Interval time: <span class="ruby-param"><%= @ruby_session.session_interval %> mins</span>
-	</div>
-	<div class="clearfix"></div>
-	<div class="col-xs-12 pad20">
-		This report summarizes the details of one behavior session.
-	</div>
-</div>   <!-- row -->
-
-<!-- The main part: the table of squares pressed at each interval -->
-<div class="row form-row2 ruby-div-regular">
-	<div class="col-xs-12 center-block text-center" style="text-align: center; margin: 0 auto;">
-		<br><br>
-		<p>Table goes here...</p>
-		<br><br>
-	</div>
-</div>
-
-<!-- forced page break; it's turned on/off with the checkbox above -->
-<div class="report-page-break" style="display: none;"></div>
-
-<!-- Section: Squares key -->
-<div class="row form-row2 pad20 ruby-div-regular">
-	<div class="col-xs-12">
-		<strong>Squares key &mdash; </strong>
-		<% @squares.each do |each_square| %>
-			<strong><%= each_square.screen_name %></strong> = <%= each_square.description %> &nbsp;
-		<% end %>
-	</div>
-</div>   <!-- squares key section -->
-
-<!-- Section: Session setup -->
-<div class="row form-row2 pad20 ruby-div-regular">
-	<div class="col-xs-12">
-		<h3>Session setup</h3>
-		<strong>Session parameters &mdash; </strong>
-		Session interval: <%= @ruby_session.session_interval %> mins &nbsp; ~ &nbsp;
-		Square counting: <%= ux_session_counting_style( @ruby_session) %>
-		<br><br>
-		<strong>Session instructions specific to <%= @student.full_name %> &mdash; </strong>
-		<i> <%= @ruby_session.session_instructions %> </i>
-	</div>
-</div>   <!-- squares setup section -->
-
-<!-- Section: Session results -->
-<div class="row form-row2 pad20 ruby-div-regular">
-	<div class="col-xs-12">
-		<h3>Session results</h3>
-		<p>
-			a) Session parameters &mdash;
-			Session interval: <%= @ruby_session.session_interval %> mins &nbsp; ~ &nbsp;
-			Square counting: <%= ux_session_counting_style( @ruby_session) %>
-		</p>
-	</div>
-</div>   <!-- squares setup section -->
-	
-</div>   <!-- MAJOR skinny-only report div -->
-
 <% end %>   <!-- if @ruby_sessions, in other words, report is not empty -->
-
 
 <!-- simple footer; it's on print only -->
 <div class="row text-center display-on-print-only">
-	<div id="ruby-footer" class="col-xs-12 text-center">
+	<div class="col-xs-12 text-center report-footer">
 		GeoGem &copy; 2018
 	</div>
 </div>
-

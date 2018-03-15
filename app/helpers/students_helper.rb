@@ -53,9 +53,9 @@ module StudentsHelper
   end
 
   # this is a jumble
-  def ux_ruby_get_result( results_array, squares, cur_interval, cur_square)
-    index = (cur_interval-1) * squares.size + cur_square
-    results_array[index]
+  def ux_ruby_count_events_during_interval( events, square, cur_interval)
+    e = events.where( behavior_square_id: square.id, interval_num: cur_interval)
+    e.count
   end
 
   # Ruby Report - returns a string that serves as the interval time range
@@ -65,7 +65,7 @@ module StudentsHelper
     multiplier = session.session_interval
 
     # calc the start and end times of the range
-    start_time = session.start_time + (interval_num-1) * multiplier.minutes
+    start_time = session.start_time + (interval_num * multiplier.minutes)
     end_time = start_time + multiplier.minutes
 
     # format the strings using Central Time
