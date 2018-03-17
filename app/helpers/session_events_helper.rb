@@ -16,8 +16,9 @@ module SessionEventsHelper
   end
 
   # returns the interval, within the session, that the event occurred
+  # intervals start at 0 internally, but at 1 for the user, hence the +1
   def ux_event_interval( event)
-    event.interval_num.present? ? event.interval_num : " "
+    event.interval_num.present? ? (event.interval_num+1) : " "
   end
 
   # for ux/view, return behavior square name

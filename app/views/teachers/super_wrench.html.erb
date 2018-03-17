@@ -1,0 +1,80 @@
+<!-- Adapted for use by Dakota B -->
+<% provide(:title, "Super wrench") %>
+
+<!-- page header -->
+<%= render partial: 'super_page_header', 
+			:locals => { 	:title => "Super wrench", 
+										:subtitle => "use superpowers to fix something in GeoGem"} %>
+
+<style>
+	.bad { color:red; }
+	li { padding-bottom: 12px; }
+</style>
+
+<div class="row form-row2">
+	<div class="col-xs-10 col-xs-offset-1">
+
+		<!-- Wrench instructions... this is a V0.5 fix -->
+		<h4>The V0.5 Hack <small> - Mar 15, 2018</small></h4>
+		<p>
+			In V0.5, I added the interval_num attribute to SessionEvent.
+			This caused a problem with old, existing sessions. 
+			The interval_num in those old events is nil, and that causes problems in reports, etc.
+			I could have added code to check this (everywhere), but I decided to do this wrench instead.
+			I'll crank this wrench once on the production deploy and be done with it.
+			Read on...
+		</p>
+		<p>
+			The wrench visits each session and assigned the interval_num if it's nil.
+			So, after one run all the bad sessions should be gone.
+			I can actually remove this wrench after that if I want.
+		</p>
+		<p>thanks... yow, bill</p>
+	</div>
+</div>   <!-- -->
+
+<div class="row form-row2 content-text pad20">
+	<div class="col-xs-12">
+		<p>
+			OK, here's the current situation...
+		</p>
+		<ul>
+			<li>
+				There are currently <%= Session.count %> sessions in GeoGem.
+				<ul>
+					<li>Of these, <span class="bad"><%= @bad_sessions_count %> sessions</span> have some bad events.</li>
+				</ul>
+			</li>
+			<li>
+				There are <%= SessionEvent.count %> events in GeoGem. 
+				<ul>
+					<li>
+						There are <span class="bad"><%= @bad_events_count %></span> BAD events in there. 
+					</li>
+				</ul>
+			</li>
+			<li>
+				There are <%= @unending_sessions_count %> sessions without an end time, too. (huh?)
+			</li>
+		</ul>
+	</div>
+</div>   <!-- row -->
+
+
+<!-- OK/cancel buttons -->
+<div class="row form-row2 pad20">
+	<div class="col-xs-10">
+
+		<%= form_for( @teacher, :url => { :action => :do_super_wrench }) do |f| %>
+		
+			<!-- OK button is "Crank it!" -->
+			<%= button_tag( type: 'submit', :disabled => (@bad_sessions_count <= 0),
+						class: "btn btn-lg btn-success") do %>Crank it!<% end %>
+
+			<!-- Cancel button returns to the Super page -->
+			&nbsp; &nbsp; &nbsp;
+			<%= link_to "Cancel", super_path, :class => "btn btn-lg btn-danger",
+						:title => "Back to Super page" %>
+		<% end %>
+	</div>
+</div>

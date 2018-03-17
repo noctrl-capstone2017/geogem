@@ -25,7 +25,7 @@
 		</div>
 		<div class="clearfix"></div>
 		<div class="col-xs-6 text-center pad20">
-			<%= button_tag(type: 'submit', class: "btn btn-success") do %>Change focus school<% end %>
+			<%= button_tag(type: 'submit', class: "btn btn-lg btn-success") do %>Change focus school<% end %>
 		</div>
 
 	</div>   <!-- row -->
@@ -176,3 +176,25 @@
 	</div>
 
 </div>   <!-- row -->
+
+<div class="row form-row2 navpanel-row">
+
+	<!-- ALL SCHOOLS lists all schools in GeoGem -->
+	<div class="col-xs-12 col-sm-6 navpanel-col">
+		<div class="panel panel-default navpanel">
+		  <div class="panel-heading">
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-wrench navpanel-yelloworange"></span> Wrench</h3>
+		  </div>
+		  <div class="panel-body navpanel-body">
+		    <p>My <b style="color:red;">Super Wrench</b> is a hook for adding/running code to fix GeoGem behind the scenes.</p>
+		    <p>
+		    	<%= link_to super_wrench_path, :class => "btn btn-lg btn-default navpanel-yelloworange-button" do %>
+						Super wrench <i class="fa fa-fw fa-chevron-right"></i>
+		    	<% end %>
+		    </p>
+		  </div>
+		</div>   <!-- panel -->
+	</div>
+
+</div>   <!-- row -->
+
