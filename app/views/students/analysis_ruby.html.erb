@@ -169,7 +169,7 @@
 						<td> <%= interval+1 %> </td>
 						<td> <%= ux_ruby_time_range( @ruby_session, interval) %> </td>
 						<% @squares.each_with_index do |square, index| %>
-							<td> <%= ux_ruby_count_events_during_interval( @ruby_events, square, interval) %> </td>
+							<td> <%= ux_ruby_count_events_during_interval( @ruby_session, @ruby_events, square, interval) %> </td>
 						<% end %>
 					</tr>
 				<% end %>

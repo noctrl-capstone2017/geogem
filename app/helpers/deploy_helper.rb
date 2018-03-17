@@ -7,9 +7,9 @@ module DeployHelper
   # IMPORTANT!
   # These 3 global variables are all you need to change when deploying a new version
   #
-  @@geogem_version = "V0.4"
-  @@geogem_version_detailed = "V0.4-alpha"
-  @@geogem_deploy_date = "February 7, 2018"
+  @@geogem_version = "V0.5"
+  @@geogem_version_detailed = "V0.5-alpha"
+  @@geogem_deploy_date = "March 17, 2018 \u2618"
 
   def DeployHelper.geogem_version
     @@geogem_version

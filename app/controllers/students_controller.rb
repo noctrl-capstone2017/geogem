@@ -195,11 +195,15 @@ class StudentsController < ApplicationController
       @squares = @student.squares
       @sessions = Session.where(session_student: @student.id)
       @ruby_session = params[:session_id].blank? ? nil: Session.find( params[:session_id])
-      @ruby_session.certify
+      @num_intervals = 0
+      if @ruby_session.present?
+        @ruby_session.certify
+        @num_intervals = @ruby_session.num_intervals
+      end
+
       @ruby_events = SessionEvent.where( session_id: @ruby_session)
       @ruby_notes = SessionNote.where( session_id: @ruby_session)
       @teacher = @ruby_session.blank? ? nil : Teacher.find( @ruby_session.session_teacher)
-      @num_intervals = @ruby_session.num_intervals
     else
       # setup the form for Emerald export
       @student = Student.find(params[:id])
