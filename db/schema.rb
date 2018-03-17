@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313195309) do
+ActiveRecord::Schema.define(version: 20180316191647) do
 
   create_table "roster_squares", force: :cascade do |t|
     t.integer  "square_id"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20180313195309) do
     t.integer  "session_interval"
     t.boolean  "session_interval_counting"
     t.text     "session_instructions"
+    t.boolean  "certified",   default: false
   end
 
   create_table "squares", force: :cascade do |t|

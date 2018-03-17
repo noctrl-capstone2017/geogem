@@ -11,16 +11,18 @@ class SessionsController < ApplicationController
     @school = School.find( current_teacher.school_id)
 
     # step 1 - create an array of session ID's for the current school
-    all_sessions = Session.all
     session_ids = []
-    all_sessions.each do | sesh |
-        session_ids << sesh.id if sesh.school_id == current_teacher.school_id
+    Session.all.each do | sesh |
+      session_ids << sesh.id if sesh.school_id == current_teacher.school_id
     end
 
     # step 2 - turn the array of ID's into a relation
     # I got this clever array to relation idea from this source:
     # stackoverflow.com/questions/4352895/ruby-on-rails-will-paginate-an-array
     @sessions = Session.where( :id => session_ids)
+
+    # certify that these sessions are OK
+    @sessions.map { |sesh| sesh.certify if !sesh.certified }
 
     # step 3 - order by start time and paginate the sessions
     @sessions = @sessions.order('start_time DESC')
@@ -114,6 +116,7 @@ class SessionsController < ApplicationController
       #   @session.save
       # end
     end
+    @session.certify
 
     # the default is back to home; back to sessions page is a special case
     @back_to_sessions = params[:back_to_sessions].present?

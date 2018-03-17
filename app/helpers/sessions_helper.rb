@@ -66,9 +66,9 @@ module SessionsHelper
   # return session start time, nicely formatted
   def ux_session_start_time( session, show_time_zone=false) 
     if show_time_zone
-      session.start_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P (%Z)")
+      session.start_time.in_time_zone('Central Time (US & Canada)').strftime("%-l:%M %P (%Z)")
     else
-      session.start_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P")
+      session.start_time.in_time_zone('Central Time (US & Canada)').strftime("%-l:%M %P")
     end
   end
 
@@ -76,19 +76,22 @@ module SessionsHelper
   def ux_session_end_time( session, show_time_zone=false)
     if session.end_time != nil
       if show_time_zone
-        session.end_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P (%Z)")
+        session.end_time.in_time_zone('Central Time (US & Canada)').strftime("%-l:%M %P (%Z)")
       else
-        session.end_time.in_time_zone('Central Time (US & Canada)').strftime("%l:%M %P")
+        session.end_time.in_time_zone('Central Time (US & Canada)').strftime("%-l:%M %P")
       end
     else
       "error"
     end
   end
 
-  # calculates session duration and return it, nicely formatted
+  # return session time range: start - end times
+  def ux_session_time_range( session)
+    ux_session_start_time( session) + " - " + ux_session_end_time( session)
+  end
+
+  # calculates session duration and returns it, nicely formatted
   def ux_session_duration(session)
-    # DateTime objects ARE integers, so this returns num seconds elapsed
-#    duration = session.end_time.to_i - session.start_time.to_i
     return formatTime( session.duration)
   end
 
@@ -118,9 +121,18 @@ module SessionsHelper
     end
   end
 
-  # return the number of intervals in a session using the start/end times
-  def ux_session_num_intervals( session) 
-    12
+  # returns the database ID of the session, hopefully this is only used by Super
+  def ux_session_id( session)
+    session.id
+  end
+
+  # returns a checkmark ✔ if session is certififed OK
+  def ux_session_certified( session) 
+    if session.certified
+      "\u2713"      # unicode for checkmark, it's certified!
+    else
+      "\u274C"      # unicode for ugly X crossmark, it's NOT certified (bad)
+    end
   end
 
 end

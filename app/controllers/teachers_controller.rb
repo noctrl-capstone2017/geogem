@@ -2,6 +2,7 @@
 class TeachersController < ApplicationController
   include TeachersHelper
   include UxHelper
+  include SuperHelper
 
   before_action :is_suspended
   before_action :set_teacher, only: [:show, :edit, :update]
@@ -276,6 +277,23 @@ class TeachersController < ApplicationController
     @school =  School.find(Teacher.first.school_id)
   end
 
+  # GET /super_wrench - prep for the Super Wrench page
+  def super_wrench
+    @teacher = Teacher.first
+
+    # calc number of bad sessions, bad session events
+    @bad_sessions_count = v0dot5_num_bad_sessions()
+    @bad_events_count = v0dot5_num_bad_events()
+    @unending_sessions_count = v0dot5_num_sessions_without_end()
+  end
+
+  # PATCH /super_wrench
+  def do_super_wrench
+    fix_count = v0dot5_fix_bad_sessions()    
+    flash[:success] = "Super wrench - fixed #{fix_count} sessions."
+    redirect_to super_wrench_path
+  end
+
   # PATCH /super
   # updates the focus school of the super user
   def update_super_focus
@@ -371,6 +389,7 @@ class TeachersController < ApplicationController
       end
     end
 
+    # returns all the sessions at the current school
     def all_sessions
       @the_sessions = []
       teachers = Teacher.where(school_id: current_teacher.school_id)

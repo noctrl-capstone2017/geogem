@@ -10,12 +10,12 @@ class SessionEvent < ApplicationRecord
   end
 
   # calc and then set the interval num for an event, requires the session object
+  # Note - the event is NOT saved; I leave that to you
   def set_interval_num( session)
     time1 = Time.at(self.square_press_time)
     time2 = Time.at(session.start_time)
     delta = (time1.to_f - time2.to_f).to_i
     self.interval_num = delta / (session.session_interval * 60)
-    self.save
   end
 
   # write session events in CSV format... used by the Emerald Export screen

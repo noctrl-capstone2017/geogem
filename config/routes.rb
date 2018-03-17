@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   get     '/super',           to: 'teachers#super'
   patch   '/super',           to: 'teachers#update_super_focus'
   get     '/super_report',    to: 'teachers#super_report'
+  get     '/super_wrench',    to: 'teachers#super_wrench'
+  patch   '/super_wrench',    to: 'teachers#do_super_wrench'
 
   get     '/backup_school',   to: 'schools#backup'
   patch   '/backup_school',  to: 'schools#do_backup'
