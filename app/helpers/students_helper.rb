@@ -53,9 +53,13 @@ module StudentsHelper
   end
 
   # this is a jumble
-  def ux_ruby_count_events_during_interval( events, square, cur_interval)
+  def ux_ruby_count_events_during_interval( sesh, events, square, cur_interval)
     e = events.where( behavior_square_id: square.id, interval_num: cur_interval)
-    e.count
+    if sesh.session_interval_counting
+      (e.count > 0) ? "\u2713" : " "
+    else
+      e.count
+    end
   end
 
   # Ruby Report - returns a string that serves as the interval time range

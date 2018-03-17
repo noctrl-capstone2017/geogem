@@ -7,19 +7,17 @@
 
 <div class="row form-row2 navpanel-row pad20">
 
-  <!-- EMERALD EXPORT nav panel -->
+  <!-- RUBY REPORT nav panel -->
 	<div class="col-xs-12 col-sm-6">
 		<div class="panel panel-default navpanel">
 		  <div class="panel-heading">
-		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-file-excel-o navpanel-emerald"></span> Emerald Export</h3>
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-diamond navpanel-ruby"></span> Ruby Report</h3>
 		  </div>
 		  <div class="panel-body navpanel-body">
-		    <p>Save/download session data in CSV format.<br>
-		    Comma-Separated Values (CSV) is a text format that is used by many spreadsheet programs like Excel.
-		    </p>
+		    <p>Report the results of one behavior session.</p>
 		    <p>
-		    	<%= link_to analysis_emerald_path(@student.id), :class => "btn btn-lg btn-default navpanel-emerald-button" do %>
-						Emerald export <i class="fa fa-fw fa-chevron-right"></i>
+		    	<%= link_to analysis_ruby_path(@student.id), class: 'btn btn-lg btn-default navpanel-ruby-button' do %>
+		    		Ruby report <span class="fa fa-fw fa-chevron-right"></span>
 		    	<% end %>
 		    </p>
 		  </div>
@@ -46,17 +44,19 @@
 
   <div class="clearfix"></div>
 
-  <!-- RUBY REPORT nav panel -->
+  <!-- EMERALD EXPORT nav panel -->
 	<div class="col-xs-12 col-sm-6">
 		<div class="panel panel-default navpanel">
 		  <div class="panel-heading">
-		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-diamond navpanel-ruby"></span> Ruby Report</h3>
+		    <h3 class="panel-title navpanel-title"><span class="fa fa-lg fa-fw fa-file-excel-o navpanel-emerald"></span> Emerald Export</h3>
 		  </div>
 		  <div class="panel-body navpanel-body">
-		    <p>Report the results of one behavior session.</p>
+		    <p>Save/download session data in CSV format.<br>
+		    Comma-Separated Values (CSV) is a text format that is used by many spreadsheet programs like Excel.
+		    </p>
 		    <p>
-		    	<%= link_to analysis_ruby_path(@student.id), class: 'btn btn-lg btn-default navpanel-ruby-button' do %>
-		    		Ruby report <span class="fa fa-fw fa-chevron-right"></span>
+		    	<%= link_to analysis_emerald_path(@student.id), :class => "btn btn-lg btn-default navpanel-emerald-button" do %>
+						Emerald export <i class="fa fa-fw fa-chevron-right"></i>
 		    	<% end %>
 		    </p>
 		  </div>
