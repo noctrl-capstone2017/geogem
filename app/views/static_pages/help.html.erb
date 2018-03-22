@@ -21,18 +21,22 @@
 	</div>
 </div>   <!-- page-header -->
 
+<style>
+	.welcome-style { padding-left: 40px; padding-top: 20px; font-size: 1.2em; }
+</style>
+
 <!-- intro text -->
 <div class="row form-row2 pad20 content-text">
 	<p>
 		For new GeoGem users, these two PDF primers are a good place to start.
 	</p>
-	<p style="padding-left: 40px; padding-top: 20px; font-size: 1.2em;">
+	<p class="welcome-style">
 		<%= link_to "http://williamt.com/geogem/welcome1.pdf", target: :_blank do %>
  			Welcome to GeoGem &nbsp; <span class="fa fa-xs fa-external-link" style="font-size: 0.7em;"></span>
 		<% end %> 
 	</p>
-	<p style="padding-left: 40px; padding-top: 20px; font-size: 1.2em;">
-		<%= link_to "https://drive.google.com/file/d/152RXr8thwYQGT3QZZ5uOYRJcWtyU5e9w/view?usp=sharing", target: :_blank do %>
+	<p class="welcome-style">
+		<%= link_to "http://williamt.com/geogem/welcome2.pdf", target: :_blank do %>
  			Welcome2 - GeoGem Admins &nbsp; <span class="fa fa-external-link" style="font-size: 0.7em;"></span>
 		<% end %>
 	</p>
